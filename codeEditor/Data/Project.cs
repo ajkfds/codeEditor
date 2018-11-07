@@ -27,10 +27,10 @@ namespace codeEditor.Data
         private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
         public Dictionary<string, ProjectProperty> ProjectProperties
         {
-            get => projectProperties;
+            get { return projectProperties; }
         }
 
-        public new string ID { get => Name; }
+        public new string ID { get { return Name; } }
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 

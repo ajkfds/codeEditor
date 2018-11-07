@@ -25,7 +25,7 @@ namespace codeEditor.Data
         protected Dictionary<string, Item> items = new Dictionary<string, Item>();
         public IReadOnlyDictionary<string, Item> Items
         {
-            get => items;
+            get { return items; }
         }
 
         public virtual void Dispose()

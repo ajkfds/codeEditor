@@ -18,12 +18,12 @@ namespace codeEditor.NavigatePanel
         
         public virtual Data.Folder Folder
         {
-            get => Project.GetRegisterdItem(ID) as Data.Folder;
+            get { return Project.GetRegisterdItem(ID) as Data.Folder; }
         }
 
         public override string Text
         {
-            get => Folder.Name;
+            get { return Folder.Name; }
         }
 
 

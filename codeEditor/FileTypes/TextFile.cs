@@ -8,7 +8,7 @@ namespace codeEditor.FileTypes
 {
     public class TextFile : FileType
     {
-        public override string ID { get => "TextFile"; }
+        public override string ID { get { return "TextFile"; } }
 
         public override bool IsThisFileType(string relativeFilePath, Data.Project project)
         {

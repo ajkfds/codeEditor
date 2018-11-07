@@ -118,7 +118,7 @@ namespace codeEditor.CodeEditor
 
         private CodeDocument CodeDocument
         {
-            get => codeTextbox.Document as CodeDocument;
+            get { return codeTextbox.Document as CodeDocument; }
             set
             {
                 codeTextbox.Document = value;
@@ -240,7 +240,8 @@ namespace codeEditor.CodeEditor
                 )
             {
                 int index = codeTextbox.GetIndexAt(e.X, e.Y);
-                CodeDocument.GetWord(index, out int headIndex, out int length);
+                int headIndex, length;
+                CodeDocument.GetWord(index, out headIndex, out length);
 
                 codeTextbox.SetSelection(headIndex, length);
             }

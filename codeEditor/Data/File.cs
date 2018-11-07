@@ -59,7 +59,7 @@ namespace codeEditor.Data
 
         public FileTypes.FileType FileType
         {
-            get => null;
+            get { return null; }
         }
 
         public override void Update()

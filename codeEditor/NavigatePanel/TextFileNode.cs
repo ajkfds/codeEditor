@@ -16,12 +16,12 @@ namespace codeEditor.NavigatePanel
 
         public Data.ITextFile ITextFile
         {
-            get => Project.GetRegisterdItem(ID) as Data.ITextFile;
+            get { return Project.GetRegisterdItem(ID) as Data.ITextFile; }
         }
 
         public override string Text
         {
-            get => FileItem.Name;
+            get { return FileItem.Name; }
         }
 
         private static ajkControls.Icon icon = new ajkControls.Icon(Properties.Resources.text);

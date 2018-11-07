@@ -24,7 +24,7 @@ namespace codeEditor.NavigatePanel
 
         public override string Text
         {
-            get => Project.Name;
+            get { return Project.Name; }
         }
 
         private static ajkControls.Icon openFolder = new ajkControls.Icon(Properties.Resources.openFolder);

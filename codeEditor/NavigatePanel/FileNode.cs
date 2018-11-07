@@ -16,12 +16,12 @@ namespace codeEditor.NavigatePanel
 
         public Data.File FileItem
         {
-            get => Project.GetRegisterdItem(ID) as Data.File;
+            get { return Project.GetRegisterdItem(ID) as Data.File; }
         }
 
         public override string Text
         {
-            get => FileItem.Name;
+            get { return FileItem.Name; }
         }
 
         public override void Selected()
