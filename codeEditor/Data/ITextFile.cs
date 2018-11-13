@@ -20,5 +20,10 @@ namespace codeEditor.Data
 
         void Update();
         void Dispose();
+
+        void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e);
+        void AfterKeyDown(System.Windows.Forms.KeyEventArgs e);
+
+        List<CodeEditor.PopupItem> GetPopupItems(int EditId, int index);
     }
 }

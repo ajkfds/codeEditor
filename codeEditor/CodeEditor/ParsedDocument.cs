@@ -44,5 +44,10 @@ namespace codeEditor.CodeEditor
                 return null;
             }
         }
+
+        public virtual List<ajkControls.SelectionItem> GetInputCandidates()
+        {
+            return null;
+        }
     }
 }

@@ -30,8 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.codeTextbox = new ajkControls.CodeTextbox();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // codeTextbox
@@ -50,10 +52,20 @@
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
             this.codeTextbox.TabIndex = 0;
             this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);
+            this.codeTextbox.AfterKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_AfterKeyPressed);
+            this.codeTextbox.AfterKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_AfterKeyDown);
             this.codeTextbox.Load += new System.EventHandler(this.codeTextbox_Load);
             this.codeTextbox.DoubleClick += new System.EventHandler(this.codeTextbox_DoubleClick);
             this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
             this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.propertiesToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(165, 34);
             // 
             // timer
             // 
@@ -61,11 +73,11 @@
             this.timer.Interval = 10;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // contextMenuStrip
+            // propertiesToolStripMenuItem
             // 
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 37);
+            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.propertiesToolStripMenuItem.Text = "Properties";
             // 
             // CodeEditor
             // 
@@ -77,6 +89,7 @@
             this.Name = "CodeEditor";
             this.Size = new System.Drawing.Size(635, 551);
             this.Load += new System.EventHandler(this.CodeEditor_Load);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -86,5 +99,6 @@
         private ajkControls.CodeTextbox codeTextbox;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
     }
 }

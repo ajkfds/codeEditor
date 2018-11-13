@@ -16,15 +16,42 @@ namespace codeEditor.CodeEditor
         {
             InitializeComponent();
             ajkControls.Document document = new ajkControls.Document();
-            codeTextbox.Document = document;
         }
 
-        public ajkControls.Document Document
+        public void SetItems(List<PopupItem> items)
         {
-            get
+            this.items = items;
+        }
+
+        List<PopupItem> items = new List<PopupItem>();
+        public override System.Drawing.Font Font
+        {
+            set
             {
-                return codeTextbox.Document;
+                base.Font = value;
             }
+        }
+
+        private void treeView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        int lineHeight = 0;
+        private void doubleBufferedDrawBox_DoubleBufferedPaint(PaintEventArgs e)
+        {
+            int width = 0;
+            int y = 0;
+            foreach(PopupItem item in items)
+            {
+                Size size;
+                item.Draw(e.Graphics, 0, y, Font, BackColor,out size);
+                y = y + size.Height;
+                if (width < size.Width) width = size.Width;
+            }
+            Height = y;
+            Width = width;
         }
     }
 }

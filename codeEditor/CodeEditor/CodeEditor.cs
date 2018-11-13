@@ -200,12 +200,23 @@ namespace codeEditor.CodeEditor
                 return;
             }
             int index = codeTextbox.GetIndexAt(e.X, e.Y);
+            List<PopupItem> items;
+            items = TextFile.GetPopupItems(CodeDocument.EditID, index);
+            if(items == null || items.Count == 0)
+            {
+                popupForm.Visible = false;
+                return;
+            }
+            popupForm.SetItems(items);
+            popupForm.Font = this.Font;
+            /*
             if(codeTextbox.Document.GetMarkAt(index) == 0)
             {
                 popupForm.Visible = false;
                 return;
             }
-
+            */
+            /*
             popupForm.Document.Replace(0, popupForm.Document.Length, 0, "");
             foreach(var message in TextFile.ParsedDocument.Messages)
             {
@@ -214,7 +225,7 @@ namespace codeEditor.CodeEditor
                     popupForm.Document.Replace(popupForm.Document.Length, 0, 0, message.Text + "\r\n");
                 }
             }
-
+            */
             Point screenPosition = PointToScreen(new Point(e.X, e.Y));
             popupForm.Left = screenPosition.X+10;
             popupForm.Top = screenPosition.Y+10;
@@ -245,6 +256,18 @@ namespace codeEditor.CodeEditor
 
                 codeTextbox.SetSelection(headIndex, length);
             }
+        }
+
+        private void codeTextbox_AfterKeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (CodeDocument == null) return;
+//            CodeDocument.AfterKeyPressed(e);
+        }
+
+        private void codeTextbox_AfterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (CodeDocument == null) return;
+//            CodeDocument.AfterKeyDown(e);
         }
     }
 }

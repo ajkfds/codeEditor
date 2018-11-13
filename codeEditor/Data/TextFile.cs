@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using codeEditor.CodeEditor;
 using codeEditor.NavigatePanel;
 
 namespace codeEditor.Data
@@ -73,6 +74,20 @@ namespace codeEditor.Data
         }
 
         public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project)
+        {
+            return null;
+        }
+
+        public virtual void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e)
+        {
+
+        }
+        public virtual void AfterKeyDown(System.Windows.Forms.KeyEventArgs e)
+        {
+
+        }
+
+        public List<PopupItem> GetPopupItems(int EditId, int index)
         {
             return null;
         }

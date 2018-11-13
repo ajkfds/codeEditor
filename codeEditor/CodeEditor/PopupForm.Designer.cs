@@ -30,30 +30,26 @@ namespace codeEditor.CodeEditor
         /// </summary>
         private void InitializeComponent()
         {
-            this.codeTextbox = new ajkControls.CodeTextbox();
+            this.doubleBufferedDrawBox = new ajkControls.DoubleBufferedDrawBox();
             this.SuspendLayout();
             // 
-            // codeTextbox
+            // doubleBufferedDrawBox
             // 
-            this.codeTextbox.BackColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.codeTextbox.Document = null;
-            this.codeTextbox.Editable = false;
-            this.codeTextbox.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.codeTextbox.Location = new Point(2, 0);
-            this.codeTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.codeTextbox.Name = "codeTextbox";
-            this.codeTextbox.ScrollBarVisible = false;
-            this.codeTextbox.Size = new Size(656, 223);
-            this.codeTextbox.TabIndex = 0;
+            this.doubleBufferedDrawBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.doubleBufferedDrawBox.Location = new System.Drawing.Point(0, 0);
+            this.doubleBufferedDrawBox.Name = "doubleBufferedDrawBox";
+            this.doubleBufferedDrawBox.Size = new System.Drawing.Size(657, 225);
+            this.doubleBufferedDrawBox.TabIndex = 0;
+            this.doubleBufferedDrawBox.DoubleBufferedPaint += new ajkControls.DoubleBufferedDrawBox.DoubleBufferedPaintHandler(this.doubleBufferedDrawBox_DoubleBufferedPaint);
             // 
             // PopupForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = Color.White;
-            this.ClientSize = new Size(657, 225);
-            this.Controls.Add(this.codeTextbox);
-            this.Font = new Font("Consolas", 8F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(657, 225);
+            this.Controls.Add(this.doubleBufferedDrawBox);
+            this.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PopupForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -65,6 +61,6 @@ namespace codeEditor.CodeEditor
 
         #endregion
 
-        private ajkControls.CodeTextbox codeTextbox;
+        private ajkControls.DoubleBufferedDrawBox doubleBufferedDrawBox;
     }
 }
