@@ -41,6 +41,7 @@ namespace codeEditor.CodeEditor
         int lineHeight = 0;
         private void doubleBufferedDrawBox_DoubleBufferedPaint(PaintEventArgs e)
         {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             int width = 0;
             int y = 0;
             foreach(PopupItem item in items)

@@ -187,6 +187,7 @@ namespace codeEditor.CodeEditor
         }
 
         private PopupForm popupForm = new PopupForm();
+        private int popupInex = -1;
         private void codeTextbox_MouseMove(object sender, MouseEventArgs e)
         {
             if (
@@ -200,6 +201,12 @@ namespace codeEditor.CodeEditor
                 return;
             }
             int index = codeTextbox.GetIndexAt(e.X, e.Y);
+            int headIndex, length;
+            CodeDocument.GetWord(index, out headIndex, out length);
+
+            if (popupInex == headIndex) return;
+            popupInex = headIndex;
+
             List<PopupItem> items;
             items = TextFile.GetPopupItems(CodeDocument.EditID, index);
             if(items == null || items.Count == 0)
@@ -208,7 +215,7 @@ namespace codeEditor.CodeEditor
                 return;
             }
             popupForm.SetItems(items);
-            popupForm.Font = this.Font;
+            popupForm.Font = codeTextbox.Font;
             /*
             if(codeTextbox.Document.GetMarkAt(index) == 0)
             {
