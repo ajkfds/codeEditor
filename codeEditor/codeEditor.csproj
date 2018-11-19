@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeEditor\AutoCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeEditor\AutoCompleteForm.Designer.cs">
+      <DependentUpon>AutoCompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeEditor\AutocompleteItem.cs" />
     <Compile Include="CodeEditor\BackroungParser.cs" />
     <Compile Include="CodeEditor\CodeDocument.cs" />
     <Compile Include="CodeEditor\CodeEditor.cs">
@@ -73,6 +80,7 @@
       <DependentUpon>PopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeEditor\PopupItem.cs" />
+    <Compile Include="CodeEditor\ToolItem.cs" />
     <Compile Include="Data\File.cs" />
     <Compile Include="Data\Folder.cs" />
     <Compile Include="Data\ITextFile.cs" />
@@ -129,6 +137,9 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CodeEditor\AutoCompleteForm.resx">
+      <DependentUpon>AutoCompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CodeEditor\CodeEditor.resx">
       <DependentUpon>CodeEditor.cs</DependentUpon>
     </EmbeddedResource>

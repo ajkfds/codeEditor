@@ -97,6 +97,7 @@ namespace codeEditor.CodeEditor
         public void Save()
         {
             if (TextFile == null) return;
+            entryParse();
             using(System.IO.StreamWriter sw = new System.IO.StreamWriter(TextFile.Project.GetAbsolutePath(TextFile.RelativePath)))
             {
                 sw.Write(TextFile.CodeDocument.CreateString());
@@ -133,6 +134,11 @@ namespace codeEditor.CodeEditor
                 codeTextbox.Visible = false;
                 return;
             }
+            if (TextFile == null || TextFile.GetType() != textFile.GetType())
+            {
+                codeTextbox.Style = textFile.DrawStyle;
+            }
+
             codeTextbox.Visible = true;
             codeTextbox.Document = textFile.CodeDocument;
             TextFile = textFile;
@@ -216,27 +222,11 @@ namespace codeEditor.CodeEditor
             }
             popupForm.SetItems(items);
             popupForm.Font = codeTextbox.Font;
-            /*
-            if(codeTextbox.Document.GetMarkAt(index) == 0)
-            {
-                popupForm.Visible = false;
-                return;
-            }
-            */
-            /*
-            popupForm.Document.Replace(0, popupForm.Document.Length, 0, "");
-            foreach(var message in TextFile.ParsedDocument.Messages)
-            {
-                if(index >= message.Index && index < message.Index + message.Length)
-                {
-                    popupForm.Document.Replace(popupForm.Document.Length, 0, 0, message.Text + "\r\n");
-                }
-            }
-            */
+
             Point screenPosition = PointToScreen(new Point(e.X, e.Y));
+            popupForm.Visible = true;
             popupForm.Left = screenPosition.X+10;
             popupForm.Top = screenPosition.Y+10;
-            popupForm.Visible = true;
         }
 
         private void codeTextbox_Load(object sender, EventArgs e)
@@ -265,16 +255,163 @@ namespace codeEditor.CodeEditor
             }
         }
 
-        private void codeTextbox_AfterKeyPressed(object sender, KeyPressEventArgs e)
+
+        // keys
+        private void codeTextbox_BeforeKeyDown(object sender, KeyEventArgs e)
         {
-            if (CodeDocument == null) return;
-//            CodeDocument.AfterKeyPressed(e);
+            if (TextFile == null) return;
+
+            if(e.KeyCode == Keys.Space)
+            {
+                if (e.Modifiers == Keys.Shift)
+                {
+                    closeAutoComplete();
+                    openToolSelectionForm();
+                    e.Handled = true;
+                    return;
+                }
+                else if (e.Modifiers == Keys.Control)
+                {
+                    openAutoComplete();
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+
+            // autoComplete
+            if (autoCompleteForm == null || !autoCompleteForm.Visible)
+            {
+                TextFile.BeforeKeyDown(e);
+                return;
+            }
+
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    autoCompleteForm.MoveUp();
+                    e.Handled = true;
+                    break;
+                case Keys.Down:
+                    autoCompleteForm.MoveDown();
+                    e.Handled = true;
+                    break;
+                case Keys.Tab:
+                case Keys.Return:
+                    applyAutoCompleteSelection(e.KeyCode);
+                    e.Handled = true;
+                    break;
+                case Keys.Space:
+                    applyAutoCompleteSelection(e.KeyCode);
+                    break;
+                case Keys.Escape:
+                case Keys.Delete:
+                case Keys.Back:
+                    autoCompleteForm.Visible = false;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void codeTextbox_AfterKeyDown(object sender, KeyEventArgs e)
         {
-            if (CodeDocument == null) return;
-//            CodeDocument.AfterKeyDown(e);
+            if (TextFile == null) return;
+            TextFile.AfterKeyDown(e);
+        }
+
+        private void codeTextbox_BeforeKeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (TextFile == null) return;
+            TextFile.BeforeKeyPressed(e);
+        }
+
+        private void codeTextbox_AfterKeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (TextFile == null || CodeDocument == null) return;
+
+            char inChar = e.KeyChar;
+            int prevIndex = CodeDocument.CaretIndex;
+            if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
+            {
+                prevIndex--;
+            }
+
+            if ((inChar < 127 && inChar >= 0x20) || inChar == '\t' || inChar > 0xff)
+            {
+                if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
+                {
+                    int headIndex, length;
+                    CodeDocument.GetWord(prevIndex, out headIndex, out length);
+                    string word = CodeDocument.CreateString(headIndex, length);
+                    if (word == "")
+                    {
+                        closeAutoComplete();
+                    }
+                    else
+                    {
+                        openAutoComplete();
+                        autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
+                        autoCompleteForm.UpdateVisibleItems(word);
+                    }
+                }
+            }
+
+            TextFile.AfterKeyPressed(e);
+        }
+
+        private ajkControls.SelectionForm toolSelectionForm = new ajkControls.SelectionForm();
+
+        private void openToolSelectionForm()
+        {
+            if(toolSelectionForm == null)
+            {
+                toolSelectionForm = new ajkControls.SelectionForm();
+            }
+            if (toolSelectionForm.Visible) return;
+
+            List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
+            List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
+            foreach(ToolItem item in tools) { items.Add(item); }
+            toolSelectionForm.SetSelectionItems(items);
+
+            Point screenPosition = PointToScreen(codeTextbox.GetCaretPoint());
+            Global.Controller.ShowForm(toolSelectionForm, screenPosition);
+        }
+
+        private void closeToolSelectionForm()
+        {
+            if (toolSelectionForm != null && toolSelectionForm.Visible) toolSelectionForm.Visible = false;
+            toolSelectionForm.Visible = false;
+        }
+
+
+
+        private AutoCompleteForm autoCompleteForm = null;
+
+        private void openAutoComplete()
+        {
+            if (autoCompleteForm == null)
+            {
+                autoCompleteForm = new AutoCompleteForm();
+                autoCompleteForm.Font = codeTextbox.Font;
+            }
+            if (autoCompleteForm.Visible) return;
+            Point screenPosition = PointToScreen(codeTextbox.GetCaretPoint());
+            Global.Controller.ShowForm(autoCompleteForm, screenPosition);
+        }
+
+        private void closeAutoComplete()
+        {
+            if (autoCompleteForm == null) return;
+            autoCompleteForm.Visible = false;
+        }
+
+        private void applyAutoCompleteSelection(Keys keyCode)
+        {
+            if (autoCompleteForm == null | !autoCompleteForm.Visible) return;
+            AutocompleteItem item = autoCompleteForm.SelectItem();
+            item.Apply(CodeDocument,keyCode);
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace codeEditor.CodeEditor
+﻿namespace codeEditor.CodeEditor
 {
-    partial class PopupForm
+    partial class AutoCompleteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +29,7 @@ namespace codeEditor.CodeEditor
         private void InitializeComponent()
         {
             this.doubleBufferedDrawBox = new ajkControls.DoubleBufferedDrawBox();
+            this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
             // doubleBufferedDrawBox
@@ -38,23 +37,28 @@ namespace codeEditor.CodeEditor
             this.doubleBufferedDrawBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.doubleBufferedDrawBox.Location = new System.Drawing.Point(0, 0);
             this.doubleBufferedDrawBox.Name = "doubleBufferedDrawBox";
-            this.doubleBufferedDrawBox.Size = new System.Drawing.Size(657, 225);
+            this.doubleBufferedDrawBox.Size = new System.Drawing.Size(294, 366);
             this.doubleBufferedDrawBox.TabIndex = 0;
             this.doubleBufferedDrawBox.DoubleBufferedPaint += new ajkControls.DoubleBufferedDrawBox.DoubleBufferedPaintHandler(this.doubleBufferedDrawBox_DoubleBufferedPaint);
             // 
-            // PopupForm
+            // vScrollBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vScrollBar.Location = new System.Drawing.Point(294, 0);
+            this.vScrollBar.Name = "vScrollBar";
+            this.vScrollBar.Size = new System.Drawing.Size(23, 366);
+            this.vScrollBar.TabIndex = 1;
+            // 
+            // AutoCompleteForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(657, 225);
+            this.ClientSize = new System.Drawing.Size(317, 366);
             this.Controls.Add(this.doubleBufferedDrawBox);
-            this.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.vScrollBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PopupForm";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "PopupForm";
-            this.TopMost = true;
+            this.Name = "AutoCompleteForm";
+            this.Text = "AutoCompleteForm";
             this.ResumeLayout(false);
 
         }
@@ -62,5 +66,6 @@ namespace codeEditor.CodeEditor
         #endregion
 
         private ajkControls.DoubleBufferedDrawBox doubleBufferedDrawBox;
+        private System.Windows.Forms.VScrollBar vScrollBar;
     }
 }

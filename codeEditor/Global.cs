@@ -10,5 +10,7 @@ namespace codeEditor
     {
         public static ViewControl.Controller Controller;
         public static Dictionary<string, FileTypes.FileType> FileTypes = new Dictionary<string, FileTypes.FileType>();
+
+        public static ajkControls.CodeDrawStyle DefaultDrawStyle = new ajkControls.CodeDrawStyle();
     }
 }

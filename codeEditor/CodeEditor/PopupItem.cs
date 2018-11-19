@@ -30,7 +30,13 @@ namespace codeEditor.CodeEditor
         private ajkControls.Icon.ColorStyle iconColorStyle;
         private Color color;
 
-        public virtual void Draw(Graphics graphics, int x, int y, Font font, Color backgroundColor,out Size size)
+        public virtual Size GetSize(Graphics graphics, Font font)
+        {
+            Size tsize = System.Windows.Forms.TextRenderer.MeasureText(graphics, text, font);
+            return new Size(tsize.Width + tsize.Height + (tsize.Height >> 2), tsize.Height);
+        }
+
+        public virtual void Draw(Graphics graphics, int x, int y, Font font, Color backgroundColor)
         {
             Size tsize = System.Windows.Forms.TextRenderer.MeasureText(graphics, text, font);
             if (icon != null) graphics.DrawImage(icon.GetImage(tsize.Height, iconColorStyle), new Point(x, y));
@@ -44,7 +50,6 @@ namespace codeEditor.CodeEditor
                 bgColor,
                 System.Windows.Forms.TextFormatFlags.NoPadding
                 );
-            size = new Size(tsize.Width + tsize.Height + (tsize.Height >> 2), tsize.Height);
         }
     }
 }

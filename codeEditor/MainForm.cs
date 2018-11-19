@@ -67,7 +67,7 @@ namespace codeEditor
                 plugin.Initialize();
             }
             
-
+/*
             ajkControls.Style.ColorPallet = new Color[16]
             {
                 Color.DimGray,                   // default
@@ -88,7 +88,7 @@ namespace codeEditor
                 Color.Black                      // 15
             };
             // #708090           SlateGray
-
+*/
         }
 
         public void AddProject(Data.Project project)

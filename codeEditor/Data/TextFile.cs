@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using ajkControls;
 using codeEditor.CodeEditor;
 using codeEditor.NavigatePanel;
 
@@ -68,6 +70,15 @@ namespace codeEditor.Data
             }
         }
 
+        
+        public CodeDrawStyle DrawStyle
+        {
+            get
+            {
+                return Global.DefaultDrawStyle;
+            }
+        }
+
         public override NavigatePanelNode CreateNode()
         {
             return new NavigatePanel.TextFileNode(ID, Project);
@@ -78,18 +89,40 @@ namespace codeEditor.Data
             return null;
         }
 
-        public virtual void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e)
-        {
-
-        }
-        public virtual void AfterKeyDown(System.Windows.Forms.KeyEventArgs e)
-        {
-
-        }
 
         public List<PopupItem> GetPopupItems(int EditId, int index)
         {
             return null;
         }
+
+        public List<AutocompleteItem> GetAutoCompleteItems(int index)
+        {
+            return null;
+        }
+        public List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index)
+        {
+            return null;
+        }
+
+
+        public virtual void BeforeKeyDown(KeyEventArgs e)
+        {
+
+        }
+
+        public virtual void AfterKeyDown(System.Windows.Forms.KeyEventArgs e)
+        {
+
+        }
+
+        public virtual void BeforeKeyPressed(KeyPressEventArgs e)
+        {
+
+        }
+
+        public virtual void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e)
+        {
+        }
+
     }
 }

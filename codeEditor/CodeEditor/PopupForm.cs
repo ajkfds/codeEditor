@@ -23,7 +23,7 @@ namespace codeEditor.CodeEditor
             this.items = items;
         }
 
-        List<PopupItem> items = new List<PopupItem>();
+        private List<PopupItem> items = new List<PopupItem>();
         public override System.Drawing.Font Font
         {
             set
@@ -37,22 +37,35 @@ namespace codeEditor.CodeEditor
 
         }
 
+        private int topMargin = 4;
+        private int bottomMargin = 4;
+        private int leftMargin = 4;
+        private int rightMargin = 4;
+        private int itemGap = 2;
 
-        int lineHeight = 0;
         private void doubleBufferedDrawBox_DoubleBufferedPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             int width = 0;
-            int y = 0;
+            int height = 0;
+            List<int> y = new List<int>();
+            foreach (PopupItem item in items)
+            {
+                y.Add(height);
+                Size size = item.GetSize(e.Graphics, Font);
+                if (size.Width > width) width = size.Width;
+                height += size.Height;
+                height += itemGap;
+            }
+            Width = width+leftMargin+rightMargin;
+            Height = height+topMargin+bottomMargin;
+
+            int i = 0;
             foreach(PopupItem item in items)
             {
-                Size size;
-                item.Draw(e.Graphics, 0, y, Font, BackColor,out size);
-                y = y + size.Height;
-                if (width < size.Width) width = size.Width;
+                item.Draw(e.Graphics, leftMargin, y[i]+topMargin, Font, BackColor);
             }
-            Height = y;
-            Width = width;
+            e.Graphics.DrawRectangle(new Pen(Color.Gray), 0, 0, Width-1, Height-1);
         }
     }
 }
