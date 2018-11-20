@@ -265,9 +265,9 @@ namespace codeEditor.CodeEditor
             {
                 if (e.Modifiers == Keys.Shift)
                 {
+                    e.Handled = true;
                     closeAutoComplete();
                     openToolSelectionForm();
-                    e.Handled = true;
                     return;
                 }
                 else if (e.Modifiers == Keys.Control)
@@ -360,23 +360,40 @@ namespace codeEditor.CodeEditor
             TextFile.AfterKeyPressed(e);
         }
 
-        private ajkControls.SelectionForm toolSelectionForm = new ajkControls.SelectionForm();
+        private ajkControls.SelectionForm toolSelectionForm = null;
 
         private void openToolSelectionForm()
         {
             if(toolSelectionForm == null)
             {
                 toolSelectionForm = new ajkControls.SelectionForm();
+                toolSelectionForm.Selected += ApplyTool;
             }
             if (toolSelectionForm.Visible) return;
 
             List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
             List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
             foreach(ToolItem item in tools) { items.Add(item); }
-            toolSelectionForm.SetSelectionItems(items);
 
-            Point screenPosition = PointToScreen(codeTextbox.GetCaretPoint());
+            items.Add(new Snippets.ToLower());
+            items.Add(new Snippets.ToUpper());
+
+            toolSelectionForm.SetSelectionItems(items);
+            toolSelectionForm.Font = codeTextbox.Font;
+
+            Point screenPosition = PointToScreen(codeTextbox.GetCaretTopPoint());
             Global.Controller.ShowForm(toolSelectionForm, screenPosition);
+        }
+
+        private void ApplyTool(object sender,EventArgs e)
+        {
+            if (toolSelectionForm == null) return;
+            if (toolSelectionForm.SelectedItem == null) return;
+            if (CodeDocument == null) return;
+
+            ((ToolItem)toolSelectionForm.SelectedItem).Apply(CodeDocument);
+            codeTextbox.Refresh();
+            entryParse();
         }
 
         private void closeToolSelectionForm()
@@ -397,7 +414,7 @@ namespace codeEditor.CodeEditor
                 autoCompleteForm.Font = codeTextbox.Font;
             }
             if (autoCompleteForm.Visible) return;
-            Point screenPosition = PointToScreen(codeTextbox.GetCaretPoint());
+            Point screenPosition = PointToScreen(codeTextbox.GetCaretBottomPoint());
             Global.Controller.ShowForm(autoCompleteForm, screenPosition);
         }
 

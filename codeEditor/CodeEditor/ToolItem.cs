@@ -9,12 +9,11 @@ namespace codeEditor.CodeEditor
 {
     public class ToolItem : ajkControls.SelectionItem
     {
-        public ToolItem(string text,CodeDocument codeDocument) : base(text,Color.Gray)
+        public ToolItem(string text) : base(text,Color.Gray)
         {
-
         }
 
-        public virtual void Apply()
+        public virtual void Apply(CodeDocument codeDocument)
         {
 
         }

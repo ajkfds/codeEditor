@@ -116,6 +116,8 @@
     </Compile>
     <Compile Include="NavigatePanel\NavigatePanelNode.cs" />
     <Compile Include="NavigatePanel\ProjectNode.cs" />
+    <Compile Include="Snippets\ToLower.cs" />
+    <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tools\NewProjectFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,5 +213,6 @@
   <ItemGroup>
     <None Include="Resources\exclamationBox.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
