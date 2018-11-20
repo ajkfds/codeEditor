@@ -41,14 +41,16 @@ namespace codeEditor.NavigatePanel
             // 
             // treeView
             // 
-            this.treeView.BackColor = System.Drawing.SystemColors.Control;
+            this.treeView.BackColor = System.Drawing.Color.White;
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(399, 618);
             this.treeView.TabIndex = 0;
+            this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             // 
             // contextMenuStrip
@@ -59,23 +61,23 @@ namespace codeEditor.NavigatePanel
             this.toolStripSeparator1,
             this.propertyToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 103);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // propertyToolStripMenuItem
             // 
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.propertyToolStripMenuItem.Text = "Property";
             // 
             // NavigatePanel
