@@ -44,7 +44,7 @@
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeTextbox.Document = null;
             this.codeTextbox.Editable = true;
-            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 6F);
+            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F);
             this.codeTextbox.ForeColor = System.Drawing.Color.Black;
             this.codeTextbox.Location = new System.Drawing.Point(0, 0);
             this.codeTextbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
