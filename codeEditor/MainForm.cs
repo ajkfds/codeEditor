@@ -66,29 +66,6 @@ namespace codeEditor
             {
                 plugin.Initialize();
             }
-            
-/*
-            ajkControls.Style.ColorPallet = new Color[16]
-            {
-                Color.DimGray,                   // default
-                Color.LightGray,                 // inactivated
-                Color.DarkGray,                  // 2
-                Color.Crimson,                   // variable-heavy
-                Color.MediumBlue,                // keyword
-                Color.ForestGreen,               // comment
-                Color.CadetBlue,                 // identifier
-                Color.Orchid,                    // variable-fixed
-                Color.SandyBrown,                // number
-                Color.Salmon,                    // variable-light
-                Color.Green,                     // highlighted comment
-                Color.Black,                     // 11
-                Color.Black,                     // 12
-                Color.Black,                     // 13
-                Color.Black,                     // 14
-                Color.Black                      // 15
-            };
-            // #708090           SlateGray
-*/
         }
 
         public void AddProject(Data.Project project)
@@ -106,15 +83,20 @@ namespace codeEditor
 
         // View controller interface //////////////////////////////////////////
 
-        public void Controller_AddProject(string absolutePath)
+        internal void Controller_AddProject(string absolutePath)
         {
             Data.Project project = Data.Project.Create(absolutePath);
             AddProject(project);
         }
 
+        internal System.Windows.Forms.MenuStrip Controller_GetMenuStrip()
+        {
+            return menuStrip;
+        }
+
         // code editor
 
-        public void Controller_RefreshCodeEditor()
+        internal void Controller_RefreshCodeEditor()
         {
             if (InvokeRequired)
             {
@@ -126,7 +108,7 @@ namespace codeEditor
             }
         }
 
-        public void Controller_SetCodeEditorTextItem(Data.ITextFile textFile)
+        internal void Controller_SetCodeEditorTextItem(Data.ITextFile textFile)
         {
             if(textFile == null)
             {
@@ -140,24 +122,24 @@ namespace codeEditor
             }
         }
 
-        public void Controller_ScrollToCaret()
+        internal void Controller_ScrollToCaret()
         {
             codeEditor.ScrollToCaret();
         }
 
         // navigate panel
-        public void Controller_RefreshNavigatePanel()
+        internal void Controller_RefreshNavigatePanel()
         {
             navigatePanel.Refresh();
         }
 
-        public void Controller_UpdateNavigateaPanel()
+        internal void Controller_UpdateNavigateaPanel()
         {
             navigatePanel.UpdateWholeNode();
         }
 
         // message view
-        public void Controller_UpdateMessageView(CodeEditor.ParsedDocument parsedDocument)
+        internal void Controller_UpdateMessageView(CodeEditor.ParsedDocument parsedDocument)
         {
             messageView.UpdateMessages(parsedDocument);
         }
