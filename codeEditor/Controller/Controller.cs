@@ -23,6 +23,12 @@ namespace codeEditor.ViewControl
             mainForm.Controller_AddProject(absolutePath);
         }
 
+        public System.Windows.Forms.MenuStrip GetMenuStrip()
+        {
+            return mainForm.Controller_GetMenuStrip();
+        }
+
+
         public void ShowForm(System.Windows.Forms.Form form)
         {
             form.Show(mainForm);
