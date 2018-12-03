@@ -42,8 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPlugin.cs" />
+    <Compile Include="PluginSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PulginManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ajkControls\ajkControls.csproj">
+      <Project>{c43436fa-980d-4d3c-bcb5-9ee6b494496c}</Project>
+      <Name>ajkControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

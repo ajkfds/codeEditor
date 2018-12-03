@@ -4,26 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace codeEditor.Data
+namespace codeEditorPlugin
 {
-    public class ProjectProperty
+    public class PluginSetup
     {
-        public virtual void SaveSetup(ajkControls.JsonWriter writer)
+        public void SaveSetup (ajkControls.JsonWriter writer)
         {
-
+            
         }
 
-        public virtual void LoadSetup(ajkControls.JsonReader reader)
+        public void ReadJson(ajkControls.JsonReader reader)
         {
             while (true)
             {
                 string key = reader.GetNextKey();
                 if (key == null) break;
-
                 reader.SkipValue();
             }
+
         }
-
-
     }
 }

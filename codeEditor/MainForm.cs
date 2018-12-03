@@ -50,6 +50,8 @@ namespace codeEditor
 
     public partial class MainForm : Form
     {
+        private const string setupFileName = "codeEditor.json";
+
         public MainForm()
         {
             InitializeComponent();
@@ -66,6 +68,16 @@ namespace codeEditor
             {
                 plugin.Initialize();
             }
+
+            if (System.IO.File.Exists(setupFileName))
+            {
+                Global.Setup.LoadSetup(setupFileName);
+            }
+        }
+
+        private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Global.Setup.SaveSetup(setupFileName);
         }
 
         public void AddProject(Data.Project project)
@@ -86,6 +98,8 @@ namespace codeEditor
         internal void Controller_AddProject(string absolutePath)
         {
             Data.Project project = Data.Project.Create(absolutePath);
+            if (Global.Projects.ContainsKey(project.Name)) return;
+            Global.Projects.Add(project.Name,project);
             AddProject(project);
         }
 
@@ -175,6 +189,13 @@ namespace codeEditor
             //    forms[i].Close();
             //    forms[i].Dispose();
             //}
+        }
+
+        private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Shell.CmdShellTab tab = new Shell.CmdShellTab();
+            mainTab.TabPages.Add(tab);
+            mainTab.Refresh();
         }
     }
 }

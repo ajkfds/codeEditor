@@ -129,5 +129,67 @@ namespace codeEditor.Data
             return relativePath;
         }
 
+        // save
+
+        public void SaveSetup(ajkControls.JsonWriter writer)
+        {
+            writer.writeKeyValue("RootPath", RootPath);
+
+            using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
+            {
+                foreach (var propertyKvp in ProjectProperties)
+                {
+                    using (var propertyWriter = blockWriter.GetObjectWriter(propertyKvp.Key))
+                    {
+                        propertyKvp.Value.SaveSetup(propertyWriter);
+                    }
+                }
+            }
+        }
+
+        public void LoadSetup(ajkControls.JsonReader reader)
+        {
+            while (true)
+            {
+                string key = reader.GetNextKey();
+                if (key == null) break;
+
+                switch (key)
+                {
+                    case "RootPath":
+                        RootPath = reader.GetNextStringValue();
+                        break;
+                    case "PluginProperties":
+                        using (var pluginPropertiesReader = reader.GetNextObjectReader())
+                        {
+                            readProjectProperties(pluginPropertiesReader);
+                        }
+                        break;
+                    default:
+                        reader.SkipValue();
+                        break;
+                }
+
+            }
+        }
+
+        private void readProjectProperties(ajkControls.JsonReader reader)
+        {
+            while (true)
+            {
+                string key = reader.GetNextKey();
+                if (key == null) break;
+
+                if (projectProperties.ContainsKey(key))
+                {
+                    projectProperties[key].LoadSetup(reader.GetNextObjectReader());
+                }
+                else
+                {
+                    reader.SkipValue();
+                }
+                }
+        }
+
     }
 }

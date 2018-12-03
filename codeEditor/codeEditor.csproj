@@ -84,7 +84,6 @@
     <Compile Include="Data\File.cs" />
     <Compile Include="Data\Folder.cs" />
     <Compile Include="Data\ITextFile.cs" />
-    <Compile Include="Data\Data.cs" />
     <Compile Include="Data\ProjectProperty.cs" />
     <Compile Include="Data\TextFile.cs" />
     <Compile Include="FileTypes\FileType.cs" />
