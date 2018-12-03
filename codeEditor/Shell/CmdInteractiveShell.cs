@@ -19,11 +19,11 @@ namespace codeEditor.Shell
 
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardInput = false;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.CreateNoWindow = true;
             process.OutputDataReceived += outputDataReceived;
             process.ErrorDataReceived += errorDataReceived;
-            process.StartInfo.RedirectStandardInput = false;
 
             process.StartInfo.FileName = System.Environment.GetEnvironmentVariable("ComSpec"); // cmd.exe
             process.StartInfo.Arguments = "";// @"/c dir c:\ /w"; // /c to close after execute
@@ -32,9 +32,32 @@ namespace codeEditor.Shell
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
 
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 10;
+            timer.Tick += timer_Tick;
+            //timer.Start();
+        }
+
+        private string lastLine = "";
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lock (logs)
+            {
+                if (process.StandardOutput.Peek() == -1) return;
+                string readText = process.StandardOutput.ReadLine();
+                if (readText != "") logs.Add(readText);
+                if (logs.Count > maxLogs) logs.RemoveAt(0);
+            }
+        }
+
+        public void Dispose()
+        {
+            process.Kill();
             process.WaitForExit();
             process.Close();
         }
+
+        private System.Windows.Forms.Timer timer = null;
 
         public void Execute(string command)
         {
@@ -43,7 +66,6 @@ namespace codeEditor.Shell
             {
                 sw.WriteLine(command);
             }
-            sw.Close();
         }
 
         public void WaitPrompt()

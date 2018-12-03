@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.Shell
 {
-    public class InteractiveShell
+    public interface InteractiveShell : IDisposable
     {
     }
 }

@@ -10,6 +10,8 @@ namespace codeEditor.Shell
     {
         public CmdShellTab()
         {
+            this.Text = "Command";
+
             panel = new CmdShellPanel();
             this.Controls.Add(panel);
             panel.Dock = System.Windows.Forms.DockStyle.Fill;
