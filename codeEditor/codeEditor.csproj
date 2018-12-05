@@ -116,18 +116,9 @@
     <Compile Include="NavigatePanel\NavigatePanelNode.cs" />
     <Compile Include="NavigatePanel\ProjectNode.cs" />
     <Compile Include="Setups\Setup.cs" />
-    <Compile Include="Shell\CmdInteractiveShell.cs" />
-    <Compile Include="Shell\CmdShellPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Shell\CmdShellPanel.Designer.cs">
-      <DependentUpon>CmdShellPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Shell\CmdShellTab.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Shell\InteractiveShell.cs" />
-    <Compile Include="Shell\Shell.cs" />
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tools\NewProjectFrom.cs">
@@ -177,9 +168,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shell\CmdShellPanel.resx">
-      <DependentUpon>CmdShellPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\NewProjectFrom.resx">
       <DependentUpon>NewProjectFrom.cs</DependentUpon>

@@ -12,11 +12,11 @@ namespace codeEditor.Shell
         {
             this.Text = "Command";
 
-            panel = new CmdShellPanel();
+            panel = new ajkControls.ShellPanel(new ajkControls.CommandShell());
             this.Controls.Add(panel);
             panel.Dock = System.Windows.Forms.DockStyle.Fill;
         }
-        private CmdShellPanel panel = null;
+        private ajkControls.ShellPanel panel = null;
 
 
 
