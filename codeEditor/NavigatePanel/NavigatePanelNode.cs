@@ -63,5 +63,10 @@ namespace codeEditor.NavigatePanel
         {
             base.DrawNode(graphics, x, y, font, color, backgroundColor, selectedColor, lineHeight, selected);
         }
+
+        public virtual void ShowProperyForm()
+        {
+
+        }
     }
 }

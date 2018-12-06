@@ -51,7 +51,6 @@
             this.treeView.Size = new System.Drawing.Size(281, 652);
             this.treeView.TabIndex = 1;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
-            this.treeView.NodeClicked += new System.EventHandler<ajkControls.TreeNode>(this.treeView_NodeClicked);
             // 
             // MessageView
             // 

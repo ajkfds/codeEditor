@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace codeEditor.NavigatePanel
 {
@@ -62,6 +54,20 @@ namespace codeEditor.NavigatePanel
             {
                 subNode.HierarchicalUpdate();
             }
+        }
+
+        private void treeView_NodeClicked(object sender, ajkControls.TreeView.NodeClickedEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+            System.Drawing.Point screenPosition = PointToScreen(e.Location);
+            contextMenuStrip.Show(screenPosition);
+        }
+
+        private void propertyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            NavigatePanelNode node = treeView.SelectedNode as NavigatePanelNode;
+            if (node == null) return;
+            node.ShowProperyForm();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace codeEditor.Tools
 {
     public partial class ProjectPropertyForm : Form
     {
-        public ProjectPropertyForm()
+        public ProjectPropertyForm(Data.Project project)
         {
             InitializeComponent();
         }
