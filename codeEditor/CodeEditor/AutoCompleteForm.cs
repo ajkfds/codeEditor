@@ -153,6 +153,17 @@ namespace codeEditor.CodeEditor
                         vScrollBar.Value = selectedIndex - visibleLines + 1;
                     }
                 }
+                if(visibleItems.Count < vScrollBar.Value + visibleLines)
+                {
+                    if(visibleItems.Count - visibleLines < 0)
+                    {
+                        vScrollBar.Value = 0;
+                    }
+                    else
+                    {
+                        vScrollBar.Value = visibleItems.Count - visibleLines;
+                    }
+                }
 
                 int y = topMargin;
                 int height;
