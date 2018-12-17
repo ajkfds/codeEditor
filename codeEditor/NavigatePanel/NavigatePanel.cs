@@ -32,6 +32,21 @@ namespace codeEditor.NavigatePanel
             }
             return ret;
         }
+        
+        public System.Windows.Forms.ContextMenuStrip GetContextMenuStrip()
+        {
+            return contextMenuStrip;
+        }
+
+        public void GetSelectedNode(out string project,out string id)
+        {
+            project = "";
+            id = "";
+            NavigatePanelNode node = treeView.SelectedNode as NavigatePanelNode;
+            if (node == null) return;
+            project = node.Project.Name;
+            id = node.ID;
+        }
 
         private void treeView_SelectedNodeChanged(object sender, ajkControls.TreeNode e)
         {
@@ -69,5 +84,6 @@ namespace codeEditor.NavigatePanel
             if (node == null) return;
             node.ShowProperyForm();
         }
+
     }
 }

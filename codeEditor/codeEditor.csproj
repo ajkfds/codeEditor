@@ -81,6 +81,9 @@
     </Compile>
     <Compile Include="CodeEditor\PopupItem.cs" />
     <Compile Include="CodeEditor\ToolItem.cs" />
+    <Compile Include="Controller\MainTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data\File.cs" />
     <Compile Include="Data\Folder.cs" />
     <Compile Include="Data\ITextFile.cs" />
@@ -116,9 +119,6 @@
     <Compile Include="NavigatePanel\NavigatePanelNode.cs" />
     <Compile Include="NavigatePanel\ProjectNode.cs" />
     <Compile Include="Setups\Setup.cs" />
-    <Compile Include="Shell\CmdShellTab.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tools\NewProjectFrom.cs">
@@ -216,6 +216,8 @@
   <ItemGroup>
     <None Include="Resources\exclamationBox.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\terminal.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

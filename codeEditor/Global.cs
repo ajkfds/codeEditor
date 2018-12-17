@@ -17,5 +17,12 @@ namespace codeEditor
 
 
         public static ajkControls.CodeDrawStyle DefaultDrawStyle = new ajkControls.CodeDrawStyle();
+
+
+        public static class Icons
+        {
+            public static ajkControls.Icon Terminal = new ajkControls.Icon(Properties.Resources.terminal);
+            public static ajkControls.Icon Text = new ajkControls.Icon(Properties.Resources.text);
+        }
     }
 }

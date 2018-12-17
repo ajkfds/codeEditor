@@ -94,6 +94,16 @@ namespace codeEditor.ViewControl
             {
                 mainForm.Controller_UpdateNavigateaPanel();
             }
+
+            public void GetSelectedNode(out string project, out string id)
+            {
+                mainForm.Controller_GetNavigatePanelSelectedNode(out project, out id);
+            }
+
+            public System.Windows.Forms.ContextMenuStrip GetContextMenuStrip()
+            {
+                return mainForm.Controller_GetNavigateContextMenu();
+            }
         }
 
         public class _TabsController
@@ -103,6 +113,16 @@ namespace codeEditor.ViewControl
                 this.mainForm = mainForm;
             }
             MainForm mainForm;
+
+            public void AddPage(ajkControls.TabPage tabPage)
+            {
+                mainForm.Controller_AddTabPage(tabPage);
+            }
+
+            public void RemovePage(ajkControls.TabPage tabPage)
+            {
+                mainForm.Controller_RemoveTabPage(tabPage);
+            }
 
             public void Refresh()
             {

@@ -55,12 +55,12 @@ namespace codeEditor
         public MainForm()
         {
             InitializeComponent();
+
             Global.Controller = new ViewControl.Controller(this);
 
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
             Global.FileTypes.Add(textFileType.ID, textFileType);
-
 
             codeEditorPlugin.PulginManager pinManager = new codeEditorPlugin.PulginManager();
             List<codeEditorPlugin.IPlugin> plugins = pinManager.LoadPlugIns(@"dlls\");
@@ -108,6 +108,18 @@ namespace codeEditor
             return menuStrip;
         }
 
+        // tabs
+
+        internal void Controller_AddTabPage(ajkControls.TabPage tabPage)
+        {
+            mainTab.TabPages.Add(tabPage);
+        }
+
+        internal void Controller_RemoveTabPage(ajkControls.TabPage tabPage)
+        {
+            mainTab.TabPages.Remove(tabPage);
+        }
+
         // code editor
 
         internal void Controller_RefreshCodeEditor()
@@ -152,6 +164,16 @@ namespace codeEditor
             navigatePanel.UpdateWholeNode();
         }
 
+        internal void Controller_GetNavigatePanelSelectedNode(out string project, out string id)
+        {
+            navigatePanel.GetSelectedNode(out project, out id);
+        }
+
+        internal System.Windows.Forms.ContextMenuStrip Controller_GetNavigateContextMenu()
+        {
+            return navigatePanel.GetContextMenuStrip();
+        }
+
         // message view
         internal void Controller_UpdateMessageView(CodeEditor.ParsedDocument parsedDocument)
         {
@@ -193,7 +215,8 @@ namespace codeEditor
 
         private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Shell.CmdShellTab tab = new Shell.CmdShellTab();
+            ajkControls.ShellPanel panel = new ajkControls.ShellPanel(new ajkControls.CommandShell(new List<string> { "prompt $P$G$_" }));
+            Controller.MainTabPage tab = new Controller.MainTabPage(panel, "command");
             mainTab.TabPages.Add(tab);
             mainTab.Refresh();
         }
