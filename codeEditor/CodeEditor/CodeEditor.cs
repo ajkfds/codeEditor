@@ -318,6 +318,10 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
             TextFile.AfterKeyDown(e);
+            if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
+            {
+                checkAutoComplete();
+            }
         }
 
         private void codeTextbox_BeforeKeyPressed(object sender, KeyPressEventArgs e)
@@ -331,33 +335,38 @@ namespace codeEditor.CodeEditor
             if (TextFile == null || CodeDocument == null) return;
 
             char inChar = e.KeyChar;
+            if ((inChar < 127 && inChar >= 0x20) || inChar == '\t' || inChar > 0xff)
+            {
+                checkAutoComplete();
+            }
+
+            TextFile.AfterKeyPressed(e);
+        }
+
+        private void checkAutoComplete()
+        {
             int prevIndex = CodeDocument.CaretIndex;
             if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
             {
                 prevIndex--;
             }
 
-            if ((inChar < 127 && inChar >= 0x20) || inChar == '\t' || inChar > 0xff)
+            if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
             {
-                if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
+                int headIndex, length;
+                CodeDocument.GetWord(prevIndex, out headIndex, out length);
+                string word = CodeDocument.CreateString(headIndex, length);
+                if (word == "")
                 {
-                    int headIndex, length;
-                    CodeDocument.GetWord(prevIndex, out headIndex, out length);
-                    string word = CodeDocument.CreateString(headIndex, length);
-                    if (word == "")
-                    {
-                        closeAutoComplete();
-                    }
-                    else
-                    {
-                        openAutoComplete();
-                        autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
-                        autoCompleteForm.UpdateVisibleItems(word);
-                    }
+                    closeAutoComplete();
+                }
+                else
+                {
+                    openAutoComplete();
+                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
+                    autoCompleteForm.UpdateVisibleItems(word);
                 }
             }
-
-            TextFile.AfterKeyPressed(e);
         }
 
         private ajkControls.SelectionForm toolSelectionForm = null;
