@@ -21,13 +21,13 @@ namespace codeEditor.Tools
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            Data.Project project = Data.Project.Create(pathTextBox.Text);
-            if(project == null)
+            if (!System.IO.Directory.Exists(pathTextBox.Text))
             {
                 warningLabel.Text = "path not found";
                 return;
             }
-            mainForm.AddProject(project);
+            Data.Project project = Data.Project.Create(pathTextBox.Text);
+            Global.Controller.AddProject(project);
             this.Close();
         }
 
