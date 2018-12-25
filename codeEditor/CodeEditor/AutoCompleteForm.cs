@@ -19,7 +19,14 @@ namespace codeEditor.CodeEditor
 
         public void SetAutocompleteItems(List<AutocompleteItem> items)
         {
-            this.items = items;
+            if(items == null)
+            {
+                this.items.Clear();
+            }
+            else
+            {
+                this.items = items;
+            }
             UpdateVisibleItems("");
         }
 
