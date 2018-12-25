@@ -18,9 +18,18 @@ namespace codeEditor.ViewControl
         }
         MainForm mainForm;
 
-        public void AddProject(string absolutePath)
+        public void AppendLog(string message)
         {
-            mainForm.Controller_AddProject(absolutePath);
+            mainForm.Controller_LogAppend(message);
+        }
+        public void AppendLog(string message,System.Drawing.Color color)
+        {
+            mainForm.Controller_LogAppend(message,color);
+        }
+
+        public void AddProject(Data.Project project)
+        {
+            mainForm.Controller_AddProject(project);
         }
 
         public System.Windows.Forms.MenuStrip GetMenuStrip()

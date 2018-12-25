@@ -56,6 +56,8 @@ namespace codeEditor
         {
             InitializeComponent();
 
+            this.Icon = Global.Icons.Text.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
+
             Global.Controller = new ViewControl.Controller(this);
 
             // register filetype
@@ -80,7 +82,7 @@ namespace codeEditor
             Global.Setup.SaveSetup(setupFileName);
         }
 
-        public void AddProject(Data.Project project)
+        private void addProject(Data.Project project)
         {
             navigatePanel.AddProject(project);
             Tools.ParseProjectForm pform = new Tools.ParseProjectForm(navigatePanel.GetPeojectNode(project.Name));
@@ -95,12 +97,11 @@ namespace codeEditor
 
         // View controller interface //////////////////////////////////////////
 
-        internal void Controller_AddProject(string absolutePath)
+        internal void Controller_AddProject(Data.Project project)
         {
-            Data.Project project = Data.Project.Create(absolutePath);
             if (Global.Projects.ContainsKey(project.Name)) return;
             Global.Projects.Add(project.Name,project);
-            AddProject(project);
+            addProject(project);
         }
 
         internal System.Windows.Forms.MenuStrip Controller_GetMenuStrip()
@@ -178,6 +179,16 @@ namespace codeEditor
         internal void Controller_UpdateMessageView(CodeEditor.ParsedDocument parsedDocument)
         {
             messageView.UpdateMessages(parsedDocument);
+        }
+
+        // log
+        internal void Controller_LogAppend(string message)
+        {
+            logView.AppendLogLine(message);
+        }
+        internal void Controller_LogAppend(string message,System.Drawing.Color color)
+        {
+            logView.AppendLogLine(message, color);
         }
 
         // menu //////////////////////////////////////////////////////////////
