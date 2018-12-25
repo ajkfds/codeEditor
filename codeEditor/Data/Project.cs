@@ -24,6 +24,16 @@ namespace codeEditor.Data
             return project;
         }
 
+        public static Project Create(ajkControls.JsonReader jsonReader)
+        {
+            Project project = new Project();
+            project.Name = jsonReader.Key;
+            project.LoadSetup(jsonReader);
+            project.RelativePath = "";
+            project.Project = project;
+            return project;
+        }
+
         private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
         public Dictionary<string, ProjectProperty> ProjectProperties
         {
@@ -147,48 +157,51 @@ namespace codeEditor.Data
             }
         }
 
-        public void LoadSetup(ajkControls.JsonReader reader)
+        public void LoadSetup(ajkControls.JsonReader jsonReader)
         {
-            while (true)
+            using (var reader = jsonReader.GetNextObjectReader())
             {
-                string key = reader.GetNextKey();
-                if (key == null) break;
-
-                switch (key)
+                while (true)
                 {
-                    case "RootPath":
-                        RootPath = reader.GetNextStringValue();
-                        break;
-                    case "PluginProperties":
-                        using (var pluginPropertiesReader = reader.GetNextObjectReader())
-                        {
-                            readProjectProperties(pluginPropertiesReader);
-                        }
-                        break;
-                    default:
-                        reader.SkipValue();
-                        break;
-                }
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
 
+                    switch (key)
+                    {
+                        case "RootPath":
+                            RootPath = reader.GetNextStringValue();
+                            break;
+                        case "PluginProperties":
+                            readProjectProperties(reader);
+                            break;
+                        default:
+                            reader.SkipValue();
+                            break;
+                    }
+
+                }
             }
         }
 
-        private void readProjectProperties(ajkControls.JsonReader reader)
+        private void readProjectProperties(ajkControls.JsonReader jsonReader)
         {
-            while (true)
+            using (var reader = jsonReader.GetNextObjectReader())
             {
-                string key = reader.GetNextKey();
-                if (key == null) break;
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
 
-                if (projectProperties.ContainsKey(key))
-                {
-                    projectProperties[key].LoadSetup(reader.GetNextObjectReader());
+                    if (projectProperties.ContainsKey(key))
+                    {
+                        projectProperties[key].LoadSetup(reader);
+                    }
+                    else
+                    {
+                        reader.SkipValue();
+                    }
                 }
-                else
-                {
-                    reader.SkipValue();
-                }
-                }
+            }
         }
 
     }

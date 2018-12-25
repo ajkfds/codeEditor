@@ -13,17 +13,40 @@ namespace codeEditor.Data
 
         }
 
-        public virtual void LoadSetup(ajkControls.JsonReader reader)
+        public virtual void LoadSetup(ajkControls.JsonReader jsonReader)
+        {
+            using (var reader = jsonReader.GetNextObjectReader())
+            {
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
+
+                    reader.SkipValue();
+                }
+            }
+        }
+
+        private void readMacros(ajkControls.JsonReader reader)
         {
             while (true)
             {
                 string key = reader.GetNextKey();
                 if (key == null) break;
 
-                reader.SkipValue();
+                if (Global.Projects.ContainsKey(key))
+                {
+                    using (var block = reader.GetNextObjectReader())
+                    {
+                        Global.Projects[key].LoadSetup(block);
+                    }
+                }
+                else
+                {
+                    reader.SkipValue();
+                }
             }
         }
-
 
     }
 }

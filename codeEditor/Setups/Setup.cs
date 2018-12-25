@@ -42,85 +42,89 @@ namespace codeEditor.Setups
                 switch (key)
                 {
                     case "codeEditor":
-                        using(var block = reader.GetNextObjectReader())
+                        readCodeEditorSetup(reader);
+                        break;
+                    case "PluginSetups":
+                        readPluginSetup(reader);
+                        break;
+                    case "Projects":
+                        readProjects(reader);
+                        break;
+                    default:
+                        reader.SkipValue();
+                        break;
+                }
+            }
+        }
+
+        private void readCodeEditorSetup(ajkControls.JsonReader jsonReader)
+        {
+            using (var reader = jsonReader.GetNextObjectReader())
+            {
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
+
+                    switch (key)
+                    {
+                        case "ApplicationName":
+                            string applicationName = reader.GetNextStringValue();
+                            if (applicationName != "codeEditor") throw new Exception("illegal format");
+                            break;
+                        case "LastUpdate":
+                            string lastUpdate = reader.GetNextStringValue();
+                            break;
+                        default:
+                            reader.SkipValue();
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void readPluginSetup(ajkControls.JsonReader jsonReader)
+        {
+            using (var reader = jsonReader.GetNextObjectReader())
+            {
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
+
+                    if (Global.PluginSetups.ContainsKey(key))
+                    {
+                        using (var block = reader.GetNextObjectReader())
                         {
-                            readCodeEdotorSetup(block);
+                            Global.PluginSetups[key].ReadJson(block);
                         }
-                        break;
-                    //case "PliginSetups":
-                    //    break;
-                    //case "Projects":
-                    //    break;
-                    default:
-                        reader.SkipValue();
-                        break;
-                }
-            }
-        }
-
-        private void readCodeEdotorSetup(ajkControls.JsonReader reader)
-        {
-            while (true)
-            {
-                string key = reader.GetNextKey();
-                if (key == null) break;
-
-                switch (key)
-                {
-                    case "ApplicationName":
-                        string applicationName = reader.GetNextStringValue();
-                        if (applicationName != "codeEditor") throw new Exception("illegal format");
-                        break;
-                    case "LastUpdate":
-                        string lastUpdate = reader.GetNextStringValue();
-                        break;
-                    default:
-                        reader.SkipValue();
-                        break;
-                }
-            }
-        }
-
-        private void readPluginSetup(ajkControls.JsonReader reader)
-        {
-            while (true)
-            {
-                string key = reader.GetNextKey();
-                if (key == null) break;
-
-                if (Global.PluginSetups.ContainsKey(key))
-                {
-                    using (var block = reader.GetNextObjectReader())
+                    }
+                    else
                     {
-                        Global.PluginSetups[key].ReadJson(block);
-                        readCodeEdotorSetup(block);
+                        reader.SkipValue();
                     }
                 }
-                else
-                {
-                    reader.SkipValue();
-                }
             }
         }
 
-        private void readProjects(ajkControls.JsonReader reader)
+        private void readProjects(ajkControls.JsonReader jsonReader)
         {
-            while (true)
+            using (var reader = jsonReader.GetNextObjectReader())
             {
-                string key = reader.GetNextKey();
-                if (key == null) break;
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
 
-                if (Global.Projects.ContainsKey(key))
-                {
-                    using (var block = reader.GetNextObjectReader())
+                    if (Global.Projects.ContainsKey(key))
                     {
-                        Global.Projects[key].LoadSetup(block);
-                        readCodeEdotorSetup(block);
+                         Global.Projects[key].LoadSetup(reader);
                     }
-                }
-                else
-                {
-                    reader.SkipValue();
+                    else
+                    {
+                        Data.Project project = Data.Project.Create(reader);
+                        Global.Controller.AddProject(project);
+                    }
                 }
             }
         }
