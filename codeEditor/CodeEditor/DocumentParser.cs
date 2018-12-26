@@ -14,6 +14,7 @@ namespace codeEditor.CodeEditor
             this.Project = project;
             this.ID = id;
             this.document.CopyCharsFrom(document);
+            this.document.CopyLineIndexFrom(document);
         }
 
         public int EditId { get; protected set; }
