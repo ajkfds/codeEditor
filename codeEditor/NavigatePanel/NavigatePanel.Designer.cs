@@ -41,18 +41,19 @@ namespace codeEditor.NavigatePanel
             // 
             // contextMenuStrip
             // 
+            this.contextMenuStrip.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
             this.toolStripSeparator1,
             this.propertyToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 103);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 91);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // toolStripSeparator1
@@ -63,7 +64,7 @@ namespace codeEditor.NavigatePanel
             // propertyToolStripMenuItem
             // 
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.propertyToolStripMenuItem.Text = "Property";
             this.propertyToolStripMenuItem.Click += new System.EventHandler(this.propertyToolStripMenuItem_Click);
             // 
