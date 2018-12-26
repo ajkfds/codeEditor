@@ -48,12 +48,12 @@ namespace codeEditor
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.mainTab = new ajkControls.TabControl();
             this.editorPage = new System.Windows.Forms.TabPage();
+            this.codeEditor = new codeEditor.CodeEditor.CodeEditor();
             this.tabControl = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
-            this.logView = new ajkControls.LogView();
-            this.codeEditor = new codeEditor.CodeEditor.CodeEditor();
-            this.messageView = new codeEditor.MessageView.MessageView();
             this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
+            this.logView = new ajkControls.LogView();
+            this.messageView = new codeEditor.MessageView.MessageView();
             this.menuStrip.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.editorPage.SuspendLayout();
@@ -91,14 +91,14 @@ namespace codeEditor
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
             this.saveAllToolStripMenuItem.Text = "SaveAll";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
@@ -214,6 +214,16 @@ namespace codeEditor
             this.editorPage.Text = "code";
             this.editorPage.UseVisualStyleBackColor = true;
             // 
+            // codeEditor
+            // 
+            this.codeEditor.BackColor = System.Drawing.Color.White;
+            this.codeEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeEditor.Font = new System.Drawing.Font("MS UI Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.codeEditor.Location = new System.Drawing.Point(3, 3);
+            this.codeEditor.Name = "codeEditor";
+            this.codeEditor.Size = new System.Drawing.Size(614, 434);
+            this.codeEditor.TabIndex = 0;
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.navigatorPage);
@@ -239,25 +249,24 @@ namespace codeEditor
             this.navigatorPage.Text = "navigator";
             this.navigatorPage.UseVisualStyleBackColor = true;
             // 
+            // navigatePanel
+            // 
+            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Name = "navigatePanel";
+            this.navigatePanel.Size = new System.Drawing.Size(258, 434);
+            this.navigatePanel.TabIndex = 0;
+            // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.logView.ForeColor = System.Drawing.Color.Gray;
             this.logView.Location = new System.Drawing.Point(0, 505);
             this.logView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.logView.MaxLogs = 200;
             this.logView.Name = "logView";
             this.logView.Size = new System.Drawing.Size(1110, 122);
             this.logView.TabIndex = 0;
-            // 
-            // codeEditor
-            // 
-            this.codeEditor.BackColor = System.Drawing.Color.White;
-            this.codeEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeEditor.Font = new System.Drawing.Font("MS UI Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.codeEditor.Location = new System.Drawing.Point(3, 3);
-            this.codeEditor.Name = "codeEditor";
-            this.codeEditor.Size = new System.Drawing.Size(614, 434);
-            this.codeEditor.TabIndex = 0;
             // 
             // messageView
             // 
@@ -267,14 +276,6 @@ namespace codeEditor
             this.messageView.Name = "messageView";
             this.messageView.Size = new System.Drawing.Size(204, 472);
             this.messageView.TabIndex = 11;
-            // 
-            // navigatePanel
-            // 
-            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
-            this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(258, 434);
-            this.navigatePanel.TabIndex = 0;
             // 
             // MainForm
             // 
