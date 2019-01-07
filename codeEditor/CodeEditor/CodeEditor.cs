@@ -21,6 +21,7 @@ namespace codeEditor.CodeEditor
             //            this.codeTextbox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.dbDrawBox_MouseWheel);
         }
 
+        // find & replace form
         FindForm findForm;
         public void OpenFind()
         {
@@ -138,7 +139,7 @@ namespace codeEditor.CodeEditor
             {
                 codeTextbox.Style = textFile.DrawStyle;
             }
-
+            
             codeTextbox.Visible = true;
             codeTextbox.Document = textFile.CodeDocument;
             TextFile = textFile;
@@ -162,7 +163,11 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
             DocumentParser parser = TextFile.CreateDocumentParser(CodeDocument, TextFile.ID, TextFile.Project);
-            if (parser != null) backGroundParser.EntryParse(parser);
+            if (parser != null)
+            {
+                backGroundParser.EntryParse(parser);
+                Global.Controller.AppendLog("entry parse " + DateTime.Now.ToString());
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -170,8 +175,13 @@ namespace codeEditor.CodeEditor
             DocumentParser parser = backGroundParser.GetResult();
             if (parser == null) return;
             if (TextFile.ID != parser.ID) return;
-            if (CodeDocument.EditID != parser.EditId) return;
+            if (CodeDocument.EditID != parser.EditId)
+            {
+                Global.Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
+                return;
+            }
 
+            Global.Controller.AppendLog("parsed "+DateTime.Now.ToString());
             CodeDocument.CopyColorsFrom(parser.Document);
             CodeDocument.CopyMarksFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
@@ -299,7 +309,6 @@ namespace codeEditor.CodeEditor
                 case Keys.Tab:
                 case Keys.Return:
                     applyAutoCompleteSelection(e.KeyCode);
-                    e.Handled = true;
                     break;
                 case Keys.Space:
                     applyAutoCompleteSelection(e.KeyCode);
@@ -343,31 +352,7 @@ namespace codeEditor.CodeEditor
             TextFile.AfterKeyPressed(e);
         }
 
-        private void checkAutoComplete()
-        {
-            int prevIndex = CodeDocument.CaretIndex;
-            if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
-            {
-                prevIndex--;
-            }
-
-            if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
-            {
-                int headIndex, length;
-                CodeDocument.GetWord(prevIndex, out headIndex, out length);
-                string word = CodeDocument.CreateString(headIndex, length);
-                if (word == "")
-                {
-                    closeAutoComplete();
-                }
-                else
-                {
-                    openAutoComplete();
-                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
-                    autoCompleteForm.UpdateVisibleItems(word);
-                }
-            }
-        }
+        // tool selection form /////////////////////////////////////////////////////////////////////////
 
         private ajkControls.SelectionForm toolSelectionForm = null;
 
@@ -411,7 +396,7 @@ namespace codeEditor.CodeEditor
             toolSelectionForm.Visible = false;
         }
 
-
+        // auto complete form ////////////////////////////////////////////////////////////////////////////////////
 
         private AutoCompleteForm autoCompleteForm = null;
 
@@ -437,7 +422,38 @@ namespace codeEditor.CodeEditor
         {
             if (autoCompleteForm == null | !autoCompleteForm.Visible) return;
             AutocompleteItem item = autoCompleteForm.SelectItem();
+            if (item == null) return;
             item.Apply(CodeDocument,keyCode);
         }
+
+        /// <summary>
+        /// update auto complete word text
+        /// </summary>
+        private void checkAutoComplete()
+        {
+            int prevIndex = CodeDocument.CaretIndex;
+            if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
+            {
+                prevIndex--;
+            }
+
+            if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
+            {
+                int headIndex, length;
+                CodeDocument.GetWord(prevIndex, out headIndex, out length);
+                string word = CodeDocument.CreateString(headIndex, length);
+                if (word == "")
+                {
+                    closeAutoComplete();
+                }
+                else
+                {
+                    openAutoComplete();
+                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
+                    autoCompleteForm.UpdateVisibleItems(word);
+                }
+            }
+        }
+
     }
 }
