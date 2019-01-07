@@ -59,6 +59,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AutoCompleteForm";
             this.Text = "AutoCompleteForm";
+            this.VisibleChanged += new System.EventHandler(this.AutoCompleteForm_VisibleChanged);
             this.ResumeLayout(false);
 
         }

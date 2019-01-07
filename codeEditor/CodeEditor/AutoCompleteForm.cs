@@ -27,7 +27,6 @@ namespace codeEditor.CodeEditor
             {
                 this.items = items;
             }
-            UpdateVisibleItems("");
         }
 
         protected override bool ShowWithoutActivation
@@ -39,6 +38,14 @@ namespace codeEditor.CodeEditor
         private List<AutocompleteItem> visibleItems = new List<AutocompleteItem>();
 
         private AutocompleteItem selectedItem = null;
+
+        public int ItemCount
+        {
+            get
+            {
+                return visibleItems.Count;
+            }
+        }
 
         private string inputText = "";
         public void UpdateVisibleItems(string inputText)
@@ -53,35 +60,40 @@ namespace codeEditor.CodeEditor
             {
                 List<AutocompleteItem> partialMatch = new List<AutocompleteItem>();
                 visibleItems.Clear();
+                AutocompleteItem selectionCantidate = null;
                 foreach (AutocompleteItem item in items)
                 {
                     if (item.Text.StartsWith(inputText))
                     {
                         visibleItems.Add(item);
+                        if(selectionCantidate == null)
+                        {
+                            selectionCantidate = item;
+                        }
+                        else if(selectionCantidate.Text.Length > item.Text.Length)
+                        {
+                            selectionCantidate = item;
+                        }
                         continue;
-                    }
-                    if (item.Text.Contains(inputText))
+                    }else if (item.Text.Contains(inputText))
                     {
                         partialMatch.Add(item);
                         continue;
                     }
                 }
 
+
                 foreach (AutocompleteItem item in partialMatch)
                 {
                     visibleItems.Add(item);
                 }
 
-                if (selectedItem != null && !visibleItems.Contains(selectedItem))
+                if (!visibleItems.Contains(selectedItem))
                 {
-                    selectedItem = null;
-                }
-                if (selectedItem == null && visibleItems.Count != 0)
-                {
-                    selectedItem = visibleItems[0];
+                    selectedItem = selectionCantidate;
                 }
             }
-            if (selectedItem == null)
+            if (visibleItems.Count == 0)
             {
                 Visible = false;
                 return;
@@ -101,7 +113,11 @@ namespace codeEditor.CodeEditor
 
         public void MoveDown()
         {
-            if (!visibleItems.Contains(selectedItem)) return;
+            if (!visibleItems.Contains(selectedItem))
+            {
+                selectedItem = visibleItems.FirstOrDefault();
+                return;
+            }
             int index = visibleItems.IndexOf(selectedItem);
             index++;
             if (index < visibleItems.Count)
@@ -113,7 +129,11 @@ namespace codeEditor.CodeEditor
 
         public void MoveUp()
         {
-            if (!visibleItems.Contains(selectedItem)) return;
+            if (!visibleItems.Contains(selectedItem))
+            {
+                selectedItem = visibleItems.LastOrDefault();
+                return;
+            }
             int index = visibleItems.IndexOf(selectedItem);
             index--;
             if (index >= 0)
@@ -145,30 +165,39 @@ namespace codeEditor.CodeEditor
                 vScrollBar.Minimum = 0;
                 vScrollBar.Maximum = items.Count;
                 vScrollBar.LargeChange = visibleLines;
-                int selectedIndex = visibleItems.IndexOf(selectedItem);
-                if (selectedIndex < vScrollBar.Value)
+
+                if(selectedItem == null)
                 {
-                    vScrollBar.Value = selectedIndex;
-                }else if (selectedIndex >= vScrollBar.Value + visibleLines)
-                {
-                    if((selectedIndex-visibleLines+1)<0)
-                    {
-                        vScrollBar.Value = 0;
-                    }
-                    else
-                    {
-                        vScrollBar.Value = selectedIndex - visibleLines + 1;
-                    }
+                    vScrollBar.Value = 0;
                 }
-                if(visibleItems.Count < vScrollBar.Value + visibleLines)
+                else
                 {
-                    if(visibleItems.Count - visibleLines < 0)
+                    int selectedIndex = visibleItems.IndexOf(selectedItem);
+                    if (selectedIndex < vScrollBar.Value)
                     {
-                        vScrollBar.Value = 0;
+                        vScrollBar.Value = selectedIndex;
                     }
-                    else
+                    else if (selectedIndex >= vScrollBar.Value + visibleLines)
                     {
-                        vScrollBar.Value = visibleItems.Count - visibleLines;
+                        if ((selectedIndex - visibleLines + 1) < 0)
+                        {
+                            vScrollBar.Value = 0;
+                        }
+                        else
+                        {
+                            vScrollBar.Value = selectedIndex - visibleLines + 1;
+                        }
+                    }
+                    if (visibleItems.Count < vScrollBar.Value + visibleLines)
+                    {
+                        if (visibleItems.Count - visibleLines < 0)
+                        {
+                            vScrollBar.Value = 0;
+                        }
+                        else
+                        {
+                            vScrollBar.Value = visibleItems.Count - visibleLines;
+                        }
                     }
                 }
 
@@ -191,6 +220,11 @@ namespace codeEditor.CodeEditor
                     y += height;
                 }
             }
+        }
+
+        private void AutoCompleteForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if(Visible) selectedItem = null;
         }
     }
 }
