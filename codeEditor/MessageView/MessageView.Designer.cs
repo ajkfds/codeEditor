@@ -46,10 +46,12 @@
             // 
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 20);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(281, 652);
             this.treeView.TabIndex = 1;
+            this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             // 
             // MessageView
