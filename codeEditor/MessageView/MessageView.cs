@@ -31,9 +31,10 @@ namespace codeEditor.MessageView
         {
         }
 
-        private void treeView_NodeClicked(object sender, ajkControls.TreeNode e)
+        private void treeView_NodeClicked(object sender, ajkControls.TreeView.NodeClickedEventArgs e)
         {
-            MessageNode node = e as MessageNode;
+            MessageNode node = e.TreeNode as MessageNode;
+            if (node == null) return;
             node.Selected();
         }
     }

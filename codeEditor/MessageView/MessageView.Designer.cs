@@ -44,15 +44,19 @@
             // 
             // treeView
             // 
+            this.treeView.BackColor = System.Drawing.Color.White;
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 20);
+            this.treeView.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(281, 652);
             this.treeView.TabIndex = 1;
             this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
+            this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
             // MessageView
             // 
