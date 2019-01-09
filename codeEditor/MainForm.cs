@@ -55,8 +55,8 @@ namespace codeEditor
         public MainForm()
         {
             InitializeComponent();
-
-            this.Icon = Global.Icons.Text.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
+            ajkControls.Global.Icon = new ajkControls.Icon(Properties.Resources.ajkEditor);
+            this.Icon = ajkControls.Global.Icon.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
 
             Global.Controller = new ViewControl.Controller(this);
 

@@ -15,6 +15,7 @@ namespace codeEditor.Tools
         public ProjectPropertyForm(Data.Project project)
         {
             InitializeComponent();
+            this.Icon = ajkControls.Global.Icon.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
         }
     }
 }

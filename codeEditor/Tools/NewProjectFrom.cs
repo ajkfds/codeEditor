@@ -16,6 +16,7 @@ namespace codeEditor.Tools
         {
             InitializeComponent();
             this.mainForm = mainForm;
+            this.Icon = ajkControls.Global.Icon.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
         }
         MainForm mainForm;
 
