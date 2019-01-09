@@ -129,7 +129,8 @@ namespace codeEditor.CodeEditor
 
         public void SetTextFile(Data.ITextFile textFile)
         {
-            if(textFile == null || textFile.CodeDocument == null)
+            if (TextFile == textFile) return;
+            if (textFile == null || textFile.CodeDocument == null)
             {
                 codeTextbox.Document = null;
                 codeTextbox.Visible = false;
@@ -143,6 +144,7 @@ namespace codeEditor.CodeEditor
             codeTextbox.Visible = true;
             codeTextbox.Document = textFile.CodeDocument;
             TextFile = textFile;
+            ScrollToCaret();
 
             entryParse();
         }

@@ -219,5 +219,8 @@
   <ItemGroup>
     <None Include="Resources\terminal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajkEditor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
