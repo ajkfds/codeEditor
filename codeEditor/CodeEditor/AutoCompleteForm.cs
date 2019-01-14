@@ -15,6 +15,7 @@ namespace codeEditor.CodeEditor
         public AutoCompleteForm()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         public void SetAutocompleteItems(List<AutocompleteItem> items)

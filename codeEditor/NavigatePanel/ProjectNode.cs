@@ -27,18 +27,18 @@ namespace codeEditor.NavigatePanel
             get { return Project.Name; }
         }
 
-        private static ajkControls.Icon openFolder = new ajkControls.Icon(Properties.Resources.openFolder);
-        private static ajkControls.Icon folder = new ajkControls.Icon(Properties.Resources.folder);
+        private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
+        private static ajkControls.IconImage folder = new ajkControls.IconImage(Properties.Resources.folder);
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
             if (Exanded)
             {
-                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.Icon.ColorStyle.Red), new Point(x, y));
+                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Red), new Point(x, y));
             }
             else
             {
-                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.Icon.ColorStyle.Red), new Point(x, y));
+                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Red), new Point(x, y));
             }
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;

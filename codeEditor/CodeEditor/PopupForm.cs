@@ -16,6 +16,12 @@ namespace codeEditor.CodeEditor
         {
             InitializeComponent();
             ajkControls.Document document = new ajkControls.Document();
+            this.ShowInTaskbar = false;
+        }
+
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
         }
 
         public void SetItems(List<PopupItem> items)

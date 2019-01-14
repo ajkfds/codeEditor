@@ -15,7 +15,7 @@ namespace codeEditor.CodeEditor
             this.colorIndex = colorIndex;
             this.Color = color;
         }
-        public AutocompleteItem(string text, byte colorIndex,Color color,ajkControls.Icon icon,ajkControls.Icon.ColorStyle iconColorStyle)
+        public AutocompleteItem(string text, byte colorIndex,Color color,ajkControls.IconImage icon,ajkControls.IconImage.ColorStyle iconColorStyle)
         {
             this.text = text;
             this.colorIndex = colorIndex;
@@ -24,8 +24,8 @@ namespace codeEditor.CodeEditor
             this.iconColorStyle = iconColorStyle;
         }
 
-        private ajkControls.Icon icon = null;
-        private ajkControls.Icon.ColorStyle iconColorStyle;
+        private ajkControls.IconImage icon = null;
+        private ajkControls.IconImage.ColorStyle iconColorStyle;
         
         private string text;
         public string Text { get { return text; } }

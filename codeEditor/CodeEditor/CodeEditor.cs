@@ -457,5 +457,10 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        private void codeTextbox_MouseLeave(object sender, EventArgs e)
+        {
+            closeAutoComplete();
+            popupForm.Visible = false;
+        }
     }
 }

@@ -55,10 +55,12 @@ namespace codeEditor
         public MainForm()
         {
             InitializeComponent();
-            ajkControls.Global.Icon = new ajkControls.Icon(Properties.Resources.ajkEditor);
-            this.Icon = ajkControls.Global.Icon.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
+            ajkControls.Global.Icon = Properties.Resources.ajEditor;
+            this.Icon = ajkControls.Global.Icon;
 
             Global.Controller = new ViewControl.Controller(this);
+            mainTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
+            subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
 
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();

@@ -19,10 +19,18 @@ namespace codeEditor
         public static ajkControls.CodeDrawStyle DefaultDrawStyle = new ajkControls.CodeDrawStyle();
 
 
-        public static class Icons
+        public static class IconImages
         {
-            public static ajkControls.Icon Terminal = new ajkControls.Icon(Properties.Resources.terminal);
-            public static ajkControls.Icon Text = new ajkControls.Icon(Properties.Resources.text);
+            public static ajkControls.IconImage Terminal = new ajkControls.IconImage(Properties.Resources.terminal);
+            public static ajkControls.IconImage Text = new ajkControls.IconImage(Properties.Resources.text);
         }
+
+        public static class ColorMap
+        {
+            public static System.Drawing.Color DarkBackground = System.Drawing.Color.FromArgb(0x20, 0x38, 0x64);
+            public static System.Drawing.Color LightBackground = System.Drawing.Color.FromArgb(0x32, 0x59, 0xa0);
+            public static System.Drawing.Color SelectedBackground = System.Drawing.Color.FromArgb(0xa9, 0xba, 0xda);
+        }
+
     }
 }

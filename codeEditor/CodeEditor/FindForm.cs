@@ -16,6 +16,7 @@ namespace codeEditor.CodeEditor
         {
             InitializeComponent();
             this.codeEditor = codeEditor;
+            this.ShowInTaskbar = false;
         }
         CodeEditor codeEditor;
         bool replace = false;

@@ -24,10 +24,10 @@ namespace codeEditor.NavigatePanel
             get { return FileItem.Name; }
         }
 
-        private static ajkControls.Icon icon = new ajkControls.Icon(Properties.Resources.text);
+        private static ajkControls.IconImage icon = new ajkControls.IconImage(Properties.Resources.text);
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
-            graphics.DrawImage(icon.GetImage(lineHeight, ajkControls.Icon.ColorStyle.White), new Point(x, y));
+            graphics.DrawImage(icon.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.White), new Point(x, y));
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;
             System.Windows.Forms.TextRenderer.DrawText(

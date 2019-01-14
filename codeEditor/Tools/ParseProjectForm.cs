@@ -17,7 +17,8 @@ namespace codeEditor.Tools
             InitializeComponent();
             Text = projectNode.Project.Name;
             this.projectNode = projectNode;
-            this.Icon = ajkControls.Global.Icon.GetSystemDrawingIcon(32, ajkControls.Icon.ColorStyle.Blue);
+            this.Icon = ajkControls.Global.Icon;
+            this.ShowInTaskbar = false;
         }
 
         private NavigatePanel.ProjectNode projectNode = null;

@@ -222,5 +222,8 @@
   <ItemGroup>
     <None Include="Resources\ajkEditor.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajEditor.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

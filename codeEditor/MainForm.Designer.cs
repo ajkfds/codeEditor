@@ -49,7 +49,7 @@ namespace codeEditor
             this.mainTab = new ajkControls.TabControl();
             this.editorPage = new System.Windows.Forms.TabPage();
             this.codeEditor = new codeEditor.CodeEditor.CodeEditor();
-            this.tabControl = new ajkControls.TabControl();
+            this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
             this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
@@ -57,7 +57,7 @@ namespace codeEditor
             this.menuStrip.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.editorPage.SuspendLayout();
-            this.tabControl.SuspendLayout();
+            this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,14 +191,18 @@ namespace codeEditor
             // 
             // mainTab
             // 
+            this.mainTab.BackgroundColor = System.Drawing.Color.White;
             this.mainTab.Controls.Add(this.editorPage);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
             this.mainTab.ItemSize = new System.Drawing.Size(80, 24);
+            this.mainTab.LineColor = System.Drawing.Color.Black;
             this.mainTab.Location = new System.Drawing.Point(275, 30);
             this.mainTab.Multiline = true;
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Drawing.Point(15, 3);
+            this.mainTab.SelectedBackgroundColor = System.Drawing.Color.LightGray;
+            this.mainTab.SelectedForeColor = System.Drawing.Color.Black;
             this.mainTab.SelectedIndex = 0;
             this.mainTab.Size = new System.Drawing.Size(628, 472);
             this.mainTab.TabIndex = 10;
@@ -224,19 +228,23 @@ namespace codeEditor
             this.codeEditor.Size = new System.Drawing.Size(614, 434);
             this.codeEditor.TabIndex = 0;
             // 
-            // tabControl
+            // subTab
             // 
-            this.tabControl.Controls.Add(this.navigatorPage);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tabControl.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.tabControl.ItemSize = new System.Drawing.Size(80, 24);
-            this.tabControl.Location = new System.Drawing.Point(0, 30);
-            this.tabControl.Multiline = true;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.Padding = new System.Drawing.Point(15, 3);
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(272, 472);
-            this.tabControl.TabIndex = 9;
+            this.subTab.BackgroundColor = System.Drawing.Color.White;
+            this.subTab.Controls.Add(this.navigatorPage);
+            this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
+            this.subTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.subTab.ItemSize = new System.Drawing.Size(80, 24);
+            this.subTab.LineColor = System.Drawing.Color.Black;
+            this.subTab.Location = new System.Drawing.Point(0, 30);
+            this.subTab.Multiline = true;
+            this.subTab.Name = "subTab";
+            this.subTab.Padding = new System.Drawing.Point(15, 3);
+            this.subTab.SelectedBackgroundColor = System.Drawing.Color.LightGray;
+            this.subTab.SelectedForeColor = System.Drawing.Color.Black;
+            this.subTab.SelectedIndex = 0;
+            this.subTab.Size = new System.Drawing.Size(272, 472);
+            this.subTab.TabIndex = 9;
             // 
             // navigatorPage
             // 
@@ -286,7 +294,7 @@ namespace codeEditor
             this.Controls.Add(this.splitter3);
             this.Controls.Add(this.messageView);
             this.Controls.Add(this.splitter2);
-            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.subTab);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.logView);
             this.Controls.Add(this.menuStrip);
@@ -300,7 +308,7 @@ namespace codeEditor
             this.menuStrip.PerformLayout();
             this.mainTab.ResumeLayout(false);
             this.editorPage.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
+            this.subTab.ResumeLayout(false);
             this.navigatorPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -315,7 +323,7 @@ namespace codeEditor
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Splitter splitter2;
         private NavigatePanel.NavigatePanel navigatePanel;
-        private ajkControls.TabControl tabControl;
+        private ajkControls.TabControl subTab;
         private System.Windows.Forms.TabPage navigatorPage;
         private ajkControls.TabControl mainTab;
         private System.Windows.Forms.TabPage editorPage;
