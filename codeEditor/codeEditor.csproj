@@ -121,6 +121,9 @@
     <Compile Include="Setups\Setup.cs" />
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
+    <Compile Include="Tabs\EditorPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tools\NewProjectFrom.cs">
       <SubType>Form</SubType>
     </Compile>

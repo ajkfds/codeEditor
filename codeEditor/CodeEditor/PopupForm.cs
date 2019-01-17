@@ -24,6 +24,31 @@ namespace codeEditor.CodeEditor
             get { return true; }
         }
 
+        private const int WM_MOUSEACTIVATE = 0x21;
+        private const int MA_NOACTIVATE = 3;
+        private const int WS_EX_TOPMOST = 0x00000008;
+
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_MOUSEACTIVATE)
+            {
+                m.Result = new IntPtr(MA_NOACTIVATE);
+                return;
+            }
+            base.WndProc(ref m);
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams p = base.CreateParams;
+                p.ExStyle |= WS_EX_TOPMOST;
+                return p;
+            }
+        }
+
         public void SetItems(List<PopupItem> items)
         {
             this.items = items;

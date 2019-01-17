@@ -44,6 +44,22 @@ namespace codeEditor.NavigatePanel
             }
         }
 
+        public virtual void HierarchicalVisibleUpdate()
+        {
+            HierarchicalVisibleUpdate(0,Exanded);
+        }
+
+        public virtual void HierarchicalVisibleUpdate(int depth,bool expanded)
+        {
+            Update();
+            if (depth > 100) return;
+            if (!expanded) return;
+            foreach (NavigatePanelNode node in TreeNodes)
+            {
+                node.HierarchicalVisibleUpdate(depth + 1,node.Exanded);
+            }
+        }
+
         public virtual void Selected()
         {
             

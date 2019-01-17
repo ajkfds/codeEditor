@@ -73,16 +73,6 @@ namespace codeEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ajkEditor {
-            get {
-                object obj = ResourceManager.GetObject("ajkEditor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap exclamationBox {
             get {
                 object obj = ResourceManager.GetObject("exclamationBox", resourceCulture);

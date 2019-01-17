@@ -99,9 +99,24 @@ namespace codeEditor.ViewControl
                 mainForm.Controller_RefreshNavigatePanel();   
             }
 
-            public void Update()
+            public void UpdateWholeNode()
             {
-                mainForm.Controller_UpdateNavigateaPanel();
+                mainForm.Controller_UpdateNavigateaPanelWholeNode();
+            }
+
+            public void UpdateWholeNode(NavigatePanel.NavigatePanelNode node)
+            {
+                mainForm.Controller_UpdateNavigateaPanelWholeNode(node);
+            }
+
+            public void UpdateVisibleNode()
+            {
+                mainForm.Controller_UpdateNavigateaPanelVisibleNode();
+            }
+
+            public void UpdateVisibleNode(NavigatePanel.NavigatePanelNode node)
+            {
+                mainForm.Controller_UpdateNavigateaPanelVisibleNode(node);
             }
 
             public void GetSelectedNode(out string project, out string id)

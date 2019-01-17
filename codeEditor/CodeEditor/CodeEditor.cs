@@ -200,7 +200,7 @@ namespace codeEditor.CodeEditor
                 Global.Controller.MessageView.Update(TextFile.ParsedDocument);
             }
 
-            Global.Controller.NavigatePanel.Update();
+            Global.Controller.NavigatePanel.UpdateVisibleNode();
             Global.Controller.NavigatePanel.Refresh();
         }
 

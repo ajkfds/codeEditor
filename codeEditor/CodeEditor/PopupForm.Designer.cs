@@ -54,7 +54,6 @@ namespace codeEditor.CodeEditor
             this.Name = "PopupForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "PopupForm";
-            this.TopMost = true;
             this.ResumeLayout(false);
 
         }

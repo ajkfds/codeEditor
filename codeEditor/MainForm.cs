@@ -62,6 +62,7 @@ namespace codeEditor
             mainTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
             subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
 
+
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
             Global.FileTypes.Add(textFileType.ID, textFileType);
@@ -162,9 +163,29 @@ namespace codeEditor
             navigatePanel.Refresh();
         }
 
-        internal void Controller_UpdateNavigateaPanel()
+        internal void Controller_UpdateNavigateaPanelWholeNode()
         {
             navigatePanel.UpdateWholeNode();
+        }
+
+        internal void Controller_UpdateNavigateaPanelWholeNode(NavigatePanel.NavigatePanelNode node)
+        {
+            navigatePanel.UpdateWholeNode(node);
+        }
+
+        internal void Controller_UpdateNavigateaPanelVisibleNode()
+        {
+            navigatePanel.UpdateWholeNode();
+        }
+
+        internal void Controller_UpdateNavigateaPanelVisibleNode(NavigatePanel.NavigatePanelNode node)
+        {
+            navigatePanel.UpdateWholeNode(node);
+        }
+
+        internal void Controller_UpdateNavigateaPanel(NavigatePanel.NavigatePanelNode node)
+        {
+            navigatePanel.UpdateWholeNode(node);
         }
 
         internal void Controller_GetNavigatePanelSelectedNode(out string project, out string id)

@@ -63,9 +63,25 @@ namespace codeEditor.NavigatePanel
             //            if (SelectedNodeChanged != null) SelectedNodeChanged(this, e);
         }
 
+        public void UpdateWholeVisibleNode()
+        {
+            foreach (NavigatePanelNode subNode in treeView.TreeNodes)
+            {
+                subNode.HierarchicalUpdate();
+            }
+        }
+
         public void UpdateWholeNode()
         {
             foreach (NavigatePanelNode subNode in treeView.TreeNodes)
+            {
+                subNode.HierarchicalUpdate();
+            }
+        }
+
+        public void UpdateWholeNode(NavigatePanelNode node)
+        {
+            foreach (NavigatePanelNode subNode in node.TreeNodes)
             {
                 subNode.HierarchicalUpdate();
             }
