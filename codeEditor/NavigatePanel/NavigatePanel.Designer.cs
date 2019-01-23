@@ -42,7 +42,6 @@ namespace codeEditor.NavigatePanel
             // contextMenuStrip
             // 
             this.contextMenuStrip.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
             this.toolStripSeparator1,
@@ -77,6 +76,7 @@ namespace codeEditor.NavigatePanel
             this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
+            this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
             this.treeView.Size = new System.Drawing.Size(399, 618);
             this.treeView.TabIndex = 0;
             this.treeView.VScrollBarVisible = true;
