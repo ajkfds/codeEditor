@@ -59,9 +59,13 @@ namespace codeEditor
             this.Icon = ajkControls.Global.Icon;
 
             Global.Controller = new ViewControl.Controller(this);
-            mainTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
-            subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
+            //            mainTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
+            //            subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
+            mainTab.TabPages.Add(editorPage);
 
+
+            commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
+            saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
 
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
@@ -79,6 +83,7 @@ namespace codeEditor
                 Global.Setup.LoadSetup(setupFileName);
             }
         }
+        private Tabs.EditorPage editorPage = new Tabs.EditorPage();
 
         private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -94,7 +99,7 @@ namespace codeEditor
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            codeEditor.Dispose();
+            editorPage.CodeEditor.Dispose();
         }
 
 
@@ -130,11 +135,11 @@ namespace codeEditor
         {
             if (InvokeRequired)
             {
-                codeEditor.Invoke(new Action(codeEditor.Refresh));
+                editorPage.CodeEditor.Invoke(new Action(editorPage.CodeEditor.Refresh));
             }
             else
             {
-                codeEditor.Refresh();
+                editorPage.CodeEditor.Refresh();
             }
         }
 
@@ -142,19 +147,19 @@ namespace codeEditor
         {
             if(textFile == null)
             {
-                codeEditor.SetTextFile(null);
+                editorPage.CodeEditor.SetTextFile(null);
                 mainTab.TabPages[0].Text = "-";
             }
             else
             {
-                codeEditor.SetTextFile(textFile);
+                editorPage.CodeEditor.SetTextFile(textFile);
                 mainTab.TabPages[0].Text = textFile.Name;
             }
         }
 
         internal void Controller_ScrollToCaret()
         {
-            codeEditor.ScrollToCaret();
+            editorPage.CodeEditor.ScrollToCaret();
         }
 
         // navigate panel
@@ -218,7 +223,7 @@ namespace codeEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            codeEditor.Save();
+            editorPage.CodeEditor.Save();
         }
 
         private void projectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,7 +239,7 @@ namespace codeEditor
 
         private void findToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            codeEditor.OpenFind();
+            editorPage.CodeEditor.OpenFind();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -251,6 +256,7 @@ namespace codeEditor
         {
             ajkControls.ShellPanel panel = new ajkControls.ShellPanel(new ajkControls.CommandShell(new List<string> { "prompt $P$G$_" }));
             Controller.MainTabPage tab = new Controller.MainTabPage(panel, "command");
+            tab.IconImage = Global.IconImages.Terminal;
             mainTab.TabPages.Add(tab);
             mainTab.Refresh();
         }

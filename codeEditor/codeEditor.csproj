@@ -228,5 +228,35 @@
   <ItemGroup>
     <None Include="Resources\ajEditor.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ServerDownload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serverUpload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textDownload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textUpload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

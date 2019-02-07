@@ -17,12 +17,14 @@ namespace codeEditor
 
 
         public static ajkControls.CodeDrawStyle DefaultDrawStyle = new ajkControls.CodeDrawStyle();
-
+        public static int MainMenuIconSize = 24;
+        public static int ToolStripIconSize = 16;
 
         public static class IconImages
         {
             public static ajkControls.IconImage Terminal = new ajkControls.IconImage(Properties.Resources.terminal);
             public static ajkControls.IconImage Text = new ajkControls.IconImage(Properties.Resources.text);
+            public static ajkControls.IconImage SaveFile = new ajkControls.IconImage(Properties.Resources.saveFile);
         }
 
         public static class ColorMap

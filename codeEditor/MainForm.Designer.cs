@@ -47,16 +47,12 @@ namespace codeEditor
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.mainTab = new ajkControls.TabControl();
-            this.editorPage = new System.Windows.Forms.TabPage();
-            this.codeEditor = new codeEditor.CodeEditor.CodeEditor();
-            this.messageView = new codeEditor.MessageView.MessageView();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
-            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
+            this.messageView = new codeEditor.MessageView.MessageView();
+            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.menuStrip.SuspendLayout();
-            this.mainTab.SuspendLayout();
-            this.editorPage.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
             this.SuspendLayout();
@@ -91,14 +87,14 @@ namespace codeEditor
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.saveAllToolStripMenuItem.Text = "SaveAll";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
@@ -115,7 +111,7 @@ namespace codeEditor
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
             this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.findToolStripMenuItem.Text = "Find";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
@@ -123,7 +119,7 @@ namespace codeEditor
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.replaceToolStripMenuItem.Text = "Replace";
             // 
             // projectToolStripMenuItem
@@ -138,7 +134,7 @@ namespace codeEditor
             // addNewProjectToolStripMenuItem
             // 
             this.addNewProjectToolStripMenuItem.Name = "addNewProjectToolStripMenuItem";
-            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(218, 30);
+            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.addNewProjectToolStripMenuItem.Text = "Add new project";
             this.addNewProjectToolStripMenuItem.Click += new System.EventHandler(this.addNewProjectToolStripMenuItem_Click);
             // 
@@ -153,7 +149,7 @@ namespace codeEditor
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -192,7 +188,6 @@ namespace codeEditor
             // mainTab
             // 
             this.mainTab.BackgroundColor = System.Drawing.Color.White;
-            this.mainTab.Controls.Add(this.editorPage);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
             this.mainTab.ItemSize = new System.Drawing.Size(80, 25);
@@ -207,36 +202,6 @@ namespace codeEditor
             this.mainTab.Size = new System.Drawing.Size(628, 472);
             this.mainTab.TabIndex = 10;
             this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
-            // 
-            // editorPage
-            // 
-            this.editorPage.Controls.Add(this.codeEditor);
-            this.editorPage.Location = new System.Drawing.Point(4, 29);
-            this.editorPage.Name = "editorPage";
-            this.editorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.editorPage.Size = new System.Drawing.Size(620, 439);
-            this.editorPage.TabIndex = 0;
-            this.editorPage.Text = "code";
-            this.editorPage.UseVisualStyleBackColor = true;
-            // 
-            // codeEditor
-            // 
-            this.codeEditor.BackColor = System.Drawing.Color.White;
-            this.codeEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeEditor.Font = new System.Drawing.Font("MS UI Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.codeEditor.Location = new System.Drawing.Point(3, 3);
-            this.codeEditor.Name = "codeEditor";
-            this.codeEditor.Size = new System.Drawing.Size(614, 433);
-            this.codeEditor.TabIndex = 0;
-            // 
-            // messageView
-            // 
-            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(906, 30);
-            this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(204, 472);
-            this.messageView.TabIndex = 11;
             // 
             // subTab
             // 
@@ -268,14 +233,6 @@ namespace codeEditor
             this.navigatorPage.Text = "navigator";
             this.navigatorPage.UseVisualStyleBackColor = true;
             // 
-            // navigatePanel
-            // 
-            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
-            this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(258, 433);
-            this.navigatePanel.TabIndex = 0;
-            // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -286,6 +243,23 @@ namespace codeEditor
             this.logView.Name = "logView";
             this.logView.Size = new System.Drawing.Size(1110, 122);
             this.logView.TabIndex = 0;
+            // 
+            // messageView
+            // 
+            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.messageView.Location = new System.Drawing.Point(906, 30);
+            this.messageView.Name = "messageView";
+            this.messageView.Size = new System.Drawing.Size(204, 472);
+            this.messageView.TabIndex = 11;
+            // 
+            // navigatePanel
+            // 
+            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Name = "navigatePanel";
+            this.navigatePanel.Size = new System.Drawing.Size(258, 433);
+            this.navigatePanel.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -308,8 +282,6 @@ namespace codeEditor
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.mainTab.ResumeLayout(false);
-            this.editorPage.ResumeLayout(false);
             this.subTab.ResumeLayout(false);
             this.navigatorPage.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -328,8 +300,6 @@ namespace codeEditor
         private ajkControls.TabControl subTab;
         private System.Windows.Forms.TabPage navigatorPage;
         private ajkControls.TabControl mainTab;
-        private System.Windows.Forms.TabPage editorPage;
-        private CodeEditor.CodeEditor codeEditor;
         private MessageView.MessageView messageView;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
