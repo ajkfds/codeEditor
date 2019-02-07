@@ -311,6 +311,7 @@ namespace codeEditor.CodeEditor
                 case Keys.Tab:
                 case Keys.Return:
                     applyAutoCompleteSelection(e.KeyCode);
+                    e.Handled = true;
                     break;
                 case Keys.Space:
                     applyAutoCompleteSelection(e.KeyCode);
