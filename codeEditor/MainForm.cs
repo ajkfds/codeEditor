@@ -154,6 +154,7 @@ namespace codeEditor
             {
                 editorPage.CodeEditor.SetTextFile(textFile);
                 mainTab.TabPages[0].Text = textFile.Name;
+                mainTab.SelectedTab = mainTab.TabPages[0];
             }
         }
 
@@ -258,7 +259,8 @@ namespace codeEditor
             Controller.MainTabPage tab = new Controller.MainTabPage(panel, "command");
             tab.IconImage = Global.IconImages.Terminal;
             mainTab.TabPages.Add(tab);
-            mainTab.Refresh();
+            mainTab.SelectedTab = tab;
+//            mainTab.Refresh();
         }
     }
 }
