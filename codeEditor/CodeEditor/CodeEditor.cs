@@ -332,7 +332,10 @@ namespace codeEditor.CodeEditor
             TextFile.AfterKeyDown(e);
             if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
             {
-                checkAutoComplete();
+                if (autoCompleteForm.Visible)
+                {
+                    checkAutoComplete();
+                }
             }
         }
 
