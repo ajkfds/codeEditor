@@ -27,7 +27,7 @@ namespace codeEditor.Data
         void BeforeKeyDown(System.Windows.Forms.KeyEventArgs e);
 
         List<CodeEditor.PopupItem> GetPopupItems(int EditId, int index);
-        List<codeEditor.CodeEditor.AutocompleteItem> GetAutoCompleteItems(int index);
+        List<codeEditor.CodeEditor.AutocompleteItem> GetAutoCompleteItems(int index,out string cantidateText);
         List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index);
 
         ajkControls.CodeDrawStyle DrawStyle { get; }

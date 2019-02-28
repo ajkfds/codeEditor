@@ -445,18 +445,18 @@ namespace codeEditor.CodeEditor
 
             if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
             {
-                int headIndex, length;
-                CodeDocument.GetWord(prevIndex, out headIndex, out length);
-                string word = CodeDocument.CreateString(headIndex, length);
-                if (word == "")
+                string cantidateWord;
+                List<AutocompleteItem> items = TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord);
+                if(items == null || cantidateWord == null)
                 {
+//                    autoCompleteForm.SetAutocompleteItems(null);
                     closeAutoComplete();
                 }
                 else
                 {
                     openAutoComplete();
-                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex));
-                    autoCompleteForm.UpdateVisibleItems(word);
+                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord));
+                    autoCompleteForm.UpdateVisibleItems(cantidateWord);
                 }
             }
         }
