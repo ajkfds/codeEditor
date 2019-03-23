@@ -17,8 +17,6 @@ namespace codeEditor
 
 
         public static ajkControls.CodeDrawStyle DefaultDrawStyle = new ajkControls.CodeDrawStyle();
-        public static int MainMenuIconSize = 24;
-        public static int ToolStripIconSize = 16;
 
         public static class IconImages
         {

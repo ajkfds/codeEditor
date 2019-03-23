@@ -64,8 +64,8 @@ namespace codeEditor
             mainTab.TabPages.Add(editorPage);
 
 
-            commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
-            saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
+            commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(ajkControls.Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
+            saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(ajkControls.Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
 
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
