@@ -9,6 +9,8 @@ namespace codeEditor.NavigatePanel
         public NavigatePanel()
         {
             InitializeComponent();
+            
+            contextMenuStrip.ImageScalingSize = new System.Drawing.Size(contextMenuStrip.Font.Height, contextMenuStrip.Font.Height);
         }
 
         public void AddProject(Data.Project project)

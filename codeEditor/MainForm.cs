@@ -63,9 +63,16 @@ namespace codeEditor
             //            subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
             mainTab.TabPages.Add(editorPage);
 
+            menuStrip.ImageScalingSize = new Size(menuStrip.Font.Height, menuStrip.Font.Height);
 
-            commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(ajkControls.Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
-            saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(ajkControls.Global.MainMenuIconSize, ajkControls.IconImage.ColorStyle.White);
+            commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(
+                menuStrip.ImageScalingSize.Height,
+                ajkControls.IconImage.ColorStyle.White
+                );
+            saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(
+                menuStrip.ImageScalingSize.Height,
+                ajkControls.IconImage.ColorStyle.White
+                );
 
             // register filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
