@@ -52,6 +52,7 @@
             this.treeView.Location = new System.Drawing.Point(0, 20);
             this.treeView.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.treeView.Name = "treeView";
+            this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
             this.treeView.Size = new System.Drawing.Size(281, 652);
             this.treeView.TabIndex = 1;
             this.treeView.VScrollBarVisible = true;

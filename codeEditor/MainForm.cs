@@ -89,6 +89,7 @@ namespace codeEditor
             {
                 Global.Setup.LoadSetup(setupFileName);
             }
+
         }
         private Tabs.EditorPage editorPage = new Tabs.EditorPage();
 
@@ -108,6 +109,7 @@ namespace codeEditor
         {
             editorPage.CodeEditor.Dispose();
         }
+
 
 
         // View controller interface //////////////////////////////////////////
@@ -188,7 +190,7 @@ namespace codeEditor
 
         internal void Controller_UpdateNavigateaPanelVisibleNode()
         {
-            navigatePanel.UpdateWholeNode();
+            navigatePanel.UpdateWholeVisibleNode();
         }
 
         internal void Controller_UpdateNavigateaPanelVisibleNode(NavigatePanel.NavigatePanelNode node)
