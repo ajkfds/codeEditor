@@ -30,40 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             ajkControls.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeDrawStyle();
-            this.codeTextbox = new ajkControls.CodeTextbox();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.subBgtimer = new System.Windows.Forms.Timer(this.components);
+            this.codeTextbox = new ajkControls.CodeTextbox();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // codeTextbox
-            // 
-            this.codeTextbox.BackColor = System.Drawing.Color.White;
-            this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
-            this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeTextbox.Document = null;
-            this.codeTextbox.Editable = true;
-            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F);
-            this.codeTextbox.ForeColor = System.Drawing.Color.Black;
-            this.codeTextbox.Location = new System.Drawing.Point(0, 0);
-            this.codeTextbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.codeTextbox.MultiLine = true;
-            this.codeTextbox.Name = "codeTextbox";
-            this.codeTextbox.ScrollBarVisible = true;
-            this.codeTextbox.Size = new System.Drawing.Size(635, 551);
-            this.codeTextbox.Style = codeDrawStyle1;
-            this.codeTextbox.TabIndex = 0;
-            this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);
-            this.codeTextbox.AfterKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_AfterKeyPressed);
-            this.codeTextbox.AfterKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_AfterKeyDown);
-            this.codeTextbox.BeforeKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_BeforeKeyPressed);
-            this.codeTextbox.BeforeKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_BeforeKeyDown);
-            this.codeTextbox.Load += new System.EventHandler(this.codeTextbox_Load);
-            this.codeTextbox.DoubleClick += new System.EventHandler(this.codeTextbox_DoubleClick);
-            this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
-            this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
-            this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
             // 
             // contextMenuStrip
             // 
@@ -84,6 +57,42 @@
             this.timer.Enabled = true;
             this.timer.Interval = 10;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // subBgtimer
+            // 
+            this.subBgtimer.Enabled = true;
+            this.subBgtimer.Interval = 10;
+            this.subBgtimer.Tick += new System.EventHandler(this.subBgtimer_Tick);
+            // 
+            // codeTextbox
+            // 
+            this.codeTextbox.BackColor = System.Drawing.Color.White;
+            this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
+            this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTextbox.Document = null;
+            this.codeTextbox.Editable = true;
+            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F);
+            this.codeTextbox.ForeColor = System.Drawing.Color.Black;
+            this.codeTextbox.LineNumberFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(112)))), ((int)(((byte)(128)))), ((int)(((byte)(144)))));
+            this.codeTextbox.Location = new System.Drawing.Point(0, 0);
+            this.codeTextbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.codeTextbox.MultiLine = true;
+            this.codeTextbox.Name = "codeTextbox";
+            this.codeTextbox.ScrollBarVisible = true;
+            this.codeTextbox.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(125)))), ((int)(((byte)(159)))));
+            this.codeTextbox.Size = new System.Drawing.Size(635, 551);
+            this.codeTextbox.Style = codeDrawStyle1;
+            this.codeTextbox.TabIndex = 0;
+            this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);
+            this.codeTextbox.AfterKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_AfterKeyPressed);
+            this.codeTextbox.AfterKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_AfterKeyDown);
+            this.codeTextbox.BeforeKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_BeforeKeyPressed);
+            this.codeTextbox.BeforeKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_BeforeKeyDown);
+            this.codeTextbox.Load += new System.EventHandler(this.codeTextbox_Load);
+            this.codeTextbox.DoubleClick += new System.EventHandler(this.codeTextbox_DoubleClick);
+            this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
+            this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
+            this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
             // 
             // CodeEditor
             // 
@@ -106,5 +115,6 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private System.Windows.Forms.Timer subBgtimer;
     }
 }

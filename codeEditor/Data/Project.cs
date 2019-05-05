@@ -46,6 +46,7 @@ namespace codeEditor.Data
 
         private Dictionary<string, Item> wholeItems = new Dictionary<string, Item>();
         private Dictionary<string, int> wholeItemReferenceCounts = new Dictionary<string, int>();
+        private List<string> wholeKeys = new List<string>();
 
         public List<string> GetRegisteredIdList()
         {
@@ -62,6 +63,7 @@ namespace codeEditor.Data
             {
                 wholeItemReferenceCounts.Add(projectItem.ID, 1);
                 wholeItems.Add(projectItem.ID,projectItem);
+                wholeKeys.Add(projectItem.ID);
             }
         }
 
@@ -74,6 +76,7 @@ namespace codeEditor.Data
                 {
                     wholeItemReferenceCounts.Remove(projectItem.ID);
                     wholeItems.Remove(projectItem.ID);
+                    wholeKeys.Remove(projectItem.ID);
                 }
             }
             else
@@ -109,6 +112,34 @@ namespace codeEditor.Data
                 System.Diagnostics.Debugger.Break();
                 return null;
             }
+        }
+
+        // get parse target
+
+        private int parseIndex = 0;
+        private int parseSearchLimit = 100;
+        public ITextFile GetReparseTarget()
+        {
+
+            int i = 0;
+            while (i < parseSearchLimit)
+            {
+                if (parseIndex >= wholeItems.Count)
+                {
+                    parseIndex = 0;
+                    return null;
+                }
+                string key = wholeKeys[parseIndex];
+                Item item = wholeItems[key];
+                if(item is ITextFile)
+                {
+                    ITextFile textFile = item as ITextFile;
+                    if (textFile.ParseRequested) return textFile;
+                }
+                parseIndex++;
+                i++;
+            }
+            return null;
         }
 
         // path control

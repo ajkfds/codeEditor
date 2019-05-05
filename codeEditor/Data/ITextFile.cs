@@ -12,6 +12,8 @@ namespace codeEditor.Data
         CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project);
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
+        bool ParseRequested { get; set; }
+
         // projectItem
         string ID { get; }
         string RelativePath { get; }

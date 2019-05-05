@@ -99,15 +99,15 @@ namespace codeEditor.ViewControl
                 mainForm.Controller_RefreshNavigatePanel();   
             }
 
-            public void UpdateWholeNode()
-            {
-                mainForm.Controller_UpdateNavigateaPanelWholeNode();
-            }
+            //public void UpdateWholeNode()
+            //{
+            //    mainForm.Controller_UpdateNavigateaPanelWholeNode();
+            //}
 
-            public void UpdateWholeNode(NavigatePanel.NavigatePanelNode node)
-            {
-                mainForm.Controller_UpdateNavigateaPanelWholeNode(node);
-            }
+            //public void UpdateWholeNode(NavigatePanel.NavigatePanelNode node)
+            //{
+            //    mainForm.Controller_UpdateNavigateaPanelWholeNode(node);
+            //}
 
             public void UpdateVisibleNode()
             {

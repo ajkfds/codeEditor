@@ -91,6 +91,8 @@ namespace codeEditor
             }
 
         }
+
+
         private Tabs.EditorPage editorPage = new Tabs.EditorPage();
 
         private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,15 +180,15 @@ namespace codeEditor
             navigatePanel.Refresh();
         }
 
-        internal void Controller_UpdateNavigateaPanelWholeNode()
-        {
-            navigatePanel.UpdateWholeNode();
-        }
+        //internal void Controller_UpdateNavigateaPanelWholeNode()
+        //{
+        //    navigatePanel.UpdateWholeNode();
+        //}
 
-        internal void Controller_UpdateNavigateaPanelWholeNode(NavigatePanel.NavigatePanelNode node)
-        {
-            navigatePanel.UpdateWholeNode(node);
-        }
+        //internal void Controller_UpdateNavigateaPanelWholeNode(NavigatePanel.NavigatePanelNode node)
+        //{
+        //    navigatePanel.UpdateWholeNode(node);
+        //}
 
         internal void Controller_UpdateNavigateaPanelVisibleNode()
         {
@@ -195,13 +197,13 @@ namespace codeEditor
 
         internal void Controller_UpdateNavigateaPanelVisibleNode(NavigatePanel.NavigatePanelNode node)
         {
-            navigatePanel.UpdateWholeNode(node);
+            navigatePanel.UpdateWholeVisibleNode(node);
         }
 
-        internal void Controller_UpdateNavigateaPanel(NavigatePanel.NavigatePanelNode node)
-        {
-            navigatePanel.UpdateWholeNode(node);
-        }
+        //internal void Controller_UpdateNavigateaPanel(NavigatePanel.NavigatePanelNode node)
+        //{
+        //    navigatePanel.UpdateWholeNode(node);
+        //}
 
         internal void Controller_GetNavigatePanelSelectedNode(out string project, out string id)
         {

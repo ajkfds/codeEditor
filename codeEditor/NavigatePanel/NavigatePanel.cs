@@ -69,25 +69,30 @@ namespace codeEditor.NavigatePanel
         {
             foreach (NavigatePanelNode subNode in treeView.TreeNodes)
             {
-                subNode.HierarchicalUpdate();
+                subNode.HierarchicalVisibleUpdate();
             }
         }
 
-        public void UpdateWholeNode()
+        public void UpdateWholeVisibleNode(NavigatePanelNode node)
         {
-            foreach (NavigatePanelNode subNode in treeView.TreeNodes)
-            {
-                subNode.HierarchicalUpdate();
-            }
+            node.HierarchicalVisibleUpdate();
         }
 
-        public void UpdateWholeNode(NavigatePanelNode node)
-        {
-            foreach (NavigatePanelNode subNode in node.TreeNodes)
-            {
-                subNode.HierarchicalUpdate();
-            }
-        }
+        //public void UpdateWholeNode()
+        //{
+        //    foreach (NavigatePanelNode subNode in treeView.TreeNodes)
+        //    {
+        //        subNode.HierarchicalUpdate();
+        //    }
+        //}
+
+        //public void UpdateWholeNode(NavigatePanelNode node)
+        //{
+        //    foreach (NavigatePanelNode subNode in node.TreeNodes)
+        //    {
+        //        subNode.HierarchicalUpdate();
+        //    }
+        //}
 
         private void treeView_NodeClicked(object sender, ajkControls.TreeView.NodeClickedEventArgs e)
         {

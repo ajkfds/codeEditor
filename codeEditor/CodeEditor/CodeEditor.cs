@@ -17,6 +17,7 @@ namespace codeEditor.CodeEditor
             InitializeComponent();
             this.Disposed += (sender, args) => {
                 backGroundParser.Terminate();
+                subBackGroundParser.Terminate();
             };
             //            this.codeTextbox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.dbDrawBox_MouseWheel);
         }
@@ -111,9 +112,11 @@ namespace codeEditor.CodeEditor
         }
 
         private BackroungParser backGroundParser = new BackroungParser();
+        private BackroungParser subBackGroundParser = new BackroungParser();
         private void CodeEditor_Load(object sender, EventArgs e)
         {
             backGroundParser.Run();
+            subBackGroundParser.Run();
         }
 
         public Data.ITextFile TextFile { get; protected set; }
@@ -176,6 +179,7 @@ namespace codeEditor.CodeEditor
         {
             DocumentParser parser = backGroundParser.GetResult();
             if (parser == null) return;
+            if (TextFile == null) return;
             if (TextFile.ID != parser.ID) return;
             if (CodeDocument.EditID != parser.EditId)
             {
@@ -195,6 +199,7 @@ namespace codeEditor.CodeEditor
                 oldParsedDocument.Dispose();
                 TextFile.ParsedDocument = parser.ParsedDocument;
                 TextFile.ParsedDocument.Accept();
+                TextFile.ParseRequested = false;
                 TextFile.Update();
 
                 Global.Controller.MessageView.Update(TextFile.ParsedDocument);
@@ -203,6 +208,57 @@ namespace codeEditor.CodeEditor
             Global.Controller.NavigatePanel.UpdateVisibleNode();
             Global.Controller.NavigatePanel.Refresh();
         }
+
+        private void subBgtimer_Tick(object sender, EventArgs e)
+        {
+            DocumentParser parser = subBackGroundParser.GetResult();
+            if (parser == null) {
+                if (subBackGroundParser.RemainingStocks != 0) return;
+                string projectName, id;
+                Global.Controller.NavigatePanel.GetSelectedNode(out projectName, out id);
+                if (projectName == "") return;
+                Data.Project project = Global.Projects[projectName];
+                Data.ITextFile textFile = project.GetReparseTarget();
+                if (textFile == null) return;
+
+                DocumentParser newParser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, project);
+                if (newParser != null)
+                {
+                    subBackGroundParser.EntryParse(newParser);
+                    Global.Controller.AppendLog("entry parse " + textFile.ID + " " + DateTime.Now.ToString());
+                }
+            }
+            else
+            {
+                if (TextFile != null &&  TextFile.ID == parser.ID) return;
+                if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
+                {
+                    Global.Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                    return;
+                }
+
+                Global.Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
+                //                CodeDocument.CopyColorsFrom(parser.Document);
+                //                CodeDocument.CopyMarksFrom(parser.Document);
+                //                codeTextbox.Invoke(new Action(codeTextbox.Refresh));
+
+                Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
+                if (textFile == null) return;
+                
+                ParsedDocument oldParsedDocument = textFile.ParsedDocument;
+                textFile.ParsedDocument = null;
+                if(oldParsedDocument != null) oldParsedDocument.Dispose();
+                textFile.ParsedDocument = parser.ParsedDocument;
+                textFile.ParsedDocument.Accept();
+                textFile.ParseRequested = false;
+                textFile.Update();
+
+                Global.Controller.NavigatePanel.UpdateVisibleNode();
+                Global.Controller.NavigatePanel.Refresh();
+            }
+
+        }
+
 
         private PopupForm popupForm = new PopupForm();
         private int popupInex = -1;
@@ -466,5 +522,6 @@ namespace codeEditor.CodeEditor
             closeAutoComplete();
             popupForm.Visible = false;
         }
+
     }
 }

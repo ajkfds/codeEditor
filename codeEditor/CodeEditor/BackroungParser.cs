@@ -60,6 +60,17 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        public int RemainingStocks
+        {
+            get
+            {
+                lock (toBackgroundStock)
+                {
+                    return toBackgroundStock.Count;
+                }
+            }
+        }
+
         public DocumentParser GetResult()
         {
             lock (fromBackgroundStock)

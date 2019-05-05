@@ -50,7 +50,6 @@ namespace codeEditor.Data
             base.Dispose();
         }
 
-
         public override void Update()
         {
             string absolutePath = Project.GetAbsolutePath(RelativePath);
@@ -73,6 +72,7 @@ namespace codeEditor.Data
                 {
                     Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project);
                     items.Add(item.ID, item);
+                    item.Update();
                 }
             }
 

@@ -42,40 +42,58 @@ namespace codeEditor.Tools
 
         private void worker()
         {
-            // data update
-            projectNode.HierarchicalUpdate();
-            List<string> ids = projectNode.Project.GetRegisteredIdList();
+            projectNode.Project.Update();
+            //int idCount = projectNode.Project.GetRegisteredIdList().Count;
+            //while (idCount != projectNode.Project.GetRegisteredIdList().Count)
+            //{
+            //    List<string> ids = projectNode.Project.GetRegisteredIdList();
+            //    idCount = ids.Count;
+            //    for (int i = 0; i < ids.Count; i++)
+            //    {
+            //        Data.Item item = projectNode.Project.GetRegisterdItem(ids[i]);
+            //        item.Update();
+            //    }
+            //}
 
-            Invoke( new Action(() => { progressBar.Maximum = ids.Count; }));
 
-            // parse items
-            int i = 0;
-            foreach(string id in ids)
             {
-                Data.Item item = projectNode.Project.GetRegisterdItem(id);
-                Invoke(new Action(() => { progressBar.Value = i; }));
-                i++;
+                // data update
+                projectNode.HierarchicalVisibleUpdate();
+                List<string> ids = projectNode.Project.GetRegisteredIdList();
 
-                if (!(item is Data.ITextFile)) continue;
-                Data.ITextFile textFile = item as Data.ITextFile;
-                Invoke(new Action(() => { label.Text = textFile.Name; }));
-                CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, textFile.Project);
-                if (parser == null) continue;
-                parser.Parse();
+                Invoke(new Action(() => { progressBar.Maximum = ids.Count; }));
 
-                textFile.CodeDocument.CopyColorsFrom(parser.Document);
-                textFile.CodeDocument.CopyMarksFrom(parser.Document);
-                //codeTextbox.Invoke(new Action(codeTextbox.Refresh));
-
-                if (textFile.ParsedDocument != null)
+                // parse items
+                int i = 0;
+                foreach (string id in ids)
                 {
-                    CodeEditor.ParsedDocument oldParsedDocument = textFile.ParsedDocument;
-                    textFile.ParsedDocument = null;
-                    oldParsedDocument.Dispose();
-                }
+                    Data.Item item = projectNode.Project.GetRegisterdItem(id);
+                    Invoke(new Action(() => { progressBar.Value = i; }));
+                    i++;
 
-                textFile.ParsedDocument = parser.ParsedDocument;
-                if (textFile.ParsedDocument != null) textFile.ParsedDocument.Accept();
+                    if (!(item is Data.ITextFile)) continue;
+                    Data.ITextFile textFile = item as Data.ITextFile;
+                    Invoke(new Action(() => { label.Text = textFile.Name; }));
+                    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, textFile.Project);
+                    if (parser == null) continue;
+                    parser.Parse();
+
+                    textFile.CodeDocument.CopyColorsFrom(parser.Document);
+                    textFile.CodeDocument.CopyMarksFrom(parser.Document);
+                    //codeTextbox.Invoke(new Action(codeTextbox.Refresh));
+
+                    if (textFile.ParsedDocument != null)
+                    {
+                        CodeEditor.ParsedDocument oldParsedDocument = textFile.ParsedDocument;
+                        textFile.ParsedDocument = null;
+                        oldParsedDocument.Dispose();
+                    }
+
+                    textFile.ParsedDocument = parser.ParsedDocument;
+                    if (textFile.ParsedDocument != null) textFile.ParsedDocument.Accept();
+
+                    textFile.ParseRequested = true;
+                }
             }
 
             close = true;

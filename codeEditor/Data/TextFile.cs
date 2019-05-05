@@ -40,6 +40,8 @@ namespace codeEditor.Data
         }
 
         public CodeEditor.ParsedDocument ParsedDocument { get; set; }
+        public bool ParseRequested { get; set; }
+
 
         private CodeEditor.CodeDocument document = null;
         public CodeEditor.CodeDocument CodeDocument {

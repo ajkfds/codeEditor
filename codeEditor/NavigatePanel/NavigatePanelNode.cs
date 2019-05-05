@@ -29,20 +29,20 @@ namespace codeEditor.NavigatePanel
         /// <summary>
         /// update all nodes under this node
         /// </summary>
-        public virtual void HierarchicalUpdate()
-        {
-            HierarchicalUpdate(0);
-        }
+        //public virtual void HierarchicalUpdate()
+        //{
+        //    HierarchicalUpdate(0);
+        //}
 
-        public virtual void HierarchicalUpdate(int depth)
-        {
-            Update();
-            if (depth > 100) return;
-            foreach (NavigatePanelNode node in TreeNodes)
-            {
-                node.HierarchicalUpdate(depth+1);
-            }
-        }
+        //public virtual void HierarchicalUpdate(int depth)
+        //{
+        //    Update();
+        //    if (depth > 100) return;
+        //    foreach (NavigatePanelNode node in TreeNodes)
+        //    {
+        //        node.HierarchicalUpdate(depth+1);
+        //    }
+        //}
 
         public virtual void HierarchicalVisibleUpdate()
         {
