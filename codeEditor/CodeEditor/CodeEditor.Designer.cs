@@ -61,7 +61,7 @@
             // subBgtimer
             // 
             this.subBgtimer.Enabled = true;
-            this.subBgtimer.Interval = 10;
+            this.subBgtimer.Interval = 1;
             this.subBgtimer.Tick += new System.EventHandler(this.subBgtimer_Tick);
             // 
             // codeTextbox
