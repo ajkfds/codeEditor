@@ -71,7 +71,7 @@
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeTextbox.Document = null;
             this.codeTextbox.Editable = true;
-            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F);
+            this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextbox.ForeColor = System.Drawing.Color.Black;
             this.codeTextbox.LineNumberFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(112)))), ((int)(((byte)(128)))), ((int)(((byte)(144)))));
             this.codeTextbox.Location = new System.Drawing.Point(0, 0);
