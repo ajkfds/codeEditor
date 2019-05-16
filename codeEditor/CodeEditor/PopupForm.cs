@@ -52,6 +52,7 @@ namespace codeEditor.CodeEditor
         public void SetItems(List<PopupItem> items)
         {
             this.items = items;
+            doubleBufferedDrawBox.Invalidate();
         }
 
         private List<PopupItem> items = new List<PopupItem>();
