@@ -36,6 +36,7 @@ namespace codeEditor.NavigatePanel
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.propertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new ajkControls.TreeView();
+            this.gitLogTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,26 +46,27 @@ namespace codeEditor.NavigatePanel
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
+            this.gitLogTsmi,
             this.toolStripSeparator1,
             this.propertyToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(147, 58);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 115);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
             // 
             // propertyToolStripMenuItem
             // 
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.propertyToolStripMenuItem.Text = "Property";
             this.propertyToolStripMenuItem.Click += new System.EventHandler(this.propertyToolStripMenuItem_Click);
             // 
@@ -76,6 +78,7 @@ namespace codeEditor.NavigatePanel
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 0);
+            this.treeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView.Name = "treeView";
             this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
             this.treeView.Size = new System.Drawing.Size(399, 618);
@@ -83,6 +86,13 @@ namespace codeEditor.NavigatePanel
             this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
+            // 
+            // gitLogTsmi
+            // 
+            this.gitLogTsmi.Name = "gitLogTsmi";
+            this.gitLogTsmi.Size = new System.Drawing.Size(240, 24);
+            this.gitLogTsmi.Text = "Git Log";
+            this.gitLogTsmi.Click += new System.EventHandler(this.GitLogTsmi_Click);
             // 
             // NavigatePanel
             // 
@@ -103,5 +113,6 @@ namespace codeEditor.NavigatePanel
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem propertyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
     }
 }

@@ -91,6 +91,13 @@
     <Compile Include="Data\TextFile.cs" />
     <Compile Include="FileTypes\FileType.cs" />
     <Compile Include="FileTypes\TextFile.cs" />
+    <Compile Include="GitPanel\GitCommit.cs" />
+    <Compile Include="GitPanel\GitPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GitPanel\GitPanel.Designer.cs">
+      <DependentUpon>GitPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Item.cs" />
@@ -122,6 +129,9 @@
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tabs\EditorPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tabs\GitPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\NewProjectFrom.cs">
@@ -156,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeEditor\PopupForm.resx">
       <DependentUpon>PopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GitPanel\GitPanel.resx">
+      <DependentUpon>GitPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

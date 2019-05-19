@@ -108,5 +108,12 @@ namespace codeEditor.NavigatePanel
             node.ShowProperyForm();
         }
 
+        private void GitLogTsmi_Click(object sender, System.EventArgs e)
+        {
+            ProjectNode node = treeView.SelectedNode as ProjectNode;
+            if (node == null) return;
+
+            Global.Controller.Tabs.AddPage(new Tabs.GitPage(node.Project));
+        }
     }
 }
