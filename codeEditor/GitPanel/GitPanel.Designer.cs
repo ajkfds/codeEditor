@@ -34,6 +34,7 @@
             this.logButton = new System.Windows.Forms.Button();
             this.tableView = new ajkControls.TableView.TableView();
             this.logView = new ajkControls.LogView();
+            this.pullButton = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -58,12 +59,14 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pullButton);
             this.panel1.Controls.Add(this.logButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(734, 69);
             this.panel1.TabIndex = 3;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // logButton
             // 
@@ -78,24 +81,36 @@
             // 
             // tableView
             // 
-            this.tableView.Columns = 3;
+            this.tableView.Columns = 4;
             this.tableView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableView.HeaderHeight = 0;
             this.tableView.Location = new System.Drawing.Point(0, 69);
             this.tableView.Name = "tableView";
+            this.tableView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(125)))), ((int)(((byte)(159)))));
             this.tableView.Size = new System.Drawing.Size(734, 520);
             this.tableView.TabIndex = 0;
             // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.logView.Font = new System.Drawing.Font("Meiryo UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.logView.ForeColor = System.Drawing.Color.Gray;
             this.logView.Location = new System.Drawing.Point(0, 0);
             this.logView.MaxLogs = 200;
             this.logView.Name = "logView";
             this.logView.Size = new System.Drawing.Size(734, 115);
             this.logView.TabIndex = 0;
+            // 
+            // pullButton
+            // 
+            this.pullButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pullButton.Location = new System.Drawing.Point(137, 13);
+            this.pullButton.Name = "pullButton";
+            this.pullButton.Size = new System.Drawing.Size(123, 41);
+            this.pullButton.TabIndex = 1;
+            this.pullButton.Text = "pull remote";
+            this.pullButton.UseVisualStyleBackColor = true;
+            this.pullButton.Click += new System.EventHandler(this.PullButton_Click);
             // 
             // GitPanel
             // 
@@ -122,5 +137,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button logButton;
         private ajkControls.LogView logView;
+        private System.Windows.Forms.Button pullButton;
     }
 }

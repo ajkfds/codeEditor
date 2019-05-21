@@ -37,13 +37,13 @@ namespace codeEditor.GitPanel
         public string CommitHash;
         public string AuthorName;
 
-        public override void Draw(Graphics g, Font font, List<int> x,int y,int lineHeight)
+        public override void Draw(Graphics g, Font font, List<Rectangle> rectangles)
         {
             SolidBrush brush = new SolidBrush(Color.DarkGray);
-            g.DrawString(CommitHash.Substring(0,6), font, brush, new Point(x[0], y));
-            g.DrawString(CommitDate.ToString(), font, brush, new Point(x[1], y));
-            g.DrawString(AuthorName, font, brush, new Point(x[2], y));
-            g.DrawString(Subject, font, brush, new Point(x[3], y));
+            g.DrawString(CommitHash.Substring(0,6), font, brush, rectangles[0]);
+            g.DrawString(CommitDate.ToString(), font, brush, rectangles[1]);
+            g.DrawString(AuthorName, font, brush,rectangles[2]);
+            g.DrawString(Subject, font, brush, rectangles[3]);
         }       
     }
 }
