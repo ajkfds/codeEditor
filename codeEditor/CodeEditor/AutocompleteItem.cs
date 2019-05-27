@@ -67,10 +67,22 @@ namespace codeEditor.CodeEditor
             }
             int headIndex, length;
             codeDocument.GetWord(prevIndex, out headIndex, out length);
-            codeDocument.Replace(headIndex, length, ColorIndex, Text);
-            codeDocument.CaretIndex = headIndex + Text.Length;
-            codeDocument.SelectionStart = headIndex + Text.Length;
-            codeDocument.SelectionLast = headIndex + Text.Length;
+            if(codeDocument.GetCharAt(prevIndex) == '.')
+            {
+                int index = codeDocument.CaretIndex;
+                codeDocument.Replace(index, 0, ColorIndex, Text);
+                codeDocument.CaretIndex = index + Text.Length;
+                codeDocument.SelectionStart = index + Text.Length;
+                codeDocument.SelectionLast = index + Text.Length;
+            }
+            else
+            {
+                // delete after last .
+                codeDocument.Replace(headIndex, length, ColorIndex, Text);
+                codeDocument.CaretIndex = headIndex + Text.Length;
+                codeDocument.SelectionStart = headIndex + Text.Length;
+                codeDocument.SelectionLast = headIndex + Text.Length;
+            }
         }
 
     }

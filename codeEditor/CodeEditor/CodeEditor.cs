@@ -347,13 +347,13 @@ namespace codeEditor.CodeEditor
             }
 
 
-            // autoComplete
             if (autoCompleteForm == null || !autoCompleteForm.Visible)
             {
                 TextFile.BeforeKeyDown(e);
                 return;
             }
 
+            // autoComplete
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -369,6 +369,7 @@ namespace codeEditor.CodeEditor
                     applyAutoCompleteSelection(e.KeyCode);
                     e.Handled = true;
                     break;
+                case Keys.OemPeriod:
                 case Keys.Space:
                     applyAutoCompleteSelection(e.KeyCode);
                     break;
@@ -386,13 +387,13 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
             TextFile.AfterKeyDown(e);
-            if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
-            {
-                if (autoCompleteForm != null && autoCompleteForm.Visible)
-                {
-                    checkAutoComplete();
-                }
-            }
+            //if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
+            //{
+            //    if (autoCompleteForm != null && autoCompleteForm.Visible)
+            //    {
+            //        checkAutoComplete();
+            //    }
+            //}
         }
 
         private void codeTextbox_BeforeKeyPressed(object sender, KeyPressEventArgs e)
@@ -505,13 +506,12 @@ namespace codeEditor.CodeEditor
                 List<AutocompleteItem> items = TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord);
                 if(items == null || cantidateWord == null)
                 {
-//                    autoCompleteForm.SetAutocompleteItems(null);
                     closeAutoComplete();
                 }
                 else
                 {
                     openAutoComplete();
-                    autoCompleteForm.SetAutocompleteItems(TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord));
+                    autoCompleteForm.SetAutocompleteItems(items);
                     autoCompleteForm.UpdateVisibleItems(cantidateWord);
                 }
             }
