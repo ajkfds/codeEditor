@@ -30,6 +30,11 @@ namespace codeEditor.NavigatePanel
         private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
         private static ajkControls.IconImage folder = new ajkControls.IconImage(Properties.Resources.folder);
 
+        public override void Selected()
+        {
+            Global.Controller.NavigatePanel.GetContextMenuStrip().Items["gitLogTsmi"].Visible = true;
+            base.Selected();
+        }
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
             if (Exanded)

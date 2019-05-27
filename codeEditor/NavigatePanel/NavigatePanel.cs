@@ -61,6 +61,10 @@ namespace codeEditor.NavigatePanel
                 subNode.Update();
             }
 
+            foreach(ToolStripItem tsi in contextMenuStrip.Items)
+            {
+                tsi.Visible = false;
+            }
             node.Selected();
             //            if (SelectedNodeChanged != null) SelectedNodeChanged(this, e);
         }

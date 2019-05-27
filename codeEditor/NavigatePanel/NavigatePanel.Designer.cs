@@ -113,6 +113,6 @@ namespace codeEditor.NavigatePanel
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem propertyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
+        public System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
     }
 }
