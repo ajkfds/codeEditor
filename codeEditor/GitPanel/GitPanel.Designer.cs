@@ -81,7 +81,7 @@
             // 
             // tableView
             // 
-            this.tableView.Columns = 4;
+            this.tableView.Columns = 5;
             this.tableView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableView.HeaderHeight = 0;
             this.tableView.Location = new System.Drawing.Point(0, 69);
