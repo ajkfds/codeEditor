@@ -190,6 +190,7 @@ namespace codeEditor.CodeEditor
             Global.Controller.AppendLog("parsed "+DateTime.Now.ToString());
             CodeDocument.CopyColorsFrom(parser.Document);
             CodeDocument.CopyMarksFrom(parser.Document);
+            CodeDocument.CopyBlocksFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
             if(TextFile.ParsedDocument != null)
