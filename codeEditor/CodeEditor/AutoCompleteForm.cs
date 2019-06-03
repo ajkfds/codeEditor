@@ -99,11 +99,11 @@ namespace codeEditor.CodeEditor
                 Visible = false;
                 return;
             }
-            if (ItemCount == 1 && visibleItems.First().Text == inputText)
-            {
-                Visible = false;
-                return;
-            }
+            //if (ItemCount == 1 && visibleItems.First().Text == inputText)
+            //{
+            //    Visible = false;
+            //    return;
+            //}
             doubleBufferedDrawBox.Refresh();
         }
 
