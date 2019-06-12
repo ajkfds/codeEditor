@@ -35,6 +35,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.subBgtimer = new System.Windows.Forms.Timer(this.components);
             this.codeTextbox = new ajkControls.CodeTextbox();
+            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,14 +44,16 @@
             // 
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.propertiesToolStripMenuItem});
+            this.propertiesToolStripMenuItem,
+            this.collapseAllToolStripMenuItem,
+            this.expandAllToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(165, 34);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 127);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(164, 30);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
             this.propertiesToolStripMenuItem.Text = "Properties";
             // 
             // timer
@@ -94,6 +98,18 @@
             this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
             this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
             // 
+            // collapseAllToolStripMenuItem
+            // 
+            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.collapseAllToolStripMenuItem.Text = "Collapse All";
+            // 
+            // expandAllToolStripMenuItem
+            // 
+            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.expandAllToolStripMenuItem.Text = "Expand All";
+            // 
             // CodeEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -116,5 +132,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
         private System.Windows.Forms.Timer subBgtimer;
+        private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
     }
 }
