@@ -63,6 +63,11 @@ namespace codeEditor.NavigatePanel
 
             foreach(ToolStripItem tsi in contextMenuStrip.Items)
             {
+                if (tsi == propertyTsmi) continue;
+                if (tsi == propertySeparator) continue;
+                if (tsi == gitLogTsmi) continue;
+                if (tsi == deleteTsmi) continue;
+
                 tsi.Visible = false;
             }
             node.Selected();

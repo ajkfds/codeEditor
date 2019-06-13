@@ -31,12 +31,13 @@
             this.components = new System.ComponentModel.Container();
             ajkControls.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeDrawStyle();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertiesTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.subBgtimer = new System.Windows.Forms.Timer(this.components);
             this.codeTextbox = new ajkControls.CodeTextbox();
-            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertyTsmiSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,17 +45,30 @@
             // 
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.propertiesToolStripMenuItem,
             this.collapseAllToolStripMenuItem,
-            this.expandAllToolStripMenuItem});
+            this.expandAllToolStripMenuItem,
+            this.propertyTsmiSeparator,
+            this.propertiesTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 127);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 133);
             // 
-            // propertiesToolStripMenuItem
+            // collapseAllToolStripMenuItem
             // 
-            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
-            this.propertiesToolStripMenuItem.Text = "Properties";
+            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.collapseAllToolStripMenuItem.Text = "Collapse All";
+            // 
+            // expandAllToolStripMenuItem
+            // 
+            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.expandAllToolStripMenuItem.Text = "Expand All";
+            // 
+            // propertiesTsmi
+            // 
+            this.propertiesTsmi.Name = "propertiesTsmi";
+            this.propertiesTsmi.Size = new System.Drawing.Size(240, 30);
+            this.propertiesTsmi.Text = "Properties";
             // 
             // timer
             // 
@@ -98,17 +112,10 @@
             this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
             this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
             // 
-            // collapseAllToolStripMenuItem
+            // propertyTsmiSeparator
             // 
-            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
-            this.collapseAllToolStripMenuItem.Text = "Collapse All";
-            // 
-            // expandAllToolStripMenuItem
-            // 
-            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
-            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
-            this.expandAllToolStripMenuItem.Text = "Expand All";
+            this.propertyTsmiSeparator.Name = "propertyTsmiSeparator";
+            this.propertyTsmiSeparator.Size = new System.Drawing.Size(237, 6);
             // 
             // CodeEditor
             // 
@@ -130,9 +137,10 @@
         private ajkControls.CodeTextbox codeTextbox;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propertiesTsmi;
         private System.Windows.Forms.Timer subBgtimer;
         private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator propertyTsmiSeparator;
     }
 }

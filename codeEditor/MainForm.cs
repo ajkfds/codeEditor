@@ -64,6 +64,7 @@ namespace codeEditor
             mainTab.TabPages.Add(editorPage);
 
             menuStrip.ImageScalingSize = new Size(menuStrip.Font.Height, menuStrip.Font.Height);
+            mainTab.ImageList.Images.Add( new Bitmap(menuStrip.Font.Height, menuStrip.Font.Height));
 
             commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(
                 menuStrip.ImageScalingSize.Height,
@@ -80,9 +81,42 @@ namespace codeEditor
 
             codeEditorPlugin.PulginManager pinManager = new codeEditorPlugin.PulginManager();
             List<codeEditorPlugin.IPlugin> plugins = pinManager.LoadPlugIns(@"dlls\");
-            foreach (var plugin in plugins)
+            while (true)
             {
-                plugin.Initialize();
+                int registered = 0;
+                foreach (var plugin in plugins)
+                {
+                    if (!Global.Plugins.ContainsKey(plugin.Id))
+                    {
+                        bool complete = plugin.Register();
+                        if (complete)
+                        {
+                            registered++;
+                            Global.Plugins.Add(plugin.Id,plugin);
+                            Global.Controller.AppendLog("Loading plugin ... "+plugin.Id);
+                        }
+                    }
+                }
+                if (registered == 0) break;
+            }
+
+            while (true)
+            {
+                int initialized = 0;
+                foreach (var plugin in plugins)
+                {
+                    if (!Global.Plugins.ContainsKey(plugin.Id))
+                    {
+                        bool complete = plugin.Initialize();
+                        if (complete)
+                        {
+                            initialized++;
+                            Global.Plugins.Add(plugin.Id, plugin);
+                            Global.Controller.AppendLog("Loading plugin ... " + plugin.Id);
+                        }
+                    }
+                }
+                if (initialized == 0) break;
             }
 
             if (System.IO.File.Exists(setupFileName))

@@ -18,7 +18,7 @@ namespace codeEditor.Controller
             Controls.Add(panel);
         }
 
-        private System.Windows.Forms.UserControl panel;
+        protected System.Windows.Forms.UserControl panel;
 
         public override void CloseButtonClicked()
         {

@@ -271,5 +271,29 @@
   <ItemGroup>
     <None Include="Resources\textUpload.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

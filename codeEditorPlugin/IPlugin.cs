@@ -8,7 +8,8 @@ namespace codeEditorPlugin
 {
     public interface IPlugin
     {
-        void Initialize();
+        bool Register();
+        bool Initialize();
         string Id { get; }
     }
 }
