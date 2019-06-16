@@ -222,6 +222,17 @@ namespace codeEditor.CodeEditor
                 Data.ITextFile textFile = project.GetReparseTarget();
                 if (textFile == null) return;
 
+                if (textFile.ReloadRequested)
+                {
+                    if(textFile.CodeDocument == CodeDocument)
+                    {
+                        Global.Controller.AppendLog("code change conflict!!");
+                        return;
+                    }
+                    textFile.Reload();
+                    textFile.ReloadRequested = false;
+                }
+
                 DocumentParser newParser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, project);
                 if (newParser != null)
                 {
@@ -245,6 +256,11 @@ namespace codeEditor.CodeEditor
 
                 Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
                 if (textFile == null) return;
+                if (textFile.ParsedDocument == null)
+                {
+                    textFile.ParseRequested = false;
+                    return;
+                }
                 
                 ParsedDocument oldParsedDocument = textFile.ParsedDocument;
                 textFile.ParsedDocument = null;
@@ -523,6 +539,7 @@ namespace codeEditor.CodeEditor
             closeAutoComplete();
             popupForm.Visible = false;
         }
+
 
     }
 }

@@ -7,6 +7,7 @@ namespace codeEditor.Data
     public class Project : Folder
     {
         protected Project() { }
+
         public static Project Create(string rootPath)
         {
             Project project = new Project();
@@ -19,20 +20,61 @@ namespace codeEditor.Data
             {
                 project.Name = project.RootPath;
             }
-            project.RelativePath = "";
-            project.Project = project;
+
+            initProject(project);
             return project;
         }
-
         public static Project Create(ajkControls.JsonReader jsonReader)
         {
             Project project = new Project();
             project.Name = jsonReader.Key;
             project.LoadSetup(jsonReader);
-            project.RelativePath = "";
-            project.Project = project;
+
+            initProject(project);
             return project;
         }
+
+        private static void initProject(Project project)
+        {
+            project.RelativePath = "";
+            project.Project = project;
+            project.startFileSystemWatcher();
+        }
+
+        public override void Dispose()
+        {
+            stopFileSystemWatcher();
+            base.Dispose();
+        }
+
+        protected System.IO.FileSystemWatcher fileSystemWatcher;
+        protected void startFileSystemWatcher()
+        {
+            fileSystemWatcher = new System.IO.FileSystemWatcher();
+            fileSystemWatcher.Path = RootPath;
+            fileSystemWatcher.NotifyFilter =
+                (System.IO.NotifyFilters.LastAccess
+                | System.IO.NotifyFilters.LastWrite
+                | System.IO.NotifyFilters.FileName
+                | System.IO.NotifyFilters.DirectoryName);
+            fileSystemWatcher.Filter = "";
+//            fileSystemWatcher.SynchronizingObject = this;
+
+            fileSystemWatcher.Created += FileSystemWatcher_Created;
+            fileSystemWatcher.Changed += FileSystemWatcher_Changed;
+            fileSystemWatcher.Renamed += FileSystemWatcher_Renamed;
+            fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
+
+            fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        private void stopFileSystemWatcher()
+        {
+            fileSystemWatcher.EnableRaisingEvents = false;
+            fileSystemWatcher.Dispose();
+            fileSystemWatcher = null;
+        }
+
 
         private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
         public Dictionary<string, ProjectProperty> ProjectProperties
@@ -135,6 +177,7 @@ namespace codeEditor.Data
                 {
                     ITextFile textFile = item as ITextFile;
                     if (textFile.ParseRequested) return textFile;
+                    if (textFile.ReloadRequested) return textFile;
                 }
                 parseIndex++;
                 i++;
@@ -235,5 +278,35 @@ namespace codeEditor.Data
             }
         }
 
+        // file system watcher
+        private void FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            Global.Controller.AppendLog(e.Name + " changed");
+            string relativePath = GetRelativePath(e.FullPath);
+            string id = Data.File.GetID(relativePath, this);
+            Data.File file = GetRegisterdItem(id) as Data.File;
+            if (file == null) return;
+            Data.ITextFile textFile = file as Data.ITextFile;
+            if (textFile == null) return;
+            textFile.ReloadRequested = true;
+        }
+
+        private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
+        {
+            Global.Controller.AppendLog(e.Name + " renamed");
+
+        }
+
+        private void FileSystemWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
+        {
+            Global.Controller.AppendLog(e.Name + " created");
+
+        }
+
+        private void FileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
+        {
+            Global.Controller.AppendLog(e.Name + " deleted");
+
+        }
     }
 }

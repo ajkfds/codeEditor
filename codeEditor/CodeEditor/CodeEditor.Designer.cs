@@ -33,11 +33,11 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertyTsmiSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.subBgtimer = new System.Windows.Forms.Timer(this.components);
             this.codeTextbox = new ajkControls.CodeTextbox();
-            this.propertyTsmiSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,24 +50,29 @@
             this.propertyTsmiSeparator,
             this.propertiesTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 133);
+            this.contextMenuStrip.Size = new System.Drawing.Size(177, 100);
             // 
             // collapseAllToolStripMenuItem
             // 
             this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
             this.collapseAllToolStripMenuItem.Text = "Collapse All";
             // 
             // expandAllToolStripMenuItem
             // 
             this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
-            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
             this.expandAllToolStripMenuItem.Text = "Expand All";
+            // 
+            // propertyTsmiSeparator
+            // 
+            this.propertyTsmiSeparator.Name = "propertyTsmiSeparator";
+            this.propertyTsmiSeparator.Size = new System.Drawing.Size(173, 6);
             // 
             // propertiesTsmi
             // 
             this.propertiesTsmi.Name = "propertiesTsmi";
-            this.propertiesTsmi.Size = new System.Drawing.Size(240, 30);
+            this.propertiesTsmi.Size = new System.Drawing.Size(176, 30);
             this.propertiesTsmi.Text = "Properties";
             // 
             // timer
@@ -111,11 +116,6 @@
             this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
             this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
             this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);
-            // 
-            // propertyTsmiSeparator
-            // 
-            this.propertyTsmiSeparator.Name = "propertyTsmiSeparator";
-            this.propertyTsmiSeparator.Size = new System.Drawing.Size(237, 6);
             // 
             // CodeEditor
             // 

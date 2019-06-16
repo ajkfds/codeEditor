@@ -71,6 +71,10 @@ namespace codeEditor.Data
                 if (!items.ContainsKey(id))
                 {
                     Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project);
+                    if (item.Name.StartsWith("."))
+                    {
+                        continue;
+                    }
                     items.Add(item.ID, item);
                     item.Update();
                 }

@@ -13,8 +13,10 @@ namespace codeEditor.Data
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
         bool ParseRequested { get; set; }
-
+        bool ReloadRequested { get; set; }
         // projectItem
+        void Reload();
+
         string ID { get; }
         string RelativePath { get; }
         string Name { get; }

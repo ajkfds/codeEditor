@@ -91,13 +91,6 @@
     <Compile Include="Data\TextFile.cs" />
     <Compile Include="FileTypes\FileType.cs" />
     <Compile Include="FileTypes\TextFile.cs" />
-    <Compile Include="GitPanel\GitCommit.cs" />
-    <Compile Include="GitPanel\GitPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GitPanel\GitPanel.Designer.cs">
-      <DependentUpon>GitPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Item.cs" />
@@ -166,9 +159,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeEditor\PopupForm.resx">
       <DependentUpon>PopupForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GitPanel\GitPanel.resx">
-      <DependentUpon>GitPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -294,6 +284,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wave5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

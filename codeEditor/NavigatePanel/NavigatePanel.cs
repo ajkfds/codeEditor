@@ -11,6 +11,9 @@ namespace codeEditor.NavigatePanel
             InitializeComponent();
             
             contextMenuStrip.ImageScalingSize = new System.Drawing.Size(contextMenuStrip.Font.Height, contextMenuStrip.Font.Height);
+            gitLogTsmi.Image = Global.IconImages.Git.GetImage(
+               contextMenuStrip.ImageScalingSize.Height,
+               ajkControls.IconImage.ColorStyle.White);
         }
 
         public void AddProject(Data.Project project)
@@ -65,7 +68,6 @@ namespace codeEditor.NavigatePanel
             {
                 if (tsi == propertyTsmi) continue;
                 if (tsi == propertySeparator) continue;
-                if (tsi == gitLogTsmi) continue;
                 if (tsi == deleteTsmi) continue;
 
                 tsi.Visible = false;
