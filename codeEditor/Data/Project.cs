@@ -151,7 +151,7 @@ namespace codeEditor.Data
             }
             else
             {
-                System.Diagnostics.Debugger.Break();
+//                System.Diagnostics.Debugger.Break();
                 return null;
             }
         }
