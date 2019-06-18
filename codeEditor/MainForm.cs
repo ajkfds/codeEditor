@@ -100,28 +100,27 @@ namespace codeEditor
                 if (registered == 0) break;
             }
 
-            while (true)
-            {
-                int initialized = 0;
-                foreach (var plugin in plugins)
-                {
-                    if (!Global.Plugins.ContainsKey(plugin.Id))
-                    {
-                        bool complete = plugin.Initialize();
-                        if (complete)
-                        {
-                            initialized++;
-                            Global.Plugins.Add(plugin.Id, plugin);
-                            Global.Controller.AppendLog("Loading plugin ... " + plugin.Id);
-                        }
-                    }
-                }
-                if (initialized == 0) break;
-            }
 
             if (System.IO.File.Exists(setupFileName))
             {
                 Global.Setup.LoadSetup(setupFileName);
+            }
+
+            List<string> initilalizedPulginName = new List<string>();
+            while (true)
+            {
+                int initialized = 0;
+                foreach(string pluginName in Global.Plugins.Keys)
+                {
+                    if (initilalizedPulginName.Contains(pluginName)) continue;
+                    if (Global.Plugins[pluginName].Initialize())
+                    {
+                        initialized++;
+                        Global.Controller.AppendLog("Loading plugin ... " + pluginName);
+                        initilalizedPulginName.Add(pluginName);
+                    }
+                }
+                if (initialized == 0) break;
             }
 
         }
