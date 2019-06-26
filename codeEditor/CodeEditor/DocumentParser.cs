@@ -30,7 +30,16 @@ namespace codeEditor.CodeEditor
             }
         }
 
-        public virtual void Parse()
+        public enum ParseMode
+        {
+            LoadParse,
+            BackgroundParse,
+            ActivatedParse,
+            EditParse,
+            PostEditParse
+        }
+
+        public virtual void Parse(ParseMode parseMode)
         {
         }
 

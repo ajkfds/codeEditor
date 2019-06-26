@@ -11,10 +11,11 @@ namespace codeEditor.NavigatePanel
     {
         public FileNode(string ID, Data.Project project) : base(ID, project)
         {
-
+            if (FileNodeCreated != null) FileNodeCreated(this);
         }
+        public static Action<FileNode> FileNodeCreated;
 
-        public Data.File FileItem
+    public Data.File FileItem
         {
             get { return Project.GetRegisterdItem(ID) as Data.File; }
         }

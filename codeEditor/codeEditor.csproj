@@ -91,6 +91,12 @@
     <Compile Include="Data\TextFile.cs" />
     <Compile Include="FileTypes\FileType.cs" />
     <Compile Include="FileTypes\TextFile.cs" />
+    <Compile Include="Forms\ProjectPropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProjectPropertyForm.Designer.cs">
+      <DependentUpon>ProjectPropertyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\Item.cs" />
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeEditor\PopupForm.resx">
       <DependentUpon>PopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProjectPropertyForm.resx">
+      <DependentUpon>ProjectPropertyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

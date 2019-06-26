@@ -49,8 +49,7 @@ namespace codeEditor.CodeEditor
                 }
                 if(parser != null)
                 {
-
-                    parser.Parse();
+                    parser.Parse(DocumentParser.ParseMode.BackgroundParse);
                     lock (fromBackgroundStock)
                     {
                         fromBackgroundStock.Add(parser);

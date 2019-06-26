@@ -13,9 +13,10 @@ namespace codeEditor.NavigatePanel
 
         public FolderNode(string ID,Data.Project project) : base(ID,project)
         {
-        
+            if (FolderNodeCreated != null) FolderNodeCreated(this);
         }
-        
+        public static Action<FolderNode> FolderNodeCreated;
+
         public virtual Data.Folder Folder
         {
             get { return Project.GetRegisterdItem(ID) as Data.Folder; }

@@ -11,8 +11,9 @@ namespace codeEditor.NavigatePanel
     {
         public TextFileNode(string ID, Data.Project project) : base(ID, project)
         {
-
+            if (TextFileNodeCreated != null) TextFileNodeCreated(this);
         }
+        public static Action<TextFileNode> TextFileNodeCreated;
 
         public Data.ITextFile ITextFile
         {

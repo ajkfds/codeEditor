@@ -14,7 +14,10 @@ namespace codeEditor.NavigatePanel
         {
             this.Project = project;
             this.ID = id;
+            if (NavigatePanelNodeCreated != null) NavigatePanelNodeCreated(this);
         }
+
+        public static Action<NavigatePanelNode> NavigatePanelNodeCreated;
 
         public Data.Project Project { get; protected set; }
         public string ID { get; protected set; }

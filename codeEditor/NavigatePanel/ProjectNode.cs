@@ -12,7 +12,9 @@ namespace codeEditor.NavigatePanel
     {
         public ProjectNode(Data.Project project) : base("", project)
         {
+            if (ProjectNodeCreated != null) ProjectNodeCreated(this);
         }
+        public static Action<ProjectNode> ProjectNodeCreated;
 
         public override Folder Folder
         {
