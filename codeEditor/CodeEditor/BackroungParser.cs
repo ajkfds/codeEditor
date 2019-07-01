@@ -34,6 +34,7 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        private volatile bool parsing = false;
         private void run()
         {
             while (!abortFlag)
@@ -49,11 +50,13 @@ namespace codeEditor.CodeEditor
                 }
                 if(parser != null)
                 {
+                    parsing = true;
                     parser.Parse(DocumentParser.ParseMode.BackgroundParse);
                     lock (fromBackgroundStock)
                     {
                         fromBackgroundStock.Add(parser);
                     }
+                    parsing = false;
                 }
                 System.Threading.Thread.Sleep(1);
             }
@@ -65,6 +68,7 @@ namespace codeEditor.CodeEditor
             {
                 lock (toBackgroundStock)
                 {
+                    if (parsing) return toBackgroundStock.Count + 1;
                     return toBackgroundStock.Count;
                 }
             }
