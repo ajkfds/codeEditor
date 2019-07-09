@@ -52,6 +52,8 @@ namespace codeEditor
             this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
             this.messageView = new codeEditor.MessageView.MessageView();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forceGCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -141,7 +143,8 @@ namespace codeEditor
             // toolToolStripMenuItem
             // 
             this.toolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.commandShellToolStripMenuItem});
+            this.commandShellToolStripMenuItem,
+            this.debugToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
             this.toolToolStripMenuItem.Size = new System.Drawing.Size(61, 28);
             this.toolToolStripMenuItem.Text = "Tools";
@@ -149,7 +152,7 @@ namespace codeEditor
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -261,6 +264,21 @@ namespace codeEditor
             this.messageView.Size = new System.Drawing.Size(204, 468);
             this.messageView.TabIndex = 11;
             // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.forceGCToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.debugToolStripMenuItem.Text = "Debug";
+            // 
+            // forceGCToolStripMenuItem
+            // 
+            this.forceGCToolStripMenuItem.Name = "forceGCToolStripMenuItem";
+            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.forceGCToolStripMenuItem.Text = "Force GC";
+            this.forceGCToolStripMenuItem.Click += new System.EventHandler(this.ForceGCToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -312,6 +330,8 @@ namespace codeEditor
         private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandShellToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forceGCToolStripMenuItem;
     }
 }
 

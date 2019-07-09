@@ -306,5 +306,10 @@ namespace codeEditor
             mainTab.SelectedTab = tab;
 //            mainTab.Refresh();
         }
+
+        private void ForceGCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GC.Collect(2);
+        }
     }
 }
