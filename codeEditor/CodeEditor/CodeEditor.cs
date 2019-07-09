@@ -269,6 +269,7 @@ namespace codeEditor.CodeEditor
                 textFile.ParsedDocument.Accept();
                 textFile.ParseRequested = false;
                 textFile.Update();
+                textFile.Reload();
 
                 Global.Controller.NavigatePanel.UpdateVisibleNode();
                 Global.Controller.NavigatePanel.Refresh();

@@ -93,6 +93,7 @@ namespace codeEditor.Tools
                     if (textFile.ParsedDocument != null) textFile.ParsedDocument.Accept();
 
                     textFile.ParseRequested = true;
+                    textFile.Reload();
                 }
             }
 
