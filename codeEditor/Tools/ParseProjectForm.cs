@@ -74,9 +74,9 @@ namespace codeEditor.Tools
                     if (!(item is Data.ITextFile)) continue;
                     Data.ITextFile textFile = item as Data.ITextFile;
                     Invoke(new Action(() => { label.Text = textFile.Name; }));
-                    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, textFile.Project);
+                    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, textFile.Project,CodeEditor.DocumentParser.ParseModeEnum.LoadParse);
                     if (parser == null) continue;
-                    parser.Parse(CodeEditor.DocumentParser.ParseMode.LoadParse);
+                    parser.Parse();
 
                     textFile.CodeDocument.CopyColorsFrom(parser.Document);
                     textFile.CodeDocument.CopyMarksFrom(parser.Document);

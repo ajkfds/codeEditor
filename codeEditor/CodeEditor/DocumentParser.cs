@@ -8,19 +8,20 @@ namespace codeEditor.CodeEditor
 {
     public class DocumentParser
     {
-        public DocumentParser(CodeDocument document,string id,Data.Project project)
+        public DocumentParser(CodeDocument document,string id,Data.Project project, ParseModeEnum parseMode)
         {
             this.EditId = document.EditID;
             this.Project = project;
             this.ID = id;
             this.document.CopyCharsFrom(document);
             this.document.CopyLineIndexFrom(document);
+            this.ParseMode = parseMode;
         }
 
         public int EditId { get; protected set; }
         public Data.Project Project { get; protected set; }
         public string ID { get; protected set; }
-
+        public ParseModeEnum ParseMode { get; protected set; }
         protected CodeDocument document = new CodeDocument();
         public CodeDocument Document
         {
@@ -30,7 +31,7 @@ namespace codeEditor.CodeEditor
             }
         }
 
-        public enum ParseMode
+        public enum ParseModeEnum
         {
             LoadParse,
             BackgroundParse,
@@ -39,7 +40,7 @@ namespace codeEditor.CodeEditor
             PostEditParse
         }
 
-        public virtual void Parse(ParseMode parseMode)
+        public virtual void Parse()
         {
         }
 

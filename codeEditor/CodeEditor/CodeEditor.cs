@@ -167,7 +167,7 @@ namespace codeEditor.CodeEditor
         private void entryParse()
         {
             if (TextFile == null) return;
-            DocumentParser parser = TextFile.CreateDocumentParser(CodeDocument, TextFile.ID, TextFile.Project);
+            DocumentParser parser = TextFile.CreateDocumentParser(CodeDocument, TextFile.ID, TextFile.Project,DocumentParser.ParseModeEnum.EditParse);
             if (parser != null)
             {
                 backGroundParser.EntryParse(parser);
@@ -233,7 +233,7 @@ namespace codeEditor.CodeEditor
                     textFile.ReloadRequested = false;
                 }
 
-                DocumentParser newParser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, project);
+                DocumentParser newParser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, project,DocumentParser.ParseModeEnum.BackgroundParse);
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);

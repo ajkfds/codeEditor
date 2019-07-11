@@ -17,6 +17,38 @@ namespace codeEditor.Tools
             InitializeComponent();
             this.Icon = ajkControls.Global.Icon;
             this.ShowInTaskbar = false;
+
+            this.Text = project.Name + " Property";
+
+            if (FormCreated != null) FormCreated(this, project);
+        }
+
+        public static Action<ProjectPropertyForm, Data.Project> FormCreated;
+
+        public void AppendTab(ProjectPropertyTab tab)
+        {
+            tabControl.TabPages.Add(tab);
+        }
+
+        private void OkBtn_Click(object sender, EventArgs e)
+        {
+            foreach(ajkControls.TabPage tab in tabControl.TabPages)
+            {
+                if(tab is ProjectPropertyTab)
+                {
+                    (tab as ProjectPropertyTab).PropertyAccept();
+                }
+            }
+        }
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            foreach (ajkControls.TabPage tab in tabControl.TabPages)
+            {
+                if (tab is ProjectPropertyTab)
+                {
+                    (tab as ProjectPropertyTab).PropertyCancel();
+                }
+            }
         }
     }
 }

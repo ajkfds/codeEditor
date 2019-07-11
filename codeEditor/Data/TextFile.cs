@@ -97,7 +97,7 @@ namespace codeEditor.Data
             return new NavigatePanel.TextFileNode(ID, Project);
         }
 
-        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project)
+        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project,CodeEditor.DocumentParser.ParseModeEnum parseMode)
         {
             return null;
         }
