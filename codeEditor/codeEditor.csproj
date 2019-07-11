@@ -145,6 +145,9 @@
     <Compile Include="Tools\ParseProjectForm.Designer.cs">
       <DependentUpon>ParseProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ProjectPropertyTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tools\ProjectPropertyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ParseProjectForm.resx">
       <DependentUpon>ParseProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ProjectPropertyForm.resx">
+      <DependentUpon>ProjectPropertyForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
