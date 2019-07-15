@@ -60,5 +60,12 @@ namespace codeEditor.NavigatePanel
                 );
         }
 
+        public override void ShowProperyForm()
+        {
+            using(Tools.ProjectPropertyForm pf = new Tools.ProjectPropertyForm(Project)){
+                Global.Controller.ShowDialogForm(pf);
+            }
+        }
+
     }
 }

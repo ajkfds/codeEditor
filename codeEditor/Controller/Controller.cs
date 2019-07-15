@@ -42,6 +42,10 @@ namespace codeEditor.ViewControl
         {
             form.Show(mainForm);
         }
+        public void ShowDialogForm(System.Windows.Forms.Form form)
+        {
+            form.ShowDialog(mainForm);
+        }
         public void ShowForm(System.Windows.Forms.Form form,System.Drawing.Point position)
         {
             form.Show(mainForm);
