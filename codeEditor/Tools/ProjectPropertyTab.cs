@@ -8,7 +8,7 @@ namespace codeEditor.Tools
 {
     public class ProjectPropertyTab : ajkControls.TabPage
     {
-        public void PropertyAccept() { }
-        public void PropertyCancel() { }
+        public virtual void PropertyAccept() { }
+        public virtual void PropertyCancel() { }
     }
 }

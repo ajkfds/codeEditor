@@ -30,41 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectPropertyForm));
-            this.tabControl = new ajkControls.TabControl();
-            this.mainPage = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
-            this.tabControl.SuspendLayout();
+            this.tabControl = new ajkControls.TabControl();
+            this.mainPage = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl
-            // 
-            this.tabControl.BackgroundColor = System.Drawing.Color.LightGray;
-            this.tabControl.Controls.Add(this.mainPage);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.ItemSize = new System.Drawing.Size(0, 33);
-            this.tabControl.LineColor = System.Drawing.Color.Black;
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.Padding = new System.Drawing.Point(15, 3);
-            this.tabControl.SelectedBackgroundColor = System.Drawing.Color.White;
-            this.tabControl.SelectedForeColor = System.Drawing.Color.Black;
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 448);
-            this.tabControl.TabIndex = 0;
-            this.tabControl.UnselectedBackgroundColor = System.Drawing.Color.Gray;
-            // 
-            // mainPage
-            // 
-            this.mainPage.BackColor = System.Drawing.SystemColors.Control;
-            this.mainPage.Location = new System.Drawing.Point(4, 37);
-            this.mainPage.Name = "mainPage";
-            this.mainPage.Padding = new System.Windows.Forms.Padding(3);
-            this.mainPage.Size = new System.Drawing.Size(792, 407);
-            this.mainPage.TabIndex = 0;
-            this.mainPage.Text = "project";
             // 
             // panel1
             // 
@@ -101,6 +74,33 @@
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
+            // tabControl
+            // 
+            this.tabControl.BackgroundColor = System.Drawing.Color.White;
+            this.tabControl.Controls.Add(this.mainPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.ItemSize = new System.Drawing.Size(0, 33);
+            this.tabControl.LineColor = System.Drawing.Color.Black;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.Padding = new System.Drawing.Point(15, 3);
+            this.tabControl.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
+            this.tabControl.SelectedForeColor = System.Drawing.Color.White;
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(800, 448);
+            this.tabControl.TabIndex = 0;
+            this.tabControl.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
+            // 
+            // mainPage
+            // 
+            this.mainPage.BackColor = System.Drawing.SystemColors.Control;
+            this.mainPage.Location = new System.Drawing.Point(4, 37);
+            this.mainPage.Name = "mainPage";
+            this.mainPage.Padding = new System.Windows.Forms.Padding(3);
+            this.mainPage.Size = new System.Drawing.Size(792, 407);
+            this.mainPage.TabIndex = 0;
+            this.mainPage.Text = "project";
+            // 
             // ProjectPropertyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -112,8 +112,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectPropertyForm";
             this.Text = "ProjectPropertyForm";
-            this.tabControl.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
