@@ -347,21 +347,19 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
 
-            if(e.KeyCode == Keys.Space)
-            {
-                if (e.Modifiers == Keys.Shift)
-                {
-                    e.Handled = true;
-                    closeAutoComplete();
-                    openToolSelectionForm();
-                    return;
-                }
-                else if (e.Modifiers == Keys.Control)
-                {
-                    openAutoComplete();
-                    e.Handled = true;
-                    return;
-                }
+            if( e.KeyCode == Keys.Space && e.Modifiers == Keys.Shift )
+            { // open auto select menu
+                e.Handled = true;
+                closeAutoComplete();
+                openToolSelectionForm();
+                return;
+            }
+
+            if (e.KeyCode == Keys.Space && e.Modifiers == Keys.Control)
+            { // force open auto complete
+                openAutoComplete();
+                e.Handled = true;
+                return;
             }
 
 
@@ -371,7 +369,7 @@ namespace codeEditor.CodeEditor
                 return;
             }
 
-            // autoComplete
+            // autoComplete form handle
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -405,6 +403,13 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
             TextFile.AfterKeyDown(e);
+
+            if(e.KeyCode == Keys.OemPeriod && (autoCompleteForm == null || !autoCompleteForm.Visible))
+            {
+                openAutoComplete();
+                e.Handled = true;
+                return;
+            }
             //if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
             //{
             //    if (autoCompleteForm != null && autoCompleteForm.Visible)
