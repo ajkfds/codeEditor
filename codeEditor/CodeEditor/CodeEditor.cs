@@ -404,12 +404,12 @@ namespace codeEditor.CodeEditor
             if (TextFile == null) return;
             TextFile.AfterKeyDown(e);
 
-            if(e.KeyCode == Keys.OemPeriod && (autoCompleteForm == null || !autoCompleteForm.Visible))
-            {
-                openAutoComplete();
-                e.Handled = true;
-                return;
-            }
+            //if(e.KeyCode == Keys.OemPeriod && (autoCompleteForm == null || !autoCompleteForm.Visible))
+            //{
+            //    openAutoComplete();
+            //    e.Handled = true;
+            //    return;
+            //}
             //if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
             //{
             //    if (autoCompleteForm != null && autoCompleteForm.Visible)
