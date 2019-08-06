@@ -75,13 +75,28 @@ namespace codeEditor.Data
             fileSystemWatcher = null;
         }
 
+        public static Dictionary<string, Func<Project, ProjectProperty>> ProjectPropertyCreated = new Dictionary<string, Func<Project, ProjectProperty>>(); 
 
         private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
-        public Dictionary<string, ProjectProperty> ProjectProperties
+        public ProjectProperty GetProjectProperty(string pluginID)
         {
-            get { return projectProperties; }
+            if (projectProperties.ContainsKey(pluginID))
+            {
+                return projectProperties[pluginID];
+            }
+            else
+            {
+                if (ProjectPropertyCreated.ContainsKey(pluginID))
+                {
+                    projectProperties.Add(pluginID,ProjectPropertyCreated[pluginID](this));
+                    return projectProperties[pluginID];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
-
         public new string ID { get { return Name; } }
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
@@ -221,7 +236,7 @@ namespace codeEditor.Data
 
             using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
             {
-                foreach (var propertyKvp in ProjectProperties)
+                foreach (var propertyKvp in projectProperties)
                 {
                     using (var propertyWriter = blockWriter.GetObjectWriter(propertyKvp.Key))
                     {

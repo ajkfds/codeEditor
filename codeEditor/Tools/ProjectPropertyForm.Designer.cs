@@ -93,7 +93,7 @@
             // 
             // mainPage
             // 
-            this.mainPage.BackColor = System.Drawing.SystemColors.Control;
+            this.mainPage.BackColor = System.Drawing.Color.White;
             this.mainPage.Location = new System.Drawing.Point(4, 37);
             this.mainPage.Name = "mainPage";
             this.mainPage.Padding = new System.Windows.Forms.Padding(3);

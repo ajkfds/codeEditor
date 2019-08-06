@@ -32,17 +32,18 @@ namespace codeEditor.Tools
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
-            foreach(ajkControls.TabPage tab in tabControl.TabPages)
+            foreach(var tab in tabControl.TabPages)
             {
                 if(tab is ProjectPropertyTab)
                 {
                     (tab as ProjectPropertyTab).PropertyAccept();
                 }
             }
+            Close();
         }
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            foreach (ajkControls.TabPage tab in tabControl.TabPages)
+            foreach (var tab in tabControl.TabPages)
             {
                 if (tab is ProjectPropertyTab)
                 {
