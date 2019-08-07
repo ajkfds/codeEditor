@@ -227,6 +227,7 @@ namespace codeEditor.CodeEditor
                     if(textFile.CodeDocument == CodeDocument)
                     {
                         Global.Controller.AppendLog("code change conflict!!");
+                        textFile.ReloadRequested = false;
                         return;
                     }
                     textFile.Reload();
