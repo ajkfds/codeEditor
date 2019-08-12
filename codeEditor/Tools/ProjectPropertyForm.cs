@@ -15,15 +15,24 @@ namespace codeEditor.Tools
         public ProjectPropertyForm(Data.Project project)
         {
             InitializeComponent();
+            this.project = project;
             this.Icon = ajkControls.Global.Icon;
             this.ShowInTaskbar = false;
 
             this.Text = project.Name + " Property";
+            setText();
 
             if (FormCreated != null) FormCreated(this, project);
         }
 
         public static Action<ProjectPropertyForm, Data.Project> FormCreated;
+        Data.Project project;
+
+        private void setText()
+        {
+            projectRootPathTxt.Text = project.RootPath;
+        }
+
 
         public void AppendTab(ProjectPropertyTab tab)
         {

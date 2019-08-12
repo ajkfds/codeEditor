@@ -69,7 +69,7 @@ namespace codeEditor.NavigatePanel
                 if (tsi == propertyTsmi) continue;
                 if (tsi == propertySeparator) continue;
                 if (tsi == deleteTsmi) continue;
-
+                if (tsi == addTsmi) continue;
                 tsi.Visible = false;
             }
             node.Selected();

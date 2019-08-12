@@ -32,11 +32,13 @@ namespace codeEditor.NavigatePanel
         {
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.gitLogTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.propertySeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new ajkControls.TreeView();
+            this.openWithExploererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,12 +47,20 @@ namespace codeEditor.NavigatePanel
             this.contextMenuStrip.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addTsmi,
             this.deleteTsmi,
             this.gitLogTsmi,
             this.propertySeparator,
-            this.propertyTsmi});
+            this.propertyTsmi,
+            this.openWithExploererToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 115);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 163);
+            // 
+            // addTsmi
+            // 
+            this.addTsmi.Name = "addTsmi";
+            this.addTsmi.Size = new System.Drawing.Size(240, 24);
+            this.addTsmi.Text = "Add";
             // 
             // deleteTsmi
             // 
@@ -94,6 +104,12 @@ namespace codeEditor.NavigatePanel
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
+            // openWithExploererToolStripMenuItem
+            // 
+            this.openWithExploererToolStripMenuItem.Name = "openWithExploererToolStripMenuItem";
+            this.openWithExploererToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.openWithExploererToolStripMenuItem.Text = "Open With Exploerer";
+            // 
             // NavigatePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -114,5 +130,7 @@ namespace codeEditor.NavigatePanel
         private System.Windows.Forms.ToolStripSeparator propertySeparator;
         private System.Windows.Forms.ToolStripMenuItem propertyTsmi;
         public System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
+        private System.Windows.Forms.ToolStripMenuItem addTsmi;
+        private System.Windows.Forms.ToolStripMenuItem openWithExploererToolStripMenuItem;
     }
 }

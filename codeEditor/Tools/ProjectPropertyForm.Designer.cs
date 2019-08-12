@@ -35,8 +35,11 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.tabControl = new ajkControls.TabControl();
             this.mainPage = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.projectRootPathTxt = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.mainPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,12 +97,33 @@
             // mainPage
             // 
             this.mainPage.BackColor = System.Drawing.Color.White;
+            this.mainPage.Controls.Add(this.projectRootPathTxt);
+            this.mainPage.Controls.Add(this.label1);
             this.mainPage.Location = new System.Drawing.Point(4, 37);
             this.mainPage.Name = "mainPage";
             this.mainPage.Padding = new System.Windows.Forms.Padding(3);
             this.mainPage.Size = new System.Drawing.Size(792, 407);
             this.mainPage.TabIndex = 0;
             this.mainPage.Text = "project";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Root Path";
+            // 
+            // projectRootPathTxt
+            // 
+            this.projectRootPathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectRootPathTxt.Location = new System.Drawing.Point(13, 31);
+            this.projectRootPathTxt.Name = "projectRootPathTxt";
+            this.projectRootPathTxt.ReadOnly = true;
+            this.projectRootPathTxt.Size = new System.Drawing.Size(771, 28);
+            this.projectRootPathTxt.TabIndex = 1;
             // 
             // ProjectPropertyForm
             // 
@@ -114,6 +138,8 @@
             this.Text = "ProjectPropertyForm";
             this.panel1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
+            this.mainPage.ResumeLayout(false);
+            this.mainPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,5 +151,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
+        private System.Windows.Forms.TextBox projectRootPathTxt;
+        private System.Windows.Forms.Label label1;
     }
 }
