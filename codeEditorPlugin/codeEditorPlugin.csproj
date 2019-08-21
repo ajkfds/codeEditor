@@ -53,4 +53,8 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>mkdir "$(SolutionDir)codeEditor\codeEditor\bin\$(Configuration)\dlls" 
+if ERRORLEVEL 1 cmd /c exit 0</PreBuildEvent>
+  </PropertyGroup>
 </Project>
