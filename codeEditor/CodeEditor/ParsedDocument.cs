@@ -19,6 +19,7 @@ namespace codeEditor.CodeEditor
         public string ItemID { get; protected set; }
         public int EditID { get; protected set; }
 
+        public List<IDisposable> ShouldDisposeObjects = new List<IDisposable>();
 
         public virtual void Accept()
         {
@@ -26,6 +27,10 @@ namespace codeEditor.CodeEditor
 
         public virtual void Dispose()
         {
+            foreach(IDisposable obj in ShouldDisposeObjects)
+            {
+                obj.Dispose();
+            }
         }
 
 
