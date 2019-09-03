@@ -72,7 +72,7 @@ namespace codeEditor
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1110, 34);
+            this.menuStrip.Size = new System.Drawing.Size(1643, 38);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -82,21 +82,21 @@ namespace codeEditor
             this.saveToolStripMenuItem,
             this.saveAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(47, 28);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(70, 32);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(277, 44);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(277, 44);
             this.saveAllToolStripMenuItem.Text = "SaveAll";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
@@ -106,14 +106,14 @@ namespace codeEditor
             this.findToolStripMenuItem,
             this.replaceToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(51, 28);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(73, 32);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
             this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(311, 44);
             this.findToolStripMenuItem.Text = "Find";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
@@ -121,7 +121,7 @@ namespace codeEditor
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(311, 44);
             this.replaceToolStripMenuItem.Text = "Replace";
             // 
             // projectToolStripMenuItem
@@ -129,14 +129,14 @@ namespace codeEditor
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewProjectToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(76, 28);
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(106, 32);
             this.projectToolStripMenuItem.Text = "Project";
             this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
             // addNewProjectToolStripMenuItem
             // 
             this.addNewProjectToolStripMenuItem.Name = "addNewProjectToolStripMenuItem";
-            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(218, 30);
+            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(317, 44);
             this.addNewProjectToolStripMenuItem.Text = "Add new project";
             this.addNewProjectToolStripMenuItem.Click += new System.EventHandler(this.addNewProjectToolStripMenuItem_Click);
             // 
@@ -146,13 +146,13 @@ namespace codeEditor
             this.commandShellToolStripMenuItem,
             this.debugToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(61, 28);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(87, 32);
             this.toolToolStripMenuItem.Text = "Tools";
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(306, 44);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -161,45 +161,45 @@ namespace codeEditor
             this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.forceGCToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(306, 44);
             this.debugToolStripMenuItem.Text = "Debug";
             // 
             // forceGCToolStripMenuItem
             // 
             this.forceGCToolStripMenuItem.Name = "forceGCToolStripMenuItem";
-            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(161, 30);
+            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(240, 44);
             this.forceGCToolStripMenuItem.Text = "Force GC";
             this.forceGCToolStripMenuItem.Click += new System.EventHandler(this.ForceGCToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(56, 28);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(80, 32);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 502);
+            this.splitter1.Location = new System.Drawing.Point(0, 856);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1110, 3);
+            this.splitter1.Size = new System.Drawing.Size(1643, 8);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(272, 34);
+            this.splitter2.Location = new System.Drawing.Point(436, 38);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 468);
+            this.splitter2.Size = new System.Drawing.Size(8, 818);
             this.splitter2.TabIndex = 6;
             this.splitter2.TabStop = false;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(903, 34);
+            this.splitter3.Location = new System.Drawing.Point(1284, 38);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(3, 468);
+            this.splitter3.Size = new System.Drawing.Size(8, 818);
             this.splitter3.TabIndex = 12;
             this.splitter3.TabStop = false;
             // 
@@ -208,16 +208,16 @@ namespace codeEditor
             this.mainTab.BackgroundColor = System.Drawing.Color.White;
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.mainTab.ItemSize = new System.Drawing.Size(80, 33);
+            this.mainTab.ItemSize = new System.Drawing.Size(80, 44);
             this.mainTab.LineColor = System.Drawing.Color.Black;
-            this.mainTab.Location = new System.Drawing.Point(275, 34);
+            this.mainTab.Location = new System.Drawing.Point(444, 38);
             this.mainTab.Multiline = true;
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Drawing.Point(15, 3);
             this.mainTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.mainTab.SelectedForeColor = System.Drawing.Color.White;
             this.mainTab.SelectedIndex = 0;
-            this.mainTab.Size = new System.Drawing.Size(628, 468);
+            this.mainTab.Size = new System.Drawing.Size(840, 818);
             this.mainTab.TabIndex = 10;
             this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
             // 
@@ -227,26 +227,26 @@ namespace codeEditor
             this.subTab.Controls.Add(this.navigatorPage);
             this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
             this.subTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.subTab.ItemSize = new System.Drawing.Size(80, 33);
+            this.subTab.ItemSize = new System.Drawing.Size(80, 44);
             this.subTab.LineColor = System.Drawing.Color.Black;
-            this.subTab.Location = new System.Drawing.Point(0, 34);
+            this.subTab.Location = new System.Drawing.Point(0, 38);
             this.subTab.Multiline = true;
             this.subTab.Name = "subTab";
             this.subTab.Padding = new System.Drawing.Point(15, 3);
             this.subTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.subTab.SelectedForeColor = System.Drawing.Color.White;
             this.subTab.SelectedIndex = 0;
-            this.subTab.Size = new System.Drawing.Size(272, 468);
+            this.subTab.Size = new System.Drawing.Size(436, 818);
             this.subTab.TabIndex = 9;
             this.subTab.UnselectedBackgroundColor = System.Drawing.Color.Gray;
             // 
             // navigatorPage
             // 
             this.navigatorPage.Controls.Add(this.navigatePanel);
-            this.navigatorPage.Location = new System.Drawing.Point(4, 37);
+            this.navigatorPage.Location = new System.Drawing.Point(8, 52);
             this.navigatorPage.Name = "navigatorPage";
             this.navigatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.navigatorPage.Size = new System.Drawing.Size(264, 427);
+            this.navigatorPage.Size = new System.Drawing.Size(420, 758);
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
             this.navigatorPage.UseVisualStyleBackColor = true;
@@ -255,35 +255,36 @@ namespace codeEditor
             // 
             this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(258, 421);
+            this.navigatePanel.Size = new System.Drawing.Size(414, 752);
             this.navigatePanel.TabIndex = 0;
             // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.logView.ForeColor = System.Drawing.Color.Gray;
-            this.logView.Location = new System.Drawing.Point(0, 505);
+            this.logView.Location = new System.Drawing.Point(0, 864);
             this.logView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.logView.MaxLogs = 200;
             this.logView.Name = "logView";
-            this.logView.Size = new System.Drawing.Size(1110, 122);
+            this.logView.Size = new System.Drawing.Size(1643, 122);
             this.logView.TabIndex = 0;
             // 
             // messageView
             // 
             this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
             this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(906, 34);
+            this.messageView.Location = new System.Drawing.Point(1292, 38);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(204, 468);
+            this.messageView.Size = new System.Drawing.Size(351, 818);
             this.messageView.TabIndex = 11;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 627);
+            this.ClientSize = new System.Drawing.Size(1643, 986);
             this.Controls.Add(this.mainTab);
             this.Controls.Add(this.splitter3);
             this.Controls.Add(this.messageView);
