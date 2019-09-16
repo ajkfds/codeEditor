@@ -23,7 +23,7 @@ namespace codeEditor.Data
         Project Project { get; }
 
         void Update();
-        void Dispose();
+        void DisposeItem();
 
         void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e);
         void AfterKeyDown(System.Windows.Forms.KeyEventArgs e);

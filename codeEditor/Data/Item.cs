@@ -10,13 +10,6 @@ namespace codeEditor.Data
     {
         protected Item() { }
         protected Item(string id,string relativePath,string name,Project project) { }
-
-/*        public static string GetID(string relativePath,Project project)
-        {
-            System.Diagnostics.Debugger.Break();
-            return null;
-        }
-*/
         public virtual string ID { get; protected set; }
         public virtual string RelativePath { get; protected set; }
         public virtual string Name { get; protected set; }
@@ -28,9 +21,25 @@ namespace codeEditor.Data
             get { return items; }
         }
 
-        public virtual void Dispose()
+        /// <summary>
+        /// remove links to support item dispose with gc.
+        /// </summary>
+        public virtual void DisposeItem()
         {
+            lock (items)
+            {
+                foreach(Item item in Items.Values)
+                {
+                    item.DisposeItem();
+                }
+            }
+
             Project.RemoveRegisteredItem(this);
+        }
+
+        public void Dispose()
+        {
+            DisposeItem();
         }
 
         public virtual void Update() { }

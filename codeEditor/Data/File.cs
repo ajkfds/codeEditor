@@ -55,9 +55,9 @@ namespace codeEditor.Data
             return new FileNode(ID, Project);
         }
 
-        public override void Dispose()
+        public override void DisposeItem()
         {
-            base.Dispose(); // remove from project
+            base.DisposeItem(); // remove from project
         }
 
         public FileTypes.FileType FileType

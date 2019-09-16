@@ -41,10 +41,10 @@ namespace codeEditor.Data
             project.startFileSystemWatcher();
         }
 
-        public override void Dispose()
+        public override void DisposeItem()
         {
             stopFileSystemWatcher();
-            base.Dispose();
+            base.DisposeItem();
         }
 
         protected System.IO.FileSystemWatcher fileSystemWatcher;

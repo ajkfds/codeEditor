@@ -43,11 +43,9 @@ namespace codeEditor.Data
             return project.ID + ":Folder:" + relativePath;
         }
 
-
-
-        public override void Dispose()
+        public override void DisposeItem()
         {
-            base.Dispose();
+            base.DisposeItem();
         }
 
         public override void Update()
@@ -92,7 +90,7 @@ namespace codeEditor.Data
             foreach(Item item in removeItem)
             {
                 items.Remove(item.ID);
-                item.Dispose();
+                item.DisposeItem();
             }
         }
 
