@@ -201,6 +201,10 @@ namespace codeEditor
                 mainTab.SelectedTab = mainTab.TabPages[0];
             }
         }
+        internal Data.ITextFile Controller_GetCodeEditorTextItem()
+        {
+            return editorPage.CodeEditor.TextFile;
+        }
 
         internal void Controller_ScrollToCaret()
         {

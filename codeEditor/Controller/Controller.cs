@@ -83,6 +83,11 @@ namespace codeEditor.ViewControl
                 mainForm.Controller_SetCodeEditorTextItem(textFile);
             }
 
+            public Data.ITextFile GetTextFile()
+            {
+                return mainForm.Controller_GetCodeEditorTextItem();
+            }
+
             public void Refresh()
             {
                 mainForm.Controller_RefreshCodeEditor();

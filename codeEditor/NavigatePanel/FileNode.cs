@@ -15,7 +15,7 @@ namespace codeEditor.NavigatePanel
         }
         public static Action<FileNode> FileNodeCreated;
 
-    public Data.File FileItem
+        public virtual Data.File FileItem
         {
             get { return Project.GetRegisterdItem(ID) as Data.File; }
         }
