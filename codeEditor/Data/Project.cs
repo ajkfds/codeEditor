@@ -204,6 +204,7 @@ namespace codeEditor.Data
         public string GetAbsolutePath(string relativaPath)
         {
             string basePath = RootPath;
+            if (!basePath.EndsWith(@"\")) basePath += @"\";
             string filePath = relativaPath;
 
             basePath = basePath.Replace("%", "%25");
@@ -219,7 +220,9 @@ namespace codeEditor.Data
 
         public string GetRelativePath(string fullPath)
         {
-            Uri u1 = new Uri(RootPath);
+            string basePath = RootPath;
+            if (!basePath.EndsWith(@"\")) basePath += @"\";
+            Uri u1 = new Uri(basePath);
             Uri u2 = new Uri(fullPath);
             Uri relativeUri = u1.MakeRelativeUri(u2);
             string relativePath = relativeUri.ToString();
