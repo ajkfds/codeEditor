@@ -37,6 +37,14 @@ namespace codeEditor.ViewControl
             return mainForm.Controller_GetMenuStrip();
         }
 
+        public System.Windows.Forms.DialogResult ShowMessageBox(string text,string caption,System.Windows.Forms.MessageBoxButtons buttons,System.Windows.Forms.MessageBoxIcon icon)
+        {
+            return System.Windows.Forms.MessageBox.Show(text, caption, buttons, icon);
+        }
+        public System.Windows.Forms.DialogResult ShowMessageBox(string text, string caption, System.Windows.Forms.MessageBoxButtons buttons)
+        {
+            return System.Windows.Forms.MessageBox.Show(text, caption, buttons);
+        }
 
         public void ShowForm(System.Windows.Forms.Form form)
         {
