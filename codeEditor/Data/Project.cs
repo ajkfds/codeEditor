@@ -284,14 +284,13 @@ namespace codeEditor.Data
                     string key = reader.GetNextKey();
                     if (key == null) break;
 
-                    if (projectProperties.ContainsKey(key))
-                    {
-                        projectProperties[key].LoadSetup(reader);
-                    }
-                    else
+                    Data.ProjectProperty property = GetProjectProperty(key);
+                    if(property == null)
                     {
                         reader.SkipValue();
+                        continue;
                     }
+                    property.LoadSetup(reader);
                 }
             }
         }
