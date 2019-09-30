@@ -247,13 +247,11 @@ namespace codeEditor.CodeEditor
                 if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                 {
                     Global.Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                    TextFile.ParseRequested = false;
                     return;
                 }
 
                 Global.Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
-                //                CodeDocument.CopyColorsFrom(parser.Document);
-                //                CodeDocument.CopyMarksFrom(parser.Document);
-                //                codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
                 Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
                 if (textFile == null) return;
