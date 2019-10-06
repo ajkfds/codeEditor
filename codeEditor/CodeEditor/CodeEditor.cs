@@ -133,6 +133,11 @@ namespace codeEditor.CodeEditor
         public void SetTextFile(Data.ITextFile textFile)
         {
             if (TextFile == textFile) return;
+            if(TextFile != null)
+            {
+                TextFile.Reload(); // release document
+            }
+
             if (textFile == null || textFile.CodeDocument == null)
             {
                 codeTextbox.Document = null;
@@ -213,7 +218,7 @@ namespace codeEditor.CodeEditor
         private void subBgtimer_Tick(object sender, EventArgs e)
         {
             DocumentParser parser = subBackGroundParser.GetResult();
-            if (parser == null) {
+            if (parser == null) { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
                 string projectName, id;
                 Global.Controller.NavigatePanel.GetSelectedNode(out projectName, out id);
@@ -242,7 +247,7 @@ namespace codeEditor.CodeEditor
                 }
             }
             else
-            {
+            { // receive result
                 if (TextFile != null &&  TextFile.ID == parser.ID) return;
                 if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                 {
@@ -252,11 +257,12 @@ namespace codeEditor.CodeEditor
                 }
 
                 Global.Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
-
                 Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
+
                 if (textFile == null) return;
                 if (textFile.ParsedDocument == null)
                 {
+                    textFile.Reload();
                     textFile.ParseRequested = false;
                     return;
                 }
@@ -272,6 +278,7 @@ namespace codeEditor.CodeEditor
 
                 Global.Controller.NavigatePanel.UpdateVisibleNode();
                 Global.Controller.NavigatePanel.Refresh();
+                parser.Dispose();
             }
 
         }

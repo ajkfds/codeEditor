@@ -125,6 +125,7 @@
     <Compile Include="NavigatePanel\NavigatePanelNode.cs" />
     <Compile Include="NavigatePanel\ProjectNode.cs" />
     <Compile Include="Setups\Setup.cs" />
+    <Compile Include="Snippets\Snippet.cs" />
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tabs\EditorPage.cs">

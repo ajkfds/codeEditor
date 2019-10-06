@@ -315,5 +315,14 @@ namespace codeEditor
         {
             GC.Collect(2);
         }
+
+        private void CasheStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(var project in Global.Projects.Values)
+            {
+                System.Diagnostics.Debug.Print("## project : " + project.Name);
+                project.DumpItemsStatus();
+            }
+        }
     }
 }

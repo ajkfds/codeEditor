@@ -40,6 +40,11 @@ namespace codeEditor.Data
         }
 
 
+        public bool IsCodeDocumentCashed
+        {
+            get { if (document == null) return false; else return true; }
+        }
+
         public CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
         private volatile bool parseRequested = false;

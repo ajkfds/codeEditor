@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.CodeEditor
 {
-    public class DocumentParser
+    public class DocumentParser : IDisposable
     {
         public DocumentParser(CodeDocument document,string id,Data.Project project, ParseModeEnum parseMode)
         {
@@ -16,6 +16,12 @@ namespace codeEditor.CodeEditor
             this.document.CopyCharsFrom(document);
             this.document.CopyLineIndexFrom(document);
             this.ParseMode = parseMode;
+        }
+
+        public void Dispose()
+        {
+            document = null;
+            Project = null;
         }
 
         public int EditId { get; protected set; }

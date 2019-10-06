@@ -31,6 +31,7 @@ namespace codeEditor.CodeEditor
             {
                 obj.Dispose();
             }
+            ShouldDisposeObjects.Clear();
         }
 
 

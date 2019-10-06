@@ -105,6 +105,24 @@ namespace codeEditor.Data
         private Dictionary<string, int> wholeItemReferenceCounts = new Dictionary<string, int>();
         private List<string> wholeKeys = new List<string>();
 
+        public void CheckVerilogDocumentStatus()
+        {
+            foreach(var item in wholeItems.Values)
+            {
+//                if(item is Data.ITextFile)
+            }
+        }
+
+        public void DumpItemsStatus()
+        {
+            foreach(var item in wholeItems.Values)
+            {
+                if (!(item is Data.ITextFile)) continue;
+                Data.ITextFile textFile = item as Data.ITextFile;
+                if (!textFile.IsCodeDocumentCashed) continue;
+                System.Diagnostics.Debug.Print(item.ID);
+            }
+        }
         public List<string> GetRegisteredIdList()
         {
             return wholeItems.Keys.ToList();

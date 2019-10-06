@@ -9,6 +9,8 @@ namespace codeEditor.Data
     public interface ITextFile
     {
         CodeEditor.CodeDocument CodeDocument { get; }
+        bool IsCodeDocumentCashed { get; }
+
         CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project,CodeEditor.DocumentParser.ParseModeEnum parseMode);
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
