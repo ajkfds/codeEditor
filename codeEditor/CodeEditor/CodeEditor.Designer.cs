@@ -50,18 +50,18 @@
             this.propertyTsmiSeparator,
             this.propertiesTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(177, 100);
+            this.contextMenuStrip.Size = new System.Drawing.Size(177, 106);
             // 
             // collapseAllToolStripMenuItem
             // 
             this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(176, 32);
             this.collapseAllToolStripMenuItem.Text = "Collapse All";
             // 
             // expandAllToolStripMenuItem
             // 
             this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
-            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(176, 32);
             this.expandAllToolStripMenuItem.Text = "Expand All";
             // 
             // propertyTsmiSeparator
@@ -72,7 +72,7 @@
             // propertiesTsmi
             // 
             this.propertiesTsmi.Name = "propertiesTsmi";
-            this.propertiesTsmi.Size = new System.Drawing.Size(176, 30);
+            this.propertiesTsmi.Size = new System.Drawing.Size(176, 32);
             this.propertiesTsmi.Text = "Properties";
             // 
             // timer
@@ -111,6 +111,7 @@
             this.codeTextbox.AfterKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_AfterKeyDown);
             this.codeTextbox.BeforeKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_BeforeKeyPressed);
             this.codeTextbox.BeforeKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_BeforeKeyDown);
+            this.codeTextbox.SelectionChanged += new System.Action(this.CodeTextbox_SelectionChanged);
             this.codeTextbox.Load += new System.EventHandler(this.codeTextbox_Load);
             this.codeTextbox.DoubleClick += new System.EventHandler(this.codeTextbox_DoubleClick);
             this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
@@ -134,7 +135,7 @@
 
         #endregion
 
-        private ajkControls.CodeTextbox codeTextbox;
+        internal ajkControls.CodeTextbox codeTextbox;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem propertiesTsmi;

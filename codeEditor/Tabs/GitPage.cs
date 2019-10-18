@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.Tabs
 {
-    public class GitPage : Controller.MainTabPage
+    public class GitPage : Tabs.MainTabPage
     {
         public GitPage(Data.Project project) : base(new ajkControls.Git.GitPanel(project.RootPath),project.Name)
         {

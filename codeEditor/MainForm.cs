@@ -54,13 +54,12 @@ namespace codeEditor
 
         public MainForm()
         {
+            Global.mainForm = this;
+
             InitializeComponent();
             ajkControls.Global.Icon = Properties.Resources.ajEditor;
             this.Icon = ajkControls.Global.Icon;
 
-            Global.Controller = new ViewControl.Controller(this);
-            //            mainTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
-            //            subTab.SelectedBackgroundColor = Global.ColorMap.SelectedBackground;
             mainTab.TabPages.Add(editorPage);
 
             menuStrip.ImageScalingSize = new Size(menuStrip.Font.Height, menuStrip.Font.Height);
@@ -93,7 +92,7 @@ namespace codeEditor
                         {
                             registered++;
                             Global.Plugins.Add(plugin.Id,plugin);
-                            Global.Controller.AppendLog("Loading plugin ... "+plugin.Id);
+                            Controller .AppendLog("Loading plugin ... "+plugin.Id);
                         }
                     }
                 }
@@ -116,7 +115,7 @@ namespace codeEditor
                     if (Global.Plugins[pluginName].Initialize())
                     {
                         initialized++;
-                        Global.Controller.AppendLog("Loading plugin ... " + pluginName);
+                        Controller.AppendLog("Loading plugin ... " + pluginName);
                         initilalizedPulginName.Add(pluginName);
                     }
                 }
@@ -126,7 +125,7 @@ namespace codeEditor
         }
 
 
-        private Tabs.EditorPage editorPage = new Tabs.EditorPage();
+        internal Tabs.EditorPage editorPage = new Tabs.EditorPage();
 
         private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -162,7 +161,6 @@ namespace codeEditor
         }
 
         // tabs
-
         internal void Controller_AddTabPage(ajkControls.TabPage tabPage)
         {
             mainTab.TabPages.Add(tabPage);
@@ -187,86 +185,7 @@ namespace codeEditor
             }
         }
 
-        internal void Controller_SetCodeEditorTextItem(Data.ITextFile textFile)
-        {
-            if(textFile == null)
-            {
-                editorPage.CodeEditor.SetTextFile(null);
-                mainTab.TabPages[0].Text = "-";
-            }
-            else
-            {
-                editorPage.CodeEditor.SetTextFile(textFile);
-                mainTab.TabPages[0].Text = textFile.Name;
-                mainTab.SelectedTab = mainTab.TabPages[0];
-            }
-        }
-        internal Data.ITextFile Controller_GetCodeEditorTextItem()
-        {
-            return editorPage.CodeEditor.TextFile;
-        }
 
-        internal void Controller_ScrollToCaret()
-        {
-            editorPage.CodeEditor.ScrollToCaret();
-        }
-
-        // navigate panel
-        internal void Controller_RefreshNavigatePanel()
-        {
-            navigatePanel.Refresh();
-        }
-
-        //internal void Controller_UpdateNavigateaPanelWholeNode()
-        //{
-        //    navigatePanel.UpdateWholeNode();
-        //}
-
-        //internal void Controller_UpdateNavigateaPanelWholeNode(NavigatePanel.NavigatePanelNode node)
-        //{
-        //    navigatePanel.UpdateWholeNode(node);
-        //}
-
-        internal void Controller_UpdateNavigateaPanelVisibleNode()
-        {
-            navigatePanel.UpdateWholeVisibleNode();
-        }
-
-        internal void Controller_UpdateNavigateaPanelVisibleNode(NavigatePanel.NavigatePanelNode node)
-        {
-            navigatePanel.UpdateWholeVisibleNode(node);
-        }
-
-        //internal void Controller_UpdateNavigateaPanel(NavigatePanel.NavigatePanelNode node)
-        //{
-        //    navigatePanel.UpdateWholeNode(node);
-        //}
-
-        internal void Controller_GetNavigatePanelSelectedNode(out string project, out string id)
-        {
-            navigatePanel.GetSelectedNode(out project, out id);
-        }
-
-        internal System.Windows.Forms.ContextMenuStrip Controller_GetNavigateContextMenu()
-        {
-            return navigatePanel.GetContextMenuStrip();
-        }
-
-        // message view
-        internal void Controller_UpdateMessageView(CodeEditor.ParsedDocument parsedDocument)
-        {
-            messageView.UpdateMessages(parsedDocument);
-        }
-
-        // log
-        internal void Controller_LogAppend(string message)
-        {
-            logView.AppendLogLine(message);
-        }
-        internal void Controller_LogAppend(string message,System.Drawing.Color color)
-        {
-            logView.AppendLogLine(message, color);
-        }
 
         // menu //////////////////////////////////////////////////////////////
 
@@ -304,7 +223,7 @@ namespace codeEditor
         private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ajkControls.ShellPanel panel = new ajkControls.ShellPanel(new ajkControls.CommandShell(new List<string> { "prompt $P$G$_" }));
-            Controller.MainTabPage tab = new Controller.MainTabPage(panel, "command");
+            Tabs.MainTabPage tab = new Tabs.MainTabPage(panel, "command");
             tab.IconImage = Global.IconImages.Terminal;
             mainTab.TabPages.Add(tab);
             mainTab.SelectedTab = tab;

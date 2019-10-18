@@ -319,16 +319,16 @@ namespace codeEditor
 
         #endregion
 
-        private ajkControls.LogView logView;
+        internal ajkControls.LogView logView;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Splitter splitter2;
-        private NavigatePanel.NavigatePanel navigatePanel;
+        internal NavigatePanel.NavigatePanel navigatePanel;
         private ajkControls.TabControl subTab;
-        private System.Windows.Forms.TabPage navigatorPage;
-        private ajkControls.TabControl mainTab;
-        private MessageView.MessageView messageView;
+        internal System.Windows.Forms.TabPage navigatorPage;
+        internal ajkControls.TabControl mainTab;
+        internal MessageView.MessageView messageView;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

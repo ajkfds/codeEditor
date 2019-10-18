@@ -56,6 +56,7 @@
             this.ClientSize = new System.Drawing.Size(317, 366);
             this.Controls.Add(this.doubleBufferedDrawBox);
             this.Controls.Add(this.vScrollBar);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AutoCompleteForm";
             this.Text = "AutoCompleteForm";

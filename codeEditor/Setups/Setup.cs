@@ -123,7 +123,7 @@ namespace codeEditor.Setups
                     else
                     {
                         Data.Project project = Data.Project.Create(reader);
-                        Global.Controller.AddProject(project);
+                        Controller.AddProject(project);
                     }
                 }
             }

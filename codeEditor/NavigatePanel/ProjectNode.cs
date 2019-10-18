@@ -34,7 +34,7 @@ namespace codeEditor.NavigatePanel
 
         public override void Selected()
         {
-            Global.Controller.NavigatePanel.GetContextMenuStrip().Items["gitLogTsmi"].Visible = true;
+            Controller.NavigatePanel.GetContextMenuStrip().Items["gitLogTsmi"].Visible = true;
             base.Selected();
         }
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
@@ -63,7 +63,7 @@ namespace codeEditor.NavigatePanel
         public override void ShowProperyForm()
         {
             using(Tools.ProjectPropertyForm pf = new Tools.ProjectPropertyForm(Project)){
-                Global.Controller.ShowDialogForm(pf);
+                Controller.ShowDialogForm(pf);
             }
         }
 

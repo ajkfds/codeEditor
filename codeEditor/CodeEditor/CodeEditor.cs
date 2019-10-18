@@ -22,6 +22,31 @@ namespace codeEditor.CodeEditor
             //            this.codeTextbox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.dbDrawBox_MouseWheel);
         }
 
+        Snippets.InteractiveSnippet snippet = null;
+        
+        public void StartInteractiveSnippet(Snippets.InteractiveSnippet interactiveSnippet)
+        {
+            AbortInteractiveSnippet();
+            snippet = interactiveSnippet;
+        }
+
+        public void AbortInteractiveSnippet()
+        {
+            if (snippet == null) return;
+            snippet.Aborted();
+            snippet = null;
+        }
+
+        public void AppendHighlight(int highlightStart, int highlightLast)
+        {
+            codeTextbox.AppendHighlight(highlightStart,highlightLast);
+        }
+
+        public void ClearHighlight()
+        {
+            codeTextbox.ClearHighlight();
+        }
+
         // find & replace form
         FindForm findForm;
         public void OpenFind()
@@ -96,6 +121,10 @@ namespace codeEditor.CodeEditor
             Refresh();
         }
 
+        public void MoveToNextHighlight(out bool moved)
+        {
+            codeTextbox.MoveToNextHighlight(out moved);
+        }
         public void Save()
         {
             if (TextFile == null) return;
@@ -169,6 +198,11 @@ namespace codeEditor.CodeEditor
             previousEditIdD = codeTextbox.Document.EditID;
         }
 
+        public void RequestReparse()
+        {
+            entryParse();
+        }
+
         private void entryParse()
         {
             if (TextFile == null) return;
@@ -176,7 +210,7 @@ namespace codeEditor.CodeEditor
             if (parser != null)
             {
                 backGroundParser.EntryParse(parser);
-                Global.Controller.AppendLog("entry parse " + DateTime.Now.ToString());
+                Controller.AppendLog("entry parse " + DateTime.Now.ToString());
             }
         }
 
@@ -188,11 +222,11 @@ namespace codeEditor.CodeEditor
             if (TextFile.ID != parser.ID) return;
             if (CodeDocument.EditID != parser.EditId)
             {
-                Global.Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
+                Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
                 return;
             }
 
-            Global.Controller.AppendLog("parsed "+DateTime.Now.ToString());
+            Controller.AppendLog("parsed "+DateTime.Now.ToString());
             CodeDocument.CopyColorsFrom(parser.Document);
             CodeDocument.CopyMarksFrom(parser.Document);
             CodeDocument.CopyBlocksFrom(parser.Document);
@@ -208,11 +242,12 @@ namespace codeEditor.CodeEditor
                 TextFile.ParseRequested = false;
                 TextFile.Update();
 
-                Global.Controller.MessageView.Update(TextFile.ParsedDocument);
+                Controller.MessageView.Update(TextFile.ParsedDocument);
+                codeTextbox.ReDrawHighlight();
             }
 
-            Global.Controller.NavigatePanel.UpdateVisibleNode();
-            Global.Controller.NavigatePanel.Refresh();
+            Controller.NavigatePanel.UpdateVisibleNode();
+            Controller.NavigatePanel.Refresh();
         }
 
         private void subBgtimer_Tick(object sender, EventArgs e)
@@ -221,7 +256,7 @@ namespace codeEditor.CodeEditor
             if (parser == null) { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
                 string projectName, id;
-                Global.Controller.NavigatePanel.GetSelectedNode(out projectName, out id);
+                Controller.NavigatePanel.GetSelectedNode(out projectName, out id);
                 if (projectName == "") return;
                 Data.Project project = Global.Projects[projectName];
                 Data.ITextFile textFile = project.GetReparseTarget();
@@ -231,7 +266,7 @@ namespace codeEditor.CodeEditor
                 {
                     if(textFile.CodeDocument == CodeDocument)
                     {
-                        Global.Controller.AppendLog("code change conflict!!");
+                        Controller.AppendLog("code change conflict!!");
                         textFile.ReloadRequested = false;
                         return;
                     }
@@ -243,7 +278,7 @@ namespace codeEditor.CodeEditor
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
-                    Global.Controller.AppendLog("entry parse " + textFile.ID + " " + DateTime.Now.ToString());
+                    Controller.AppendLog("entry parse " + textFile.ID + " " + DateTime.Now.ToString());
                 }
             }
             else
@@ -251,12 +286,12 @@ namespace codeEditor.CodeEditor
                 if (TextFile != null &&  TextFile.ID == parser.ID) return;
                 if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                 {
-                    Global.Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                    Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
                     TextFile.ParseRequested = false;
                     return;
                 }
 
-                Global.Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
+                Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
                 Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
 
                 if (textFile == null) return;
@@ -276,8 +311,8 @@ namespace codeEditor.CodeEditor
                 textFile.Update();
                 textFile.Reload();
 
-                Global.Controller.NavigatePanel.UpdateVisibleNode();
-                Global.Controller.NavigatePanel.Refresh();
+                Controller.NavigatePanel.UpdateVisibleNode();
+                Controller.NavigatePanel.Refresh();
                 parser.Dispose();
             }
 
@@ -353,6 +388,8 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
 
+            if (snippet != null) snippet.BeforeKeyDown(sender, e, autoCompleteForm);
+
             if( e.KeyCode == Keys.Space && e.Modifiers == Keys.Shift )
             { // open auto select menu
                 e.Handled = true;
@@ -368,8 +405,7 @@ namespace codeEditor.CodeEditor
                 return;
             }
 
-
-            if (autoCompleteForm == null || !autoCompleteForm.Visible)
+            if (autoCompleteForm == null || autoCompleteForm.Visible == false)
             {
                 TextFile.BeforeKeyDown(e);
                 return;
@@ -403,26 +439,18 @@ namespace codeEditor.CodeEditor
                 default:
                     break;
             }
+
+            if (snippet != null) snippet.AfterAutoCompleteHandled(sender, e,autoCompleteForm);
         }
 
         private void codeTextbox_AfterKeyDown(object sender, KeyEventArgs e)
         {
             if (TextFile == null) return;
-            TextFile.AfterKeyDown(e);
 
-            //if(e.KeyCode == Keys.OemPeriod && (autoCompleteForm == null || !autoCompleteForm.Visible))
-            //{
-            //    openAutoComplete();
-            //    e.Handled = true;
-            //    return;
-            //}
-            //if(e.KeyData == Keys.Delete || e.KeyData == Keys.Back)
-            //{
-            //    if (autoCompleteForm != null && autoCompleteForm.Visible)
-            //    {
-            //        checkAutoComplete();
-            //    }
-            //}
+            bool autoCompleteFormActive = (autoCompleteForm != null && autoCompleteForm.Visible);
+            if (snippet != null) snippet.AfterKeyDown(sender, e, autoCompleteForm);
+
+            TextFile.AfterKeyDown(e);
         }
 
         private void codeTextbox_BeforeKeyPressed(object sender, KeyPressEventArgs e)
@@ -453,6 +481,7 @@ namespace codeEditor.CodeEditor
             if(toolSelectionForm == null)
             {
                 toolSelectionForm = new ajkControls.SelectionForm();
+                toolSelectionForm.ForeColor = System.Drawing.Color.Black;
                 toolSelectionForm.Selected += ApplyTool;
             }
             if (toolSelectionForm.Visible) return;
@@ -468,7 +497,7 @@ namespace codeEditor.CodeEditor
             toolSelectionForm.Font = codeTextbox.Font;
 
             Point screenPosition = PointToScreen(codeTextbox.GetCaretTopPoint());
-            Global.Controller.ShowForm(toolSelectionForm, screenPosition);
+            Controller.ShowForm(toolSelectionForm, screenPosition);
         }
 
         private void ApplyTool(object sender,EventArgs e)
@@ -501,7 +530,7 @@ namespace codeEditor.CodeEditor
             }
             if (autoCompleteForm.Visible) return;
             Point screenPosition = PointToScreen(codeTextbox.GetCaretBottomPoint());
-            Global.Controller.ShowForm(autoCompleteForm, screenPosition);
+            Controller.ShowForm(autoCompleteForm, screenPosition);
         }
 
         private void closeAutoComplete()
@@ -552,6 +581,36 @@ namespace codeEditor.CodeEditor
             popupForm.Visible = false;
         }
 
+        private void CodeTextbox_SelectionChanged()
+        {
+            if (snippet != null) return;
 
+            if (codeTextbox.Document.SelectionStart == codeTextbox.Document.SelectionLast || 
+                codeTextbox.Document.SelectionStart + 3 > codeTextbox.Document.SelectionLast)
+            {
+                codeTextbox.ClearHighlight();
+            }
+            else
+            {
+                string target = codeTextbox.Document.CreateString(codeTextbox.Document.SelectionStart, codeTextbox.Document.SelectionLast - codeTextbox.Document.SelectionStart);
+                if (target.Contains('\n'))
+                {
+                    codeTextbox.ClearHighlight();
+                }
+                else
+                {
+                    codeTextbox.ClearHighlight();
+                    codeTextbox.DoAtVisibleLines((line) =>
+                    {
+                        int i = codeTextbox.Document.CreateLineString(line).IndexOf(target);
+                        if (i >= 0)
+                        {
+                            codeTextbox.AppendHighlight(codeTextbox.Document.GetLineStartIndex(line) + i, codeTextbox.Document.GetLineStartIndex(line) + i + target.Length-1);
+                        }
+
+                    });
+                }
+            }
+        }
     }
 }

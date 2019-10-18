@@ -30,7 +30,7 @@ namespace codeEditor.CodeEditor
             doButton.Text = "Find";
             this.Left = position.X;
             this.Top = position.Y;
-            Global.Controller.ShowForm(this,position);
+            Controller.ShowForm(this,position);
             findTextBox.Focus();
             findTextBox.SelectAll();
         }

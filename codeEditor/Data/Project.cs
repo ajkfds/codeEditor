@@ -316,7 +316,7 @@ namespace codeEditor.Data
         // file system watcher
         private void FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
-            Global.Controller.AppendLog(e.Name + " changed");
+            Controller.AppendLog(e.Name + " changed");
             string relativePath = GetRelativePath(e.FullPath);
             string id = Data.File.GetID(relativePath, this);
             Data.File file = GetRegisterdItem(id) as Data.File;
@@ -328,19 +328,19 @@ namespace codeEditor.Data
 
         private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
         {
-            Global.Controller.AppendLog(e.Name + " renamed");
+            Controller.AppendLog(e.Name + " renamed");
 
         }
 
         private void FileSystemWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
         {
-            Global.Controller.AppendLog(e.Name + " created");
+            Controller.AppendLog(e.Name + " created");
 
         }
 
         private void FileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
         {
-            Global.Controller.AppendLog(e.Name + " deleted");
+            Controller.AppendLog(e.Name + " deleted");
 
         }
     }

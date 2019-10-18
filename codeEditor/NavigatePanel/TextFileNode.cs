@@ -44,7 +44,7 @@ namespace codeEditor.NavigatePanel
 
         public override void Selected()
         {
-            Global.Controller.CodeEditor.SetTextFile(ITextFile);
+            Controller.CodeEditor.SetTextFile(ITextFile);
         }
 
     }

@@ -81,7 +81,7 @@
     </Compile>
     <Compile Include="CodeEditor\PopupItem.cs" />
     <Compile Include="CodeEditor\ToolItem.cs" />
-    <Compile Include="Controller\MainTabPage.cs">
+    <Compile Include="Tabs\MainTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\File.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="NavigatePanel\NavigatePanelNode.cs" />
     <Compile Include="NavigatePanel\ProjectNode.cs" />
     <Compile Include="Setups\Setup.cs" />
-    <Compile Include="Snippets\Snippet.cs" />
+    <Compile Include="Snippets\InteractiveSnippet.cs" />
     <Compile Include="Snippets\ToLower.cs" />
     <Compile Include="Snippets\ToUpper.cs" />
     <Compile Include="Tabs\EditorPage.cs">
@@ -155,7 +155,7 @@
     <Compile Include="Tools\ProjectPropertyForm.Designer.cs">
       <DependentUpon>ProjectPropertyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CodeEditor\AutoCompleteForm.resx">

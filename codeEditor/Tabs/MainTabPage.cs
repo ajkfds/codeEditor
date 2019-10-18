@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace codeEditor.Controller
+namespace codeEditor.Tabs
 {
     public class MainTabPage : ajkControls.TabPage
     {
@@ -22,7 +22,7 @@ namespace codeEditor.Controller
 
         public override void CloseButtonClicked()
         {
-            codeEditor.Global.Controller.Tabs.RemovePage(this);
+            Controller.Tabs.RemovePage(this);
             panel.Dispose();
             Dispose();
         }

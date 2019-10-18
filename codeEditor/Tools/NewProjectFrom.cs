@@ -29,7 +29,7 @@ namespace codeEditor.Tools
                 return;
             }
             Data.Project project = Data.Project.Create(pathTextBox.Text);
-            Global.Controller.AddProject(project);
+            Controller.AddProject(project);
             this.Close();
         }
 
