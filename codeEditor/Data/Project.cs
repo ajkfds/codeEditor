@@ -130,6 +130,7 @@ namespace codeEditor.Data
 
         public void RegisterProjectItem(Item projectItem)
         {
+            System.Diagnostics.Debug.Print("+ " + projectItem.ID);
             if (wholeItems.ContainsKey(projectItem.ID))
             {
                 wholeItemReferenceCounts[projectItem.ID]++;
@@ -144,6 +145,8 @@ namespace codeEditor.Data
 
         public void RemoveRegisteredItem(Item projectItem)
         {
+            System.Diagnostics.Debug.Print("- " + projectItem.ID);
+
             if (wholeItems.ContainsKey(projectItem.ID))
             {
                 wholeItemReferenceCounts[projectItem.ID]--;
@@ -174,7 +177,7 @@ namespace codeEditor.Data
 
         public Item GetRegisterdItem(string id)
         {
-            if(id == null)
+            if (id == null)
             {
                 System.Diagnostics.Debugger.Break();
             }

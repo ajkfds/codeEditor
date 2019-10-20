@@ -283,13 +283,22 @@ namespace codeEditor.CodeEditor
             }
             else
             { // receive result
-                if (TextFile != null &&  TextFile.ID == parser.ID) return;
-                if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
+                if(TextFile != null && TextFile.ID == parser.ID)
                 {
-                    Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
-                    TextFile.ParseRequested = false;
-                    return;
+                    if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
+                    {
+                        Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                        TextFile.ParseRequested = false;
+                        return;
+                    }
                 }
+                //if (TextFile != null &&  TextFile.ID == parser.ID) return;
+                //if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
+                //{
+                //    Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                //    TextFile.ParseRequested = false;
+                //    return;
+                //}
 
                 Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
                 Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;

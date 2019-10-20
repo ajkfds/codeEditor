@@ -63,31 +63,33 @@ namespace codeEditor.Data
                     items.Add(item.ID, item);
                 }
             }
+
             foreach (string absoluteFolderPath in absoluteFolderPaths)
             {
+                // skip invisiable folder
+                string body = absoluteFolderPath;
+                if (body.Contains('\\')) body = body.Substring(body.LastIndexOf('\\'));
+                if (body.StartsWith("\\.")) continue;
+
                 string id = Folder.GetID(Project.GetRelativePath(absoluteFolderPath), Project);
                 if (!items.ContainsKey(id))
                 {
                     Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project);
-                    if (item.Name.StartsWith("."))
-                    {
-                        continue;
-                    }
                     items.Add(item.ID, item);
                     item.Update();
                 }
             }
 
-            List<Item> removeItem = new List<Item>();
+            List<Item> removeItems = new List<Item>();
             foreach(Item item in items.Values)
             {
                 string absoluteItemPath = Project.GetAbsolutePath(item.RelativePath);
                 if(!absoluteFilePaths.Contains(absoluteItemPath) && !absoluteFolderPaths.Contains(absoluteItemPath))
                 {
-                    removeItem.Add(item);
+                    removeItems.Add(item);
                 }
             }
-            foreach(Item item in removeItem)
+            foreach(Item item in removeItems)
             {
                 items.Remove(item.ID);
                 item.DisposeItem();
