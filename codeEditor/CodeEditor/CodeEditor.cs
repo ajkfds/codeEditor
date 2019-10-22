@@ -209,6 +209,7 @@ namespace codeEditor.CodeEditor
             DocumentParser parser = TextFile.CreateDocumentParser(CodeDocument, TextFile.ID, TextFile.Project,DocumentParser.ParseModeEnum.EditParse);
             if (parser != null)
             {
+                Controller.AppendLog("parserID " + CodeDocument.EditID.ToString());
                 backGroundParser.EntryParse(parser);
                 Controller.AppendLog("entry parse " + DateTime.Now.ToString());
             }
@@ -220,6 +221,8 @@ namespace codeEditor.CodeEditor
             if (parser == null) return;
             if (TextFile == null) return;
             if (TextFile.ID != parser.ID) return;
+            Controller.AppendLog("ID " + CodeDocument.EditID.ToString()+" parserID "+parser.EditId.ToString());
+
             if (CodeDocument.EditID != parser.EditId)
             {
                 Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
@@ -433,12 +436,12 @@ namespace codeEditor.CodeEditor
                     break;
                 case Keys.Tab:
                 case Keys.Return:
-                    applyAutoCompleteSelection(e.KeyCode);
+                    applyAutoCompleteSelection(e);
                     e.Handled = true;
                     break;
                 case Keys.OemPeriod:
                 case Keys.Space:
-                    applyAutoCompleteSelection(e.KeyCode);
+                    applyAutoCompleteSelection(e);
                     break;
                 case Keys.Escape:
                 case Keys.Delete:
@@ -449,7 +452,7 @@ namespace codeEditor.CodeEditor
                     break;
             }
 
-            if (snippet != null) snippet.AfterAutoCompleteHandled(sender, e,autoCompleteForm);
+            if (snippet != null) snippet.AfterAutoCompleteHandled(sender, e, autoCompleteForm);
         }
 
         private void codeTextbox_AfterKeyDown(object sender, KeyEventArgs e)
@@ -548,12 +551,12 @@ namespace codeEditor.CodeEditor
             autoCompleteForm.Visible = false;
         }
 
-        private void applyAutoCompleteSelection(Keys keyCode)
+        private void applyAutoCompleteSelection(KeyEventArgs e)
         {
             if (autoCompleteForm == null | !autoCompleteForm.Visible) return;
             AutocompleteItem item = autoCompleteForm.SelectItem();
             if (item == null) return;
-            item.Apply(CodeDocument,keyCode);
+            item.Apply(CodeDocument,e);
         }
 
         /// <summary>

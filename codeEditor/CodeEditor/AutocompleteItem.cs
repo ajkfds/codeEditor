@@ -58,7 +58,7 @@ namespace codeEditor.CodeEditor
             height = tsize.Height;
         }
 
-        public virtual void Apply(CodeDocument codeDocument,System.Windows.Forms.Keys keyCode)
+        public virtual void Apply(CodeDocument codeDocument, System.Windows.Forms.KeyEventArgs e)
         {
             int prevIndex = codeDocument.CaretIndex;
             if (codeDocument.GetLineStartIndex(codeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
