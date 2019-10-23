@@ -235,19 +235,19 @@ namespace codeEditor.CodeEditor
             CodeDocument.CopyBlocksFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
-            if(TextFile.ParsedDocument != null)
+            if (TextFile.ParsedDocument != null)
             {
                 ParsedDocument oldParsedDocument = TextFile.ParsedDocument;
                 TextFile.ParsedDocument = null;
                 oldParsedDocument.Dispose();
-                TextFile.ParsedDocument = parser.ParsedDocument;
-                TextFile.ParsedDocument.Accept();
-                TextFile.ParseRequested = false;
-                TextFile.Update();
-
-                Controller.MessageView.Update(TextFile.ParsedDocument);
-                codeTextbox.ReDrawHighlight();
             }
+            TextFile.ParsedDocument = parser.ParsedDocument;
+            TextFile.ParsedDocument.Accept();
+            TextFile.ParseRequested = false;
+            TextFile.Update();
+
+            Controller.MessageView.Update(TextFile.ParsedDocument);
+            codeTextbox.ReDrawHighlight();
 
             Controller.NavigatePanel.UpdateVisibleNode();
             Controller.NavigatePanel.Refresh();
