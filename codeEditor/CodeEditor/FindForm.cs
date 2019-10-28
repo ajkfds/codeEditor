@@ -17,6 +17,7 @@ namespace codeEditor.CodeEditor
             InitializeComponent();
             this.codeEditor = codeEditor;
             this.ShowInTaskbar = false;
+            this.BackColor = Controller.GetBackColor();
         }
         CodeEditor codeEditor;
         bool replace = false;

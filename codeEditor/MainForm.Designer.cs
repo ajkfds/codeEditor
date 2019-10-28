@@ -44,6 +44,7 @@ namespace codeEditor
             this.commandShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceGCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.casheStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
@@ -51,10 +52,9 @@ namespace codeEditor
             this.mainTab = new ajkControls.TabControl();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
-            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
             this.messageView = new codeEditor.MessageView.MessageView();
-            this.casheStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -63,6 +63,7 @@ namespace codeEditor
             // menuStrip
             // 
             this.menuStrip.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -73,7 +74,7 @@ namespace codeEditor
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1643, 34);
+            this.menuStrip.Size = new System.Drawing.Size(1193, 36);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -83,7 +84,7 @@ namespace codeEditor
             this.saveToolStripMenuItem,
             this.saveAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 28);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 30);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -107,7 +108,7 @@ namespace codeEditor
             this.findToolStripMenuItem,
             this.replaceToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(55, 28);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(55, 30);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // findToolStripMenuItem
@@ -130,7 +131,7 @@ namespace codeEditor
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewProjectToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(80, 28);
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(80, 30);
             this.projectToolStripMenuItem.Text = "Project";
             this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
@@ -147,13 +148,13 @@ namespace codeEditor
             this.commandShellToolStripMenuItem,
             this.debugToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(65, 28);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(65, 30);
             this.toolToolStripMenuItem.Text = "Tools";
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -163,45 +164,52 @@ namespace codeEditor
             this.forceGCToolStripMenuItem,
             this.casheStatusToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
             this.debugToolStripMenuItem.Text = "Debug";
             // 
             // forceGCToolStripMenuItem
             // 
             this.forceGCToolStripMenuItem.Name = "forceGCToolStripMenuItem";
-            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
             this.forceGCToolStripMenuItem.Text = "Force GC";
             this.forceGCToolStripMenuItem.Click += new System.EventHandler(this.ForceGCToolStripMenuItem_Click);
+            // 
+            // casheStatusToolStripMenuItem
+            // 
+            this.casheStatusToolStripMenuItem.Name = "casheStatusToolStripMenuItem";
+            this.casheStatusToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.casheStatusToolStripMenuItem.Text = "Cashe Status";
+            this.casheStatusToolStripMenuItem.Click += new System.EventHandler(this.CasheStatusToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 28);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 30);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 856);
+            this.splitter1.Location = new System.Drawing.Point(0, 583);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1643, 8);
+            this.splitter1.Size = new System.Drawing.Size(1193, 8);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(436, 34);
+            this.splitter2.Location = new System.Drawing.Point(436, 36);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(8, 822);
+            this.splitter2.Size = new System.Drawing.Size(8, 547);
             this.splitter2.TabIndex = 6;
             this.splitter2.TabStop = false;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(1284, 34);
+            this.splitter3.Location = new System.Drawing.Point(834, 36);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(8, 822);
+            this.splitter3.Size = new System.Drawing.Size(8, 547);
             this.splitter3.TabIndex = 12;
             this.splitter3.TabStop = false;
             // 
@@ -210,16 +218,17 @@ namespace codeEditor
             this.mainTab.BackgroundColor = System.Drawing.Color.White;
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.mainTab.FromBackgroundColor = System.Drawing.SystemColors.Control;
             this.mainTab.ItemSize = new System.Drawing.Size(80, 33);
             this.mainTab.LineColor = System.Drawing.Color.Black;
-            this.mainTab.Location = new System.Drawing.Point(444, 34);
+            this.mainTab.Location = new System.Drawing.Point(444, 36);
             this.mainTab.Multiline = true;
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Drawing.Point(15, 3);
             this.mainTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.mainTab.SelectedForeColor = System.Drawing.Color.White;
             this.mainTab.SelectedIndex = 0;
-            this.mainTab.Size = new System.Drawing.Size(840, 822);
+            this.mainTab.Size = new System.Drawing.Size(390, 547);
             this.mainTab.TabIndex = 10;
             this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
             // 
@@ -229,16 +238,17 @@ namespace codeEditor
             this.subTab.Controls.Add(this.navigatorPage);
             this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
             this.subTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.subTab.FromBackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.subTab.ItemSize = new System.Drawing.Size(80, 33);
             this.subTab.LineColor = System.Drawing.Color.Black;
-            this.subTab.Location = new System.Drawing.Point(0, 34);
+            this.subTab.Location = new System.Drawing.Point(0, 36);
             this.subTab.Multiline = true;
             this.subTab.Name = "subTab";
             this.subTab.Padding = new System.Drawing.Point(15, 3);
             this.subTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.subTab.SelectedForeColor = System.Drawing.Color.White;
             this.subTab.SelectedIndex = 0;
-            this.subTab.Size = new System.Drawing.Size(436, 822);
+            this.subTab.Size = new System.Drawing.Size(436, 547);
             this.subTab.TabIndex = 9;
             this.subTab.UnselectedBackgroundColor = System.Drawing.Color.Gray;
             // 
@@ -248,10 +258,30 @@ namespace codeEditor
             this.navigatorPage.Location = new System.Drawing.Point(4, 37);
             this.navigatorPage.Name = "navigatorPage";
             this.navigatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.navigatorPage.Size = new System.Drawing.Size(428, 781);
+            this.navigatorPage.Size = new System.Drawing.Size(428, 506);
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
             this.navigatorPage.UseVisualStyleBackColor = true;
+            // 
+            // logView
+            // 
+            this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.logView.ForeColor = System.Drawing.Color.Gray;
+            this.logView.Location = new System.Drawing.Point(0, 591);
+            this.logView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.logView.MaxLogs = 200;
+            this.logView.Name = "logView";
+            this.logView.Size = new System.Drawing.Size(1193, 122);
+            this.logView.TabIndex = 0;
+            // 
+            // messageView
+            // 
+            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.messageView.Location = new System.Drawing.Point(842, 36);
+            this.messageView.Name = "messageView";
+            this.messageView.Size = new System.Drawing.Size(351, 547);
+            this.messageView.TabIndex = 11;
             // 
             // navigatePanel
             // 
@@ -259,41 +289,15 @@ namespace codeEditor
             this.navigatePanel.Location = new System.Drawing.Point(3, 3);
             this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
             this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(422, 775);
+            this.navigatePanel.Size = new System.Drawing.Size(422, 500);
             this.navigatePanel.TabIndex = 0;
-            // 
-            // logView
-            // 
-            this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.logView.ForeColor = System.Drawing.Color.Gray;
-            this.logView.Location = new System.Drawing.Point(0, 864);
-            this.logView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.logView.MaxLogs = 200;
-            this.logView.Name = "logView";
-            this.logView.Size = new System.Drawing.Size(1643, 122);
-            this.logView.TabIndex = 0;
-            // 
-            // messageView
-            // 
-            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(1292, 34);
-            this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(351, 822);
-            this.messageView.TabIndex = 11;
-            // 
-            // casheStatusToolStripMenuItem
-            // 
-            this.casheStatusToolStripMenuItem.Name = "casheStatusToolStripMenuItem";
-            this.casheStatusToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.casheStatusToolStripMenuItem.Text = "Cashe Status";
-            this.casheStatusToolStripMenuItem.Click += new System.EventHandler(this.CasheStatusToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1643, 986);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.ClientSize = new System.Drawing.Size(1193, 713);
             this.Controls.Add(this.mainTab);
             this.Controls.Add(this.splitter3);
             this.Controls.Add(this.messageView);
@@ -308,6 +312,7 @@ namespace codeEditor
             this.Text = "codeEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.subTab.ResumeLayout(false);

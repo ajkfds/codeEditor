@@ -17,6 +17,10 @@ namespace codeEditor
             Global.mainForm.logView.AppendLogLine(message, color);
         }
 
+        public static System.Drawing.Color GetBackColor()
+        {
+            return Global.mainForm.BackColor;
+        }
 
         public static void AddProject(Data.Project project)
         {

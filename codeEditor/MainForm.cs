@@ -63,7 +63,11 @@ namespace codeEditor
             mainTab.TabPages.Add(editorPage);
 
             menuStrip.ImageScalingSize = new Size(menuStrip.Font.Height, menuStrip.Font.Height);
+            menuStrip.BackColor = BackColor;
             mainTab.ImageList.Images.Add( new Bitmap(menuStrip.Font.Height, menuStrip.Font.Height));
+
+            mainTab.FromBackgroundColor = BackColor;
+            subTab.FromBackgroundColor = BackColor;
 
             commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(
                 menuStrip.ImageScalingSize.Height,
@@ -242,6 +246,11 @@ namespace codeEditor
                 System.Diagnostics.Debug.Print("## project : " + project.Name);
                 project.DumpItemsStatus();
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
