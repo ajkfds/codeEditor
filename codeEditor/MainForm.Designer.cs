@@ -52,9 +52,9 @@ namespace codeEditor
             this.mainTab = new ajkControls.TabControl();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
+            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
             this.messageView = new codeEditor.MessageView.MessageView();
-            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -74,7 +74,7 @@ namespace codeEditor
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1193, 36);
+            this.menuStrip.Size = new System.Drawing.Size(1193, 34);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -84,7 +84,7 @@ namespace codeEditor
             this.saveToolStripMenuItem,
             this.saveAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 30);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 28);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -108,14 +108,14 @@ namespace codeEditor
             this.findToolStripMenuItem,
             this.replaceToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(55, 30);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(55, 28);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
             this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(230, 34);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.findToolStripMenuItem.Text = "Find";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
@@ -123,15 +123,16 @@ namespace codeEditor
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(230, 34);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.replaceToolStripMenuItem.Text = "Replace";
+            this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             // 
             // projectToolStripMenuItem
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewProjectToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(80, 30);
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(80, 28);
             this.projectToolStripMenuItem.Text = "Project";
             this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
@@ -148,7 +149,7 @@ namespace codeEditor
             this.commandShellToolStripMenuItem,
             this.debugToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(65, 30);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(65, 28);
             this.toolToolStripMenuItem.Text = "Tools";
             // 
             // commandShellToolStripMenuItem
@@ -184,7 +185,7 @@ namespace codeEditor
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 30);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 28);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // splitter1
@@ -198,18 +199,18 @@ namespace codeEditor
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(436, 36);
+            this.splitter2.Location = new System.Drawing.Point(436, 34);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(8, 547);
+            this.splitter2.Size = new System.Drawing.Size(8, 549);
             this.splitter2.TabIndex = 6;
             this.splitter2.TabStop = false;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(834, 36);
+            this.splitter3.Location = new System.Drawing.Point(834, 34);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(8, 547);
+            this.splitter3.Size = new System.Drawing.Size(8, 549);
             this.splitter3.TabIndex = 12;
             this.splitter3.TabStop = false;
             // 
@@ -221,14 +222,14 @@ namespace codeEditor
             this.mainTab.FromBackgroundColor = System.Drawing.SystemColors.Control;
             this.mainTab.ItemSize = new System.Drawing.Size(80, 33);
             this.mainTab.LineColor = System.Drawing.Color.Black;
-            this.mainTab.Location = new System.Drawing.Point(444, 36);
+            this.mainTab.Location = new System.Drawing.Point(444, 34);
             this.mainTab.Multiline = true;
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Drawing.Point(15, 3);
             this.mainTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.mainTab.SelectedForeColor = System.Drawing.Color.White;
             this.mainTab.SelectedIndex = 0;
-            this.mainTab.Size = new System.Drawing.Size(390, 547);
+            this.mainTab.Size = new System.Drawing.Size(390, 549);
             this.mainTab.TabIndex = 10;
             this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
             // 
@@ -241,14 +242,14 @@ namespace codeEditor
             this.subTab.FromBackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.subTab.ItemSize = new System.Drawing.Size(80, 33);
             this.subTab.LineColor = System.Drawing.Color.Black;
-            this.subTab.Location = new System.Drawing.Point(0, 36);
+            this.subTab.Location = new System.Drawing.Point(0, 34);
             this.subTab.Multiline = true;
             this.subTab.Name = "subTab";
             this.subTab.Padding = new System.Drawing.Point(15, 3);
             this.subTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.subTab.SelectedForeColor = System.Drawing.Color.White;
             this.subTab.SelectedIndex = 0;
-            this.subTab.Size = new System.Drawing.Size(436, 547);
+            this.subTab.Size = new System.Drawing.Size(436, 549);
             this.subTab.TabIndex = 9;
             this.subTab.UnselectedBackgroundColor = System.Drawing.Color.Gray;
             // 
@@ -258,10 +259,19 @@ namespace codeEditor
             this.navigatorPage.Location = new System.Drawing.Point(4, 37);
             this.navigatorPage.Name = "navigatorPage";
             this.navigatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.navigatorPage.Size = new System.Drawing.Size(428, 506);
+            this.navigatorPage.Size = new System.Drawing.Size(428, 508);
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
             this.navigatorPage.UseVisualStyleBackColor = true;
+            // 
+            // navigatePanel
+            // 
+            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.navigatePanel.Name = "navigatePanel";
+            this.navigatePanel.Size = new System.Drawing.Size(422, 502);
+            this.navigatePanel.TabIndex = 0;
             // 
             // logView
             // 
@@ -278,19 +288,10 @@ namespace codeEditor
             // 
             this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
             this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(842, 36);
+            this.messageView.Location = new System.Drawing.Point(842, 34);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(351, 547);
+            this.messageView.Size = new System.Drawing.Size(351, 549);
             this.messageView.TabIndex = 11;
-            // 
-            // navigatePanel
-            // 
-            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
-            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
-            this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(422, 500);
-            this.navigatePanel.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -312,7 +313,6 @@ namespace codeEditor
             this.Text = "codeEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.subTab.ResumeLayout(false);

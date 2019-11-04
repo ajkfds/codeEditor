@@ -141,6 +141,7 @@ namespace codeEditor.Data
                 wholeItems.Add(projectItem.ID,projectItem);
                 wholeKeys.Add(projectItem.ID);
             }
+            System.Diagnostics.Debug.Print("items " + wholeItemReferenceCounts.Count.ToString());
         }
 
         public void RemoveRegisteredItem(Item projectItem)

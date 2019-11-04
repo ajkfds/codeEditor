@@ -60,6 +60,8 @@
             this.replaceToTextBox.Name = "replaceToTextBox";
             this.replaceToTextBox.Size = new System.Drawing.Size(347, 28);
             this.replaceToTextBox.TabIndex = 3;
+            this.replaceToTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.replaceToTextBox_KeyDown);
+            this.replaceToTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.replaceToTextBox_KeyPress);
             // 
             // comboBox1
             // 

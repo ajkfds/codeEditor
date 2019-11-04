@@ -213,6 +213,10 @@ namespace codeEditor
         {
             editorPage.CodeEditor.OpenFind();
         }
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editorPage.CodeEditor.OpenReplace();
+        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -248,9 +252,6 @@ namespace codeEditor
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

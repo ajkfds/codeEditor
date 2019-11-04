@@ -24,8 +24,8 @@ namespace codeEditor.CodeEditor
         
         public void OpenFind(string initialText,Point position)
         {
-            System.Diagnostics.Debug.Print(position.X.ToString() + "," + position.Y.ToString());
             replace = false;
+            findTextBox.Text = initialText;
             findTextBox.Text = initialText;
             replaceToTextBox.Enabled = false;
             doButton.Text = "Find";
@@ -36,20 +36,27 @@ namespace codeEditor.CodeEditor
             findTextBox.SelectAll();
         }
 
-        public void OpenReplace(string initialText)
+        public void OpenReplace(string initialText, Point position)
         {
             replace = true;
             findTextBox.Text = initialText;
+            replaceToTextBox.Text = initialText;
             replaceToTextBox.Enabled = true;
             doButton.Text = "Replace";
-            Show();
-            findTextBox.Focus();
-            findTextBox.SelectAll();
+            this.Left = position.X;
+            this.Top = position.Y;
+            Controller.ShowForm(this, position);
+            replaceToTextBox.Focus();
+            replaceToTextBox.SelectAll();
         }
 
         private void findTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if(e.KeyCode == Keys.Escape)
+            {
+                Close();
+                return;
+            }
             if (e.KeyCode != Keys.Return) return;
 //            if (e.KeyData != Keys.Return) return;
             if(e.Shift == true)
@@ -62,6 +69,23 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        private void replaceToTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+                return;
+            }
+            if (e.KeyCode != Keys.Return) return;
+            if (e.Shift == true)
+            {
+                doFindOrReplace(true);
+            }
+            else
+            {
+                doFindOrReplace(false);
+            }
+        }
         private void FindForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 //            this.Hide();
@@ -78,7 +102,14 @@ namespace codeEditor.CodeEditor
         {
             if (replace)
             {
-
+                if (searchPrevious)
+                {
+                    codeEditor.ReplacePrevious(findTextBox.Text,replaceToTextBox.Text);
+                }
+                else
+                {
+                    codeEditor.ReplaceNext(findTextBox.Text, replaceToTextBox.Text);
+                }
             }
             else
             {
@@ -96,5 +127,11 @@ namespace codeEditor.CodeEditor
         private void findTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
         }
+
+        private void replaceToTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
     }
 }

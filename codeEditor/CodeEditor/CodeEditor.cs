@@ -49,6 +49,24 @@ namespace codeEditor.CodeEditor
 
         // find & replace form
         FindForm findForm;
+
+        public void OpenReplace()
+        {
+            if (CodeDocument == null) return;
+
+            if (findForm == null || !findForm.Visible) findForm = new FindForm(this);
+            Point point = this.PointToScreen(new Point(Left, Top));
+            findForm.Left = point.X;
+            findForm.Top = point.Y;
+
+            if (findForm.Visible) return;
+            string initialText = "";
+            if (CodeDocument.SelectionStart != CodeDocument.SelectionLast)
+            {
+                initialText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
+            }
+            findForm.OpenReplace(initialText, this.PointToScreen(new Point(Width - findForm.Width, 0)));
+        }
         public void OpenFind()
         {
             if (CodeDocument == null) return;
@@ -67,6 +85,33 @@ namespace codeEditor.CodeEditor
             findForm.OpenFind(initialText, this.PointToScreen(new Point(Width-findForm.Width, 0)));
         }
 
+        public void ReplaceNext(string findString,string replaceString)
+        {
+            string currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
+            if (currentText == findString)
+            {
+                CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
+                return;
+            }
+            FindNext(findString);
+            currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
+            if (currentText != findString) return;
+            CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
+        }
+
+        public void ReplacePrevious(string findString, string replaceString)
+        {
+            string currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
+            if (currentText == findString)
+            {
+                CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
+                return;
+            }
+            FindPrevious(findString);
+            currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
+            if (currentText != findString) return;
+            CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
+        }
         public void FindNext(string findString)
         {
             string currentText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
