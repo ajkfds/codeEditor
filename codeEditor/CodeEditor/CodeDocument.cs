@@ -8,6 +8,12 @@ namespace codeEditor.CodeEditor
 {
     public class CodeDocument : ajkControls.Document
     {
+        public CodeDocument() { }
+        public CodeDocument(string text) : base(text)
+        {
+
+        }
+
         public string ParentID { get; set; }
 
         public virtual void GetWord(int index, out int headIndex, out int length)
