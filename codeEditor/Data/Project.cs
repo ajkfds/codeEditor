@@ -41,10 +41,10 @@ namespace codeEditor.Data
             project.startFileSystemWatcher();
         }
 
-        public override void DisposeItem()
+        public override void Dispose()
         {
             stopFileSystemWatcher();
-            base.DisposeItem();
+            base.Dispose();
         }
 
         protected System.IO.FileSystemWatcher fileSystemWatcher;
@@ -101,117 +101,34 @@ namespace codeEditor.Data
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 
-        private Dictionary<string, Item> wholeItems = new Dictionary<string, Item>();
-        private Dictionary<string, int> wholeItemReferenceCounts = new Dictionary<string, int>();
-        private List<string> wholeKeys = new List<string>();
 
 
-        public void DumpItemsStatus()
-        {
-            foreach(var item in wholeItems.Values)
-            {
-                if (!(item is Data.ITextFile)) continue;
-                Data.ITextFile textFile = item as Data.ITextFile;
-                if (!textFile.IsCodeDocumentCashed) continue;
-                System.Diagnostics.Debug.Print(item.ID);
-            }
-        }
-        public List<string> GetRegisteredIdList()
-        {
-            return wholeItems.Keys.ToList();
-        }
-
-        public void RegisterProjectItem(Item projectItem)
-        {
-            System.Diagnostics.Debug.Print("+ " + projectItem.ID);
-            if (wholeItems.ContainsKey(projectItem.ID))
-            {
-                wholeItemReferenceCounts[projectItem.ID]++;
-            }
-            else
-            {
-                wholeItemReferenceCounts.Add(projectItem.ID, 1);
-                wholeItems.Add(projectItem.ID,projectItem);
-                wholeKeys.Add(projectItem.ID);
-            }
-            System.Diagnostics.Debug.Print("items " + wholeItemReferenceCounts.Count.ToString());
-        }
-
-        public void RemoveRegisteredItem(Item projectItem)
-        {
-            System.Diagnostics.Debug.Print("- " + projectItem.ID);
-
-            if (wholeItems.ContainsKey(projectItem.ID))
-            {
-                wholeItemReferenceCounts[projectItem.ID]--;
-                if(wholeItemReferenceCounts[projectItem.ID] == 0)
-                {
-                    wholeItemReferenceCounts.Remove(projectItem.ID);
-                    wholeItems.Remove(projectItem.ID);
-                    wholeKeys.Remove(projectItem.ID);
-                }
-            }
-            else
-            {
-                System.Diagnostics.Debugger.Break();
-            }
-        }
-
-        public bool IsRegistered(string id)
-        {
-            if (wholeItems.ContainsKey(id))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public Item GetRegisterdItem(string id)
-        {
-            if (id == null)
-            {
-                System.Diagnostics.Debugger.Break();
-            }
-            if (wholeItems.ContainsKey(id))
-            {
-                return wholeItems[id];
-            }
-            else
-            {
-//                System.Diagnostics.Debugger.Break();
-                return null;
-            }
-        }
 
         // get parse target
 
         private int parseIndex = 0;
         private int parseSearchLimit = 100;
-        public ITextFile GetReparseTarget()
+        public TextFile GetReparseTarget()
         {
-
-            int i = 0;
-            while (i < parseSearchLimit)
-            {
-                if (parseIndex >= wholeItems.Count)
-                {
-                    parseIndex = 0;
-                    return null;
-                }
-                string key = wholeKeys[parseIndex];
-                Item item = wholeItems[key];
-                if(item is ITextFile)
-                {
-                    ITextFile textFile = item as ITextFile;
-                    if (textFile.ParseRequested) return textFile;
-                    if (textFile.ReloadRequested) return textFile;
-                }
-                parseIndex++;
-                i++;
-            }
+            //int i = 0;
+            //while (i < parseSearchLimit)
+            //{
+            //    if (parseIndex >= wholeItems.Count)
+            //    {
+            //        parseIndex = 0;
+            //        return null;
+            //    }
+            //    string key = wholeKeys[parseIndex];
+            //    Item item = wholeItems[key];
+            //    if(item is ITextFile)
+            //    {
+            //        ITextFile textFile = item as ITextFile;
+            //        if (textFile.ParseRequested) return textFile;
+            //        if (textFile.ReloadRequested) return textFile;
+            //    }
+            //    parseIndex++;
+            //    i++;
+            //}
             return null;
         }
 
@@ -315,12 +232,11 @@ namespace codeEditor.Data
         {
             Controller.AppendLog(e.Name + " changed");
             string relativePath = GetRelativePath(e.FullPath);
-            string id = Data.File.GetID(relativePath, this);
-            Data.File file = GetRegisterdItem(id) as Data.File;
+            Data.File file = GetItem(relativePath) as Data.File;
             if (file == null) return;
             Data.ITextFile textFile = file as Data.ITextFile;
             if (textFile == null) return;
-            textFile.ReloadRequested = true;
+            textFile.CloseRequested = true;
         }
 
         private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)

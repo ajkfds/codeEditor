@@ -193,7 +193,7 @@ namespace codeEditor.CodeEditor
             subBackGroundParser.Run();
         }
 
-        public Data.ITextFile TextFile { get; protected set; }
+        public Data.TextFile TextFile { get; protected set; }
 
         private CodeDocument CodeDocument
         {
@@ -204,12 +204,12 @@ namespace codeEditor.CodeEditor
             }
         }
 
-        public void SetTextFile(Data.ITextFile textFile)
+        public void SetTextFile(Data.TextFile textFile)
         {
             if (TextFile == textFile) return;
             if(TextFile != null)
             {
-                TextFile.Reload(); // release document
+                TextFile.Close(); // release document
             }
 
             if (textFile == null || textFile.CodeDocument == null)
@@ -251,7 +251,7 @@ namespace codeEditor.CodeEditor
         private void entryParse()
         {
             if (TextFile == null) return;
-            DocumentParser parser = TextFile.CreateDocumentParser(CodeDocument, TextFile.ID, TextFile.Project,DocumentParser.ParseModeEnum.EditParse);
+            DocumentParser parser = TextFile.CreateDocumentParser(DocumentParser.ParseModeEnum.EditParse);
             if (parser != null)
             {
                 Controller.AppendLog("parserID " + CodeDocument.EditID.ToString());
@@ -259,13 +259,12 @@ namespace codeEditor.CodeEditor
                 Controller.AppendLog("entry parse " + DateTime.Now.ToString());
             }
         }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             DocumentParser parser = backGroundParser.GetResult();
             if (parser == null) return;
             if (TextFile == null) return;
-            if (TextFile.ID != parser.ID) return;
+            if (TextFile != parser.TextFile) return;
             Controller.AppendLog("ID " + CodeDocument.EditID.ToString()+" parserID "+parser.EditId.ToString());
 
             if (CodeDocument.EditID != parser.EditId)
@@ -280,16 +279,10 @@ namespace codeEditor.CodeEditor
             CodeDocument.CopyBlocksFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
-            if (TextFile.ParsedDocument != null)
+            if(parser.ParsedDocument != null)
             {
-                ParsedDocument oldParsedDocument = TextFile.ParsedDocument;
-                TextFile.ParsedDocument = null;
-                oldParsedDocument.Dispose();
+                TextFile.AcceptParsedDocument(parser.ParsedDocument);
             }
-            TextFile.ParsedDocument = parser.ParsedDocument;
-            TextFile.ParsedDocument.Accept();
-            TextFile.ParseRequested = false;
-            TextFile.Update();
 
             Controller.MessageView.Update(TextFile.ParsedDocument);
             codeTextbox.ReDrawHighlight();
@@ -303,35 +296,35 @@ namespace codeEditor.CodeEditor
             DocumentParser parser = subBackGroundParser.GetResult();
             if (parser == null) { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
-                string projectName, id;
-                Controller.NavigatePanel.GetSelectedNode(out projectName, out id);
-                if (projectName == "") return;
-                Data.Project project = Global.Projects[projectName];
-                Data.ITextFile textFile = project.GetReparseTarget();
+                NavigatePanel.NavigatePanelNode node;
+                Controller.NavigatePanel.GetSelectedNode(out node);
+                if (node == null) return;
+                Data.Project project = node.Item.Project;
+                Data.TextFile textFile = project.GetReparseTarget();
                 if (textFile == null) return;
 
-                if (textFile.ReloadRequested)
+                if (textFile.CloseRequested)
                 {
                     if(textFile.CodeDocument == CodeDocument)
                     {
                         Controller.AppendLog("code change conflict!!");
-                        textFile.ReloadRequested = false;
+                        textFile.CloseRequested = false;
                         return;
                     }
-                    textFile.Reload();
-                    textFile.ReloadRequested = false;
+                    textFile.Close();
+                    textFile.CloseRequested = false;
                 }
 
-                DocumentParser newParser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, project,DocumentParser.ParseModeEnum.BackgroundParse);
+                DocumentParser newParser = textFile.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
-                    Controller.AppendLog("entry parse " + textFile.ID + " " + DateTime.Now.ToString());
+                    Controller.AppendLog("entry parse " + textFile.Name + " " + DateTime.Now.ToString());
                 }
             }
             else
             { // receive result
-                if(TextFile != null && TextFile.ID == parser.ID)
+                if(TextFile != null && TextFile == parser.TextFile)
                 {
                     if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                     {
@@ -349,24 +342,18 @@ namespace codeEditor.CodeEditor
                 //}
 
                 Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
-                Data.ITextFile textFile = parser.Project.GetRegisterdItem(parser.ID) as Data.ITextFile;
+                Data.TextFile textFile = parser.TextFile;
 
                 if (textFile == null) return;
                 if (textFile.ParsedDocument == null)
                 {
-                    textFile.Reload();
+                    textFile.Close();
                     textFile.ParseRequested = false;
                     return;
                 }
-                
-                ParsedDocument oldParsedDocument = textFile.ParsedDocument;
-                textFile.ParsedDocument = null;
-                if(oldParsedDocument != null) oldParsedDocument.Dispose();
-                textFile.ParsedDocument = parser.ParsedDocument;
-                textFile.ParsedDocument.Accept();
-                textFile.ParseRequested = false;
-                textFile.Update();
-                textFile.Reload();
+
+                textFile.AcceptParsedDocument(parser.ParsedDocument);
+                textFile.Close();
 
                 Controller.NavigatePanel.UpdateVisibleNode();
                 Controller.NavigatePanel.Refresh();
@@ -384,7 +371,7 @@ namespace codeEditor.CodeEditor
                 CodeDocument == null ||
                 TextFile == null ||
                 TextFile.ParsedDocument == null ||
-                TextFile.ID != TextFile.ParsedDocument.ItemID ||
+                TextFile != TextFile.ParsedDocument.Item ||
                 CodeDocument.EditID != TextFile.ParsedDocument.EditID)
             {
                 popupForm.Visible = false;

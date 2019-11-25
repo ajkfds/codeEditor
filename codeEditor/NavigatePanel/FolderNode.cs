@@ -11,15 +11,19 @@ namespace codeEditor.NavigatePanel
     {
         protected FolderNode() { }
 
-        public FolderNode(string ID,Data.Project project) : base(ID,project)
+        public FolderNode(Data.Folder folder) : base(folder)
         {
             if (FolderNodeCreated != null) FolderNodeCreated(this);
         }
         public static Action<FolderNode> FolderNodeCreated;
 
+        private System.WeakReference<Data.Folder> folderRef;
         public virtual Data.Folder Folder
         {
-            get { return Project.GetRegisterdItem(ID) as Data.Folder; }
+            get
+            {
+                return Item as Data.Folder;
+            }
         }
 
         public override string Text
@@ -32,18 +36,18 @@ namespace codeEditor.NavigatePanel
         {
             Folder.Update();
 
-            List<string> currentDataIds = new List<string>();
-            foreach (string key in Folder.Items.Keys)
+            List<Data.Item> currentItems = new List<Data.Item>();
+            foreach (Data.Item item in Folder.Items.Values)
             {
-                currentDataIds.Add(key);
+                currentItems.Add(item);
             }
 
             List<NavigatePanelNode> removeNodes = new List<NavigatePanelNode>();
             foreach (NavigatePanelNode node in TreeNodes)
             {
-                if (currentDataIds.Contains(node.ID))
+                if (currentItems.Contains(node.Item))
                 {
-                    currentDataIds.Remove(node.ID);
+                    currentItems.Remove(node.Item);
                 }
                 else
                 {
@@ -56,9 +60,8 @@ namespace codeEditor.NavigatePanel
                 TreeNodes.Remove(nodes);
             }
 
-            foreach (string id in currentDataIds)
+            foreach (Data.Item item in currentItems)
             {
-                Data.Item item = Project.GetRegisterdItem(id);
                 if (item == null) continue;
                 TreeNodes.Add(item.CreateNode());
             }

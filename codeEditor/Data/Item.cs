@@ -9,9 +9,23 @@ namespace codeEditor.Data
     public class Item : IDisposable
     {
         protected Item() { }
-        protected Item(string id,string relativePath,string name,Project project) { }
-        public virtual string ID { get; protected set; }
+
+        private System.WeakReference<Data.Item> parent;
+        public Data.Item Parent
+        {
+            get
+            {
+                Data.Item ret;
+                if (!parent.TryGetTarget(out ret)) return null;
+                return ret;
+            }
+            set
+            {
+                parent = new WeakReference<Data.Item>(value);
+            }
+        }
         public virtual string RelativePath { get; protected set; }
+
         public virtual string Name { get; protected set; }
         public virtual Project Project { get; protected set; }
 
@@ -21,25 +35,48 @@ namespace codeEditor.Data
             get { return items; }
         }
 
-        /// <summary>
-        /// remove links to support item dispose with gc.
-        /// </summary>
-        public virtual void DisposeItem()
+        public virtual Item GetItem(string relativePath)
         {
-            lock (items)
+            string target;
+            if (relativePath.Contains(@"\"))
             {
-                foreach(Item item in Items.Values)
-                {
-                    item.DisposeItem();
-                }
+                target = relativePath.Substring(0, relativePath.IndexOf(@"\"));
+            }
+            else
+            {
+                if (Name == relativePath) return this;
+                return null;
             }
 
-            Project.RemoveRegisteredItem(this);
+            if (items.ContainsKey(target))
+            {
+                return items[target].GetItem(relativePath.Substring(target.Length));
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void Dispose()
+        public List<Item> FindItems(Func<Item,bool> match,Func<Item,bool> stop)
         {
-            DisposeItem();
+            List<Item> result = new List<Item>();
+            findItems(result, match, stop);
+            return result;
+        }
+
+        protected void findItems(List<Item> result,Func<Item, bool> match, Func<Item, bool> stop)
+        {
+            foreach (Item item in items.Values)
+            {
+                if (match(item)) result.Add(item);
+                if (!stop(item)) item.findItems(result, match, stop);
+            }
+        }
+
+
+        public virtual void Dispose()
+        {
         }
 
         public virtual void Update() { }

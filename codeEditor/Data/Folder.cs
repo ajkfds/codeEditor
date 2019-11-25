@@ -10,20 +10,19 @@ namespace codeEditor.Data
     public class Folder : Item
     {
         protected Folder() { }
-        public static Folder Create(string relativePath,Project project)
+        public static Folder Create(string relativePath, Project project, Item parent)
         {
             string id = GetID(relativePath,project);
-            if (project.IsRegistered(id))
-            {
-                Folder item = project.GetRegisterdItem(id) as Folder;
-                project.RegisterProjectItem(item);
-                return item;
-            }
+            //if (project.IsRegistered(id))
+            //{
+            //    Folder item = project.GetRegisterdItem(id) as Folder;
+            //    project.RegisterProjectItem(item);
+            //    return item;
+            //}
 
             Folder folder = new Folder();
             folder.Project = project;
             folder.RelativePath = relativePath;
-            folder.ID = id;
 
             if (relativePath.Contains('\\'))
             {
@@ -34,7 +33,9 @@ namespace codeEditor.Data
                 folder.Name = relativePath;
             }
 
-            project.RegisterProjectItem(folder);
+            folder.Parent = parent;
+            //project.RegisterProjectItem(folder);
+            
             return folder;
         }
 
@@ -43,10 +44,6 @@ namespace codeEditor.Data
             return project.ID + ":Folder:" + relativePath;
         }
 
-        public override void DisposeItem()
-        {
-            base.DisposeItem();
-        }
 
         public override void Update()
         {
@@ -56,11 +53,21 @@ namespace codeEditor.Data
 
             foreach (string absoluteFilePath in absoluteFilePaths)
             {
-                string id = File.GetID(Project.GetRelativePath(absoluteFilePath), Project);
-                if (!items.ContainsKey(id))
+                string relativePath = Project.GetRelativePath(absoluteFilePath);
+                string name;
+                if (relativePath.Contains('\\'))
                 {
-                    File item = File.Create(Project.GetRelativePath(absoluteFilePath), Project);
-                    items.Add(item.ID, item);
+                    name = relativePath.Substring(relativePath.LastIndexOf('\\') + 1);
+                }
+                else
+                {
+                    name = relativePath;
+                }
+
+                if (!items.ContainsKey(name))
+                {
+                    File item = File.Create(Project.GetRelativePath(absoluteFilePath), Project,this);
+                    items.Add(item.Name,item);
                 }
             }
 
@@ -68,14 +75,13 @@ namespace codeEditor.Data
             {
                 // skip invisiable folder
                 string body = absoluteFolderPath;
-                if (body.Contains('\\')) body = body.Substring(body.LastIndexOf('\\'));
-                if (body.StartsWith("\\.")) continue;
+                if (body.Contains('\\')) body = body.Substring(body.LastIndexOf('\\')+1);
+                if (body.StartsWith(".")) continue;
 
-                string id = Folder.GetID(Project.GetRelativePath(absoluteFolderPath), Project);
-                if (!items.ContainsKey(id))
+                if (!items.ContainsKey(body))
                 {
-                    Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project);
-                    items.Add(item.ID, item);
+                    Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project,this);
+                    items.Add(item.Name, item);
                     item.Update();
                 }
             }
@@ -91,14 +97,14 @@ namespace codeEditor.Data
             }
             foreach(Item item in removeItems)
             {
-                items.Remove(item.ID);
-                item.DisposeItem();
+                items.Remove(item.Name);
+                item.Dispose();
             }
         }
 
         public override NavigatePanelNode CreateNode()
         {
-            return new FolderNode(ID, Project);
+            return new FolderNode(this);
         }
     }
 }

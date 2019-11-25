@@ -10,7 +10,7 @@ namespace codeEditor.Data
 {
     public class File : Item
     {
-        public static File Create(string relativePath, Project project)
+        public static File Create(string relativePath, Project project, Item parent)
         {
             foreach (var fileType in Global.FileTypes.Values)
             {
@@ -18,17 +18,16 @@ namespace codeEditor.Data
             }
 
             string id = File.GetID(relativePath, project);
-            if (project.IsRegistered(id))
-            {
-                File item = project.GetRegisterdItem(id) as File;
-                project.RegisterProjectItem(item);
-                return item;
-            }
+            //if (project.IsRegistered(id))
+            //{
+            //    File item = project.GetRegisterdItem(id) as File;
+            //    project.RegisterProjectItem(item);
+            //    return item;
+            //}
 
             File fileItem = new File();
             fileItem.Project = project;
             fileItem.RelativePath = relativePath;
-            fileItem.ID = id;
             if (relativePath.Contains('\\'))
             {
                 fileItem.Name = relativePath.Substring(relativePath.LastIndexOf('\\') + 1);
@@ -38,7 +37,7 @@ namespace codeEditor.Data
                 fileItem.Name = relativePath;
             }
 
-            project.RegisterProjectItem(fileItem);
+            fileItem.Parent = parent;
 
             if (FileCreated != null) FileCreated(fileItem);
             return fileItem;
@@ -52,12 +51,7 @@ namespace codeEditor.Data
 
         public override  NavigatePanelNode CreateNode()
         {
-            return new FileNode(ID, Project);
-        }
-
-        public override void DisposeItem()
-        {
-            base.DisposeItem(); // remove from project
+            return new FileNode(this);
         }
 
         public FileTypes.FileType FileType
@@ -69,8 +63,5 @@ namespace codeEditor.Data
         {
             base.Update();
         }
-
-
-
     }
 }

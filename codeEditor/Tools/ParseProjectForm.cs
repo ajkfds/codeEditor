@@ -60,22 +60,24 @@ namespace codeEditor.Tools
             {
                 // data update
                 projectNode.HierarchicalVisibleUpdate();
-                List<string> ids = projectNode.Project.GetRegisteredIdList();
+                List<Data.Item> items = projectNode.Project.FindItems(
+                    (x) => (x is Data.TextFile ),
+                    (x) => (false)
+                    );
 
-                Invoke(new Action(() => { progressBar.Maximum = ids.Count; }));
+                Invoke(new Action(() => { progressBar.Maximum = items.Count; }));
 
                 // parse items
                 int i = 0;
-                foreach (string id in ids)
+                foreach (Data.Item item in items)
                 {
-                    Data.Item item = projectNode.Project.GetRegisterdItem(id);
                     Invoke(new Action(() => { progressBar.Value = i; }));
                     i++;
 
-                    if (!(item is Data.ITextFile)) continue;
-                    Data.ITextFile textFile = item as Data.ITextFile;
+                    if (!(item is Data.TextFile)) continue;
+                    Data.TextFile textFile = item as Data.TextFile;
                     Invoke(new Action(() => { label.Text = textFile.Name; }));
-                    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(textFile.CodeDocument, textFile.ID, textFile.Project,CodeEditor.DocumentParser.ParseModeEnum.LoadParse);
+                    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.LoadParse);
                     if (parser == null) continue;
                     parser.Parse();
 
@@ -90,11 +92,10 @@ namespace codeEditor.Tools
                         oldParsedDocument.Dispose();
                     }
 
-                    textFile.ParsedDocument = parser.ParsedDocument;
-                    if (textFile.ParsedDocument != null) textFile.ParsedDocument.Accept();
-
+                    textFile.AcceptParsedDocument(parser.ParsedDocument);
+                    
                     textFile.ParseRequested = true;
-                    textFile.Reload();
+                    textFile.Close();
                 }
             }
 

@@ -248,7 +248,7 @@ namespace codeEditor
             foreach(var project in Global.Projects.Values)
             {
                 System.Diagnostics.Debug.Print("## project : " + project.Name);
-                project.DumpItemsStatus();
+//                project.DumpItemsStatus();
             }
         }
 

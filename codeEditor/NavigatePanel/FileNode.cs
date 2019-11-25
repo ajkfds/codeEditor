@@ -9,7 +9,8 @@ namespace codeEditor.NavigatePanel
 {
     public class FileNode : NavigatePanelNode
     {
-        public FileNode(string ID, Data.Project project) : base(ID, project)
+        protected FileNode() { }
+        public FileNode(Data.File file) : base(file)
         {
             if (FileNodeCreated != null) FileNodeCreated(this);
         }
@@ -17,7 +18,7 @@ namespace codeEditor.NavigatePanel
 
         public virtual Data.File FileItem
         {
-            get { return Project.GetRegisterdItem(ID) as Data.File; }
+            get { return Item as Data.File; }
         }
 
         public override string Text

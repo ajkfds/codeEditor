@@ -8,30 +8,34 @@ namespace codeEditor.CodeEditor
 {
     public class ParsedDocument : IDisposable
     {
-        public ParsedDocument(Data.Project project,string itemID,int editID)
+        public ParsedDocument(Data.TextFile textFile,int editID)
         {
-            this.Project = project;
-            this.ItemID = itemID;
             this.EditID = editID;
+            textFileRef = new WeakReference<Data.TextFile>(textFile);
         }
 
-        public Data.Project Project { get; protected set; }
-        public string ItemID { get; protected set; }
-        public int EditID { get; protected set; }
-
-        public List<IDisposable> ShouldDisposeObjects = new List<IDisposable>();
-
-        public virtual void Accept()
+        private System.WeakReference<Data.TextFile> textFileRef;
+        public Data.Item Item
         {
+            get
+            {
+                Data.TextFile ret;
+                if (!textFileRef.TryGetTarget(out ret)) return null;
+                return ret;
+            }
         }
+
+        public Data.Project Project {
+            get
+            {
+                if (Item == null) return null;
+                return Item.Project;
+            }
+        }
+        public int EditID { get; protected set; }
 
         public virtual void Dispose()
         {
-            foreach(IDisposable obj in ShouldDisposeObjects)
-            {
-                obj.Dispose();
-            }
-            ShouldDisposeObjects.Clear();
         }
 
 
@@ -39,8 +43,6 @@ namespace codeEditor.CodeEditor
 
         public class Message
         {
-            public string ItemID { get; protected set; }
-
             public int Index { get; protected set; }
             public int Length { get; protected set; }
             public string Text { get; protected set; }

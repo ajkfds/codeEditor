@@ -20,9 +20,12 @@ namespace codeEditor.MessageView
         public void UpdateMessages(CodeEditor.ParsedDocument parsedDocument)
         {
             treeView.TreeNodes.Clear();
-            foreach(CodeEditor.ParsedDocument.Message message in parsedDocument.Messages)
+            if (parsedDocument != null)
             {
-                treeView.TreeNodes.Add(message.CreateMessageNode());
+                foreach (CodeEditor.ParsedDocument.Message message in parsedDocument.Messages)
+                {
+                    treeView.TreeNodes.Add(message.CreateMessageNode());
+                }
             }
             treeView.Refresh();
         }

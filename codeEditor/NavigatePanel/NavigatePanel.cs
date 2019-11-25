@@ -43,14 +43,9 @@ namespace codeEditor.NavigatePanel
             return contextMenuStrip;
         }
 
-        public void GetSelectedNode(out string project,out string id)
+        public void GetSelectedNode(out NavigatePanelNode node)
         {
-            project = "";
-            id = "";
-            NavigatePanelNode node = treeView.SelectedNode as NavigatePanelNode;
-            if (node == null) return;
-            project = node.Project.Name;
-            id = node.ID;
+            node = treeView.SelectedNode as NavigatePanelNode;
         }
 
         private void treeView_SelectedNodeChanged(object sender, ajkControls.TreeNode e)

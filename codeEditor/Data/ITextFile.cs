@@ -11,21 +11,22 @@ namespace codeEditor.Data
         CodeEditor.CodeDocument CodeDocument { get; }
         bool IsCodeDocumentCashed { get; }
 
-        CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project,CodeEditor.DocumentParser.ParseModeEnum parseMode);
+        CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode);
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
+        void AcceptParsedDocument(CodeEditor.ParsedDocument newParsedDocument);
 
         bool ParseRequested { get; set; }
-        bool ReloadRequested { get; set; }
+        bool CloseRequested { get; set; }
         // projectItem
-        void Reload();
 
-        string ID { get; }
         string RelativePath { get; }
         string Name { get; }
         Project Project { get; }
 
         void Update();
-        void DisposeItem();
+        void Dispose();
+
+        bool Dirty { get; }
 
         void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e);
         void AfterKeyDown(System.Windows.Forms.KeyEventArgs e);

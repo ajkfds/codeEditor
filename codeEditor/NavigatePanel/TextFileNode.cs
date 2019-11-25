@@ -9,15 +9,15 @@ namespace codeEditor.NavigatePanel
 {
     public class TextFileNode : FileNode
     {
-        public TextFileNode(string ID, Data.Project project) : base(ID, project)
+        public TextFileNode(Data.TextFile textFile) : base(textFile as Data.File)
         {
             if (TextFileNodeCreated != null) TextFileNodeCreated(this);
         }
         public static Action<TextFileNode> TextFileNodeCreated;
 
-        public Data.ITextFile ITextFile
+        public Data.TextFile TextFile
         {
-            get { return Project.GetRegisterdItem(ID) as Data.ITextFile; }
+            get { return Item as Data.TextFile; }
         }
 
         public override string Text
@@ -44,7 +44,7 @@ namespace codeEditor.NavigatePanel
 
         public override void Selected()
         {
-            Controller.CodeEditor.SetTextFile(ITextFile);
+            Controller.CodeEditor.SetTextFile(TextFile);
         }
 
     }

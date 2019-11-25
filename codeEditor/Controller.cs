@@ -70,7 +70,7 @@ namespace codeEditor
 
         public static class CodeEditor
         {
-            public static void SetTextFile(Data.ITextFile textFile)
+            public static void SetTextFile(Data.TextFile textFile)
             {
                 if (textFile == null)
                 {
@@ -159,9 +159,9 @@ namespace codeEditor
                 Global.mainForm.navigatePanel.UpdateWholeVisibleNode(node);
             }
 
-            public static void GetSelectedNode(out string project, out string id)
+            public static void GetSelectedNode(out codeEditor.NavigatePanel.NavigatePanelNode node)
             {
-                Global.mainForm.navigatePanel.GetSelectedNode(out project, out id);
+                Global.mainForm.navigatePanel.GetSelectedNode(out node);
             }
 
             public static System.Windows.Forms.ContextMenuStrip GetContextMenuStrip()

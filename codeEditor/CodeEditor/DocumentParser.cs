@@ -8,27 +8,26 @@ namespace codeEditor.CodeEditor
 {
     public class DocumentParser : IDisposable
     {
-        public DocumentParser(CodeDocument document,string id,Data.Project project, ParseModeEnum parseMode)
+        protected DocumentParser(){}
+        public DocumentParser(Data.TextFile textFile, ParseModeEnum parseMode)
         {
-            this.EditId = document.EditID;
-            this.Project = project;
-            this.ID = id;
-            this.document.CopyCharsFrom(document);
-            this.document.CopyLineIndexFrom(document);
+            this.EditId = textFile.CodeDocument.EditID;
+            this.document = new CodeDocument(textFile);
+            this.document.CopyCharsFrom(textFile.CodeDocument);
+            this.document.CopyLineIndexFrom(textFile.CodeDocument);
             this.ParseMode = parseMode;
+            this.TextFile = textFile;
         }
 
         public void Dispose()
         {
             document = null;
-            Project = null;
         }
 
         public int EditId { get; protected set; }
-        public Data.Project Project { get; protected set; }
-        public string ID { get; protected set; }
+        public Data.TextFile TextFile { get; protected set; }
         public ParseModeEnum ParseMode { get; protected set; }
-        protected CodeDocument document = new CodeDocument();
+        protected CodeDocument document;
         public CodeDocument Document
         {
             get

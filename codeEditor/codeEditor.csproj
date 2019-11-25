@@ -81,12 +81,12 @@
     </Compile>
     <Compile Include="CodeEditor\PopupItem.cs" />
     <Compile Include="CodeEditor\ToolItem.cs" />
+    <Compile Include="Data\ITextFile.cs" />
     <Compile Include="Tabs\MainTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\File.cs" />
     <Compile Include="Data\Folder.cs" />
-    <Compile Include="Data\ITextFile.cs" />
     <Compile Include="Data\ProjectProperty.cs" />
     <Compile Include="Data\TextFile.cs" />
     <Compile Include="FileTypes\FileType.cs" />

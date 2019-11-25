@@ -19,15 +19,22 @@ namespace codeEditorPlugin
             {
                 if (!filePath.EndsWith(".dll")) continue;
                 var asms = System.Reflection.Assembly.LoadFrom(filePath);
-                foreach (var t in asms.GetTypes())
+                try
                 {
-                    if (t.IsInterface) continue;
-                    if (t.Name != "Plugin") continue;
-                    IPlugin plugin = Activator.CreateInstance(t) as IPlugin;
-                    if (plugin != null)
+                    foreach (var t in asms.GetTypes())
                     {
-                        plugins.Add(plugin);
+                        if (t.IsInterface) continue;
+                        if (t.Name != "Plugin") continue;
+                        IPlugin plugin = Activator.CreateInstance(t) as IPlugin;
+                        if (plugin != null)
+                        {
+                            plugins.Add(plugin);
+                        }
                     }
+                }
+                catch
+                {
+
                 }
             }
             return plugins;

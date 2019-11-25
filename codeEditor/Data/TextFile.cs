@@ -12,19 +12,10 @@ namespace codeEditor.Data
 {
     public class TextFile : File, ITextFile
     {
-        public new static TextFile Create(string relativePath, Project project)
+        public static TextFile Create(string relativePath, Project project)
         {
-            string id = GetID(relativePath, project);
-            if (project.IsRegistered(id))
-            {
-                TextFile item = project.GetRegisterdItem(id) as TextFile;
-                project.RegisterProjectItem(item);
-                return item;
-            }
-
             TextFile fileItem = new TextFile();
             fileItem.Project = project;
-            fileItem.ID = id;
             fileItem.RelativePath = relativePath;
             if (relativePath.Contains('\\'))
             {
@@ -35,31 +26,56 @@ namespace codeEditor.Data
                 fileItem.Name = relativePath;
             }
 
-            project.RegisterProjectItem(fileItem);
             return fileItem;
         }
 
+        public override void Dispose()
+        {
+            if (ParsedDocument != null) ParsedDocument.Dispose();
+            base.Dispose();
+        }
 
         public bool IsCodeDocumentCashed
         {
             get { if (document == null) return false; else return true; }
         }
 
-        public CodeEditor.ParsedDocument ParsedDocument { get; set; }
+        public virtual CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
         private volatile bool parseRequested = false;
-        public bool ParseRequested { get {return parseRequested; } set { parseRequested = value; } }
+        public virtual bool ParseRequested { get {return parseRequested; } set { parseRequested = value; } }
 
         private volatile bool reloadRequested = false;
-        public bool ReloadRequested { get { return reloadRequested; } set { reloadRequested = value; } }
+        public virtual bool CloseRequested { get { return reloadRequested; } set { reloadRequested = value; } }
 
-        public void Reload()
+        public virtual void AcceptParsedDocument(ParsedDocument newParsedDocument)
         {
+            ParsedDocument oldParsedDocument = ParsedDocument;
+            ParsedDocument = null;
+            if (oldParsedDocument != null) oldParsedDocument.Dispose();
+
+            ParsedDocument = newParsedDocument;
+            ParseRequested = false;
+            Update();
+        }
+        public virtual void Close()
+        {
+            if (Dirty) return;
             CodeDocument = null;
         }
 
+        public virtual bool Dirty
+        {
+            get
+            {
+                if (CodeDocument == null) return false;
+                if (CodeDocument.EditID > 1) return true;
+                return false;
+            }
+        }
+
         private CodeEditor.CodeDocument document = null;
-        public CodeEditor.CodeDocument CodeDocument {
+        public virtual CodeEditor.CodeDocument CodeDocument {
             get
             {
                 if(document == null)
@@ -68,10 +84,9 @@ namespace codeEditor.Data
                     {
                         using (System.IO.StreamReader sr = new System.IO.StreamReader( Project.GetAbsolutePath(RelativePath) ))
                         {
-                            document = new CodeEditor.CodeDocument();
+                            document = new CodeEditor.CodeDocument(this);
                             string text = sr.ReadToEnd();
                             document.Replace(0, 0, 0, text);
-                            document.ParentID = ID;
                             document.ClearHistory();
                         }
                     }
@@ -89,7 +104,7 @@ namespace codeEditor.Data
         }
 
         
-        public CodeDrawStyle DrawStyle
+        public virtual CodeDrawStyle DrawStyle
         {
             get
             {
@@ -97,28 +112,29 @@ namespace codeEditor.Data
             }
         }
 
+
+
         public override NavigatePanelNode CreateNode()
         {
-            return new NavigatePanel.TextFileNode(ID, Project);
+            return new NavigatePanel.TextFileNode(this);
         }
 
-        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.CodeDocument document, string id, Project project,CodeEditor.DocumentParser.ParseModeEnum parseMode)
+        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode)
         {
             return null;
         }
 
-
-        public List<PopupItem> GetPopupItems(int EditId, int index)
+        public virtual List<PopupItem> GetPopupItems(int EditId, int index)
         {
             return null;
         }
 
-        public List<AutocompleteItem> GetAutoCompleteItems(int index,out string cantidateWord)
+        public virtual List<AutocompleteItem> GetAutoCompleteItems(int index,out string cantidateWord)
         {
             cantidateWord = null;
             return null;
         }
-        public List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index)
+        public virtual List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index)
         {
             return null;
         }
@@ -142,6 +158,7 @@ namespace codeEditor.Data
         public virtual void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e)
         {
         }
+
 
     }
 }

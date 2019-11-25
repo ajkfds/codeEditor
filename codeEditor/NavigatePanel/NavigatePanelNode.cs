@@ -7,26 +7,43 @@ using System.Threading.Tasks;
 
 namespace codeEditor.NavigatePanel
 {
-    public class NavigatePanelNode : ajkControls.TreeNode
+    public class NavigatePanelNode : ajkControls.TreeNode,IDisposable
     {
-        protected NavigatePanelNode() { }
-        public NavigatePanelNode(string id,Data.Project project)
+        protected NavigatePanelNode()
         {
-            this.Project = project;
-            this.ID = id;
+        }
+        public NavigatePanelNode(Data.Item item)
+        {
+            this.itemRef = new WeakReference<Data.Item>(item);
+            this.Name = item.Name;
             if (NavigatePanelNodeCreated != null) NavigatePanelNodeCreated(this);
         }
 
-        public static Action<NavigatePanelNode> NavigatePanelNodeCreated;
+        public string Name { get; protected set; }
 
-        public Data.Project Project { get; protected set; }
-        public string ID { get; protected set; }
+        private System.WeakReference<Data.Item> itemRef;
+        public Data.Item Item
+        {
+            get
+            {
+                Data.Item ret;
+                if (!itemRef.TryGetTarget(out ret)) return null;
+                return ret;
+            }
+        }
+
+        public static Action<NavigatePanelNode> NavigatePanelNodeCreated;
 
         /// <summary>
         /// update this node and children
         /// </summary>
         public virtual void Update()
         {
+        }
+
+        public virtual void Dispose()
+        {
+
         }
 
         /// <summary>

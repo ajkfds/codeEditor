@@ -8,13 +8,25 @@ namespace codeEditor.CodeEditor
 {
     public class CodeDocument : ajkControls.Document
     {
-        public CodeDocument() { }
-        public CodeDocument(string text) : base(text)
+        public CodeDocument(Data.TextFile textFile) 
         {
-
+            textFileRef = new WeakReference<Data.TextFile>(textFile);
+        }
+        public CodeDocument(Data.TextFile textFile,string text) : base(text)
+        {
+            textFileRef = new WeakReference<Data.TextFile>(textFile);
         }
 
-        public string ParentID { get; set; }
+        public System.WeakReference<Data.TextFile> textFileRef;
+        public Data.TextFile TextFile
+        {
+            get
+            {
+                Data.TextFile ret;
+                if (!textFileRef.TryGetTarget(out ret)) return null;
+                return ret;
+            }
+        }
 
         public virtual void GetWord(int index, out int headIndex, out int length)
         {
