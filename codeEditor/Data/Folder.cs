@@ -12,13 +12,6 @@ namespace codeEditor.Data
         protected Folder() { }
         public static Folder Create(string relativePath, Project project, Item parent)
         {
-            string id = GetID(relativePath,project);
-            //if (project.IsRegistered(id))
-            //{
-            //    Folder item = project.GetRegisterdItem(id) as Folder;
-            //    project.RegisterProjectItem(item);
-            //    return item;
-            //}
 
             Folder folder = new Folder();
             folder.Project = project;
@@ -39,9 +32,41 @@ namespace codeEditor.Data
             return folder;
         }
 
-        public static string GetID(string relativePath, Project project)
+        public File SearchFile(string relativePath)
         {
-            return project.ID + ":Folder:" + relativePath;
+            string[] pathList = relativePath.Split(new char[] { '\\' });
+            if (pathList.Length == 0) return null;
+
+            foreach(Item item in items.Values)
+            {
+                if(item is File)
+                {
+                    if ((item as File).Name == pathList[0] && pathList.Length == 1) return (item as File);
+                }else if(item is Folder)
+                {
+                    if ((item as Folder).Name == pathList[0])
+                    {
+                        if (pathList.Length == 1) return null;
+                        return (item as Folder).SearchFile(relativePath.Substring(pathList[0].Length + 1));
+                    }
+                }
+            }
+            return null;
+        }
+        public File SearchFile(Func<File,bool> match)
+        {
+            foreach (Item item in items.Values)
+            {
+                if (item is File)
+                {
+                    if (match(item as File)) return (item as File);
+                }
+                else if (item is Folder)
+                {
+                    (item as Folder).SearchFile(match);
+                }
+            }
+            return null;
         }
 
 
