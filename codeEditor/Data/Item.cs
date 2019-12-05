@@ -87,5 +87,20 @@ namespace codeEditor.Data
             return null;
         }
 
+        protected WeakReference<NavigatePanel.NavigatePanelNode> nodeRef;
+        public virtual NavigatePanel.NavigatePanelNode NavigatePanelNode
+        {
+            get
+            {
+                if (nodeRef == null) return null;
+                NavigatePanel.NavigatePanelNode node;
+                if (!nodeRef.TryGetTarget(out node)) return null;
+                return node;
+            }
+        }
+        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode)
+        {
+            return null;
+        }
     }
 }

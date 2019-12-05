@@ -116,10 +116,13 @@ namespace codeEditor.Data
 
         public override NavigatePanelNode CreateNode()
         {
-            return new NavigatePanel.TextFileNode(this);
+            NavigatePanel.TextFileNode node = new TextFileNode(this);
+            nodeRef = new WeakReference<NavigatePanelNode>(node);
+            return node;
         }
 
-        public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode)
+
+        public override CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode)
         {
             return null;
         }

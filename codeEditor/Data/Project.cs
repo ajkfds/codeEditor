@@ -97,7 +97,7 @@ namespace codeEditor.Data
                 }
             }
         }
-        public new string ID { get { return Name; } }
+//        public new string ID { get { return Name; } }
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 
@@ -105,31 +105,26 @@ namespace codeEditor.Data
 
 
         // get parse target
-
-        private int parseIndex = 0;
-        private int parseSearchLimit = 100;
-        public TextFile GetReparseTarget()
+        private List<Item> parseItems = new List<Item>();
+        public Item FetchReparseTarget()
         {
-            //int i = 0;
-            //while (i < parseSearchLimit)
-            //{
-            //    if (parseIndex >= wholeItems.Count)
-            //    {
-            //        parseIndex = 0;
-            //        return null;
-            //    }
-            //    string key = wholeKeys[parseIndex];
-            //    Item item = wholeItems[key];
-            //    if(item is ITextFile)
-            //    {
-            //        ITextFile textFile = item as ITextFile;
-            //        if (textFile.ParseRequested) return textFile;
-            //        if (textFile.ReloadRequested) return textFile;
-            //    }
-            //    parseIndex++;
-            //    i++;
-            //}
-            return null;
+            lock (parseItems)
+            {
+                Item item = parseItems.FirstOrDefault();
+                if (item != null) parseItems.Remove(item);
+                return item;
+            }
+        }
+
+        public void AddReparseTarget(Item item)
+        {
+            lock (parseItems)
+            {
+                if (!parseItems.Contains(item))
+                {
+                    parseItems.Add(item);
+                }
+            }
         }
 
         // path control

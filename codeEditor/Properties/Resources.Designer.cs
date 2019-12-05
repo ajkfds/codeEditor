@@ -113,6 +113,16 @@ namespace codeEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap newBadge {
+            get {
+                object obj = ResourceManager.GetObject("newBadge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap openFolder {
             get {
                 object obj = ResourceManager.GetObject("openFolder", resourceCulture);

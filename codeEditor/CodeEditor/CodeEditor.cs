@@ -300,26 +300,14 @@ namespace codeEditor.CodeEditor
                 Controller.NavigatePanel.GetSelectedNode(out node);
                 if (node == null) return;
                 Data.Project project = node.Item.Project;
-                Data.TextFile textFile = project.GetReparseTarget();
-                if (textFile == null) return;
+                Data.Item item = project.FetchReparseTarget();
+                if (item == null) return;
 
-                if (textFile.CloseRequested)
-                {
-                    if(textFile.CodeDocument == CodeDocument)
-                    {
-                        Controller.AppendLog("code change conflict!!");
-                        textFile.CloseRequested = false;
-                        return;
-                    }
-                    textFile.Close();
-                    textFile.CloseRequested = false;
-                }
-
-                DocumentParser newParser = textFile.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
+                DocumentParser newParser = item.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
-                    Controller.AppendLog("entry parse " + textFile.Name + " " + DateTime.Now.ToString());
+                    Controller.AppendLog("entry parse " + item.Name + " " + DateTime.Now.ToString());
                 }
             }
             else
@@ -333,13 +321,6 @@ namespace codeEditor.CodeEditor
                         return;
                     }
                 }
-                //if (TextFile != null &&  TextFile.ID == parser.ID) return;
-                //if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
-                //{
-                //    Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
-                //    TextFile.ParseRequested = false;
-                //    return;
-                //}
 
                 Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
                 Data.TextFile textFile = parser.TextFile;
@@ -354,6 +335,10 @@ namespace codeEditor.CodeEditor
 
                 textFile.AcceptParsedDocument(parser.ParsedDocument);
                 textFile.Close();
+                if (textFile.NavigatePanelNode != null) 
+                {
+                    textFile.NavigatePanelNode.Update();
+                }
 
                 Controller.NavigatePanel.UpdateVisibleNode();
                 Controller.NavigatePanel.Refresh();

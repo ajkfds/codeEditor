@@ -40,6 +40,10 @@ namespace codeEditor.NavigatePanel
                 bgColor,
                 System.Windows.Forms.TextFormatFlags.NoPadding
                 );
+            if (TextFile != null && TextFile.Dirty)
+            {
+                graphics.DrawImage(Global.IconImages.NewBadge.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Orange), new Point(x, y));
+            }
         }
 
         public override void Selected()

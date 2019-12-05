@@ -17,7 +17,7 @@ namespace codeEditor.Data
                 if (fileType.IsThisFileType(relativePath, project)) return fileType.CreateFile(relativePath, project);
             }
 
-            string id = File.GetID(relativePath, project);
+            //string id = File.GetID(relativePath, project);
             //if (project.IsRegistered(id))
             //{
             //    File item = project.GetRegisterdItem(id) as File;
@@ -44,10 +44,10 @@ namespace codeEditor.Data
         }
         public static Action<File> FileCreated;
 
-        public static string GetID(string relativePath, Project project)
-        {
-            return project.ID + ":File:" + relativePath;
-        }
+        //public static string GetID(string relativePath, Project project)
+        //{
+        //    return project.ID + ":File:" + relativePath;
+        //}
 
         public override  NavigatePanelNode CreateNode()
         {
