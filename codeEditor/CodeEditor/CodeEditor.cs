@@ -316,22 +316,26 @@ namespace codeEditor.CodeEditor
                 {
                     if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                     {
-                        Controller.AppendLog("parsed mismatch sub" + DateTime.Now.ToString());
+                        Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
                         TextFile.ParseRequested = false;
                         return;
                     }
                 }
 
-                Controller.AppendLog("parsed sub " + DateTime.Now.ToString());
+                Controller.AppendLog("parsed sub  " + parser.TextFile.Name + " " + DateTime.Now.ToString());
+                if(parser.TextFile.Name == "TOP_0")
+                {
+                    string a = "";
+                }
                 Data.TextFile textFile = parser.TextFile;
 
                 if (textFile == null) return;
-                if (textFile.ParsedDocument == null)
-                {
-                    textFile.Close();
-                    textFile.ParseRequested = false;
-                    return;
-                }
+                //if (textFile.ParsedDocument == null)
+                //{
+                //    textFile.Close();
+                //    textFile.ParseRequested = false;
+                //    return;
+                //}
 
                 textFile.AcceptParsedDocument(parser.ParsedDocument);
                 textFile.Close();
