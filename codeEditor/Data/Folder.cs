@@ -63,7 +63,8 @@ namespace codeEditor.Data
                 }
                 else if (item is Folder)
                 {
-                    (item as Folder).SearchFile(match);
+                    File ret = (item as Folder).SearchFile(match);
+                    if (ret != null) return ret;
                 }
             }
             return null;
