@@ -178,6 +178,7 @@ namespace codeEditor.CodeEditor
             {
                 sw.Write(TextFile.CodeDocument.CreateString());
             }
+            TextFile.CodeDocument.Clean();
         }
 
         public void ScrollToCaret()

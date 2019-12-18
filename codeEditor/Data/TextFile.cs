@@ -69,7 +69,7 @@ namespace codeEditor.Data
             get
             {
                 if (CodeDocument == null) return false;
-                if (CodeDocument.EditID > 1) return true;
+                if (CodeDocument.IsDirty) return true;
                 return false;
             }
         }
@@ -87,7 +87,8 @@ namespace codeEditor.Data
                             document = new CodeEditor.CodeDocument(this);
                             string text = sr.ReadToEnd();
                             document.Replace(0, 0, 0, text);
-                            document.ClearHistory();
+//                            document.ClearHistory();
+                            document.Clean();
                         }
                     }
                     catch
