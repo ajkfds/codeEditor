@@ -111,7 +111,20 @@ namespace codeEditor.Data
             lock (parseItems)
             {
                 Item item = parseItems.FirstOrDefault();
-                if (item != null) parseItems.Remove(item);
+                if (item == null) return null;
+                while(
+                    (item as TextFile) != null &&
+                    (item as TextFile).ParsedDocument != null &&
+                    (item as TextFile).IsCodeDocumentCashed &&
+                    (item as TextFile).CodeDocument != null &&
+                    (item as TextFile).ParsedDocument.EditID == (item as TextFile).CodeDocument.EditID
+                    )
+                {
+                    item = parseItems.FirstOrDefault();
+                    if (item == null) return null;
+                    parseItems.Remove(item);
+                }
+                parseItems.Remove(item);
                 return item;
             }
         }
