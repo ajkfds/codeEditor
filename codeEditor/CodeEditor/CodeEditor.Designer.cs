@@ -113,7 +113,6 @@
             this.codeTextbox.BeforeKeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTextbox_BeforeKeyDown);
             this.codeTextbox.SelectionChanged += new System.Action(this.CodeTextbox_SelectionChanged);
             this.codeTextbox.Load += new System.EventHandler(this.codeTextbox_Load);
-            this.codeTextbox.DoubleClick += new System.EventHandler(this.codeTextbox_DoubleClick);
             this.codeTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseDoubleClick);
             this.codeTextbox.MouseLeave += new System.EventHandler(this.codeTextbox_MouseLeave);
             this.codeTextbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.codeTextbox_MouseMove);

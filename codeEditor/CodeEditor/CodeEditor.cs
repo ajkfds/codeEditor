@@ -395,12 +395,6 @@ namespace codeEditor.CodeEditor
 
         }
 
-        private void codeTextbox_DoubleClick(object sender, EventArgs e)
-        {
- 
-
-
-        }
 
         private void codeTextbox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
