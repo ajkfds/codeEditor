@@ -460,10 +460,14 @@ namespace codeEditor.CodeEditor
                     applyAutoCompleteSelection(e);
                     break;
                 case Keys.Escape:
-                case Keys.Delete:
-                case Keys.Back:
                     autoCompleteForm.Visible = false;
                     break;
+//                case Keys.Delete:
+//                case Keys.Back:
+//                    openAutoComplete();
+//                    checkAutoComplete();
+                    //                    autoCompleteForm.Visible = false;
+ //                   break;
                 default:
                     break;
             }
@@ -474,6 +478,17 @@ namespace codeEditor.CodeEditor
         private void codeTextbox_AfterKeyDown(object sender, KeyEventArgs e)
         {
             if (TextFile == null) return;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                case Keys.Back:
+                    openAutoComplete();
+                    checkAutoComplete();
+                    break;
+                default:
+                    break;
+            }
 
             bool autoCompleteFormActive = (autoCompleteForm != null && autoCompleteForm.Visible);
             if (snippet != null) snippet.AfterKeyDown(sender, e, autoCompleteForm);
