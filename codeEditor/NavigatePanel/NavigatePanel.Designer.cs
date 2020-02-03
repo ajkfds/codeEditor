@@ -37,8 +37,8 @@ namespace codeEditor.NavigatePanel
             this.gitLogTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.propertySeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView = new ajkControls.TreeView();
             this.openWithExploererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView = new ajkControls.TreeView();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,24 +54,24 @@ namespace codeEditor.NavigatePanel
             this.propertyTsmi,
             this.openWithExploererToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 163);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 140);
             // 
             // addTsmi
             // 
             this.addTsmi.Name = "addTsmi";
-            this.addTsmi.Size = new System.Drawing.Size(240, 24);
+            this.addTsmi.Size = new System.Drawing.Size(240, 26);
             this.addTsmi.Text = "Add";
             // 
             // deleteTsmi
             // 
             this.deleteTsmi.Name = "deleteTsmi";
-            this.deleteTsmi.Size = new System.Drawing.Size(240, 24);
+            this.deleteTsmi.Size = new System.Drawing.Size(240, 26);
             this.deleteTsmi.Text = "Delete";
             // 
             // gitLogTsmi
             // 
             this.gitLogTsmi.Name = "gitLogTsmi";
-            this.gitLogTsmi.Size = new System.Drawing.Size(240, 24);
+            this.gitLogTsmi.Size = new System.Drawing.Size(240, 26);
             this.gitLogTsmi.Text = "Git Log";
             this.gitLogTsmi.Click += new System.EventHandler(this.GitLogTsmi_Click);
             // 
@@ -83,40 +83,41 @@ namespace codeEditor.NavigatePanel
             // propertyTsmi
             // 
             this.propertyTsmi.Name = "propertyTsmi";
-            this.propertyTsmi.Size = new System.Drawing.Size(240, 24);
+            this.propertyTsmi.Size = new System.Drawing.Size(240, 26);
             this.propertyTsmi.Text = "Property";
             this.propertyTsmi.Click += new System.EventHandler(this.propertyToolStripMenuItem_Click);
             // 
+            // openWithExploererToolStripMenuItem
+            // 
+            this.openWithExploererToolStripMenuItem.Name = "openWithExploererToolStripMenuItem";
+            this.openWithExploererToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.openWithExploererToolStripMenuItem.Text = "Open With Exploerer";
+            // 
             // treeView
             // 
-            this.treeView.BackColor = System.Drawing.Color.White;
+            this.treeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Font = new System.Drawing.Font("Meiryo UI", 9F);
-            this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 0);
-            this.treeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.treeView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.treeView.Name = "treeView";
-            this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
-            this.treeView.Size = new System.Drawing.Size(399, 618);
+            this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
+            this.treeView.Size = new System.Drawing.Size(519, 824);
             this.treeView.TabIndex = 0;
             this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
-            // openWithExploererToolStripMenuItem
-            // 
-            this.openWithExploererToolStripMenuItem.Name = "openWithExploererToolStripMenuItem";
-            this.openWithExploererToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
-            this.openWithExploererToolStripMenuItem.Text = "Open With Exploerer";
-            // 
             // NavigatePanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeView);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NavigatePanel";
-            this.Size = new System.Drawing.Size(399, 618);
+            this.Size = new System.Drawing.Size(519, 824);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -155,7 +155,7 @@ namespace codeEditor.CodeEditor
         private int bottomMargin = 4;
         private int maxVisibleLines = 8;
 
-        private SolidBrush selectionBrush = new SolidBrush(Color.FromArgb(100, 0, 50, 100));
+        private SolidBrush selectionBrush = new SolidBrush(Color.FromArgb(100, 38, 79, 120));
         private void doubleBufferedDrawBox_DoubleBufferedPaint(PaintEventArgs e)
         {
             lock (visibleItems)

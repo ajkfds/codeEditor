@@ -62,7 +62,7 @@ namespace codeEditor
             // 
             // menuStrip
             // 
-            this.menuStrip.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.menuStrip.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -74,7 +74,7 @@ namespace codeEditor
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1193, 34);
+            this.menuStrip.Size = new System.Drawing.Size(1193, 36);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -83,22 +83,23 @@ namespace codeEditor
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.saveAllToolStripMenuItem});
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 28);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 30);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.saveAllToolStripMenuItem.Text = "SaveAll";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
@@ -107,15 +108,16 @@ namespace codeEditor
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.findToolStripMenuItem,
             this.replaceToolStripMenuItem});
+            this.editToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(55, 28);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
             this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(230, 34);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
             this.findToolStripMenuItem.Text = "Find";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
@@ -123,7 +125,7 @@ namespace codeEditor
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(230, 34);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
             this.replaceToolStripMenuItem.Text = "Replace";
             this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             // 
@@ -131,15 +133,16 @@ namespace codeEditor
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewProjectToolStripMenuItem});
+            this.projectToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(80, 28);
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(78, 30);
             this.projectToolStripMenuItem.Text = "Project";
             this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
             // addNewProjectToolStripMenuItem
             // 
             this.addNewProjectToolStripMenuItem.Name = "addNewProjectToolStripMenuItem";
-            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.addNewProjectToolStripMenuItem.Size = new System.Drawing.Size(232, 34);
             this.addNewProjectToolStripMenuItem.Text = "Add new project";
             this.addNewProjectToolStripMenuItem.Click += new System.EventHandler(this.addNewProjectToolStripMenuItem_Click);
             // 
@@ -148,14 +151,15 @@ namespace codeEditor
             this.toolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.commandShellToolStripMenuItem,
             this.debugToolStripMenuItem});
+            this.toolToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(65, 28);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(64, 30);
             this.toolToolStripMenuItem.Text = "Tools";
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -165,27 +169,28 @@ namespace codeEditor
             this.forceGCToolStripMenuItem,
             this.casheStatusToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
             this.debugToolStripMenuItem.Text = "Debug";
             // 
             // forceGCToolStripMenuItem
             // 
             this.forceGCToolStripMenuItem.Name = "forceGCToolStripMenuItem";
-            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.forceGCToolStripMenuItem.Size = new System.Drawing.Size(202, 34);
             this.forceGCToolStripMenuItem.Text = "Force GC";
             this.forceGCToolStripMenuItem.Click += new System.EventHandler(this.ForceGCToolStripMenuItem_Click);
             // 
             // casheStatusToolStripMenuItem
             // 
             this.casheStatusToolStripMenuItem.Name = "casheStatusToolStripMenuItem";
-            this.casheStatusToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.casheStatusToolStripMenuItem.Size = new System.Drawing.Size(202, 34);
             this.casheStatusToolStripMenuItem.Text = "Cashe Status";
             this.casheStatusToolStripMenuItem.Click += new System.EventHandler(this.CasheStatusToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 28);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 30);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // splitter1
@@ -199,70 +204,70 @@ namespace codeEditor
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(436, 34);
+            this.splitter2.Location = new System.Drawing.Point(436, 36);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(8, 549);
+            this.splitter2.Size = new System.Drawing.Size(8, 547);
             this.splitter2.TabIndex = 6;
             this.splitter2.TabStop = false;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(834, 34);
+            this.splitter3.Location = new System.Drawing.Point(834, 36);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(8, 549);
+            this.splitter3.Size = new System.Drawing.Size(8, 547);
             this.splitter3.TabIndex = 12;
             this.splitter3.TabStop = false;
             // 
             // mainTab
             // 
-            this.mainTab.BackgroundColor = System.Drawing.Color.White;
+            this.mainTab.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.mainTab.FromBackgroundColor = System.Drawing.SystemColors.Control;
+            this.mainTab.FromBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.mainTab.ItemSize = new System.Drawing.Size(80, 33);
-            this.mainTab.LineColor = System.Drawing.Color.Black;
-            this.mainTab.Location = new System.Drawing.Point(444, 34);
+            this.mainTab.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.mainTab.Location = new System.Drawing.Point(444, 36);
             this.mainTab.Multiline = true;
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Drawing.Point(15, 3);
             this.mainTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.mainTab.SelectedForeColor = System.Drawing.Color.White;
             this.mainTab.SelectedIndex = 0;
-            this.mainTab.Size = new System.Drawing.Size(390, 549);
+            this.mainTab.Size = new System.Drawing.Size(390, 547);
             this.mainTab.TabIndex = 10;
-            this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.LightGray;
+            this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             // 
             // subTab
             // 
             this.subTab.BackgroundColor = System.Drawing.Color.White;
             this.subTab.Controls.Add(this.navigatorPage);
             this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
-            this.subTab.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.subTab.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.subTab.FromBackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.subTab.ItemSize = new System.Drawing.Size(80, 33);
+            this.subTab.ItemSize = new System.Drawing.Size(80, 35);
             this.subTab.LineColor = System.Drawing.Color.Black;
-            this.subTab.Location = new System.Drawing.Point(0, 34);
+            this.subTab.Location = new System.Drawing.Point(0, 36);
             this.subTab.Multiline = true;
             this.subTab.Name = "subTab";
             this.subTab.Padding = new System.Drawing.Point(15, 3);
             this.subTab.SelectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(56)))), ((int)(((byte)(100)))));
             this.subTab.SelectedForeColor = System.Drawing.Color.White;
             this.subTab.SelectedIndex = 0;
-            this.subTab.Size = new System.Drawing.Size(436, 549);
+            this.subTab.Size = new System.Drawing.Size(436, 547);
             this.subTab.TabIndex = 9;
             this.subTab.UnselectedBackgroundColor = System.Drawing.Color.Gray;
             // 
             // navigatorPage
             // 
+            this.navigatorPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.navigatorPage.Controls.Add(this.navigatePanel);
-            this.navigatorPage.Location = new System.Drawing.Point(4, 37);
+            this.navigatorPage.Location = new System.Drawing.Point(4, 39);
             this.navigatorPage.Name = "navigatorPage";
             this.navigatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.navigatorPage.Size = new System.Drawing.Size(428, 508);
+            this.navigatorPage.Size = new System.Drawing.Size(428, 504);
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
-            this.navigatorPage.UseVisualStyleBackColor = true;
             // 
             // navigatePanel
             // 
@@ -270,7 +275,7 @@ namespace codeEditor
             this.navigatePanel.Location = new System.Drawing.Point(3, 3);
             this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
             this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(422, 502);
+            this.navigatePanel.Size = new System.Drawing.Size(422, 498);
             this.navigatePanel.TabIndex = 0;
             // 
             // logView
@@ -287,17 +292,17 @@ namespace codeEditor
             // messageView
             // 
             this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.messageView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(842, 34);
+            this.messageView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.messageView.Location = new System.Drawing.Point(842, 36);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(351, 549);
+            this.messageView.Size = new System.Drawing.Size(351, 547);
             this.messageView.TabIndex = 11;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1193, 713);
             this.Controls.Add(this.mainTab);
             this.Controls.Add(this.splitter3);
@@ -308,6 +313,7 @@ namespace codeEditor
             this.Controls.Add(this.logView);
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Consolas", 8F);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "codeEditor";

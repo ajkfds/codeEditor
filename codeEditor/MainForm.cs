@@ -60,6 +60,7 @@ namespace codeEditor
             ajkControls.Global.Icon = Properties.Resources.ajEditor;
             this.Icon = ajkControls.Global.Icon;
 
+            editorPage.BackColor = this.BackColor;
             mainTab.TabPages.Add(editorPage);
 
             menuStrip.ImageScalingSize = new Size(menuStrip.Font.Height, menuStrip.Font.Height);
@@ -251,7 +252,6 @@ namespace codeEditor
 //                project.DumpItemsStatus();
             }
         }
-
 
     }
 }

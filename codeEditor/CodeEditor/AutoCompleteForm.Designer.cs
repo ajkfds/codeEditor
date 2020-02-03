@@ -34,30 +34,35 @@
             // 
             // doubleBufferedDrawBox
             // 
+            this.doubleBufferedDrawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.doubleBufferedDrawBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.doubleBufferedDrawBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.doubleBufferedDrawBox.Location = new System.Drawing.Point(0, 0);
+            this.doubleBufferedDrawBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.doubleBufferedDrawBox.Name = "doubleBufferedDrawBox";
-            this.doubleBufferedDrawBox.Size = new System.Drawing.Size(294, 366);
+            this.doubleBufferedDrawBox.Size = new System.Drawing.Size(389, 488);
             this.doubleBufferedDrawBox.TabIndex = 0;
             this.doubleBufferedDrawBox.DoubleBufferedPaint += new ajkControls.DoubleBufferedDrawBox.DoubleBufferedPaintHandler(this.doubleBufferedDrawBox_DoubleBufferedPaint);
             // 
             // vScrollBar
             // 
             this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar.Location = new System.Drawing.Point(294, 0);
+            this.vScrollBar.Location = new System.Drawing.Point(389, 0);
             this.vScrollBar.Name = "vScrollBar";
-            this.vScrollBar.Size = new System.Drawing.Size(23, 366);
+            this.vScrollBar.Size = new System.Drawing.Size(23, 488);
             this.vScrollBar.TabIndex = 1;
             // 
             // AutoCompleteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 366);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ClientSize = new System.Drawing.Size(412, 488);
             this.Controls.Add(this.doubleBufferedDrawBox);
             this.Controls.Add(this.vScrollBar);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AutoCompleteForm";
             this.Text = "AutoCompleteForm";
             this.VisibleChanged += new System.EventHandler(this.AutoCompleteForm_VisibleChanged);
