@@ -38,7 +38,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 20);
+            this.label1.Size = new System.Drawing.Size(75, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Message";
             // 
@@ -46,14 +46,14 @@
             // 
             this.treeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.treeView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.treeView.HScrollBarVisible = true;
-            this.treeView.Location = new System.Drawing.Point(0, 20);
-            this.treeView.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.treeView.Location = new System.Drawing.Point(0, 21);
+            this.treeView.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.treeView.Name = "treeView";
             this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
-            this.treeView.Size = new System.Drawing.Size(281, 652);
+            this.treeView.Size = new System.Drawing.Size(253, 670);
             this.treeView.TabIndex = 1;
             this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
@@ -61,13 +61,13 @@
             // 
             // MessageView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Meiryo UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Name = "MessageView";
-            this.Size = new System.Drawing.Size(281, 672);
+            this.Size = new System.Drawing.Size(253, 691);
             this.ResumeLayout(false);
             this.PerformLayout();
 

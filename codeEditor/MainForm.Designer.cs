@@ -50,11 +50,11 @@ namespace codeEditor
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.mainTab = new ajkControls.TabControl();
-            this.messageView = new codeEditor.MessageView.MessageView();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
-            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
+            this.messageView = new codeEditor.MessageView.MessageView();
+            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -63,7 +63,6 @@ namespace codeEditor
             // menuStrip
             // 
             this.menuStrip.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -236,16 +235,7 @@ namespace codeEditor
             this.mainTab.SelectedIndex = 0;
             this.mainTab.Size = new System.Drawing.Size(390, 547);
             this.mainTab.TabIndex = 10;
-            this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            // 
-            // messageView
-            // 
-            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.messageView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(842, 36);
-            this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(351, 547);
-            this.messageView.TabIndex = 11;
+            this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             // 
             // subTab
             // 
@@ -278,15 +268,6 @@ namespace codeEditor
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
             // 
-            // navigatePanel
-            // 
-            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
-            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
-            this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(422, 498);
-            this.navigatePanel.TabIndex = 0;
-            // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -297,6 +278,24 @@ namespace codeEditor
             this.logView.Name = "logView";
             this.logView.Size = new System.Drawing.Size(1193, 122);
             this.logView.TabIndex = 0;
+            // 
+            // messageView
+            // 
+            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.messageView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.messageView.Location = new System.Drawing.Point(842, 36);
+            this.messageView.Name = "messageView";
+            this.messageView.Size = new System.Drawing.Size(351, 547);
+            this.messageView.TabIndex = 11;
+            // 
+            // navigatePanel
+            // 
+            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.navigatePanel.Name = "navigatePanel";
+            this.navigatePanel.Size = new System.Drawing.Size(422, 498);
+            this.navigatePanel.TabIndex = 0;
             // 
             // MainForm
             // 
