@@ -50,11 +50,11 @@ namespace codeEditor
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.mainTab = new ajkControls.TabControl();
+            this.messageView = new codeEditor.MessageView.MessageView();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
             this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
-            this.messageView = new codeEditor.MessageView.MessageView();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -238,9 +238,18 @@ namespace codeEditor
             this.mainTab.TabIndex = 10;
             this.mainTab.UnselectedBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             // 
+            // messageView
+            // 
+            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.messageView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.messageView.Location = new System.Drawing.Point(842, 36);
+            this.messageView.Name = "messageView";
+            this.messageView.Size = new System.Drawing.Size(351, 547);
+            this.messageView.TabIndex = 11;
+            // 
             // subTab
             // 
-            this.subTab.BackgroundColor = System.Drawing.Color.White;
+            this.subTab.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.subTab.Controls.Add(this.navigatorPage);
             this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
             this.subTab.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -288,15 +297,6 @@ namespace codeEditor
             this.logView.Name = "logView";
             this.logView.Size = new System.Drawing.Size(1193, 122);
             this.logView.TabIndex = 0;
-            // 
-            // messageView
-            // 
-            this.messageView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.messageView.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.messageView.Location = new System.Drawing.Point(842, 36);
-            this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(351, 547);
-            this.messageView.TabIndex = 11;
             // 
             // MainForm
             // 
