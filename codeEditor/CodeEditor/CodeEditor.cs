@@ -205,12 +205,25 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        List<Data.TextFile> closeCantidateTextFiles = new List<Data.TextFile>();
+        const int FilesCasheNumbers = 20;
+
         public void SetTextFile(Data.TextFile textFile)
         {
             if (TextFile == textFile) return;
             if(TextFile != null)
             {
-                TextFile.Close(); // release document
+                if (closeCantidateTextFiles.Contains(textFile))
+                {
+                    closeCantidateTextFiles.Remove(textFile);
+                }
+                closeCantidateTextFiles.Add(textFile);
+                if (closeCantidateTextFiles.Count > FilesCasheNumbers)
+                {
+                    closeCantidateTextFiles[0].Close();
+                    closeCantidateTextFiles.RemoveAt(0);
+                }
+//                TextFile.Close(); // release document
             }
 
             if (textFile == null || textFile.CodeDocument == null)
