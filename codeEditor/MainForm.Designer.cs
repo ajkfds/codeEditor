@@ -52,9 +52,9 @@ namespace codeEditor
             this.mainTab = new ajkControls.TabControl();
             this.subTab = new ajkControls.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
+            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.logView = new ajkControls.LogView();
             this.messageView = new codeEditor.MessageView.MessageView();
-            this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
             this.menuStrip.SuspendLayout();
             this.subTab.SuspendLayout();
             this.navigatorPage.SuspendLayout();
@@ -63,6 +63,7 @@ namespace codeEditor
             // menuStrip
             // 
             this.menuStrip.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -242,7 +243,7 @@ namespace codeEditor
             this.subTab.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.subTab.Controls.Add(this.navigatorPage);
             this.subTab.Dock = System.Windows.Forms.DockStyle.Left;
-            this.subTab.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.subTab.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.subTab.FromBackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.subTab.ItemSize = new System.Drawing.Size(80, 35);
             this.subTab.LineColor = System.Drawing.Color.Black;
@@ -268,6 +269,15 @@ namespace codeEditor
             this.navigatorPage.TabIndex = 0;
             this.navigatorPage.Text = "navigator";
             // 
+            // navigatePanel
+            // 
+            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
+            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.navigatePanel.Name = "navigatePanel";
+            this.navigatePanel.Size = new System.Drawing.Size(422, 498);
+            this.navigatePanel.TabIndex = 0;
+            // 
             // logView
             // 
             this.logView.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -287,15 +297,6 @@ namespace codeEditor
             this.messageView.Name = "messageView";
             this.messageView.Size = new System.Drawing.Size(351, 547);
             this.messageView.TabIndex = 11;
-            // 
-            // navigatePanel
-            // 
-            this.navigatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigatePanel.Location = new System.Drawing.Point(3, 3);
-            this.navigatePanel.Margin = new System.Windows.Forms.Padding(4);
-            this.navigatePanel.Name = "navigatePanel";
-            this.navigatePanel.Size = new System.Drawing.Size(422, 498);
-            this.navigatePanel.TabIndex = 0;
             // 
             // MainForm
             // 

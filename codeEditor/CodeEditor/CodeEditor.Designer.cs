@@ -96,13 +96,13 @@
             this.codeTextbox.Editable = true;
             this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.codeTextbox.LineNumberFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(112)))), ((int)(((byte)(128)))), ((int)(((byte)(144)))));
+            this.codeTextbox.LineNumberFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(64)))), ((int)(((byte)(72)))));
             this.codeTextbox.Location = new System.Drawing.Point(0, 0);
             this.codeTextbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.codeTextbox.MultiLine = true;
             this.codeTextbox.Name = "codeTextbox";
             this.codeTextbox.ScrollBarVisible = true;
-            this.codeTextbox.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(125)))), ((int)(((byte)(159)))));
+            this.codeTextbox.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(64)))), ((int)(((byte)(80)))));
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
             this.codeTextbox.Style = codeDrawStyle1;
             this.codeTextbox.TabIndex = 0;
