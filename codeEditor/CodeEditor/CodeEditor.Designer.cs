@@ -90,21 +90,27 @@
             // codeTextbox
             // 
             this.codeTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.codeTextbox.CarletColor = System.Drawing.Color.LightGray;
+            this.codeTextbox.CarletUnderlineColor = System.Drawing.Color.LightGray;
             this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
+            this.codeTextbox.CrColor = System.Drawing.Color.LightGray;
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeTextbox.Document = null;
             this.codeTextbox.Editable = true;
             this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.codeTextbox.LineNumberFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(64)))), ((int)(((byte)(72)))));
+            this.codeTextbox.LeftColumnColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.codeTextbox.LfColor = System.Drawing.Color.LightGray;
+            this.codeTextbox.LineNumberColor = System.Drawing.Color.Gray;
             this.codeTextbox.Location = new System.Drawing.Point(0, 0);
             this.codeTextbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.codeTextbox.MultiLine = true;
             this.codeTextbox.Name = "codeTextbox";
             this.codeTextbox.ScrollBarVisible = true;
-            this.codeTextbox.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(64)))), ((int)(((byte)(80)))));
+            this.codeTextbox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
             this.codeTextbox.Style = codeDrawStyle1;
+            this.codeTextbox.TabColor = System.Drawing.Color.LightGray;
             this.codeTextbox.TabIndex = 0;
             this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);
             this.codeTextbox.AfterKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_AfterKeyPressed);
