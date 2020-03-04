@@ -105,7 +105,7 @@ namespace codeEditor.Data
         }
 
         
-        public virtual CodeDrawStyle DrawStyle
+        public virtual ajkControls.CodeDrawStyle DrawStyle
         {
             get
             {

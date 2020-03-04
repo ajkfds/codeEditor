@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeDrawStyle.cs" />
     <Compile Include="CodeEditor\AutoCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
