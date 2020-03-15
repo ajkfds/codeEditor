@@ -37,17 +37,21 @@
             // doButton
             // 
             this.doButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.doButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.doButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.doButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.doButton.Location = new System.Drawing.Point(356, 37);
             this.doButton.Name = "doButton";
             this.doButton.Size = new System.Drawing.Size(89, 30);
             this.doButton.TabIndex = 0;
             this.doButton.Text = "Find";
-            this.doButton.UseVisualStyleBackColor = true;
+            this.doButton.UseVisualStyleBackColor = false;
             this.doButton.Click += new System.EventHandler(this.findButton_Click);
             // 
             // findTextBox
             // 
             this.findTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.findTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.findTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.findTextBox.Location = new System.Drawing.Point(3, 3);
             this.findTextBox.Name = "findTextBox";
@@ -59,6 +63,7 @@
             // replaceToTextBox
             // 
             this.replaceToTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.replaceToTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.replaceToTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.replaceToTextBox.Location = new System.Drawing.Point(3, 37);
             this.replaceToTextBox.Name = "replaceToTextBox";
@@ -70,6 +75,7 @@
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(356, 3);

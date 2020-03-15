@@ -90,6 +90,7 @@
             // codeTextbox
             // 
             this.codeTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.codeTextbox.BlockUnderlineColor = System.Drawing.Color.LightGray;
             this.codeTextbox.CarletColor = System.Drawing.Color.LightGray;
             this.codeTextbox.CarletUnderlineColor = System.Drawing.Color.LightGray;
             this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
@@ -110,7 +111,7 @@
             this.codeTextbox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
             this.codeTextbox.Style = codeDrawStyle1;
-            this.codeTextbox.TabColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.codeTextbox.TabColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
             this.codeTextbox.TabIndex = 0;
             this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);
             this.codeTextbox.AfterKeyPressed += new System.Windows.Forms.KeyPressEventHandler(this.codeTextbox_AfterKeyPressed);

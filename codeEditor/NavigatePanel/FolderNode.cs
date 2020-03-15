@@ -31,6 +31,10 @@ namespace codeEditor.NavigatePanel
             get { return Folder.Name; }
         }
 
+        public override void Selected()
+        {
+            codeEditor.Controller.NavigatePanel.GetContextMenuStrip().Items["openWithExploererTsmi"].Visible = true;
+        }
 
         public override void Update()
         {

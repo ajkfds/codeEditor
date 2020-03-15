@@ -29,7 +29,8 @@ namespace codeEditor.NavigatePanel
         public override void Selected()
         {
             Data.ITextFile textFile = FileItem as Data.ITextFile;
-//            ViewControl.ViewController.
+            codeEditor.Controller.NavigatePanel.GetContextMenuStrip().Items["openWithExploererTsmi"].Visible = true;
+            //            ViewControl.ViewController.
 
         }
     }

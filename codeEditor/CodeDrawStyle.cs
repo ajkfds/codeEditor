@@ -45,7 +45,7 @@ namespace codeEditor
                         System.Drawing.Color.Red, // 4
                         System.Drawing.Color.Red, // 5
                         System.Drawing.Color.Red, // 6
-                        System.Drawing.Color.FromArgb(52,58,64)//  50,100,10,100)  // 7
+                        System.Drawing.Color.FromArgb(52,58,62)//  50,100,10,100)  // 7
                     };
             }
         }

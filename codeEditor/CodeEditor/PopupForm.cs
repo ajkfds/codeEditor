@@ -95,7 +95,7 @@ namespace codeEditor.CodeEditor
             int i = 0;
             foreach(PopupItem item in items)
             {
-                item.Draw(e.Graphics, leftMargin, y[i]+topMargin, Font, BackColor);
+                item.Draw(e.Graphics, leftMargin, y[i]+topMargin, Font, doubleBufferedDrawBox.BackColor);
                 i++;
             }
             e.Graphics.DrawRectangle(new Pen(Color.Gray), 0, 0, Width-1, Height-1);

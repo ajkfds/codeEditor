@@ -121,5 +121,24 @@ namespace codeEditor.NavigatePanel
 
             Controller.Tabs.AddPage(new Tabs.GitPage(node.Project));
         }
+
+        private void openWithExploererTsmi_Click(object sender, System.EventArgs e)
+        {
+            NavigatePanelNode node = treeView.SelectedNode as NavigatePanelNode;
+            if (node == null) return;
+
+            if(node is FolderNode)
+            {
+                Data.Folder folder = (node as FolderNode).Folder;
+                if (folder == null || folder.Project == null) return;
+                System.Diagnostics.Process.Start("EXPLORER.EXE", folder.Project.GetAbsolutePath(folder.RelativePath));
+
+            }else if(node is FileNode)
+            {
+                Data.File file = (node as FileNode).FileItem;
+                if (file == null || file.Project == null) return;
+                System.Diagnostics.Process.Start("EXPLORER.EXE", "/select,\""+file.Project.GetAbsolutePath(file.RelativePath)+"\"");
+            }
+        }
     }
 }

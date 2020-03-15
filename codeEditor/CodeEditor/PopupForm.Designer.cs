@@ -35,7 +35,7 @@ namespace codeEditor.CodeEditor
             // 
             // doubleBufferedDrawBox
             // 
-            this.doubleBufferedDrawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.doubleBufferedDrawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.doubleBufferedDrawBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.doubleBufferedDrawBox.Location = new System.Drawing.Point(0, 0);
             this.doubleBufferedDrawBox.Name = "doubleBufferedDrawBox";

@@ -37,7 +37,7 @@ namespace codeEditor.NavigatePanel
             this.gitLogTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.propertySeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.openWithExploererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openWithExploererTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new ajkControls.TreeView();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -52,9 +52,9 @@ namespace codeEditor.NavigatePanel
             this.gitLogTsmi,
             this.propertySeparator,
             this.propertyTsmi,
-            this.openWithExploererToolStripMenuItem});
+            this.openWithExploererTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 140);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 173);
             // 
             // addTsmi
             // 
@@ -87,11 +87,12 @@ namespace codeEditor.NavigatePanel
             this.propertyTsmi.Text = "Property";
             this.propertyTsmi.Click += new System.EventHandler(this.propertyToolStripMenuItem_Click);
             // 
-            // openWithExploererToolStripMenuItem
+            // openWithExploererTsmi
             // 
-            this.openWithExploererToolStripMenuItem.Name = "openWithExploererToolStripMenuItem";
-            this.openWithExploererToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.openWithExploererToolStripMenuItem.Text = "Open With Exploerer";
+            this.openWithExploererTsmi.Name = "openWithExploererTsmi";
+            this.openWithExploererTsmi.Size = new System.Drawing.Size(240, 26);
+            this.openWithExploererTsmi.Text = "Open With Exploerer";
+            this.openWithExploererTsmi.Click += new System.EventHandler(this.openWithExploererTsmi_Click);
             // 
             // treeView
             // 
@@ -101,10 +102,10 @@ namespace codeEditor.NavigatePanel
             this.treeView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.treeView.HScrollBarVisible = true;
             this.treeView.Location = new System.Drawing.Point(0, 0);
-            this.treeView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.treeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView.Name = "treeView";
             this.treeView.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
-            this.treeView.Size = new System.Drawing.Size(519, 824);
+            this.treeView.Size = new System.Drawing.Size(399, 618);
             this.treeView.TabIndex = 0;
             this.treeView.VScrollBarVisible = true;
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
@@ -112,12 +113,11 @@ namespace codeEditor.NavigatePanel
             // 
             // NavigatePanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeView);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NavigatePanel";
-            this.Size = new System.Drawing.Size(519, 824);
+            this.Size = new System.Drawing.Size(399, 618);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -132,6 +132,6 @@ namespace codeEditor.NavigatePanel
         private System.Windows.Forms.ToolStripMenuItem propertyTsmi;
         public System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
         private System.Windows.Forms.ToolStripMenuItem addTsmi;
-        private System.Windows.Forms.ToolStripMenuItem openWithExploererToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openWithExploererTsmi;
     }
 }

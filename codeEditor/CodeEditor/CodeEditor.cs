@@ -537,7 +537,12 @@ namespace codeEditor.CodeEditor
             if(toolSelectionForm == null)
             {
                 toolSelectionForm = new ajkControls.SelectionForm();
-                toolSelectionForm.ForeColor = System.Drawing.Color.Black;
+                toolSelectionForm.InputAreaForecolor = Color.FromArgb(250, 250, 250);
+                toolSelectionForm.InputAreaBackcolor = Color.FromArgb(90, 90, 90);
+                toolSelectionForm.ForeColor = Color.FromArgb(240, 240, 240);
+                toolSelectionForm.BackColor = Color.FromArgb(50, 50, 50);
+                toolSelectionForm.Style = Global.DefaultDrawStyle;
+                toolSelectionForm.SelectedColor = Color.FromArgb(128, (int)(52 * 3), (int)(58 * 3), (int)(64 * 3));
                 toolSelectionForm.Selected += ApplyTool;
             }
             if (toolSelectionForm.Visible) return;
