@@ -58,7 +58,7 @@ namespace codeEditor.Data
                 | System.IO.NotifyFilters.FileName
                 | System.IO.NotifyFilters.DirectoryName);
             fileSystemWatcher.Filter = "";
-//            fileSystemWatcher.SynchronizingObject = this;
+            fileSystemWatcher.IncludeSubdirectories = true;
 
             fileSystemWatcher.Created += FileSystemWatcher_Created;
             fileSystemWatcher.Changed += FileSystemWatcher_Changed;
@@ -250,19 +250,22 @@ namespace codeEditor.Data
         private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
         {
             Controller.AppendLog(e.Name + " renamed");
-
+            Item item = GetItem(GetRelativePath(e.FullPath));
+            if (item.Parent != null) item.Parent.Update();
         }
 
         private void FileSystemWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
         {
             Controller.AppendLog(e.Name + " created");
-
+            Item item = GetItem(GetRelativePath(e.FullPath));
+            if (item.Parent != null) item.Parent.Update();
         }
 
         private void FileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
         {
             Controller.AppendLog(e.Name + " deleted");
-
+            Item item  = GetItem(GetRelativePath(e.FullPath));
+            if (item.Parent != null) item.Parent.Update();
         }
     }
 }
