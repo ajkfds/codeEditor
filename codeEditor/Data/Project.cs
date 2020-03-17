@@ -97,7 +97,6 @@ namespace codeEditor.Data
                 }
             }
         }
-//        public new string ID { get { return Name; } }
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 
