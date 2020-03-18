@@ -92,7 +92,7 @@
             this.codeTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.codeTextbox.BlockUnderlineColor = System.Drawing.Color.LightGray;
             this.codeTextbox.CarletColor = System.Drawing.Color.LightGray;
-            this.codeTextbox.CarletUnderlineColor = System.Drawing.Color.LightGray;
+            this.codeTextbox.CarletUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
             this.codeTextbox.CrColor = System.Drawing.Color.LightGray;
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
