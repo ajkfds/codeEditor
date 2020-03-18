@@ -250,6 +250,7 @@ namespace codeEditor.Data
         {
             Controller.AppendLog(e.Name + " renamed");
             Item item = GetItem(GetRelativePath(e.FullPath));
+            if (item == null) return;
             if (item.Parent != null) item.Parent.Update();
         }
 
@@ -257,6 +258,7 @@ namespace codeEditor.Data
         {
             Controller.AppendLog(e.Name + " created");
             Item item = GetItem(GetRelativePath(e.FullPath));
+            if (item == null) return;
             if (item.Parent != null) item.Parent.Update();
         }
 
@@ -264,6 +266,7 @@ namespace codeEditor.Data
         {
             Controller.AppendLog(e.Name + " deleted");
             Item item  = GetItem(GetRelativePath(e.FullPath));
+            if (item == null) return;
             if (item.Parent != null) item.Parent.Update();
         }
     }
