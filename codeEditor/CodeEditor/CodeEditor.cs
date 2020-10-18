@@ -288,9 +288,9 @@ namespace codeEditor.CodeEditor
             }
 
             Controller.AppendLog("parsed "+DateTime.Now.ToString());
-            CodeDocument.CopyColorsFrom(parser.Document);
-            CodeDocument.CopyMarksFrom(parser.Document);
-            CodeDocument.CopyBlocksFrom(parser.Document);
+
+            CodeDocument.CopyFrom(parser.Document);
+            //CodeDocument.CopyColorMarkFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
             if(parser.ParsedDocument != null)
@@ -352,7 +352,7 @@ namespace codeEditor.CodeEditor
                 //}
 
                 textFile.AcceptParsedDocument(parser.ParsedDocument);
-                textFile.Close();
+                if(TextFile != textFile) textFile.Close();
                 if (textFile.NavigatePanelNode != null) 
                 {
                     textFile.NavigatePanelNode.Update();
@@ -638,8 +638,8 @@ namespace codeEditor.CodeEditor
 
         private void codeTextbox_MouseLeave(object sender, EventArgs e)
         {
-            closeAutoComplete();
-            popupForm.Visible = false;
+//            closeAutoComplete();
+//            popupForm.Visible = false;
         }
 
         private void CodeTextbox_SelectionChanged()

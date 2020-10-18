@@ -81,9 +81,7 @@ namespace codeEditor.Tools
                     if (parser == null) continue;
                     parser.Parse();
 
-                    textFile.CodeDocument.CopyColorsFrom(parser.Document);
-                    textFile.CodeDocument.CopyMarksFrom(parser.Document);
-                    //codeTextbox.Invoke(new Action(codeTextbox.Refresh));
+                    textFile.CodeDocument.CopyFrom(parser.Document);
 
                     if (textFile.ParsedDocument != null)
                     {

@@ -231,6 +231,10 @@ namespace codeEditor.CodeEditor
         private void AutoCompleteForm_VisibleChanged(object sender, EventArgs e)
         {
             if(Visible) selectedItem = null;
+            if (!Visible)
+            {
+                string s = "";
+            }
         }
     }
 }

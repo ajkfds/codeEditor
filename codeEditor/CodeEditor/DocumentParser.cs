@@ -13,9 +13,13 @@ namespace codeEditor.CodeEditor
         {
             this.EditId = textFile.CodeDocument.EditID;
             this.document = new CodeDocument(textFile);
-            this.document.CopyCharsFrom(textFile.CodeDocument);
-            this.document.CopyLineIndexFrom(textFile.CodeDocument);
-            this.ParseMode = parseMode;
+            this.document.CopyTextOnlyFrom(textFile.CodeDocument);
+/*            lock (this.document)
+            {
+                this.document.CopyCharsFrom(textFile.CodeDocument);
+                this.document.CopyLineIndexFrom(textFile.CodeDocument);
+            }
+*/            this.ParseMode = parseMode;
             this.TextFile = textFile;
         }
 
