@@ -42,6 +42,14 @@ namespace codeEditor.Data
             if (FileCreated != null) FileCreated(fileItem);
             return fileItem;
         }
+
+        public bool IsSameAs(File file)
+        {
+            if (RelativePath != file.RelativePath) return false;
+            if (Project != file.Project) return false;
+            return true;
+        }
+
         public static Action<File> FileCreated;
 
         //public static string GetID(string relativePath, Project project)

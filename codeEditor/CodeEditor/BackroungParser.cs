@@ -68,7 +68,8 @@ namespace codeEditor.CodeEditor
             {
                 lock (toBackgroundStock)
                 {
-                    if (parsing) return toBackgroundStock.Count + 1;
+//                    if (parsing) return toBackgroundStock.Count + 1;
+                    if (parsing) return toBackgroundStock.Count;
                     return toBackgroundStock.Count;
                 }
             }
