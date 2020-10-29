@@ -104,12 +104,14 @@ namespace codeEditor.Data
 
 
         // get parse target
-        private List<Item> parseItems = new List<Item>();
+//        private List<Item> parseItems = new List<Item>();
+
+        private Dictionary<string, Item> parseItems = new Dictionary<string, Item>();
         public Item FetchReparseTarget()
         {
             lock (parseItems)
             {
-                Item item = parseItems.FirstOrDefault();
+                Item item = parseItems.Values.FirstOrDefault();
                 if (item == null) return null;
                 while(
                     (item as TextFile) != null &&
@@ -119,11 +121,11 @@ namespace codeEditor.Data
                     (item as TextFile).ParsedDocument.EditID == (item as TextFile).CodeDocument.EditID
                     )
                 {
-                    item = parseItems.FirstOrDefault();
+                    item = parseItems.Values.FirstOrDefault();
                     if (item == null) return null;
-                    parseItems.Remove(item);
+                    parseItems.Remove(item.ID);
                 }
-                parseItems.Remove(item);
+                parseItems.Remove(item.ID);
                 return item;
             }
         }
@@ -132,9 +134,10 @@ namespace codeEditor.Data
         {
             lock (parseItems)
             {
-                if (!parseItems.Contains(item))
+                if (!parseItems.ContainsKey(item.ID))
                 {
-                    parseItems.Add(item);
+                    System.Diagnostics.Debug.Print("entry add parse:"+item.ID);
+                    parseItems.Add(item.ID,item);
                 }
             }
         }

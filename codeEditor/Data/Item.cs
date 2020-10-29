@@ -24,6 +24,14 @@ namespace codeEditor.Data
                 parent = new WeakReference<Data.Item>(value);
             }
         }
+
+        public virtual string ID
+        {
+            get
+            {
+                return RelativePath;
+            }
+        }
         public virtual string RelativePath { get; protected set; }
 
         public virtual string Name { get; protected set; }

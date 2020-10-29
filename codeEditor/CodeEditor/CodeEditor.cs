@@ -314,6 +314,7 @@ namespace codeEditor.CodeEditor
                 Controller.NavigatePanel.GetSelectedNode(out node);
                 if (node == null) return;
                 Data.Project project = node.Item.Project;
+
                 Data.Item item = project.FetchReparseTarget();
                 if (item == null) return;
 
