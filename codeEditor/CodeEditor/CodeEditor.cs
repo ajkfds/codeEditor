@@ -322,7 +322,7 @@ namespace codeEditor.CodeEditor
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
-                    Controller.AppendLog("entry parse " + item.Name + " " + DateTime.Now.ToString());
+                    Controller.AppendLog("entry parse " + item.ID + " " + DateTime.Now.ToString());
                 }
             }
             else

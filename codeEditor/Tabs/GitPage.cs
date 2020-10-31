@@ -12,7 +12,7 @@ namespace codeEditor.Tabs
         {
             IconImage = codeEditor.Global.IconImages.Git;
 
-            gitPanel.BackColor = System.Drawing.Color.White;
+            gitPanel.BackColor = System.Drawing.Color.FromArgb(50, 50, 50);
             gitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             gitPanel.Font = new System.Drawing.Font("MS UI Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             gitPanel.Location = new System.Drawing.Point(3, 3);

@@ -247,6 +247,7 @@ namespace codeEditor.Data
             Data.ITextFile textFile = file as Data.ITextFile;
             if (textFile == null) return;
             textFile.CloseRequested = true;
+            textFile.Update();
         }
 
         private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
@@ -254,6 +255,7 @@ namespace codeEditor.Data
             Controller.AppendLog(e.Name + " renamed");
             Item item = GetItem(GetRelativePath(e.FullPath));
             if (item == null) return;
+            item.Update();
             if (item.Parent != null) item.Parent.Update();
         }
 
@@ -262,6 +264,7 @@ namespace codeEditor.Data
             Controller.AppendLog(e.Name + " created");
             Item item = GetItem(GetRelativePath(e.FullPath));
             if (item == null) return;
+            item.Update();
             if (item.Parent != null) item.Parent.Update();
         }
 
@@ -270,6 +273,7 @@ namespace codeEditor.Data
             Controller.AppendLog(e.Name + " deleted");
             Item item  = GetItem(GetRelativePath(e.FullPath));
             if (item == null) return;
+            item.Update();
             if (item.Parent != null) item.Parent.Update();
         }
     }
