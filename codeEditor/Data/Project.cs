@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace codeEditor.Data
 {
@@ -48,6 +50,7 @@ namespace codeEditor.Data
         }
 
         protected System.IO.FileSystemWatcher fileSystemWatcher;
+        protected System.Windows.Forms.Timer fsTimer = new System.Windows.Forms.Timer();
         protected void startFileSystemWatcher()
         {
             fileSystemWatcher = new System.IO.FileSystemWatcher();
@@ -66,6 +69,10 @@ namespace codeEditor.Data
             fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
 
             fileSystemWatcher.EnableRaisingEvents = true;
+
+            fsTimer.Interval = 10;
+            fsTimer.Tick += fsTimer_Tick;
+            fsTimer.Start();
         }
 
         private void stopFileSystemWatcher()
@@ -75,7 +82,7 @@ namespace codeEditor.Data
             fileSystemWatcher = null;
         }
 
-        public static Dictionary<string, Func<Project, ProjectProperty>> ProjectPropertyCreated = new Dictionary<string, Func<Project, ProjectProperty>>(); 
+        public static Dictionary<string, Func<Project, ProjectProperty>> ProjectPropertyCreated = new Dictionary<string, Func<Project, ProjectProperty>>();
 
         private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
         public ProjectProperty GetProjectProperty(string pluginID)
@@ -88,7 +95,7 @@ namespace codeEditor.Data
             {
                 if (ProjectPropertyCreated.ContainsKey(pluginID))
                 {
-                    projectProperties.Add(pluginID,ProjectPropertyCreated[pluginID](this));
+                    projectProperties.Add(pluginID, ProjectPropertyCreated[pluginID](this));
                     return projectProperties[pluginID];
                 }
                 else
@@ -104,7 +111,7 @@ namespace codeEditor.Data
 
 
         // get parse target
-//        private List<Item> parseItems = new List<Item>();
+        //        private List<Item> parseItems = new List<Item>();
 
         private Dictionary<string, Item> parseItems = new Dictionary<string, Item>();
         public Item FetchReparseTarget()
@@ -113,7 +120,7 @@ namespace codeEditor.Data
             {
                 Item item = parseItems.Values.FirstOrDefault();
                 if (item == null) return null;
-                while(
+                while (
                     (item as TextFile) != null &&
                     (item as TextFile).ParsedDocument != null &&
                     (item as TextFile).IsCodeDocumentCashed &&
@@ -136,8 +143,8 @@ namespace codeEditor.Data
             {
                 if (!parseItems.ContainsKey(item.ID))
                 {
-                    System.Diagnostics.Debug.Print("entry add parse:"+item.ID);
-                    parseItems.Add(item.ID,item);
+                    System.Diagnostics.Debug.Print("entry add parse:" + item.ID);
+                    parseItems.Add(item.ID, item);
                 }
             }
         }
@@ -227,7 +234,7 @@ namespace codeEditor.Data
                     if (key == null) break;
 
                     Data.ProjectProperty property = GetProjectProperty(key);
-                    if(property == null)
+                    if (property == null)
                     {
                         reader.SkipValue();
                         continue;
@@ -238,43 +245,87 @@ namespace codeEditor.Data
         }
 
         // file system watcher
+
+        Dictionary<string, FileSystemEventArgs> fileSystemEvents = new Dictionary<string, FileSystemEventArgs>();
+
+        private void addFileSystemEvent(System.IO.FileSystemEventArgs e)
+        {
+            lock (fileSystemEvents)
+            {
+                while (fileSystemEvents.ContainsKey(e.FullPath))
+                {
+                    System.IO.FileSystemEventArgs prevE = fileSystemEvents[e.FullPath];
+                    switch (prevE.ChangeType)
+                    {
+                        case WatcherChangeTypes.Changed:
+                            fileSystemEvents.Remove(prevE.FullPath);
+                            break;
+                        case WatcherChangeTypes.Created:
+                            fileSystemEvents.Remove(prevE.FullPath);
+                            break;
+                        case WatcherChangeTypes.Deleted:
+                            fileSystemEvents.Remove(prevE.FullPath);
+                            break;
+                        case WatcherChangeTypes.Renamed:
+                            fileSystemEvents.Remove(prevE.FullPath);
+                            break;
+                    }
+                }
+                fileSystemEvents.Add(e.FullPath, e);
+//                fsTimer.Enabled = true;
+            }
+        }
+
         private void FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
-            Controller.AppendLog(e.Name + " changed");
-            string relativePath = GetRelativePath(e.FullPath);
-            Data.File file = GetItem(relativePath) as Data.File;
-            if (file == null) return;
-            Data.ITextFile textFile = file as Data.ITextFile;
-            if (textFile == null) return;
-            textFile.CloseRequested = true;
-            textFile.Update();
+            addFileSystemEvent(e);
         }
 
         private void FileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
         {
-            Controller.AppendLog(e.Name + " renamed");
-            Item item = GetItem(GetRelativePath(e.FullPath));
-            if (item == null) return;
-            item.Update();
-            if (item.Parent != null) item.Parent.Update();
+            addFileSystemEvent(e);
         }
 
         private void FileSystemWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
         {
-            Controller.AppendLog(e.Name + " created");
-            Item item = GetItem(GetRelativePath(e.FullPath));
-            if (item == null) return;
-            item.Update();
-            if (item.Parent != null) item.Parent.Update();
+            addFileSystemEvent(e);
         }
 
         private void FileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
         {
-            Controller.AppendLog(e.Name + " deleted");
-            Item item  = GetItem(GetRelativePath(e.FullPath));
-            if (item == null) return;
-            item.Update();
-            if (item.Parent != null) item.Parent.Update();
+            addFileSystemEvent(e);
         }
+
+        private void fsTimer_Tick(object sender, System.EventArgs e)
+        {
+            lock (fileSystemEvents)
+            {
+                while (fileSystemEvents.Count != 0)
+                {
+                    System.IO.FileSystemEventArgs fs = fileSystemEvents.Values.FirstOrDefault();
+                    fileSystemEvents.Remove(fs.FullPath);
+                    {
+                        Controller.AppendLog(fs.Name + " changed");
+                        string relativePath = GetRelativePath(fs.FullPath);
+                        Data.File file = GetItem(relativePath) as Data.File;
+                        if (file == null) return;
+                        Data.ITextFile textFile = file as Data.ITextFile;
+                        if (textFile == null) return;
+                        if (textFile.Dirty)
+                        {
+                            Controller.AppendLog(fs.FullPath + " conflict!");
+                        }
+                        else
+                        {
+                            textFile.LoadFormFile();
+                            textFile.Update();
+                        }
+                    }
+
+                }
+//                fsTimer.Enabled = false;
+            }
+        }
+
     }
 }

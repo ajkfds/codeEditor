@@ -15,8 +15,9 @@ namespace codeEditor.Data
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
         void AcceptParsedDocument(CodeEditor.ParsedDocument newParsedDocument);
 
-        bool ParseRequested { get; set; }
-        bool CloseRequested { get; set; }
+        void LoadFormFile();
+        //bool ParseRequested { get; set; }
+        //bool CloseRequested { get; set; }
         // projectItem
 
         string RelativePath { get; }

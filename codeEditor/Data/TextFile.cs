@@ -42,11 +42,11 @@ namespace codeEditor.Data
 
         public virtual CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
-        private volatile bool parseRequested = false;
-        public virtual bool ParseRequested { get {return parseRequested; } set { parseRequested = value; } }
+        //private volatile bool parseRequested = false;
+        //public virtual bool ParseRequested { get {return parseRequested; } set { parseRequested = value; } }
 
-        private volatile bool reloadRequested = false;
-        public virtual bool CloseRequested { get { return reloadRequested; } set { reloadRequested = value; } }
+        //private volatile bool reloadRequested = false;
+        //public virtual bool CloseRequested { get { return reloadRequested; } set { reloadRequested = value; } }
 
         public virtual void AcceptParsedDocument(ParsedDocument newParsedDocument)
         {
@@ -55,7 +55,7 @@ namespace codeEditor.Data
             if (oldParsedDocument != null) oldParsedDocument.Dispose();
 
             ParsedDocument = newParsedDocument;
-            ParseRequested = false;
+//            ParseRequested = false;
             Update();
         }
         public virtual void Close()
@@ -74,27 +74,18 @@ namespace codeEditor.Data
             }
         }
 
-        private CodeEditor.CodeDocument document = null;
+        public virtual void LoadFormFile()
+        {
+            loadDoumentFromFile();
+        }
+
+        protected CodeEditor.CodeDocument document = null;
         public virtual CodeEditor.CodeDocument CodeDocument {
             get
             {
                 if(document == null)
                 {
-                    try
-                    {
-                        using (System.IO.StreamReader sr = new System.IO.StreamReader( Project.GetAbsolutePath(RelativePath) ))
-                        {
-                            document = new CodeEditor.CodeDocument(this);
-                            string text = sr.ReadToEnd();
-                            document.Replace(0, 0, 0, text);
-//                            document.ClearHistory();
-                            document.Clean();
-                        }
-                    }
-                    catch
-                    {
-                        document = null;
-                    }
+                    loadDoumentFromFile();
                 }
                 return document;
             }
@@ -104,7 +95,26 @@ namespace codeEditor.Data
             }
         }
 
-        
+        private void loadDoumentFromFile()
+        {
+            try
+            {
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(Project.GetAbsolutePath(RelativePath)))
+                {
+                    document = new CodeEditor.CodeDocument(this);
+                    string text = sr.ReadToEnd();
+                    document.Replace(0, 0, 0, text);
+                    //                            document.ClearHistory();
+                    document.Clean();
+                }
+            }
+            catch
+            {
+                document = null;
+            }
+        }
+
+
         public virtual ajkControls.CodeDrawStyle DrawStyle
         {
             get

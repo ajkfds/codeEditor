@@ -1,4 +1,5 @@
-﻿using System;
+﻿using codeEditor.NavigatePanel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,24 +46,31 @@ namespace codeEditor.Data
 
         public virtual Item GetItem(string relativePath)
         {
-            string target;
+            // hier search to get a item
+            if (Name == relativePath) return this;
+
             if (relativePath.Contains(@"\"))
             {
-                target = relativePath.Substring(0, relativePath.IndexOf(@"\"));
+                string folderName = relativePath.Substring(0, relativePath.IndexOf(@"\"));
+                if (items.ContainsKey(folderName))
+                {
+                    return items[folderName].GetItem(relativePath.Substring(folderName.Length));
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
-                if (Name == relativePath) return this;
-                return null;
-            }
-
-            if (items.ContainsKey(target))
-            {
-                return items[target].GetItem(relativePath.Substring(target.Length));
-            }
-            else
-            {
-                return null;
+                if (items.ContainsKey(relativePath))
+                {
+                    return items[relativePath];
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 

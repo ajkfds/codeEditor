@@ -92,7 +92,7 @@ namespace codeEditor.Tools
 
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
                     
-                    textFile.ParseRequested = true;
+//                    textFile.ParseRequested = true;
                     textFile.Close();
                 }
             }

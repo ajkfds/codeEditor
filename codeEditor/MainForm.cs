@@ -155,7 +155,11 @@ namespace codeEditor
 
         internal void Controller_AddProject(Data.Project project)
         {
-            if (Global.Projects.ContainsKey(project.Name)) return;
+            if (Global.Projects.ContainsKey(project.Name))
+            {
+                System.Diagnostics.Debugger.Break();
+                return;
+            }
             Global.Projects.Add(project.Name,project);
             addProject(project);
         }

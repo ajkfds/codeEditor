@@ -332,7 +332,7 @@ namespace codeEditor.CodeEditor
                     if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
                     {
                         Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
-                        TextFile.ParseRequested = false;
+//                        TextFile.ParseRequested = false;
                         return;
                     }
                 }
