@@ -312,7 +312,7 @@ namespace codeEditor.CodeEditor
                 if (subBackGroundParser.RemainingStocks != 0) return;
                 NavigatePanel.NavigatePanelNode node;
                 Controller.NavigatePanel.GetSelectedNode(out node);
-                if (node == null) return;
+                if (node == null || node.Item == null) return;
                 Data.Project project = node.Item.Project;
 
                 Data.Item item = project.FetchReparseTarget();
