@@ -249,6 +249,12 @@ namespace codeEditor.CodeEditor
         private int previousEditIdD= -1;
         private void codeTextbox_CarletLineChanged(object sender, EventArgs e)
         {
+            bool first1, first2;
+            System.Diagnostics.Debug.Print("document id"
+                + " " + Global.IdGenerator.GetId(codeTextbox.Document,out first1).ToString()
+                + " " + Global.IdGenerator.GetId(TextFile.CodeDocument, out first2).ToString()
+                );
+
             if (codeTextbox.Document == null) return;
             if(previousEditIdD != codeTextbox.Document.EditID)
             {
@@ -293,7 +299,8 @@ namespace codeEditor.CodeEditor
             //CodeDocument.CopyColorMarkFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
-            if(parser.ParsedDocument != null)
+            checkID("before accept parse normal");
+            if (parser.ParsedDocument != null)
             {
                 TextFile.AcceptParsedDocument(parser.ParsedDocument);
             }
@@ -303,6 +310,8 @@ namespace codeEditor.CodeEditor
 
             Controller.NavigatePanel.UpdateVisibleNode();
             Controller.NavigatePanel.Refresh();
+
+            checkID("after accept parse normal");
         }
 
         private void subBgtimer_Tick(object sender, EventArgs e)
@@ -318,12 +327,15 @@ namespace codeEditor.CodeEditor
                 Data.Item item = project.FetchReparseTarget();
                 if (item == null) return;
 
+                checkID("before entry parse");
+
                 DocumentParser newParser = item.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
                     Controller.AppendLog("entry parse " + item.ID + " " + DateTime.Now.ToString());
                 }
+                checkID("after entry parse");
             }
             else
             { // receive result
@@ -352,6 +364,8 @@ namespace codeEditor.CodeEditor
                 //    return;
                 //}
 
+                checkID("before accept parsed document");
+
                 textFile.AcceptParsedDocument(parser.ParsedDocument);
                 if(TextFile != textFile) textFile.Close();
                 if (textFile.NavigatePanelNode != null) 
@@ -362,8 +376,23 @@ namespace codeEditor.CodeEditor
                 Controller.NavigatePanel.UpdateVisibleNode();
                 Controller.NavigatePanel.Refresh();
                 parser.Dispose();
+
+                checkID("after accept parsed document");
             }
 
+        }
+
+        private void checkID(string messgae)
+        {
+            // debug fuction
+            //bool first1, first2;
+            //if (codeTextbox.Document != null)
+            //{
+            //    System.Diagnostics.Debug.Print(messgae+ " id"
+            //        + " " + Global.IdGenerator.GetId(codeTextbox.Document, out first1).ToString()
+            //        + " " + Global.IdGenerator.GetId(TextFile.CodeDocument, out first2).ToString()
+            //        );
+            //}
         }
 
 
