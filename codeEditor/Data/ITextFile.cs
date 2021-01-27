@@ -29,6 +29,8 @@ namespace codeEditor.Data
 
         bool Dirty { get; }
 
+        DateTime? LoadedFileLastWriteTime { get; }
+
         void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e);
         void AfterKeyDown(System.Windows.Forms.KeyEventArgs e);
         void BeforeKeyPressed(System.Windows.Forms.KeyPressEventArgs e);

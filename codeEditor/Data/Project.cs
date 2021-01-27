@@ -317,8 +317,12 @@ namespace codeEditor.Data
                         }
                         else
                         {
-                            textFile.LoadFormFile();
-                            textFile.Update();
+                            DateTime lastWriteTime = System.IO.File.GetLastWriteTime(fs.FullPath);
+                            if(textFile.LoadedFileLastWriteTime != lastWriteTime)
+                            {
+                                textFile.LoadFormFile();
+                                textFile.Update();
+                            }
                         }
                     }
 

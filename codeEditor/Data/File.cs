@@ -17,14 +17,6 @@ namespace codeEditor.Data
                 if (fileType.IsThisFileType(relativePath, project)) return fileType.CreateFile(relativePath, project);
             }
 
-            //string id = File.GetID(relativePath, project);
-            //if (project.IsRegistered(id))
-            //{
-            //    File item = project.GetRegisterdItem(id) as File;
-            //    project.RegisterProjectItem(item);
-            //    return item;
-            //}
-
             File fileItem = new File();
             fileItem.Project = project;
             fileItem.RelativePath = relativePath;
@@ -41,6 +33,14 @@ namespace codeEditor.Data
 
             if (FileCreated != null) FileCreated(fileItem);
             return fileItem;
+        }
+
+        public string AbsolutePath
+        {
+            get
+            {
+                return Project.GetAbsolutePath(RelativePath);
+            }
         }
 
         public bool IsSameAs(File file)

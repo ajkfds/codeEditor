@@ -174,10 +174,7 @@ namespace codeEditor.CodeEditor
         {
             if (TextFile == null) return;
             entryParse();
-            using(System.IO.StreamWriter sw = new System.IO.StreamWriter(TextFile.Project.GetAbsolutePath(TextFile.RelativePath)))
-            {
-                sw.Write(TextFile.CodeDocument.CreateString());
-            }
+            TextFile.Save();
             TextFile.CodeDocument.Clean();
         }
 

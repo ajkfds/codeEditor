@@ -55,7 +55,6 @@ namespace codeEditor.Data
             if (oldParsedDocument != null) oldParsedDocument.Dispose();
 
             ParsedDocument = newParsedDocument;
-//            ParseRequested = false;
             Update();
         }
         public virtual void Close()
@@ -80,12 +79,17 @@ namespace codeEditor.Data
         }
 
         protected CodeEditor.CodeDocument document = null;
+        
         public virtual CodeEditor.CodeDocument CodeDocument {
             get
             {
                 if(document == null)
                 {
                     loadDoumentFromFile();
+                }
+                else
+                {
+                    loadedFileLastWriteTime = null;
                 }
                 return document;
             }
@@ -95,16 +99,38 @@ namespace codeEditor.Data
             }
         }
 
+        public void Save()
+        {
+            if (CodeDocument == null) return;
+
+            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(AbsolutePath))
+            {
+                sw.Write(CodeDocument.CreateString());
+            }
+            loadedFileLastWriteTime = System.IO.File.GetLastWriteTime(AbsolutePath);
+        }
+
+        public DateTime? LoadedFileLastWriteTime
+        {
+            get
+            {
+                return loadedFileLastWriteTime;
+            }
+        }
+
+        protected DateTime? loadedFileLastWriteTime;
         private void loadDoumentFromFile()
         {
             try
             {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(Project.GetAbsolutePath(RelativePath)))
+                if(document == null) document = new CodeEditor.CodeDocument(this);
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(AbsolutePath))
                 {
-                    document = new CodeEditor.CodeDocument(this);
+                    loadedFileLastWriteTime = System.IO.File.GetLastWriteTime(AbsolutePath);
+
                     string text = sr.ReadToEnd();
-                    document.Replace(0, 0, 0, text);
-                    //                            document.ClearHistory();
+                    document.Replace(0, document.Length, 0, text);
+                    document.ClearHistory();
                     document.Clean();
                 }
             }

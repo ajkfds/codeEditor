@@ -25,6 +25,16 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        public Data.TextFile TextFile
+        {
+            get
+            {
+                Data.TextFile ret;
+                if (!textFileRef.TryGetTarget(out ret)) return null;
+                return ret;
+            }
+        }
+
         public Data.Project Project {
             get
             {
