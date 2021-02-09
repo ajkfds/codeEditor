@@ -17,6 +17,7 @@ namespace codeEditor.Data
             get
             {
                 Data.Item ret;
+                if (parent == null) return null;
                 if (!parent.TryGetTarget(out ret)) return null;
                 return ret;
             }

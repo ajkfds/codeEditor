@@ -8,10 +8,35 @@ namespace codeEditor.Data
 {
     public interface ITextFile
     {
+        // item
+        Data.Item Parent { get; set; }
+
+        string ID { get; }
+        string RelativePath { get; }
+
+        string Name { get; }
+        Project Project { get; }
+
+        IReadOnlyDictionary<string, Item> Items { get; }
+
+        Item GetItem(string relativePath);
+
+        List<Item> FindItems(Func<Item, bool> match, Func<Item, bool> stop);
+
+
+        void Dispose();
+
+        void Update();
+
+        NavigatePanel.NavigatePanelNode CreateNode();
+
+        NavigatePanel.NavigatePanelNode NavigatePanelNode { get; }
+        CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode);
+
+        // textFile
         CodeEditor.CodeDocument CodeDocument { get; }
         bool IsCodeDocumentCashed { get; }
 
-        CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode);
         CodeEditor.ParsedDocument ParsedDocument { get; set; }
         void AcceptParsedDocument(CodeEditor.ParsedDocument newParsedDocument);
 
@@ -19,13 +44,6 @@ namespace codeEditor.Data
         //bool ParseRequested { get; set; }
         //bool CloseRequested { get; set; }
         // projectItem
-
-        string RelativePath { get; }
-        string Name { get; }
-        Project Project { get; }
-
-        void Update();
-        void Dispose();
 
         bool Dirty { get; }
 
