@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.CodeEditor
 {
-    public class CodeDocument : ajkControls.Document
+    public class CodeDocument : ajkControls.CodeTextbox.Document
     {
         public CodeDocument(Data.TextFile textFile) 
         {

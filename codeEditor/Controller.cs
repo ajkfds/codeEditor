@@ -11,6 +11,7 @@ namespace codeEditor
         public static void AppendLog(string message)
         {
             Global.mainForm.logView.AppendLogLine(message);
+            System.Diagnostics.Debug.Print(message);
         }
         public static void AppendLog(string message,System.Drawing.Color color)
         {

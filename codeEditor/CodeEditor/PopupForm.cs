@@ -15,7 +15,7 @@ namespace codeEditor.CodeEditor
         public PopupForm()
         {
             InitializeComponent();
-            ajkControls.Document document = new ajkControls.Document();
+            ajkControls.CodeTextbox.Document document = new ajkControls.CodeTextbox.Document();
             this.ShowInTaskbar = false;
         }
 

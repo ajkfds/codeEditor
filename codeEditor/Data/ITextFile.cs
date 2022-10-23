@@ -58,6 +58,6 @@ namespace codeEditor.Data
         List<codeEditor.CodeEditor.AutocompleteItem> GetAutoCompleteItems(int index,out string cantidateText);
         List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index);
 
-        ajkControls.CodeDrawStyle DrawStyle { get; }
+        ajkControls.CodeTextbox.CodeDrawStyle DrawStyle { get; }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            ajkControls.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeDrawStyle();
+            ajkControls.CodeTextbox.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeTextbox.CodeDrawStyle();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,7 +37,7 @@
             this.propertiesTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.subBgtimer = new System.Windows.Forms.Timer(this.components);
-            this.codeTextbox = new ajkControls.CodeTextbox();
+            this.codeTextbox = new ajkControls.CodeTextbox.CodeTextbox();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,7 +141,7 @@
 
         #endregion
 
-        internal ajkControls.CodeTextbox codeTextbox;
+        internal ajkControls.CodeTextbox.CodeTextbox codeTextbox;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem propertiesTsmi;

@@ -313,6 +313,8 @@ namespace codeEditor.CodeEditor
 
         private void subBgtimer_Tick(object sender, EventArgs e)
         {
+//            return;
+
             DocumentParser parser = subBackGroundParser.GetResult();
             if (parser == null) { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
@@ -324,15 +326,12 @@ namespace codeEditor.CodeEditor
                 Data.Item item = project.FetchReparseTarget();
                 if (item == null) return;
 
-                checkID("before entry parse");
-
                 DocumentParser newParser = item.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
                 if (newParser != null)
                 {
                     subBackGroundParser.EntryParse(newParser);
                     Controller.AppendLog("entry parse " + item.ID + " " + DateTime.Now.ToString());
                 }
-                checkID("after entry parse");
             }
             else
             { // receive result
@@ -361,8 +360,6 @@ namespace codeEditor.CodeEditor
                 //    return;
                 //}
 
-                checkID("before accept parsed document");
-
                 textFile.AcceptParsedDocument(parser.ParsedDocument);
                 if(TextFile != textFile) textFile.Close();
                 if (textFile.NavigatePanelNode != null) 
@@ -373,8 +370,6 @@ namespace codeEditor.CodeEditor
                 Controller.NavigatePanel.UpdateVisibleNode();
                 Controller.NavigatePanel.Refresh();
                 parser.Dispose();
-
-                checkID("after accept parsed document");
             }
 
         }
@@ -502,12 +497,6 @@ namespace codeEditor.CodeEditor
                 case Keys.Escape:
                     autoCompleteForm.Visible = false;
                     break;
-//                case Keys.Delete:
-//                case Keys.Back:
-//                    openAutoComplete();
-//                    checkAutoComplete();
-                    //                    autoCompleteForm.Visible = false;
- //                   break;
                 default:
                     break;
             }

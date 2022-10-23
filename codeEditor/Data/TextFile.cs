@@ -141,7 +141,7 @@ namespace codeEditor.Data
         }
 
 
-        public virtual ajkControls.CodeDrawStyle DrawStyle
+        public virtual ajkControls.CodeTextbox.CodeDrawStyle DrawStyle
         {
             get
             {

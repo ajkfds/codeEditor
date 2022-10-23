@@ -16,7 +16,7 @@ namespace codeEditor
         public static Dictionary<string, codeEditorPlugin.PluginSetup> PluginSetups = new Dictionary<string, codeEditorPlugin.PluginSetup>();
         internal static MainForm mainForm;
 
-        public static ajkControls.CodeDrawStyle DefaultDrawStyle = new codeEditor.CodeDrawStyle();
+        public static ajkControls.CodeTextbox.CodeDrawStyle DefaultDrawStyle = new codeEditor.CodeDrawStyle();
 
         public static class IconImages
         {

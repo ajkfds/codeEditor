@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace codeEditor
 {
-    public class CodeDrawStyle : ajkControls.CodeDrawStyle
+    public class CodeDrawStyle : ajkControls.CodeTextbox.CodeDrawStyle
     {
         public CodeDrawStyle()
         {
@@ -50,20 +50,20 @@ namespace codeEditor
             }
         }
 
-        public override ajkControls.CodeTextbox.MarkStyleEnum[] MarkStyle
+        public override ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum[] MarkStyle
         {
             get
             {
-                return new ajkControls.CodeTextbox.MarkStyleEnum[8]
+                return new ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum[8]
                     {
-                        ajkControls.CodeTextbox.MarkStyleEnum.wave,    // 0
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.underLine,
-                        ajkControls.CodeTextbox.MarkStyleEnum.fill              // 7 for selection highlight
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.wave,    // 0
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.underLine,
+                        ajkControls.CodeTextbox.CodeTextbox.MarkStyleEnum.fill              // 7 for selection highlight
                     };
             }
         }
