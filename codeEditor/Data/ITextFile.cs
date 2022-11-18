@@ -54,7 +54,7 @@ namespace codeEditor.Data
         void BeforeKeyPressed(System.Windows.Forms.KeyPressEventArgs e);
         void BeforeKeyDown(System.Windows.Forms.KeyEventArgs e);
 
-        List<CodeEditor.PopupItem> GetPopupItems(int EditId, int index);
+        List<CodeEditor.PopupItem> GetPopupItems(ulong Version, int index);
         List<codeEditor.CodeEditor.AutocompleteItem> GetAutoCompleteItems(int index,out string cantidateText);
         List<codeEditor.CodeEditor.ToolItem> GetToolItems(int index);
 

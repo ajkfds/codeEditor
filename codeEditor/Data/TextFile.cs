@@ -164,7 +164,7 @@ namespace codeEditor.Data
             return null;
         }
 
-        public virtual List<PopupItem> GetPopupItems(int EditId, int index)
+        public virtual List<PopupItem> GetPopupItems(ulong Version, int index)
         {
             return null;
         }

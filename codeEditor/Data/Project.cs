@@ -118,21 +118,24 @@ namespace codeEditor.Data
         {
             lock (parseItems)
             {
-                Item item = parseItems.Values.FirstOrDefault();
+                if (parseItems.Count == 0) return null;
+                string key = parseItems.Keys.First<string>();
+                Item item = parseItems[key];
                 if (item == null) return null;
                 while (
                     (item as TextFile) != null &&
                     (item as TextFile).ParsedDocument != null &&
                     (item as TextFile).IsCodeDocumentCashed &&
                     (item as TextFile).CodeDocument != null &&
-                    (item as TextFile).ParsedDocument.EditID == (item as TextFile).CodeDocument.EditID
+                    (item as TextFile).ParsedDocument.EditID == (item as TextFile).CodeDocument.Version
                     )
                 {
-                    item = parseItems.Values.FirstOrDefault();
+                    parseItems.Remove(key);
+                    key = parseItems.Keys.First<string>();
+                    item = parseItems[key];
                     if (item == null) return null;
-                    parseItems.Remove(item.ID);
                 }
-                parseItems.Remove(item.ID);
+                parseItems.Remove(key);
                 return item;
             }
         }

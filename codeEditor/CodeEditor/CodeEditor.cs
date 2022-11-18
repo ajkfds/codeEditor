@@ -243,7 +243,7 @@ namespace codeEditor.CodeEditor
         }
 
 
-        private int previousEditIdD= -1;
+        private ulong previousEditIdD= uint.MaxValue;
         private void codeTextbox_CarletLineChanged(object sender, EventArgs e)
         {
             bool first1, first2;
@@ -253,11 +253,11 @@ namespace codeEditor.CodeEditor
                 );
 
             if (codeTextbox.Document == null) return;
-            if(previousEditIdD != codeTextbox.Document.EditID)
+            if(previousEditIdD != codeTextbox.Document.Version)
             {
                 entryParse();
             }
-            previousEditIdD = codeTextbox.Document.EditID;
+            previousEditIdD = codeTextbox.Document.Version;
         }
 
         public void RequestReparse()
@@ -271,7 +271,7 @@ namespace codeEditor.CodeEditor
             DocumentParser parser = TextFile.CreateDocumentParser(DocumentParser.ParseModeEnum.EditParse);
             if (parser != null)
             {
-                Controller.AppendLog("parserID " + CodeDocument.EditID.ToString());
+                Controller.AppendLog("parserID " + CodeDocument.Version.ToString());
                 backGroundParser.EntryParse(parser);
                 Controller.AppendLog("entry parse " + DateTime.Now.ToString());
             }
@@ -282,9 +282,9 @@ namespace codeEditor.CodeEditor
             if (parser == null) return;
             if (TextFile == null) return;
             if (TextFile != parser.TextFile) return;
-            Controller.AppendLog("ID " + CodeDocument.EditID.ToString()+" parserID "+parser.EditId.ToString());
+            Controller.AppendLog("ID " + CodeDocument.Version.ToString()+" parserID "+parser.EditId.ToString());
 
-            if (CodeDocument.EditID != parser.EditId)
+            if (CodeDocument.Version != parser.EditId)
             {
                 Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
                 return;
@@ -337,7 +337,7 @@ namespace codeEditor.CodeEditor
             { // receive result
                 if(TextFile != null && TextFile == parser.TextFile)
                 {
-                    if (CodeDocument != null && CodeDocument.EditID != parser.EditId)
+                    if (CodeDocument != null && CodeDocument.Version != parser.EditId)
                     {
                         Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
 //                        TextFile.ParseRequested = false;
@@ -346,6 +346,7 @@ namespace codeEditor.CodeEditor
                 }
 
                 Controller.AppendLog("parsed sub  " + parser.TextFile.Name + " " + DateTime.Now.ToString());
+                System.Diagnostics.Debug.Print("## parsed"+parser.TextFile.Name);
                 if(parser.TextFile.Name == "TOP_0")
                 {
                     string a = "";
@@ -397,7 +398,7 @@ namespace codeEditor.CodeEditor
                 TextFile == null ||
                 TextFile.ParsedDocument == null ||
                 TextFile != TextFile.ParsedDocument.Item ||
-                CodeDocument.EditID != TextFile.ParsedDocument.EditID)
+                CodeDocument.Version != TextFile.ParsedDocument.EditID)
             {
                 popupForm.Visible = false;
                 return;
@@ -410,7 +411,7 @@ namespace codeEditor.CodeEditor
             popupInex = headIndex;
 
             List<PopupItem> items;
-            items = TextFile.GetPopupItems(CodeDocument.EditID, index);
+            items = TextFile.GetPopupItems(CodeDocument.Version, index);
             if(items == null || items.Count == 0)
             {
                 popupForm.Visible = false;
