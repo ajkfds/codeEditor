@@ -66,6 +66,9 @@
     <Compile Include="CodeEditor\CodeEditor.Designer.cs">
       <DependentUpon>CodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodeEditor\CodeEditor.Find.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CodeEditor\DocumentParser.cs" />
     <Compile Include="CodeEditor\FindForm.cs">
       <SubType>Form</SubType>
@@ -199,6 +202,12 @@
       <DependentUpon>ProjectPropertyForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <Compile Include="CodeEditor\CodeEditor.Popup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CodeEditor\CodeEditor.Parse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

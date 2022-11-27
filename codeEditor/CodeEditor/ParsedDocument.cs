@@ -8,9 +8,9 @@ namespace codeEditor.CodeEditor
 {
     public class ParsedDocument : IDisposable
     {
-        public ParsedDocument(Data.TextFile textFile,ulong editID)
+        public ParsedDocument(Data.TextFile textFile,ulong version)
         {
-            this.EditID = editID;
+            this.Version = version;
             textFileRef = new WeakReference<Data.TextFile>(textFile);
         }
 
@@ -42,7 +42,7 @@ namespace codeEditor.CodeEditor
                 return Item.Project;
             }
         }
-        public ulong EditID { get; protected set; }
+        public ulong Version { get; protected set; }
 
         public virtual void Dispose()
         {

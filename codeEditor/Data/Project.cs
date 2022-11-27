@@ -128,7 +128,7 @@ namespace codeEditor.Data
                     (item as TextFile).ParsedDocument != null &&
                     (item as TextFile).IsCodeDocumentCashed &&
                     (item as TextFile).CodeDocument != null &&
-                    (item as TextFile).ParsedDocument.EditID == (item as TextFile).CodeDocument.Version
+                    (item as TextFile).ParsedDocument.Version == (item as TextFile).CodeDocument.Version
                     )
                 {
                     parseItems.Remove(key);

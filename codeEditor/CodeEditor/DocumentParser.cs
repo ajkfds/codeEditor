@@ -21,14 +21,12 @@ namespace codeEditor.CodeEditor
             }
 */            this.ParseMode = parseMode;
             this.TextFile = textFile;
-            this.ID =  textFile.RelativePath + "," + "version=" + Version.ToString();
         }
 
         public void Dispose()
         {
             document = null;
         }
-        public string ID { get; protected set; }
 
         public ulong Version { get; protected set; }
         public Data.TextFile TextFile { get; protected set; }

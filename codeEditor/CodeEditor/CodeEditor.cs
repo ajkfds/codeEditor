@@ -47,124 +47,6 @@ namespace codeEditor.CodeEditor
             codeTextbox.ClearHighlight();
         }
 
-        // find & replace form
-        FindForm findForm;
-
-        public void OpenReplace()
-        {
-            if (CodeDocument == null) return;
-
-            if (findForm == null || !findForm.Visible) findForm = new FindForm(this);
-            Point point = this.PointToScreen(new Point(Left, Top));
-            findForm.Left = point.X;
-            findForm.Top = point.Y;
-
-            if (findForm.Visible) return;
-            string initialText = "";
-            if (CodeDocument.SelectionStart != CodeDocument.SelectionLast)
-            {
-                initialText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            }
-            findForm.OpenReplace(initialText, this.PointToScreen(new Point(Width - findForm.Width, 0)));
-        }
-        public void OpenFind()
-        {
-            if (CodeDocument == null) return;
-
-            if(findForm == null || !findForm.Visible) findForm = new FindForm(this);
-            Point point = this.PointToScreen(new Point(Left, Top));
-            findForm.Left = point.X;
-            findForm.Top = point.Y;
-
-            if (findForm.Visible) return;
-            string initialText = "";
-            if(CodeDocument.SelectionStart != CodeDocument.SelectionLast)
-            {
-                initialText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            }
-            findForm.OpenFind(initialText, this.PointToScreen(new Point(Width-findForm.Width, 0)));
-        }
-
-        public void ReplaceNext(string findString,string replaceString)
-        {
-            string currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            if (currentText == findString)
-            {
-                CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
-                return;
-            }
-            FindNext(findString);
-            currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            if (currentText != findString) return;
-            CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
-        }
-
-        public void ReplacePrevious(string findString, string replaceString)
-        {
-            string currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            if (currentText == findString)
-            {
-                CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
-                return;
-            }
-            FindPrevious(findString);
-            currentText = CodeDocument.CreateString(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            if (currentText != findString) return;
-            CodeDocument.Replace(CodeDocument.CaretIndex, CodeDocument.SelectionLast - CodeDocument.SelectionStart, 0, replaceString);
-        }
-        public void FindNext(string findString)
-        {
-            string currentText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            int findIndex;
-            if (currentText == findString)
-            {
-                findIndex = CodeDocument.FindIndexOf(findString, CodeDocument.SelectionStart + 1);
-            }
-            else
-            {
-                findIndex = CodeDocument.FindIndexOf(findString, CodeDocument.CaretIndex);
-            }
-
-            if (findIndex == -1)
-            {
-                findIndex = CodeDocument.FindIndexOf(findString, 0);
-                if (findIndex == -1) return;
-            }
-
-            CodeDocument.CaretIndex = findIndex;
-            CodeDocument.SelectionStart = findIndex;
-            CodeDocument.SelectionLast = findIndex + findString.Length;
-            ScrollToCaret();
-            Refresh();
-        }
-
-        public void FindPrevious(string findString)
-        {
-            string currentText = CodeDocument.CreateString(CodeDocument.SelectionStart, CodeDocument.SelectionLast - CodeDocument.SelectionStart);
-            int findIndex;
-            if (currentText == findString)
-            {
-                if (CodeDocument.SelectionStart == 0) return;
-                findIndex = CodeDocument.FindPreviousIndexOf(findString, CodeDocument.SelectionStart - 1);
-            }
-            else
-            {
-                findIndex = CodeDocument.FindPreviousIndexOf(findString, CodeDocument.CaretIndex);
-            }
-
-            if (findIndex == -1)
-            {
-                if (CodeDocument.Length == 0) return;
-                findIndex = CodeDocument.FindPreviousIndexOf(findString, CodeDocument.Length - 1);
-                if (findIndex == -1) return;
-            }
-
-            CodeDocument.CaretIndex = findIndex;
-            CodeDocument.SelectionStart = findIndex;
-            CodeDocument.SelectionLast = findIndex + findString.Length;
-            ScrollToCaret();
-            Refresh();
-        }
 
         public void MoveToNextHighlight(out bool moved)
         {
@@ -243,7 +125,7 @@ namespace codeEditor.CodeEditor
         }
 
 
-        private ulong previousEditIdD= uint.MaxValue;
+        private ulong previousVersion= uint.MaxValue;
         private void codeTextbox_CarletLineChanged(object sender, EventArgs e)
         {
             bool first1, first2;
@@ -253,121 +135,13 @@ namespace codeEditor.CodeEditor
                 );
 
             if (codeTextbox.Document == null) return;
-            if(previousEditIdD != codeTextbox.Document.Version)
+            if(previousVersion != codeTextbox.Document.Version)
             {
                 entryParse();
             }
-            previousEditIdD = codeTextbox.Document.Version;
+            previousVersion = codeTextbox.Document.Version;
         }
 
-        public void RequestReparse()
-        {
-            entryParse();
-        }
-
-        private void entryParse()
-        {
-            if (TextFile == null) return;
-            DocumentParser parser = TextFile.CreateDocumentParser(DocumentParser.ParseModeEnum.EditParse);
-            if (parser != null)
-            {
-                Controller.AppendLog("parserID " + CodeDocument.Version.ToString());
-                backGroundParser.EntryParse(parser);
-                Controller.AppendLog("entry parse " + DateTime.Now.ToString());
-            }
-        }
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            DocumentParser parser = backGroundParser.GetResult();
-            if (parser == null) return;
-            if (TextFile == null) return;
-            if (TextFile != parser.TextFile) return;
-            Controller.AppendLog("ID " + CodeDocument.Version.ToString()+" parserID "+parser.Version.ToString());
-
-            if (CodeDocument.Version != parser.Version)
-            {
-                Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
-                return;
-            }
-
-            Controller.AppendLog("parsed "+DateTime.Now.ToString());
-
-            CodeDocument.CopyFrom(parser.Document);
-            //CodeDocument.CopyColorMarkFrom(parser.Document);
-            codeTextbox.Invoke(new Action(codeTextbox.Refresh));
-
-            checkID("before accept parse normal");
-            if (parser.ParsedDocument != null)
-            {
-                TextFile.AcceptParsedDocument(parser.ParsedDocument);
-            }
-
-            Controller.MessageView.Update(TextFile.ParsedDocument);
-            codeTextbox.ReDrawHighlight();
-
-            Controller.NavigatePanel.UpdateVisibleNode();
-            Controller.NavigatePanel.Refresh();
-
-            checkID("after accept parse normal");
-        }
-
-        private void subBgtimer_Tick(object sender, EventArgs e)
-        {
-            DocumentParser parser = subBackGroundParser.GetResult();
-            if (parser == null) { // entry parse
-                if (subBackGroundParser.RemainingStocks != 0) return;
-                NavigatePanel.NavigatePanelNode node;
-                Controller.NavigatePanel.GetSelectedNode(out node);
-                if (node == null || node.Item == null) return;
-                Data.Project project = node.Item.Project;
-
-                Data.Item item = project.FetchReparseTarget();
-                if (item == null) return;
-
-                DocumentParser newParser = item.CreateDocumentParser(DocumentParser.ParseModeEnum.BackgroundParse);
-                if (newParser != null)
-                {
-                    subBackGroundParser.EntryParse(newParser);
-                    Controller.AppendLog("entry parse " + item.ID + " " + DateTime.Now.ToString());
-                }
-            }
-            else
-            { // receive result
-                if(TextFile != null && TextFile == parser.TextFile)
-                {
-                    if (CodeDocument != null && CodeDocument.Version != parser.Version)
-                    {
-                        Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
-//                        TextFile.ParseRequested = false;
-                        return;
-                    }
-                }
-
-                Controller.AppendLog("parsed sub  " + parser.TextFile.Name + " " + DateTime.Now.ToString());
-                System.Diagnostics.Debug.Print("## parsed"+parser.TextFile.Name);
-                Data.TextFile textFile = parser.TextFile;
-
-                if (textFile == null) return;
-                //if (textFile.ParsedDocument == null)
-                //{
-                //    textFile.Close();
-                //    textFile.ParseRequested = false;
-                //    return;
-                //}
-
-                textFile.AcceptParsedDocument(parser.ParsedDocument);
-                if(TextFile != textFile) textFile.Close();
-                if (textFile.NavigatePanelNode != null) 
-                {
-                    textFile.NavigatePanelNode.Update();
-                }
-
-                Controller.NavigatePanel.UpdateVisibleNode();
-                Controller.NavigatePanel.Refresh();
-                parser.Dispose();
-            }
-
-        }
 
         private void checkID(string messgae)
         {
@@ -392,7 +166,7 @@ namespace codeEditor.CodeEditor
                 TextFile == null ||
                 TextFile.ParsedDocument == null ||
                 TextFile != TextFile.ParsedDocument.Item ||
-                CodeDocument.Version != TextFile.ParsedDocument.EditID)
+                CodeDocument.Version != TextFile.ParsedDocument.Version)
             {
                 popupForm.Visible = false;
                 return;
@@ -539,113 +313,6 @@ namespace codeEditor.CodeEditor
             TextFile.AfterKeyPressed(e);
         }
 
-        // tool selection form /////////////////////////////////////////////////////////////////////////
-
-        private ajkControls.SelectionForm toolSelectionForm = null;
-
-        private void openToolSelectionForm()
-        {
-            if(toolSelectionForm == null)
-            {
-                toolSelectionForm = new ajkControls.SelectionForm();
-                toolSelectionForm.InputAreaForecolor = Color.FromArgb(250, 250, 250);
-                toolSelectionForm.InputAreaBackcolor = Color.FromArgb(90, 90, 90);
-                toolSelectionForm.ForeColor = Color.FromArgb(240, 240, 240);
-                toolSelectionForm.BackColor = Color.FromArgb(50, 50, 50);
-                toolSelectionForm.Style = Global.DefaultDrawStyle;
-                toolSelectionForm.SelectedColor = Color.FromArgb(128, (int)(52 * 3), (int)(58 * 3), (int)(64 * 3));
-                toolSelectionForm.Selected += ApplyTool;
-            }
-            if (toolSelectionForm.Visible) return;
-
-            List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
-            List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
-            foreach(ToolItem item in tools) { items.Add(item); }
-
-            items.Add(new Snippets.ToLower());
-            items.Add(new Snippets.ToUpper());
-
-            toolSelectionForm.SetSelectionItems(items);
-            toolSelectionForm.Font = codeTextbox.Font;
-
-            Point screenPosition = PointToScreen(codeTextbox.GetCaretTopPoint());
-            Controller.ShowForm(toolSelectionForm, screenPosition);
-        }
-
-        private void ApplyTool(object sender,EventArgs e)
-        {
-            if (toolSelectionForm == null) return;
-            if (toolSelectionForm.SelectedItem == null) return;
-            if (CodeDocument == null) return;
-
-            ((ToolItem)toolSelectionForm.SelectedItem).Apply(CodeDocument);
-            codeTextbox.Refresh();
-            entryParse();
-        }
-
-        private void closeToolSelectionForm()
-        {
-            if (toolSelectionForm != null && toolSelectionForm.Visible) toolSelectionForm.Visible = false;
-            toolSelectionForm.Visible = false;
-        }
-
-        // auto complete form ////////////////////////////////////////////////////////////////////////////////////
-
-        private AutoCompleteForm autoCompleteForm = null;
-
-        private void openAutoComplete()
-        {
-            if (autoCompleteForm == null)
-            {
-                autoCompleteForm = new AutoCompleteForm();
-                autoCompleteForm.Font = codeTextbox.Font;
-            }
-            if (autoCompleteForm.Visible) return;
-            Point screenPosition = PointToScreen(codeTextbox.GetCaretBottomPoint());
-            Controller.ShowForm(autoCompleteForm, screenPosition);
-        }
-
-        private void closeAutoComplete()
-        {
-            if (autoCompleteForm == null) return;
-            autoCompleteForm.Visible = false;
-        }
-
-        private void applyAutoCompleteSelection(KeyEventArgs e)
-        {
-            if (autoCompleteForm == null | !autoCompleteForm.Visible) return;
-            AutocompleteItem item = autoCompleteForm.SelectItem();
-            if (item == null) return;
-            item.Apply(CodeDocument,e);
-        }
-
-        /// <summary>
-        /// update auto complete word text
-        /// </summary>
-        private void checkAutoComplete()
-        {
-            int prevIndex = CodeDocument.CaretIndex;
-            if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
-            {
-                prevIndex--;
-            }
-
-            if (CodeDocument.SelectionStart == CodeDocument.SelectionLast)
-            {
-                string cantidateWord;
-                List<AutocompleteItem> items = TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord);
-                if(items == null || cantidateWord == null)
-                {
-                    closeAutoComplete();
-                }
-                else
-                {
-                    openAutoComplete();
-                    autoCompleteForm.SetAutocompleteItems(items);
-                    autoCompleteForm.UpdateVisibleItems(cantidateWord);
-                }
-            }
-        }
 
         private void codeTextbox_MouseLeave(object sender, EventArgs e)
         {
