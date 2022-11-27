@@ -28,6 +28,19 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        private ulong version = 0;
+        public override ulong Version
+        {
+            get
+            {
+                return version;
+            }
+            set
+            {
+                version = value;
+                Data.TextFile file = TextFile;
+            }
+        }
 
     }
 }

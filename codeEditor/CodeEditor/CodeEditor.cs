@@ -77,10 +77,9 @@ namespace codeEditor.CodeEditor
 
         private CodeDocument CodeDocument
         {
-            get { return codeTextbox.Document as CodeDocument; }
-            set
+            get
             {
-                codeTextbox.Document = value;
+                return TextFile.CodeDocument;
             }
         }
 
