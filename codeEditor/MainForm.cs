@@ -56,6 +56,7 @@ namespace codeEditor
         {
             Global.mainForm = this;
 
+            // GUI setup
             InitializeComponent();
             ajkControls.Global.Icon = Properties.Resources.ajEditor;
             this.Icon = ajkControls.Global.Icon;
@@ -83,6 +84,7 @@ namespace codeEditor
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
             Global.FileTypes.Add(textFileType.ID, textFileType);
 
+            // load pulgins
             codeEditorPlugin.PulginManager pinManager = new codeEditorPlugin.PulginManager();
             List<codeEditorPlugin.IPlugin> plugins = pinManager.LoadPlugIns(@"dlls\");
             while (true)
@@ -105,11 +107,14 @@ namespace codeEditor
             }
 
 
+            // read setup file
             if (System.IO.File.Exists(setupFileName))
             {
                 Global.Setup.LoadSetup(setupFileName);
             }
 
+
+            // initialize pulgins
             List<string> initilalizedPulginName = new List<string>();
             while (true)
             {

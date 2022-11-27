@@ -282,9 +282,9 @@ namespace codeEditor.CodeEditor
             if (parser == null) return;
             if (TextFile == null) return;
             if (TextFile != parser.TextFile) return;
-            Controller.AppendLog("ID " + CodeDocument.Version.ToString()+" parserID "+parser.EditId.ToString());
+            Controller.AppendLog("ID " + CodeDocument.Version.ToString()+" parserID "+parser.Version.ToString());
 
-            if (CodeDocument.Version != parser.EditId)
+            if (CodeDocument.Version != parser.Version)
             {
                 Controller.AppendLog("parsed mismatch " + DateTime.Now.ToString());
                 return;
@@ -313,8 +313,6 @@ namespace codeEditor.CodeEditor
 
         private void subBgtimer_Tick(object sender, EventArgs e)
         {
-//            return;
-
             DocumentParser parser = subBackGroundParser.GetResult();
             if (parser == null) { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
@@ -337,7 +335,7 @@ namespace codeEditor.CodeEditor
             { // receive result
                 if(TextFile != null && TextFile == parser.TextFile)
                 {
-                    if (CodeDocument != null && CodeDocument.Version != parser.EditId)
+                    if (CodeDocument != null && CodeDocument.Version != parser.Version)
                     {
                         Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
 //                        TextFile.ParseRequested = false;
@@ -347,10 +345,6 @@ namespace codeEditor.CodeEditor
 
                 Controller.AppendLog("parsed sub  " + parser.TextFile.Name + " " + DateTime.Now.ToString());
                 System.Diagnostics.Debug.Print("## parsed"+parser.TextFile.Name);
-                if(parser.TextFile.Name == "TOP_0")
-                {
-                    string a = "";
-                }
                 Data.TextFile textFile = parser.TextFile;
 
                 if (textFile == null) return;

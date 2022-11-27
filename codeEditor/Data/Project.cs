@@ -121,6 +121,7 @@ namespace codeEditor.Data
                 if (parseItems.Count == 0) return null;
                 string key = parseItems.Keys.First<string>();
                 Item item = parseItems[key];
+
                 if (item == null) return null;
                 while (
                     (item as TextFile) != null &&

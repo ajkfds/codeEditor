@@ -11,7 +11,7 @@ namespace codeEditor.CodeEditor
         protected DocumentParser(){}
         public DocumentParser(Data.TextFile textFile, ParseModeEnum parseMode)
         {
-            this.EditId = textFile.CodeDocument.Version;
+            this.Version = textFile.CodeDocument.Version;
             this.document = new CodeDocument(textFile);
             this.document.CopyTextOnlyFrom(textFile.CodeDocument);
 /*            lock (this.document)
@@ -21,14 +21,16 @@ namespace codeEditor.CodeEditor
             }
 */            this.ParseMode = parseMode;
             this.TextFile = textFile;
+            this.ID =  textFile.RelativePath + "," + "version=" + Version.ToString();
         }
 
         public void Dispose()
         {
             document = null;
         }
+        public string ID { get; protected set; }
 
-        public ulong EditId { get; protected set; }
+        public ulong Version { get; protected set; }
         public Data.TextFile TextFile { get; protected set; }
         public ParseModeEnum ParseMode { get; protected set; }
         protected CodeDocument document;
