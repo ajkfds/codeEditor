@@ -79,6 +79,7 @@ namespace codeEditor.CodeEditor
         {
             get
             {
+                if(TextFile == null) return null;
                 return TextFile.CodeDocument;
             }
         }
