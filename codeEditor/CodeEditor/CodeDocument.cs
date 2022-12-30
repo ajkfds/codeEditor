@@ -23,6 +23,7 @@ namespace codeEditor.CodeEditor
             get
             {
                 Data.TextFile ret;
+                if (textFileRef == null) return null;
                 if (!textFileRef.TryGetTarget(out ret)) return null;
                 return ret;
             }
