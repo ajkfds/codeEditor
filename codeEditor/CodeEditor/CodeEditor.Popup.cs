@@ -107,7 +107,7 @@ namespace codeEditor.CodeEditor
             {
                 string cantidateWord;
                 List<AutocompleteItem> items = TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord);
-                if (items == null || cantidateWord == null)
+                if (items == null || cantidateWord == null || cantidateWord =="")
                 {
                     closeAutoComplete();
                 }
