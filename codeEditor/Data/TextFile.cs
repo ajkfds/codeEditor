@@ -31,6 +31,7 @@ namespace codeEditor.Data
 
         public override void Dispose()
         {
+            document.Dispose();
             if (ParsedDocument != null) ParsedDocument.Dispose();
             base.Dispose();
         }
@@ -60,6 +61,7 @@ namespace codeEditor.Data
         public virtual void Close()
         {
             if (Dirty) return;
+            CodeDocument.Dispose();
             CodeDocument = null;
         }
 

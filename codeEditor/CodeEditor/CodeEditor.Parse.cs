@@ -12,6 +12,11 @@ namespace codeEditor.CodeEditor
 {
     public partial class CodeEditor : UserControl
     {
+        // 2 Parser Run Concurrently
+        //  Edit Parser
+        //  Background Parser
+
+        // Entry Edit Parse
         public void RequestReparse()
         {
             entryParse();
@@ -39,14 +44,14 @@ namespace codeEditor.CodeEditor
             if (CodeDocument.Version != parser.Version)
             {
                 Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString());
+                parser.Dispose();
                 return;
             }
 
-            CodeDocument.CopyFrom(parser.Document);
-            //CodeDocument.CopyColorMarkFrom(parser.Document);
+            //            CodeDocument.CopyFrom(parser.Document);
+            CodeDocument.CopyColorMarkFrom(parser.Document);
             codeTextbox.Invoke(new Action(codeTextbox.Refresh));
 
-//            checkID("before accept parse normal");
             if (parser.ParsedDocument != null)
             {
                 TextFile.AcceptParsedDocument(parser.ParsedDocument);
@@ -57,8 +62,6 @@ namespace codeEditor.CodeEditor
 
             Controller.NavigatePanel.UpdateVisibleNode();
             Controller.NavigatePanel.Refresh();
-
-//            checkID("after accept parse normal");
         }
 
         private void subBgtimer_Tick(object sender, EventArgs e)
@@ -89,6 +92,7 @@ namespace codeEditor.CodeEditor
                     if (CodeDocument != null && CodeDocument.Version != parser.Version)
                     {
                         Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
+                        parser.Dispose();
                         //                        TextFile.ParseRequested = false;
                         return;
                     }

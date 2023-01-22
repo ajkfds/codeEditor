@@ -33,6 +33,7 @@ namespace codeEditor
             public static ajkControls.IconImage Pause = new ajkControls.IconImage(Properties.Resources.pause);
             public static ajkControls.IconImage Git = new ajkControls.IconImage(Properties.Resources.tree);
             public static ajkControls.IconImage NewBadge = new ajkControls.IconImage(Properties.Resources.newBadge);
+            public static ajkControls.IconImage IgnoreBadge = new ajkControls.IconImage(Properties.Resources.ignore);
         }
 
         public static class ColorMap

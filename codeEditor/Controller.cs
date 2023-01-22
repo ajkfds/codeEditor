@@ -141,6 +141,11 @@ namespace codeEditor
                 Global.mainForm.editorPage.CodeEditor.ScrollToCaret();
             }
 
+            //public static void Select(long index,long length)
+            //{
+            //    Global.mainForm.editorPage.CodeEditor.In
+            //}
+
         }
 
         public static class NavigatePanel

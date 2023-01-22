@@ -34,6 +34,7 @@ namespace codeEditor.NavigatePanel
         public override void Selected()
         {
             codeEditor.Controller.NavigatePanel.GetContextMenuStrip().Items["openWithExploererTsmi"].Visible = true;
+            codeEditor.Controller.NavigatePanel.GetContextMenuStrip().Items["ignoreTsmi"].Visible = true;
         }
 
         public override void Update()
@@ -73,6 +74,7 @@ namespace codeEditor.NavigatePanel
 
         private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
         private static ajkControls.IconImage folder = new ajkControls.IconImage(Properties.Resources.folder);
+        private static ajkControls.IconImage ignoreIcon = new ajkControls.IconImage(Properties.Resources.ignore);
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
@@ -84,6 +86,12 @@ namespace codeEditor.NavigatePanel
             {
                 graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
             }
+
+            if (Item.Ignore)
+            {
+                graphics.DrawImage(ignoreIcon.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Gray), new Point(x, y));
+            }
+
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;
             System.Windows.Forms.TextRenderer.DrawText(

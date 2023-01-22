@@ -39,6 +39,7 @@ namespace codeEditor.NavigatePanel
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.openWithExploererTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new ajkControls.TreeView();
+            this.ignoreTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,11 +51,12 @@ namespace codeEditor.NavigatePanel
             this.addTsmi,
             this.deleteTsmi,
             this.gitLogTsmi,
+            this.ignoreTsmi,
             this.propertySeparator,
             this.propertyTsmi,
             this.openWithExploererTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 173);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 199);
             // 
             // addTsmi
             // 
@@ -111,6 +113,13 @@ namespace codeEditor.NavigatePanel
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
+            // ignoreTsmi
+            // 
+            this.ignoreTsmi.Name = "ignoreTsmi";
+            this.ignoreTsmi.Size = new System.Drawing.Size(240, 26);
+            this.ignoreTsmi.Text = "Ignore";
+            this.ignoreTsmi.Click += new System.EventHandler(this.ignoreTsmi_Click);
+            // 
             // NavigatePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -133,5 +142,6 @@ namespace codeEditor.NavigatePanel
         public System.Windows.Forms.ToolStripMenuItem gitLogTsmi;
         private System.Windows.Forms.ToolStripMenuItem addTsmi;
         private System.Windows.Forms.ToolStripMenuItem openWithExploererTsmi;
+        private System.Windows.Forms.ToolStripMenuItem ignoreTsmi;
     }
 }

@@ -27,26 +27,5 @@ namespace codeEditor.Data
             }
         }
 
-        private void readMacros(ajkControls.JsonReader reader)
-        {
-            while (true)
-            {
-                string key = reader.GetNextKey();
-                if (key == null) break;
-
-                if (Global.Projects.ContainsKey(key))
-                {
-                    using (var block = reader.GetNextObjectReader())
-                    {
-                        Global.Projects[key].LoadSetup(block);
-                    }
-                }
-                else
-                {
-                    reader.SkipValue();
-                }
-            }
-        }
-
     }
 }

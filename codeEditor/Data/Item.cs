@@ -34,6 +34,11 @@ namespace codeEditor.Data
                 return RelativePath;
             }
         }
+
+        public virtual bool Ignore
+        {
+            get; set;
+        }
         public virtual string RelativePath { get; protected set; }
 
         public virtual string Name { get; protected set; }

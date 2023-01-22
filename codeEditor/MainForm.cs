@@ -80,7 +80,7 @@ namespace codeEditor
                 ajkControls.IconImage.ColorStyle.White
                 );
 
-            // register filetype
+            // register text filetype
             FileTypes.TextFile textFileType = new FileTypes.TextFile();
             Global.FileTypes.Add(textFileType.ID, textFileType);
 
@@ -105,7 +105,6 @@ namespace codeEditor
                 }
                 if (registered == 0) break;
             }
-
 
             // read setup file
             if (System.IO.File.Exists(setupFileName))

@@ -8,11 +8,14 @@ namespace codeEditor.CodeEditor
 {
     public class ParsedDocument : IDisposable
     {
-        public ParsedDocument(Data.TextFile textFile,ulong version)
+        public ParsedDocument(Data.TextFile textFile,ulong version, DocumentParser.ParseModeEnum parseMode)
         {
             this.Version = version;
+            this.ParseMode = parseMode;
             textFileRef = new WeakReference<Data.TextFile>(textFile);
         }
+
+        public readonly DocumentParser.ParseModeEnum ParseMode;
 
         private System.WeakReference<Data.TextFile> textFileRef;
         public Data.Item Item

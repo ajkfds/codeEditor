@@ -121,6 +121,14 @@ namespace codeEditor.NavigatePanel
 
             Controller.Tabs.AddPage(new Tabs.GitPage(node.Project));
         }
+        private void ignoreTsmi_Click(object sender, System.EventArgs e)
+        {
+            NavigatePanelNode node = treeView.SelectedNode as NavigatePanelNode;
+            if (node == null) return;
+            node.Item.Ignore = !node.Item.Ignore;
+            node.Update();
+            treeView.Invalidate();
+        }
 
         private void openWithExploererTsmi_Click(object sender, System.EventArgs e)
         {
@@ -140,5 +148,7 @@ namespace codeEditor.NavigatePanel
                 System.Diagnostics.Process.Start("EXPLORER.EXE", "/select,\""+file.Project.GetAbsolutePath(file.RelativePath)+"\"");
             }
         }
+
+
     }
 }

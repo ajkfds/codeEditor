@@ -192,7 +192,7 @@ namespace codeEditor.Data
 
             using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
             {
-                foreach (var propertyKvp in projectProperties)
+                foreach (KeyValuePair<string,ProjectProperty> propertyKvp in projectProperties)
                 {
                     using (var propertyWriter = blockWriter.GetObjectWriter(propertyKvp.Key))
                     {

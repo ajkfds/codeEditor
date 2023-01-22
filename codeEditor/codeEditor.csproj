@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>6</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,7 @@
     <Compile Include="CodeEditor\PopupItem.cs" />
     <Compile Include="CodeEditor\ToolItem.cs" />
     <Compile Include="Data\ITextFile.cs" />
+    <Compile Include="Data\PathFilter.cs" />
     <Compile Include="Tabs\MainTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -316,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\newBadge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ignore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

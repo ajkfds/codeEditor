@@ -8,6 +8,10 @@ namespace codeEditor.CodeEditor
 {
     public class CodeDocument : ajkControls.CodeTextbox.Document
     {
+        public CodeDocument(Data.TextFile textFile,bool textOnly) : base(textOnly)
+        {
+
+        }
         public CodeDocument(Data.TextFile textFile) 
         {
             textFileRef = new WeakReference<Data.TextFile>(textFile);
