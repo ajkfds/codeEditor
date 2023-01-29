@@ -87,6 +87,11 @@ namespace codeEditor
                 }
             }
 
+            public static void ForceOpenAutoComplete(List<codeEditor.CodeEditor.AutocompleteItem> autocompleteItems)
+            {
+                Global.mainForm.editorPage.CodeEditor.ForceOpenAutoComplete(autocompleteItems);
+            }
+
             public static void RequestReparse()
             {
                 Global.mainForm.editorPage.CodeEditor.RequestReparse();

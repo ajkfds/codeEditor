@@ -120,5 +120,28 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        public void ForceOpenAutoComplete(List<AutocompleteItem> autocompleteItems)
+        {
+            int prevIndex = CodeDocument.CaretIndex;
+            if (CodeDocument.GetLineStartIndex(CodeDocument.GetLineAt(prevIndex)) != prevIndex && prevIndex != 0)
+            {
+                prevIndex--;
+            }
+
+            string cantidateWord;
+            List<AutocompleteItem> items = TextFile.GetAutoCompleteItems(CodeDocument.CaretIndex, out cantidateWord);
+            items = autocompleteItems;  // override items
+            if (items == null || cantidateWord == null )
+            {
+                closeAutoComplete();
+            }
+            else
+            {
+                openAutoComplete();
+                autoCompleteForm.SetAutocompleteItems(items);
+                autoCompleteForm.UpdateVisibleItems(cantidateWord);
+            }
+        }
+
     }
 }

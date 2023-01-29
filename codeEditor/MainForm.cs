@@ -124,13 +124,12 @@ namespace codeEditor
                     if (Global.Plugins[pluginName].Initialize())
                     {
                         initialized++;
-                        Controller.AppendLog("Loading plugin ... " + pluginName);
+                        Controller.AppendLog("Initializing plugin ... " + pluginName);
                         initilalizedPulginName.Add(pluginName);
                     }
                 }
                 if (initialized == 0) break;
             }
-
         }
 
 
