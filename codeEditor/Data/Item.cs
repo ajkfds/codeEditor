@@ -45,7 +45,7 @@ namespace codeEditor.Data
         public virtual Project Project { get; protected set; }
 
         protected Dictionary<string, Item> items = new Dictionary<string, Item>();
-        public IReadOnlyDictionary<string, Item> Items
+        public virtual IReadOnlyDictionary<string, Item> Items
         {
             get { return items; }
         }
@@ -80,7 +80,7 @@ namespace codeEditor.Data
             }
         }
 
-        public List<Item> FindItems(Func<Item,bool> match,Func<Item,bool> stop)
+        public virtual  List<Item> FindItems(Func<Item,bool> match,Func<Item,bool> stop)
         {
             List<Item> result = new List<Item>();
             findItems(result, match, stop);
@@ -103,23 +103,48 @@ namespace codeEditor.Data
 
         public virtual void Update() { }
 
-        public virtual NavigatePanel.NavigatePanelNode CreateNode()
-        {
-            System.Diagnostics.Debugger.Break();
-            return null;
-        }
 
         protected WeakReference<NavigatePanel.NavigatePanelNode> nodeRef;
         public virtual NavigatePanel.NavigatePanelNode NavigatePanelNode
         {
             get
             {
-                if (nodeRef == null) return null;
                 NavigatePanel.NavigatePanelNode node;
-                if (!nodeRef.TryGetTarget(out node)) return null;
+                if(nodeRef == null)
+                {
+                    node = createNode();
+                    if (node == null) return null;
+                    nodeRef = new WeakReference<NavigatePanelNode>(node);
+                    return node;
+                }
+
+                if (nodeRef.TryGetTarget(out node)) return node;
+
+                node = createNode();
+                if (node == null) return null;
+                nodeRef = new WeakReference<NavigatePanelNode>(node);
                 return node;
             }
+            protected set
+            {
+                nodeRef = new WeakReference<NavigatePanelNode>(value);
+            }
         }
+        protected virtual NavigatePanel.NavigatePanelNode createNode()
+        {
+            // should set nodeRef
+            System.Diagnostics.Debugger.Break();
+            return NavigatePanelNode;
+        }
+
+        public virtual NavigatePanelNode CreateLinkNode()
+        {
+            NavigatePanelNode node;
+            node = createNode();
+            if(node != null) node.Link = true;
+            return node;
+        }
+
         public virtual CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode)
         {
             return null;

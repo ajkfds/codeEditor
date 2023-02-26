@@ -39,24 +39,33 @@ namespace codeEditor.NavigatePanel
 
         public override void Update()
         {
+            if(Name ==" LINKS")
+            {
+                string a = "";
+            }
             Folder.Update();
 
-            List<Data.Item> currentItems = new List<Data.Item>();
+            List<Data.Item> addItems = new List<Data.Item>();
             foreach (Data.Item item in Folder.Items.Values)
             {
-                currentItems.Add(item);
+                addItems.Add(item);
             }
 
             List<NavigatePanelNode> removeNodes = new List<NavigatePanelNode>();
             foreach (NavigatePanelNode node in TreeNodes)
             {
-                if (currentItems.Contains(node.Item))
+                removeNodes.Add(node);
+            }
+
+            foreach (Data.Item item in Folder.Items.Values)
+            {
+                if (removeNodes.Contains(item.NavigatePanelNode))
                 {
-                    currentItems.Remove(node.Item);
+                    removeNodes.Remove(item.NavigatePanelNode);
                 }
-                else
+                if (TreeNodes.Contains(item.NavigatePanelNode))
                 {
-                    removeNodes.Add(node);
+                    addItems.Remove(item);
                 }
             }
 
@@ -65,11 +74,49 @@ namespace codeEditor.NavigatePanel
                 TreeNodes.Remove(nodes);
             }
 
-            foreach (Data.Item item in currentItems)
+            foreach (Data.Item item in addItems)
             {
                 if (item == null) continue;
-                TreeNodes.Add(item.CreateNode());
+                TreeNodes.Add(item.NavigatePanelNode);
             }
+
+
+            //List<Data.Item> currentItems = new List<Data.Item>();
+            //foreach (Data.Item item in Folder.Items.Values)
+            //{
+            //    currentItems.Add(item);
+            //}
+            //List<NavigatePanelNode> removeNodes = new List<NavigatePanelNode>();
+
+            //foreach (NavigatePanelNode node in TreeNodes)
+            //{
+            //    if (node.Link)
+            //    {
+            //    }
+            //    else
+            //    {
+            //        if (currentItems.Contains(node.Item))
+            //        {
+            //            currentItems.Remove(node.Item);
+            //        }
+            //        else
+            //        {
+            //            removeNodes.Add(node);
+            //        }
+            //    }
+
+            //}
+
+            //foreach (NavigatePanelNode nodes in removeNodes)
+            //{
+            //    TreeNodes.Remove(nodes);
+            //}
+
+            //foreach (Data.Item item in currentItems)
+            //{
+            //    if (item == null) continue;
+            //    TreeNodes.Add(item.CreateNode());
+            //}
         }
 
         private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
@@ -91,6 +138,7 @@ namespace codeEditor.NavigatePanel
             {
                 graphics.DrawImage(ignoreIcon.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Gray), new Point(x, y));
             }
+            if (Link) graphics.DrawImage(codeEditor.Global.IconImages.Link.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
 
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;

@@ -17,6 +17,7 @@ namespace codeEditor
         internal static MainForm mainForm;
 
         public static ajkControls.CodeTextbox.CodeDrawStyle DefaultDrawStyle = new codeEditor.CodeDrawStyle();
+        public static IWshRuntimeLibrary.WshShell WshShell = new IWshRuntimeLibrary.WshShell();
 
         public static class IconImages
         {
@@ -34,6 +35,7 @@ namespace codeEditor
             public static ajkControls.IconImage Git = new ajkControls.IconImage(Properties.Resources.tree);
             public static ajkControls.IconImage NewBadge = new ajkControls.IconImage(Properties.Resources.newBadge);
             public static ajkControls.IconImage IgnoreBadge = new ajkControls.IconImage(Properties.Resources.ignore);
+            public static ajkControls.IconImage Link = new ajkControls.IconImage(Properties.Resources.link);
         }
 
         public static class ColorMap

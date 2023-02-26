@@ -87,6 +87,7 @@
     <Compile Include="CodeEditor\PopupItem.cs" />
     <Compile Include="CodeEditor\ToolItem.cs" />
     <Compile Include="Data\ITextFile.cs" />
+    <Compile Include="Data\Link.cs" />
     <Compile Include="Data\PathFilter.cs" />
     <Compile Include="Tabs\MainTabPage.cs">
       <SubType>Component</SubType>
@@ -321,6 +322,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ignore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

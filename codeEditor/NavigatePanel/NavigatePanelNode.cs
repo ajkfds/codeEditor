@@ -21,6 +21,20 @@ namespace codeEditor.NavigatePanel
 
         public string Name { get; protected set; }
 
+        private bool link = false;
+        
+        public bool Link
+        {
+            get
+            {
+                return link;
+            }
+            set
+            {
+                link = value;
+            }
+        }
+
         private System.WeakReference<Data.Item> itemRef;
         public Data.Item Item
         {
@@ -97,6 +111,7 @@ namespace codeEditor.NavigatePanel
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
+            if(Link) graphics.DrawImage(Global.IconImages.Link.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
             base.DrawNode(graphics, x, y, font, color, backgroundColor, selectedColor, lineHeight, selected);
         }
 

@@ -31,8 +31,10 @@ namespace codeEditor.Data
 
         public override void Dispose()
         {
-            document.Dispose();
+            if(document!=null) document.Dispose();
             if (ParsedDocument != null) ParsedDocument.Dispose();
+            document = null;
+            ParsedDocument = null;
             base.Dispose();
         }
 
@@ -153,11 +155,9 @@ namespace codeEditor.Data
 
 
 
-        public override NavigatePanelNode CreateNode()
+        protected override NavigatePanelNode createNode()
         {
-            NavigatePanel.TextFileNode node = new TextFileNode(this);
-            nodeRef = new WeakReference<NavigatePanelNode>(node);
-            return node;
+            return new TextFileNode(this);
         }
 
 

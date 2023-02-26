@@ -74,9 +74,12 @@ namespace codeEditor.Data
         public override void Update()
         {
             string absolutePath = Project.GetAbsolutePath(RelativePath);
+
+            // get folder contents
             string[] absoluteFilePaths = System.IO.Directory.GetFiles(absolutePath);
             string[] absoluteFolderPaths = System.IO.Directory.GetDirectories(absolutePath);
 
+            // add new files
             foreach (string absoluteFilePath in absoluteFilePaths)
             {
                 string relativePath = Project.GetRelativePath(absoluteFilePath);
@@ -92,11 +95,20 @@ namespace codeEditor.Data
 
                 if (!items.ContainsKey(name))
                 {
-                    File item = File.Create(Project.GetRelativePath(absoluteFilePath), Project,this);
-                    items.Add(item.Name,item);
+                    if (absoluteFilePath.EndsWith(".lnk"))
+                    {
+                        Link item = Link.Create(Project.GetRelativePath(absoluteFilePath), Project, this);
+                        if(item != null) items.Add(item.Name, item);
+                    }
+                    else
+                    {
+                        File item = File.Create(Project.GetRelativePath(absoluteFilePath), Project, this);
+                        items.Add(item.Name, item);
+                    }
                 }
             }
 
+            // add new folders
             foreach (string absoluteFolderPath in absoluteFolderPaths)
             {
                 // skip invisiable folder
@@ -112,23 +124,41 @@ namespace codeEditor.Data
                 }
             }
 
+            // remove unused items
             List<Item> removeItems = new List<Item>();
             foreach(Item item in items.Values)
             {
-                string absoluteItemPath = Project.GetAbsolutePath(item.RelativePath);
-                if(!absoluteFilePaths.Contains(absoluteItemPath) && !absoluteFolderPaths.Contains(absoluteItemPath))
+                if(item is Link)
                 {
-                    removeItems.Add(item);
+                    string linkItemPath = Project.GetAbsolutePath((item as Link).LinkRelativePath);
+                    if (!absoluteFilePaths.Contains(linkItemPath) && !absoluteFolderPaths.Contains(linkItemPath))
+                    {
+                        removeItems.Add(item);
+                    }
+                }
+                else
+                {
+                    string absoluteItemPath = Project.GetAbsolutePath(item.RelativePath);
+                    if (!absoluteFilePaths.Contains(absoluteItemPath) && !absoluteFolderPaths.Contains(absoluteItemPath))
+                    {
+                        removeItems.Add(item);
+                    }
                 }
             }
-            foreach(Item item in removeItems)
+
+            if (removeItems.Count > 0)
+            {
+                string a = "";
+            }
+            foreach (Item item in removeItems)
             {
                 items.Remove(item.Name);
                 item.Dispose();
             }
+
         }
 
-        public override NavigatePanelNode CreateNode()
+        protected override NavigatePanelNode createNode()
         {
             return new FolderNode(this);
         }

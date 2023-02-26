@@ -57,7 +57,7 @@ namespace codeEditor.Data
         //    return project.ID + ":File:" + relativePath;
         //}
 
-        public override  NavigatePanelNode CreateNode()
+        protected override NavigatePanelNode createNode()
         {
             return new FileNode(this);
         }

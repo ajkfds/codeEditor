@@ -28,8 +28,6 @@ namespace codeEditor.Data
 
         void Update();
 
-        NavigatePanel.NavigatePanelNode CreateNode();
-
         NavigatePanel.NavigatePanelNode NavigatePanelNode { get; }
         CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode);
 
