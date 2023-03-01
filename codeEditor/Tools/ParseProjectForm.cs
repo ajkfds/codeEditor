@@ -69,6 +69,7 @@ namespace codeEditor.Tools
 
                 // parse items
                 int i = 0;
+                int gc = 0;
                 foreach (Data.Item item in items)
                 {
                     Invoke(new Action(() => { progressBar.Value = i; }));
@@ -94,6 +95,14 @@ namespace codeEditor.Tools
                     
 //                    textFile.ParseRequested = true;
                     textFile.Close();
+
+                    gc++;
+                    if (gc > 100)
+                    {
+                        System.GC.Collect();
+                        gc = 0;
+                        System.Diagnostics.Debug.Print("process memory " + (Environment.WorkingSet / 1024 / 1024).ToString() + "Mbyte");
+                    }
                 }
             }
 
