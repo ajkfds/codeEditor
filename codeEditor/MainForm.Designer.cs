@@ -159,7 +159,7 @@ namespace codeEditor
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -169,7 +169,7 @@ namespace codeEditor
             this.forceGCToolStripMenuItem,
             this.casheStatusToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.debugToolStripMenuItem.Text = "Debug";
             // 
             // forceGCToolStripMenuItem

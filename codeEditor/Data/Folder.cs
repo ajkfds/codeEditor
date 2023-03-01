@@ -76,7 +76,16 @@ namespace codeEditor.Data
             string absolutePath = Project.GetAbsolutePath(RelativePath);
 
             // get folder contents
-            string[] absoluteFilePaths = System.IO.Directory.GetFiles(absolutePath);
+            string[] absoluteFilePaths;
+            try
+            {
+                absoluteFilePaths = System.IO.Directory.GetFiles(absolutePath);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debugger.Break();
+                return;
+            }
             string[] absoluteFolderPaths = System.IO.Directory.GetDirectories(absolutePath);
 
             // add new files

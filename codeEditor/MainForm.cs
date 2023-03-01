@@ -58,6 +58,14 @@ namespace codeEditor
 
             // GUI setup
             InitializeComponent();
+
+            menuStrip.Renderer = new ajkControls.ToolStrip.CustomRenderer(
+                this.ForeColor, // fore color
+                this.BackColor, // back color
+                System.Drawing.Color.White,    // selected fore color
+                System.Drawing.Color.SlateGray        // selected back color
+                );
+
             ajkControls.Global.Icon = Properties.Resources.ajEditor;
             this.Icon = ajkControls.Global.Icon;
 
