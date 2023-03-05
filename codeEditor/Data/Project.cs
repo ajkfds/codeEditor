@@ -40,6 +40,8 @@ namespace codeEditor.Data
         {
             project.RelativePath = "";
             project.Project = project;
+
+            Created(project);
             project.startFileSystemWatcher();
         }
 
@@ -82,28 +84,31 @@ namespace codeEditor.Data
             fileSystemWatcher = null;
         }
 
-        public static Dictionary<string, Func<Project, ProjectProperty>> ProjectPropertyCreated = new Dictionary<string, Func<Project, ProjectProperty>>();
+//        public static Dictionary<string, Func<Project, ProjectProperty>> ProjectPropertyCreated = new Dictionary<string, Func<Project, ProjectProperty>>();
+        public static Action<Project> Created;
 
-        private Dictionary<string, ProjectProperty> projectProperties = new Dictionary<string, ProjectProperty>();
-        public ProjectProperty GetProjectProperty(string pluginID)
-        {
-            if (projectProperties.ContainsKey(pluginID))
-            {
-                return projectProperties[pluginID];
-            }
-            else
-            {
-                if (ProjectPropertyCreated.ContainsKey(pluginID))
-                {
-                    projectProperties.Add(pluginID, ProjectPropertyCreated[pluginID](this));
-                    return projectProperties[pluginID];
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
+
+        public Dictionary<string, ProjectProperty> ProjectProperties = new Dictionary<string, ProjectProperty>();
+        //public ProjectProperty GetProjectProperty(string pluginID)
+        //{
+        //    if (projectProperties.ContainsKey(pluginID))
+        //    {
+        //        return projectProperties[pluginID];
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //        //if (ProjectPropertyCreated.ContainsKey(pluginID))
+        //        //{
+        //        //    projectProperties.Add(pluginID, ProjectPropertyCreated[pluginID](this));
+        //        //    return projectProperties[pluginID];
+        //        //}
+        //        //else
+        //        //{
+        //        //    return null;
+        //        //}
+        //    }
+        //}
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 
@@ -192,7 +197,7 @@ namespace codeEditor.Data
 
             using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
             {
-                foreach (KeyValuePair<string,ProjectProperty> propertyKvp in projectProperties)
+                foreach (KeyValuePair<string,ProjectProperty> propertyKvp in ProjectProperties)
                 {
                     using (var propertyWriter = blockWriter.GetObjectWriter(propertyKvp.Key))
                     {
@@ -237,12 +242,12 @@ namespace codeEditor.Data
                     string key = reader.GetNextKey();
                     if (key == null) break;
 
-                    Data.ProjectProperty property = GetProjectProperty(key);
-                    if (property == null)
+                    if (!ProjectProperties.ContainsKey(key))
                     {
                         reader.SkipValue();
                         continue;
                     }
+                    Data.ProjectProperty property = ProjectProperties[key];
                     property.LoadSetup(reader);
                 }
             }
