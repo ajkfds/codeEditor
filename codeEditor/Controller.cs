@@ -86,6 +86,10 @@ namespace codeEditor
                     Global.mainForm.mainTab.SelectedTab = Global.mainForm.mainTab.TabPages[0];
                 }
             }
+            public static void ForceOpenCustomSelection(EventHandler applySelection, List<codeEditor.CodeEditor.ToolItem> cantidates)
+            {
+                Global.mainForm.editorPage.CodeEditor.OpenCustomSelection(cantidates);
+            }
 
             public static void ForceOpenAutoComplete(List<codeEditor.CodeEditor.AutocompleteItem> autocompleteItems)
             {

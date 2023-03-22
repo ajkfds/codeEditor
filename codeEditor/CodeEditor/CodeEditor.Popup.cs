@@ -31,6 +31,7 @@ namespace codeEditor.CodeEditor
             }
             if (toolSelectionForm.Visible) return;
 
+
             List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
             List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
             foreach (ToolItem item in tools) { items.Add(item); }
@@ -60,6 +61,52 @@ namespace codeEditor.CodeEditor
         {
             if (toolSelectionForm != null && toolSelectionForm.Visible) toolSelectionForm.Visible = false;
             toolSelectionForm.Visible = false;
+        }
+
+        // tool selection form /////////////////////////////////////////////////////////////////////////
+
+        private ajkControls.SelectionForm customSelectionForm = null;
+        public void OpenCustomSelection(List<ToolItem> cantidates)
+        {
+            if (customSelectionForm == null)
+            {
+                customSelectionForm = new ajkControls.SelectionForm();
+                customSelectionForm.InputAreaForecolor = Color.FromArgb(250, 250, 250);
+                customSelectionForm.InputAreaBackcolor = Color.FromArgb(90, 90, 90);
+                customSelectionForm.ForeColor = Color.FromArgb(240, 240, 240);
+                customSelectionForm.BackColor = Color.FromArgb(50, 50, 50);
+                customSelectionForm.Style = Global.DefaultDrawStyle;
+                customSelectionForm.SelectedColor = Color.FromArgb(128, (int)(52 * 3), (int)(58 * 3), (int)(64 * 3));
+                customSelectionForm.Selected += CustomApplyTool;
+            }
+            if (customSelectionForm.Visible) customSelectionForm.Visible = false;
+
+            List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
+            List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
+            foreach ( ToolItem item in cantidates)
+            {
+                items.Add(item as ajkControls.SelectionItem);
+            }
+
+            items.Add(new Snippets.ToLower());
+            items.Add(new Snippets.ToUpper());
+
+            customSelectionForm.SetSelectionItems(items);
+            customSelectionForm.Font = codeTextbox.Font;
+
+            Point screenPosition = PointToScreen(codeTextbox.GetCaretTopPoint());
+            Controller.ShowForm(customSelectionForm, screenPosition);
+        }
+
+        private void CustomApplyTool(object sender, EventArgs e)
+        {
+            if (customSelectionForm == null) return;
+            if (customSelectionForm.SelectedItem == null) return;
+            if (CodeDocument == null) return;
+
+            ((ToolItem)customSelectionForm.SelectedItem).Apply(CodeDocument);
+            codeTextbox.Refresh();
+            entryParse();
         }
 
         // auto complete form ////////////////////////////////////////////////////////////////////////////////////
