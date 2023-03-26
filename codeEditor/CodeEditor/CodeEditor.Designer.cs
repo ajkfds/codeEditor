@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            ajkControls.CodeTextbox.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeTextbox.CodeDrawStyle();
+            ajkControls.CodeTextbox.CodeDrawStyle codeDrawStyle2 = new ajkControls.CodeTextbox.CodeDrawStyle();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +96,6 @@
             this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
             this.codeTextbox.CrColor = System.Drawing.Color.LightGray;
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeTextbox.Document = null;
             this.codeTextbox.Editable = true;
             this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
@@ -110,7 +109,7 @@
             this.codeTextbox.ScrollBarVisible = true;
             this.codeTextbox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
-            this.codeTextbox.Style = codeDrawStyle1;
+            this.codeTextbox.Style = codeDrawStyle2;
             this.codeTextbox.TabColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
             this.codeTextbox.TabIndex = 0;
             this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);

@@ -123,7 +123,6 @@ namespace codeEditor.CodeEditor
             entryParse();
         }
 
-
         private ulong previousVersion= uint.MaxValue;
         private void codeTextbox_CarletLineChanged(object sender, EventArgs e)
         {
@@ -214,7 +213,9 @@ namespace codeEditor.CodeEditor
         }
 
 
-        // keys
+        // keys handling ////////////////////////////////////////
+
+        // call order :  keydown -> keypress -> keyup
         private void codeTextbox_BeforeKeyDown(object sender, KeyEventArgs e)
         {
             if (TextFile == null) return;
@@ -350,5 +351,6 @@ namespace codeEditor.CodeEditor
                 }
             }
         }
+
     }
 }

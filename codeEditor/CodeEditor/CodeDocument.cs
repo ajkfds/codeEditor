@@ -47,5 +47,14 @@ namespace codeEditor.CodeEditor
             }
         }
 
+        public override void Dispose()
+        {
+            if(Global.mainForm.editorPage.CodeEditor.codeTextbox.Document == this)
+            {
+                Global.mainForm.editorPage.CodeEditor.codeTextbox.Document = null;
+            }
+            base.Dispose();
+        }
+
     }
 }

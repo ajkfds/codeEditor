@@ -28,6 +28,7 @@ namespace codeEditor.CodeEditor
                 toolSelectionForm.Style = Global.DefaultDrawStyle;
                 toolSelectionForm.SelectedColor = Color.FromArgb(128, (int)(52 * 3), (int)(58 * 3), (int)(64 * 3));
                 toolSelectionForm.Selected += ApplyTool;
+                //toolSelectionForm.Shown += setPosition;
             }
             if (toolSelectionForm.Visible) return;
 
@@ -46,24 +47,21 @@ namespace codeEditor.CodeEditor
             Controller.ShowForm(toolSelectionForm, screenPosition);
         }
 
+
         private void ApplyTool(object sender, EventArgs e)
         {
             if (toolSelectionForm == null) return;
             if (toolSelectionForm.SelectedItem == null) return;
             if (CodeDocument == null) return;
 
+            toolSelectionForm.Visible = false;
+            Global.mainForm.Activate();
             ((ToolItem)toolSelectionForm.SelectedItem).Apply(CodeDocument);
             codeTextbox.Refresh();
             entryParse();
         }
 
-        private void closeToolSelectionForm()
-        {
-            if (toolSelectionForm != null && toolSelectionForm.Visible) toolSelectionForm.Visible = false;
-            toolSelectionForm.Visible = false;
-        }
-
-        // tool selection form /////////////////////////////////////////////////////////////////////////
+        // custom selection form /////////////////////////////////////////////////////////////////////////
 
         private ajkControls.SelectionForm customSelectionForm = null;
         public void OpenCustomSelection(List<ToolItem> cantidates)
@@ -104,6 +102,8 @@ namespace codeEditor.CodeEditor
             if (customSelectionForm.SelectedItem == null) return;
             if (CodeDocument == null) return;
 
+            customSelectionForm.Visible = false;
+            Global.mainForm.Activate();
             ((ToolItem)customSelectionForm.SelectedItem).Apply(CodeDocument);
             codeTextbox.Refresh();
             entryParse();
