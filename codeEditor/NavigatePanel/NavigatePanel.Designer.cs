@@ -35,11 +35,12 @@ namespace codeEditor.NavigatePanel
             this.addTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.gitLogTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.ignoreTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.propertySeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.openWithExploererTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new ajkControls.TreeView();
-            this.ignoreTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.parseHierarchyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,11 +53,12 @@ namespace codeEditor.NavigatePanel
             this.deleteTsmi,
             this.gitLogTsmi,
             this.ignoreTsmi,
+            this.parseHierarchyTsmi,
             this.propertySeparator,
             this.propertyTsmi,
             this.openWithExploererTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(241, 199);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 225);
             // 
             // addTsmi
             // 
@@ -76,6 +78,13 @@ namespace codeEditor.NavigatePanel
             this.gitLogTsmi.Size = new System.Drawing.Size(240, 26);
             this.gitLogTsmi.Text = "Git Log";
             this.gitLogTsmi.Click += new System.EventHandler(this.GitLogTsmi_Click);
+            // 
+            // ignoreTsmi
+            // 
+            this.ignoreTsmi.Name = "ignoreTsmi";
+            this.ignoreTsmi.Size = new System.Drawing.Size(240, 26);
+            this.ignoreTsmi.Text = "Ignore";
+            this.ignoreTsmi.Click += new System.EventHandler(this.ignoreTsmi_Click);
             // 
             // propertySeparator
             // 
@@ -113,12 +122,12 @@ namespace codeEditor.NavigatePanel
             this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
             this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
-            // ignoreTsmi
+            // parseHierarchyTsmi
             // 
-            this.ignoreTsmi.Name = "ignoreTsmi";
-            this.ignoreTsmi.Size = new System.Drawing.Size(240, 26);
-            this.ignoreTsmi.Text = "Ignore";
-            this.ignoreTsmi.Click += new System.EventHandler(this.ignoreTsmi_Click);
+            this.parseHierarchyTsmi.Name = "parseHierarchyTsmi";
+            this.parseHierarchyTsmi.Size = new System.Drawing.Size(240, 26);
+            this.parseHierarchyTsmi.Text = "Parse Hierarchy";
+            this.parseHierarchyTsmi.Click += new System.EventHandler(this.parseHierarchyTsmi_Click);
             // 
             // NavigatePanel
             // 
@@ -143,5 +152,6 @@ namespace codeEditor.NavigatePanel
         private System.Windows.Forms.ToolStripMenuItem addTsmi;
         private System.Windows.Forms.ToolStripMenuItem openWithExploererTsmi;
         private System.Windows.Forms.ToolStripMenuItem ignoreTsmi;
+        private System.Windows.Forms.ToolStripMenuItem parseHierarchyTsmi;
     }
 }

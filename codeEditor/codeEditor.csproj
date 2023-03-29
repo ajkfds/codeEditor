@@ -147,6 +147,12 @@
     <Compile Include="Tools\NewProjectFrom.Designer.cs">
       <DependentUpon>NewProjectFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ParseHierarchyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ParseHierarchyForm.Designer.cs">
+      <DependentUpon>ParseHierarchyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ParseProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\NewProjectFrom.resx">
       <DependentUpon>NewProjectFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ParseHierarchyForm.resx">
+      <DependentUpon>ParseHierarchyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ParseProjectForm.resx">
       <DependentUpon>ParseProjectForm.cs</DependentUpon>

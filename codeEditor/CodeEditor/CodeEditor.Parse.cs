@@ -32,6 +32,8 @@ namespace codeEditor.CodeEditor
                 backGroundParser.EntryParse(parser);
             }
         }
+
+        // foreground parse
         private void timer_Tick(object sender, EventArgs e)
         {
             DocumentParser parser = backGroundParser.GetResult();
@@ -64,8 +66,10 @@ namespace codeEditor.CodeEditor
             Controller.NavigatePanel.Refresh();
         }
 
+        // background parse
         private void subBgtimer_Tick(object sender, EventArgs e)
         {
+            return;
             DocumentParser parser = subBackGroundParser.GetResult();
             if (parser == null)
             { // entry parse

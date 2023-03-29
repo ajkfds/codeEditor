@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            ajkControls.CodeTextbox.CodeDrawStyle codeDrawStyle2 = new ajkControls.CodeTextbox.CodeDrawStyle();
+            ajkControls.CodeTextbox.CodeDrawStyle codeDrawStyle1 = new ajkControls.CodeTextbox.CodeDrawStyle();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,29 +50,29 @@
             this.propertyTsmiSeparator,
             this.propertiesTsmi});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(177, 106);
+            this.contextMenuStrip.Size = new System.Drawing.Size(241, 139);
             // 
             // collapseAllToolStripMenuItem
             // 
             this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(176, 32);
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.collapseAllToolStripMenuItem.Text = "Collapse All";
             // 
             // expandAllToolStripMenuItem
             // 
             this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
-            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(176, 32);
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.expandAllToolStripMenuItem.Text = "Expand All";
             // 
             // propertyTsmiSeparator
             // 
             this.propertyTsmiSeparator.Name = "propertyTsmiSeparator";
-            this.propertyTsmiSeparator.Size = new System.Drawing.Size(173, 6);
+            this.propertyTsmiSeparator.Size = new System.Drawing.Size(237, 6);
             // 
             // propertiesTsmi
             // 
             this.propertiesTsmi.Name = "propertiesTsmi";
-            this.propertiesTsmi.Size = new System.Drawing.Size(176, 32);
+            this.propertiesTsmi.Size = new System.Drawing.Size(240, 32);
             this.propertiesTsmi.Text = "Properties";
             // 
             // timer
@@ -96,6 +96,7 @@
             this.codeTextbox.ContextMenuStrip = this.contextMenuStrip;
             this.codeTextbox.CrColor = System.Drawing.Color.LightGray;
             this.codeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTextbox.Document = null;
             this.codeTextbox.Editable = true;
             this.codeTextbox.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
@@ -109,7 +110,7 @@
             this.codeTextbox.ScrollBarVisible = true;
             this.codeTextbox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(79)))), ((int)(((byte)(120)))));
             this.codeTextbox.Size = new System.Drawing.Size(635, 551);
-            this.codeTextbox.Style = codeDrawStyle2;
+            this.codeTextbox.Style = codeDrawStyle1;
             this.codeTextbox.TabColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
             this.codeTextbox.TabIndex = 0;
             this.codeTextbox.CarletLineChanged += new System.EventHandler(this.codeTextbox_CarletLineChanged);

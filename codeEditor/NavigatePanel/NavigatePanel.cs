@@ -65,6 +65,7 @@ namespace codeEditor.NavigatePanel
                 if (tsi == propertySeparator) continue;
                 if (tsi == deleteTsmi) continue;
                 if (tsi == addTsmi) continue;
+                if (tsi == parseHierarchyTsmi) continue;
                 tsi.Visible = false;
             }
             node.Selected();
@@ -149,6 +150,15 @@ namespace codeEditor.NavigatePanel
             }
         }
 
+        private void parseHierarchyTsmi_Click(object sender, System.EventArgs e)
+        {
+            codeEditor.NavigatePanel.NavigatePanelNode node;
+            codeEditor.Controller.NavigatePanel.GetSelectedNode(out node);
+            if (node == null) return;
 
+            Tools.ParseHierarchyForm form = new Tools.ParseHierarchyForm(node);
+            Controller.ShowForm(form);
+
+        }
     }
 }
