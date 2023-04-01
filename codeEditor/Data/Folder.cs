@@ -70,7 +70,6 @@ namespace codeEditor.Data
             return null;
         }
 
-
         public override void Update()
         {
             string absolutePath = Project.GetAbsolutePath(RelativePath);
@@ -102,6 +101,11 @@ namespace codeEditor.Data
                     name = relativePath;
                 }
 
+                if(this is Project && (this as Project).ignoreList.Contains(name))
+                {
+                    continue;
+                }
+
                 if (!items.ContainsKey(name))
                 {
                     if (absoluteFilePath.EndsWith(".lnk"))
@@ -128,6 +132,10 @@ namespace codeEditor.Data
                 if (!items.ContainsKey(body))
                 {
                     Folder item = Folder.Create(Project.GetRelativePath(absoluteFolderPath), Project,this);
+                    if (this is Project && (this as Project).ignoreList.Contains(item.Name))
+                    {
+                        continue;
+                    }
                     items.Add(item.Name, item);
                     item.Update();
                 }

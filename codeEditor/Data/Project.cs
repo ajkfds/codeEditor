@@ -112,7 +112,7 @@ namespace codeEditor.Data
         public string RootPath { get; protected set; }
         public new string Name { get; protected set; }
 
-
+        public List<string> ignoreList = new List<string>();
 
 
         // get parse target
@@ -194,6 +194,13 @@ namespace codeEditor.Data
         public void SaveSetup(ajkControls.JsonWriter writer)
         {
             writer.writeKeyValue("RootPath", RootPath);
+            using (var blockWriter = writer.GetObjectWriter("IgnoreList"))
+            {
+                foreach(string ingore in ignoreList)
+                {
+                    writer.writeKeyValue("Ignore", ingore);
+                }
+            }
 
             using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
             {
@@ -209,6 +216,8 @@ namespace codeEditor.Data
 
         public void LoadSetup(ajkControls.JsonReader jsonReader)
         {
+            ignoreList.Clear();
+
             using (var reader = jsonReader.GetNextObjectReader())
             {
                 while (true)
@@ -221,6 +230,9 @@ namespace codeEditor.Data
                         case "RootPath":
                             RootPath = reader.GetNextStringValue();
                             break;
+                        case "IgnoreList":
+                            readInnoreList(reader);
+                            break;
                         case "PluginProperties":
                             readProjectProperties(reader);
                             break;
@@ -229,6 +241,28 @@ namespace codeEditor.Data
                             break;
                     }
 
+                }
+            }
+        }
+        private void readInnoreList(ajkControls.JsonReader jsonReader)
+        {
+            using (var reader = jsonReader.GetNextObjectReader())
+            {
+                while (true)
+                {
+                    string key = reader.GetNextKey();
+                    if (key == null) break;
+
+                    if (key == "Ignore")
+                    {
+                        string value = reader.GetNextStringValue();
+                        if(!ignoreList.Contains(value)) ignoreList.Add(value);
+                    }
+                    else
+                    {
+                        reader.SkipValue();
+                        continue;
+                    }
                 }
             }
         }
