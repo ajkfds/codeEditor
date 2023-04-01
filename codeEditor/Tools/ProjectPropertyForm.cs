@@ -20,6 +20,9 @@ namespace codeEditor.Tools
             this.ShowInTaskbar = false;
 
             this.Text = project.Name + " Property";
+            this.BackColor = Global.ColorMap.DarkBackground;
+            this.ForeColor = Global.ColorMap.Foreground;
+
             setText();
 
             if (FormCreated != null) FormCreated(this, project);
@@ -31,6 +34,15 @@ namespace codeEditor.Tools
         private void setText()
         {
             projectRootPathTxt.Text = project.RootPath;
+            StringBuilder sb = new StringBuilder();
+            lock (project.ignoreList)
+            {
+                foreach (string ignore in project.ignoreList)
+                {
+                    sb.AppendLine(ignore);
+                }
+            }
+            ignoreListTxt.Text = sb.ToString();
         }
 
 
@@ -41,6 +53,18 @@ namespace codeEditor.Tools
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
+            // parse ignore lisrt
+            {
+                string text = ignoreListTxt.Text.Replace("\r\n", "\n");
+                string[] lines = text.Split(new char[] { '\n' });
+
+                project.ignoreList.Clear();
+                foreach(string line in lines)
+                {
+                    if (!project.ignoreList.Contains(line)) project.ignoreList.Add(line);
+                }
+            }
+
             foreach(var tab in tabControl.TabPages)
             {
                 if(tab is ProjectPropertyTab)
@@ -59,6 +83,11 @@ namespace codeEditor.Tools
                     (tab as ProjectPropertyTab).PropertyCancel();
                 }
             }
+        }
+
+        private void mainPage_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

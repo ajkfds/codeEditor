@@ -35,8 +35,10 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.tabControl = new ajkControls.TabControl();
             this.mainPage = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.projectRootPathTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ignoreListTxt = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.mainPage.SuspendLayout();
@@ -82,6 +84,7 @@
             this.tabControl.BackgroundColor = System.Drawing.Color.White;
             this.tabControl.Controls.Add(this.mainPage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.FromBackgroundColor = System.Drawing.SystemColors.Control;
             this.tabControl.ItemSize = new System.Drawing.Size(0, 33);
             this.tabControl.LineColor = System.Drawing.Color.Black;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
@@ -97,6 +100,8 @@
             // mainPage
             // 
             this.mainPage.BackColor = System.Drawing.Color.White;
+            this.mainPage.Controls.Add(this.ignoreListTxt);
+            this.mainPage.Controls.Add(this.label2);
             this.mainPage.Controls.Add(this.projectRootPathTxt);
             this.mainPage.Controls.Add(this.label1);
             this.mainPage.Location = new System.Drawing.Point(4, 37);
@@ -105,25 +110,51 @@
             this.mainPage.Size = new System.Drawing.Size(792, 407);
             this.mainPage.TabIndex = 0;
             this.mainPage.Text = "project";
+            this.mainPage.Click += new System.EventHandler(this.mainPage_Click);
+            // 
+            // projectRootPathTxt
+            // 
+            this.projectRootPathTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.projectRootPathTxt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.projectRootPathTxt.Location = new System.Drawing.Point(3, 29);
+            this.projectRootPathTxt.Name = "projectRootPathTxt";
+            this.projectRootPathTxt.ReadOnly = true;
+            this.projectRootPathTxt.Size = new System.Drawing.Size(786, 28);
+            this.projectRootPathTxt.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.Padding = new System.Windows.Forms.Padding(3);
+            this.label1.Size = new System.Drawing.Size(92, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Root Path";
             // 
-            // projectRootPathTxt
+            // label2
             // 
-            this.projectRootPathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectRootPathTxt.Location = new System.Drawing.Point(13, 31);
-            this.projectRootPathTxt.Name = "projectRootPathTxt";
-            this.projectRootPathTxt.ReadOnly = true;
-            this.projectRootPathTxt.Size = new System.Drawing.Size(771, 28);
-            this.projectRootPathTxt.TabIndex = 1;
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Location = new System.Drawing.Point(3, 57);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(3);
+            this.label2.Size = new System.Drawing.Size(99, 26);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Ignore List";
+            // 
+            // ignoreListTxt
+            // 
+            this.ignoreListTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ignoreListTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ignoreListTxt.Location = new System.Drawing.Point(3, 83);
+            this.ignoreListTxt.Multiline = true;
+            this.ignoreListTxt.Name = "ignoreListTxt";
+            this.ignoreListTxt.ReadOnly = true;
+            this.ignoreListTxt.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ignoreListTxt.Size = new System.Drawing.Size(786, 321);
+            this.ignoreListTxt.TabIndex = 3;
             // 
             // ProjectPropertyForm
             // 
@@ -153,5 +184,7 @@
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.TextBox projectRootPathTxt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox ignoreListTxt;
     }
 }

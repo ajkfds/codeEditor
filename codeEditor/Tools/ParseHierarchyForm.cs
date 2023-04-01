@@ -48,7 +48,7 @@ namespace codeEditor.Tools
 
         private void worker()
         {
-            parsedId.Clear();
+            parsedIds.Clear();
             parseHier(rootNode.Item);
             rootNode.Update();
 
@@ -57,14 +57,14 @@ namespace codeEditor.Tools
 //            Invoke(new Action(() => { Controller.NavigatePanel.Refresh(); }));
         }
 
-        private List<string> parsedId = new List<string>();
+        private List<string> parsedIds = new List<string>();
 
         private void parseHier(Data.Item item)
         {
             if (item == null) return;
             Data.ITextFile textFile = item as Data.TextFile;
             if (textFile == null) return;
-            if (parsedId.Contains(textFile.ID)) return;
+            if (parsedIds.Contains(textFile.ID)) return;
 
             Invoke(new Action(() => { label.Text = textFile.ID; }));
 
@@ -82,8 +82,8 @@ namespace codeEditor.Tools
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
                     textFile.Update();
                 }
-                parsedId.Add(textFile.ID);
             }
+            parsedIds.Add(textFile.ID);
             if (textFile.NavigatePanelNode != null) textFile.NavigatePanelNode.Update();
 
             List<Data.Item> items = new List<Data.Item>();
