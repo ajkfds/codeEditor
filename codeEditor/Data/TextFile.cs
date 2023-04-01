@@ -111,6 +111,7 @@ namespace codeEditor.Data
             {
                 sw.Write(CodeDocument.CreateString());
             }
+            CodeDocument.Clean();
             loadedFileLastWriteTime = System.IO.File.GetLastWriteTime(AbsolutePath);
         }
 
@@ -142,6 +143,26 @@ namespace codeEditor.Data
             {
                 document = null;
             }
+        }
+
+        public string GetMd5Hash()
+        {
+            if (document == null) return "";
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(document.CreateString());
+
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 =
+                new System.Security.Cryptography.MD5CryptoServiceProvider();
+
+            byte[] bs = md5.ComputeHash(data);
+            md5.Clear();
+
+            System.Text.StringBuilder result = new System.Text.StringBuilder();
+            foreach (byte b in bs)
+            {
+                result.Append(b.ToString("x2"));
+            }
+
+            return result.ToString();
         }
 
 
