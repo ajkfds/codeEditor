@@ -35,10 +35,10 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.tabControl = new ajkControls.TabControl();
             this.mainPage = new System.Windows.Forms.TabPage();
+            this.ignoreListTxt = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.projectRootPathTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ignoreListTxt = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.mainPage.SuspendLayout();
@@ -112,6 +112,28 @@
             this.mainPage.Text = "project";
             this.mainPage.Click += new System.EventHandler(this.mainPage_Click);
             // 
+            // ignoreListTxt
+            // 
+            this.ignoreListTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ignoreListTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ignoreListTxt.Location = new System.Drawing.Point(3, 83);
+            this.ignoreListTxt.Multiline = true;
+            this.ignoreListTxt.Name = "ignoreListTxt";
+            this.ignoreListTxt.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ignoreListTxt.Size = new System.Drawing.Size(786, 321);
+            this.ignoreListTxt.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Location = new System.Drawing.Point(3, 57);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(3);
+            this.label2.Size = new System.Drawing.Size(99, 26);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Ignore List";
+            // 
             // projectRootPathTxt
             // 
             this.projectRootPathTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -132,29 +154,6 @@
             this.label1.Size = new System.Drawing.Size(92, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Root Path";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Location = new System.Drawing.Point(3, 57);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(3);
-            this.label2.Size = new System.Drawing.Size(99, 26);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Ignore List";
-            // 
-            // ignoreListTxt
-            // 
-            this.ignoreListTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ignoreListTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ignoreListTxt.Location = new System.Drawing.Point(3, 83);
-            this.ignoreListTxt.Multiline = true;
-            this.ignoreListTxt.Name = "ignoreListTxt";
-            this.ignoreListTxt.ReadOnly = true;
-            this.ignoreListTxt.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ignoreListTxt.Size = new System.Drawing.Size(786, 321);
-            this.ignoreListTxt.TabIndex = 3;
             // 
             // ProjectPropertyForm
             // 
