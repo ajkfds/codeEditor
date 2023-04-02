@@ -17,16 +17,17 @@ namespace codeEditor.Data
         string Name { get; }
         Project Project { get; }
 
-        IReadOnlyDictionary<string, Item> Items { get; }
+        Item.ItemList Items { get; }
 
         Item GetItem(string relativePath);
 
         List<Item> FindItems(Func<Item, bool> match, Func<Item, bool> stop);
 
-
+        bool ParseValid { get; }
         void Dispose();
 
         void Update();
+        void ParseHierarchy(Action<ITextFile> action);
 
         NavigatePanel.NavigatePanelNode NavigatePanelNode { get; }
         CodeEditor.DocumentParser CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum parseMode);

@@ -48,54 +48,51 @@ namespace codeEditor.Tools
 
         private void worker()
         {
-            parsedIds.Clear();
             parseHier(rootNode.Item);
             rootNode.Update();
 
             close = true;
             Invoke(new Action(() => { Close(); }));
-//            Invoke(new Action(() => { Controller.NavigatePanel.Refresh(); }));
         }
-
-        private List<string> parsedIds = new List<string>();
 
         private void parseHier(Data.Item item)
         {
             if (item == null) return;
             Data.ITextFile textFile = item as Data.TextFile;
             if (textFile == null) return;
-            if (parsedIds.Contains(textFile.ID)) return;
 
-            Invoke(new Action(() => { label.Text = textFile.ID; }));
+            textFile.ParseHierarchy( (tFile) => {
+                Invoke(new Action(() => { label.Text = tFile.ID; }));
+            });
 
-            if (textFile.ParsedDocument != null)
-            {
-                textFile.Update();
-            }
-            else
-            {
-                CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
-                if (parser != null)
-                {
-                    parser.Parse();
-                    if (parser.ParsedDocument == null) return;
-                    textFile.AcceptParsedDocument(parser.ParsedDocument);
-                    textFile.Update();
-                }
-            }
-            parsedIds.Add(textFile.ID);
-            if (textFile.NavigatePanelNode != null) textFile.NavigatePanelNode.Update();
+            //if (textFile.ParsedDocument != null)
+            //{
+            //    textFile.Update();
+            //}
+            //else
+            //{
+            //    CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
+            //    if (parser != null)
+            //    {
+            //        parser.Parse();
+            //        if (parser.ParsedDocument == null) return;
+            //        textFile.AcceptParsedDocument(parser.ParsedDocument);
+            //        textFile.Update();
+            //    }
+            //}
+            //parsedIds.Add(textFile.ID);
+            //if (textFile.NavigatePanelNode != null) textFile.NavigatePanelNode.Update();
 
-            List<Data.Item> items = new List<Data.Item>();
-            foreach(Data.Item subItem in textFile.Items.Values)
-            {
-                items.Add(subItem);
-            }
+            //List<Data.Item> items = new List<Data.Item>();
+            //foreach(Data.Item subItem in textFile.Items.Values)
+            //{
+            //    items.Add(subItem);
+            //}
 
-            foreach(Data.Item subitem in items)
-            {
-                parseHier(subitem);
-            }
+            //foreach(Data.Item subitem in items)
+            //{
+            //    parseHier(subitem);
+            //}
         }
          
     }

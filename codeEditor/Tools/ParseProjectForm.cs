@@ -92,8 +92,7 @@ namespace codeEditor.Tools
                     }
 
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
-                    
-//                    textFile.ParseRequested = true;
+                    textFile.ParseValid = false;
                     textFile.Close();
 
                     gc++;

@@ -44,11 +44,92 @@ namespace codeEditor.Data
         public virtual string Name { get; protected set; }
         public virtual Project Project { get; protected set; }
 
-        protected Dictionary<string, Item> items = new Dictionary<string, Item>();
-        public virtual IReadOnlyDictionary<string, Item> Items
+        //protected Dictionary<string, Item> items = new Dictionary<string, Item>();
+        //public virtual IReadOnlyDictionary<string, Item> Items
+        //{
+        //    get { return items; }
+        //}
+        protected ItemList items = new ItemList();
+        public virtual ItemList Items
         {
             get { return items; }
         }
+
+
+        public class ItemList
+        {
+            private List<Item> itemList = new List<Item>();
+            private Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
+
+            public void Add(string key,Item item)
+            {
+                itemList.Add(item);
+                itemDict.Add(key, item);
+            }
+
+            public void Insert(int index, string key, Item item)
+            {
+                itemList.Insert(index, item);
+                itemDict.Add(key, item);
+            }
+
+            public int IndexOf(Item item)
+            {
+                return itemList.IndexOf(item);
+            }
+
+            public Item this [string key]
+            {
+                get
+                {
+                    return itemDict[key];
+                }
+            }
+
+            public Item this [int index]
+            {
+                get
+                {
+                    return itemList[index];
+                }
+            }
+
+            public void Remove(string key)
+            {
+                itemList.Remove(itemDict[key]);
+                itemDict.Remove(key);
+            }
+            public bool ContainsKey(string key)
+            {
+                return itemDict.ContainsKey(key);
+            }
+
+            public bool ContainsValue(Item item)
+            {
+                return itemDict.ContainsValue(item);
+            }
+
+            public void Clear()
+            {
+                itemList.Clear();
+                itemDict.Clear();
+            }
+
+            public Dictionary<string,Item>.KeyCollection Keys
+            {
+                get { return itemDict.Keys; }
+            }
+
+            public List<Item> Values
+            {
+                get
+                {
+                    return itemList;
+                }
+            }
+
+        }
+
 
         public virtual Item GetItem(string relativePath)
         {
@@ -149,5 +230,7 @@ namespace codeEditor.Data
         {
             return null;
         }
+
+
     }
 }

@@ -91,7 +91,7 @@ namespace codeEditor.Data
             }
         }
 
-        public override IReadOnlyDictionary<string, Item> Items
+        public override Item.ItemList Items
         {
             get { return LinkItem.Items; }
         }

@@ -45,11 +45,8 @@ namespace codeEditor.Data
 
         public virtual CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
-        //private volatile bool parseRequested = false;
-        //public virtual bool ParseRequested { get {return parseRequested; } set { parseRequested = value; } }
-
-        //private volatile bool reloadRequested = false;
-        //public virtual bool CloseRequested { get { return reloadRequested; } set { reloadRequested = value; } }
+        private bool parseValid = false;
+        public bool ParseValid { get { return parseValid; } set { parseValid = value; } }
 
         public virtual void AcceptParsedDocument(ParsedDocument newParsedDocument)
         {
@@ -58,6 +55,7 @@ namespace codeEditor.Data
             if (oldParsedDocument != null) oldParsedDocument.Dispose();
 
             ParsedDocument = newParsedDocument;
+            ParseValid = true;
             Update();
         }
         public virtual void Close()
@@ -222,6 +220,60 @@ namespace codeEditor.Data
         {
         }
 
+        public void ParseHierarchy(Action<ITextFile> action)
+        {
+            codeEditor.Controller.AppendLog("parseHier : "+Name);
+
+            List<string> parsedIds = new List<string>();
+            parseHierarchy(this, parsedIds, action);
+            codeEditor.Controller.NavigatePanel.Invalidate();
+        }
+
+        private void parseHierarchy(Data.Item item, List<string> parsedIds,Action<ITextFile> action)
+        {
+            if (item == null) return;
+            Data.ITextFile textFile = item as Data.TextFile;
+            if (textFile == null) return;
+            if (parsedIds.Contains(textFile.ID)) return;
+
+            action(textFile);
+
+            //if (textFile.ParsedDocument != null)
+            //{
+            //    textFile.Update();
+            //}
+            //else
+            if (textFile.ParseValid)
+            {
+                textFile.Update();
+            }
+            else {
+                CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
+                if (parser != null)
+                {
+                    parser.Parse();
+                    if (parser.ParsedDocument == null) return;
+                    textFile.AcceptParsedDocument(parser.ParsedDocument);
+                    textFile.Update();
+                }
+            }
+            parsedIds.Add(textFile.ID);
+            if (textFile.NavigatePanelNode != null)
+            {
+                textFile.NavigatePanelNode.Update();
+            }
+
+            List<Data.Item> items = new List<Data.Item>();
+            foreach (Data.Item subItem in textFile.Items.Values)
+            {
+                items.Add(subItem);
+            }
+
+            foreach (Data.Item subitem in items)
+            {
+                parseHierarchy(subitem, parsedIds, action);
+            }
+        }
 
     }
 }

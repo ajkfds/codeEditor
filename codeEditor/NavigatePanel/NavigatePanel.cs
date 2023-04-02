@@ -157,7 +157,8 @@ namespace codeEditor.NavigatePanel
             if (node == null) return;
 
             Tools.ParseHierarchyForm form = new Tools.ParseHierarchyForm(node);
-            Controller.ShowForm(form);
+            Controller.ShowDialogForm(form);
+//            Controller.ShowForm(form);
 
         }
     }

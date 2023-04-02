@@ -150,11 +150,6 @@ namespace codeEditor
                 Global.mainForm.editorPage.CodeEditor.ScrollToCaret();
             }
 
-            //public static void Select(long index,long length)
-            //{
-            //    Global.mainForm.editorPage.CodeEditor.In
-            //}
-
         }
 
         public static class NavigatePanel
@@ -182,6 +177,26 @@ namespace codeEditor
             public static System.Windows.Forms.ContextMenuStrip GetContextMenuStrip()
             {
                 return Global.mainForm.navigatePanel.GetContextMenuStrip();
+            }
+
+            public static void Parse(codeEditor.NavigatePanel.NavigatePanelNode node)
+            {
+                Tools.ParseHierarchyForm form = new Tools.ParseHierarchyForm(node);
+                while (form.Visible)
+                {
+                    System.Threading.Thread.Sleep(1);
+                }
+                Controller.ShowForm(form);
+            }
+
+            public static void Update()
+            {
+                Global.mainForm.navigatePanel.Update();
+            }
+
+            public static void Invalidate()
+            {
+                Global.mainForm.navigatePanel.Invalidate();
             }
         }
 
