@@ -45,7 +45,7 @@ namespace codeEditor.CodeEditor
 
             if (CodeDocument.Version != parser.Version)
             {
-                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString());
+                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString()+"ver"+CodeDocument.Version +"<-"+ parser.Version );
                 parser.Dispose();
                 return;
             }

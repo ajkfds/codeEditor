@@ -69,6 +69,7 @@ namespace codeEditor.Data
 
             public void Insert(int index, string key, Item item)
             {
+                if (itemDict.ContainsKey(key)) return;
                 itemList.Insert(index, item);
                 itemDict.Add(key, item);
             }

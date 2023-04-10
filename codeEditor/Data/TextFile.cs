@@ -226,7 +226,14 @@ namespace codeEditor.Data
 
             List<string> parsedIds = new List<string>();
             parseHierarchy(this, parsedIds, action);
+            Update();
+
+            if (NavigatePanelNode != null)
+            {
+                NavigatePanelNode.Update();
+            }
             codeEditor.Controller.NavigatePanel.Invalidate();
+
         }
 
         private void parseHierarchy(Data.Item item, List<string> parsedIds,Action<ITextFile> action)
@@ -238,35 +245,40 @@ namespace codeEditor.Data
 
             action(textFile);
 
-            //if (textFile.ParsedDocument != null)
-            //{
-            //    textFile.Update();
-            //}
-            //else
             if (textFile.ParseValid)
             {
                 textFile.Update();
+                return;
             }
             else {
                 CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
                 if (parser != null)
                 {
+                    System.Diagnostics.Debug.Print("### parse hier " + textFile.ToString());
+                    System.Diagnostics.Debug.Print("## parse hier " + textFile.ID);
                     parser.Parse();
                     if (parser.ParsedDocument == null) return;
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
                     textFile.Update();
                 }
             }
+
+            // do not parse twice for same module instance
             parsedIds.Add(textFile.ID);
+
             if (textFile.NavigatePanelNode != null)
             {
                 textFile.NavigatePanelNode.Update();
             }
 
+            // parse all chiled nodes
             List<Data.Item> items = new List<Data.Item>();
-            foreach (Data.Item subItem in textFile.Items.Values)
+            lock (textFile.Items)
             {
-                items.Add(subItem);
+                foreach (Data.Item subItem in textFile.Items.Values)
+                {
+                    items.Add(subItem);
+                }
             }
 
             foreach (Data.Item subitem in items)

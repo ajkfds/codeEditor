@@ -55,8 +55,8 @@ namespace codeEditor.CodeEditor
         public void Save()
         {
             if (TextFile == null) return;
-            entryParse();
             TextFile.Save();
+            entryParse();
         }
 
         public void ScrollToCaret()
