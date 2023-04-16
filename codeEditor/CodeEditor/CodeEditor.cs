@@ -164,7 +164,7 @@ namespace codeEditor.CodeEditor
                 TextFile == null ||
                 TextFile.ParsedDocument == null ||
                 TextFile != TextFile.ParsedDocument.Item ||
-                CodeDocument.Version != TextFile.ParsedDocument.Version)
+                CodeDocument.Version != TextFile.ParsedDocument.Version )
             {
                 popupForm.Visible = false;
                 return;
