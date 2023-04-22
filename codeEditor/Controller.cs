@@ -44,9 +44,9 @@ namespace codeEditor
 
         public static void ShowForm(System.Windows.Forms.Form form)
         {
-            if (form.InvokeRequired)
+            if (Global.mainForm.InvokeRequired)
             {
-                form.Invoke(new Action(() => { form.Show(Global.mainForm); }));
+                Global.mainForm.Invoke(new Action(() => { form.Show(Global.mainForm); }));
             }
             else
             {
@@ -55,7 +55,14 @@ namespace codeEditor
         }
         public static void ShowDialogForm(System.Windows.Forms.Form form)
         {
-            form.ShowDialog(Global.mainForm);
+            if (form.InvokeRequired)
+            {
+                form.Invoke(new Action(() => { form.ShowDialog(Global.mainForm); }));
+            }
+            else
+            {
+                form.ShowDialog(Global.mainForm);
+            }
         }
         public static System.Windows.Forms.DialogResult ShowDialogForm(System.Windows.Forms.CommonDialog dialog)
         {
