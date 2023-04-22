@@ -166,6 +166,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectPropertyForm";
             this.Text = "ProjectPropertyForm";
+            this.Shown += new System.EventHandler(this.ProjectPropertyForm_Shown);
             this.panel1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.mainPage.ResumeLayout(false);

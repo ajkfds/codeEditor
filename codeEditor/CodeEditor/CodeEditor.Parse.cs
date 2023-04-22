@@ -40,12 +40,13 @@ namespace codeEditor.CodeEditor
             if (parser == null) return;
             if (TextFile == null) return;
             if (TextFile != parser.TextFile) return;
+            if (parser.ParsedDocument == null) return;
 
             Controller.AppendLog("complete edit parse ID :" + parser.TextFile.ID );
 
-            if (CodeDocument.Version != parser.Version)
+            if (CodeDocument.Version != parser.ParsedDocument.Version)
             {
-                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString()+"ver"+CodeDocument.Version +"<-"+ parser.Version );
+                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString()+"ver"+CodeDocument.Version +"<-"+ parser.ParsedDocument.Version );
                 parser.Dispose();
                 return;
             }
@@ -71,7 +72,7 @@ namespace codeEditor.CodeEditor
         {
             return;
             DocumentParser parser = subBackGroundParser.GetResult();
-            if (parser == null)
+            if (parser == null || parser.ParsedDocument == null)
             { // entry parse
                 if (subBackGroundParser.RemainingStocks != 0) return;
                 NavigatePanel.NavigatePanelNode node;
@@ -93,7 +94,7 @@ namespace codeEditor.CodeEditor
             { // receive result
                 if (TextFile != null && TextFile == parser.TextFile)
                 {
-                    if (CodeDocument != null && CodeDocument.Version != parser.Version)
+                    if (CodeDocument != null && CodeDocument.Version != parser.ParsedDocument.Version)
                     {
                         Controller.AppendLog("parsed mismatch sub " + parser.TextFile.Name + " " + DateTime.Now.ToString());
                         parser.Dispose();

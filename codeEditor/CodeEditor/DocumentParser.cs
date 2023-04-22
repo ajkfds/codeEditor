@@ -11,7 +11,6 @@ namespace codeEditor.CodeEditor
         protected DocumentParser(){}
         public DocumentParser(Data.TextFile textFile, ParseModeEnum parseMode)
         {
-            this.Version = textFile.CodeDocument.Version;
             this.document = new CodeDocument(textFile);
             this.document.CopyTextOnlyFrom(textFile.CodeDocument);
 /*            lock (this.document)
@@ -28,7 +27,6 @@ namespace codeEditor.CodeEditor
             document = null;
         }
 
-        public ulong Version { get; protected set; }
         public Data.TextFile TextFile { get; protected set; }
         public ParseModeEnum ParseMode { get; protected set; }
         protected CodeDocument document;

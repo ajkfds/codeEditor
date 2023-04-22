@@ -45,8 +45,16 @@ namespace codeEditor.Data
 
         public virtual CodeEditor.ParsedDocument ParsedDocument { get; set; }
 
-        private bool parseValid = false;
-        public bool ParseValid { get { return parseValid; } set { parseValid = value; } }
+        public bool ParseValid {
+            get {
+                CodeDocument doc = CodeDocument;
+                ParsedDocument parsedDocument = ParsedDocument;
+                if (doc == null) return false;
+                if (parsedDocument == null) return false;
+                if (doc.Version == parsedDocument.Version) return true;
+                return false;
+            } 
+        }
 
         public virtual void AcceptParsedDocument(ParsedDocument newParsedDocument)
         {
@@ -55,7 +63,6 @@ namespace codeEditor.Data
             if (oldParsedDocument != null) oldParsedDocument.Dispose();
 
             ParsedDocument = newParsedDocument;
-            ParseValid = true;
             Update();
         }
         public virtual void Close()

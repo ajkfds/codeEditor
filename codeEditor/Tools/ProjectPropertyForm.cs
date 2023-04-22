@@ -28,6 +28,16 @@ namespace codeEditor.Tools
             if (FormCreated != null) FormCreated(this, project);
         }
 
+        private void ProjectPropertyForm_Shown(object sender, EventArgs e)
+        {
+            foreach(var tab in tabControl.TabPages)
+            {
+                TabPage page = tab as TabPage;
+                page.BackColor = Global.ColorMap.DarkBackground;
+                page.ForeColor = Global.ColorMap.Foreground;
+            }
+        }
+
         public static Action<ProjectPropertyForm, Data.Project> FormCreated;
         Data.Project project;
 
@@ -89,5 +99,6 @@ namespace codeEditor.Tools
         {
 
         }
+
     }
 }

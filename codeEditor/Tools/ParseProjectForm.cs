@@ -92,7 +92,6 @@ namespace codeEditor.Tools
                     }
 
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
-                    textFile.ParseValid = false;
                     textFile.Close();
 
                     gc++;
@@ -109,5 +108,9 @@ namespace codeEditor.Tools
             Invoke(new Action(()=> { Close(); }));
         }
 
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Update();
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace codeEditor.CodeEditor
                 return Item.Project;
             }
         }
-        public ulong Version { get; protected set; }
+        public ulong Version { get; set; }
 
         public virtual void Dispose()
         {

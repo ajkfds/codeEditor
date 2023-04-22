@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // progressBar
@@ -47,6 +49,10 @@
             this.label.Size = new System.Drawing.Size(91, 25);
             this.label.TabIndex = 1;
             this.label.Text = "Parsing ...";
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // ParseProjectForm
             // 
@@ -73,5 +79,6 @@
 
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Timer timer;
     }
 }
