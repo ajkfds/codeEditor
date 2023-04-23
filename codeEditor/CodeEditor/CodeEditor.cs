@@ -114,11 +114,13 @@ namespace codeEditor.CodeEditor
             {
                 codeTextbox.Style = textFile.DrawStyle;
             }
-            
+
+
             codeTextbox.Visible = true;
             codeTextbox.Document = textFile.CodeDocument;
             TextFile = textFile;
             ScrollToCaret();
+            if (TextFile != null) Controller.MessageView.Update(TextFile.ParsedDocument);
 
             entryParse();
         }
@@ -155,6 +157,7 @@ namespace codeEditor.CodeEditor
         }
 
 
+        // show infomation popup
         private PopupForm popupForm = new PopupForm();
         private int popupInex = -1;
         private void codeTextbox_MouseMove(object sender, MouseEventArgs e)
