@@ -170,7 +170,14 @@ namespace codeEditor
         {
             public static void Refresh()
             {
-                Global.mainForm.navigatePanel.Refresh();
+                if (Global.mainForm.InvokeRequired)
+                {
+                    Global.mainForm.Invoke(new Action( () => { Global.mainForm.navigatePanel.Refresh(); } ));
+                }
+                else
+                {
+                    Global.mainForm.navigatePanel.Refresh();
+                }
             }
 
             public static void UpdateVisibleNode()
@@ -205,7 +212,14 @@ namespace codeEditor
 
             public static void Update()
             {
-                Global.mainForm.navigatePanel.Update();
+                if (Global.mainForm.InvokeRequired)
+                {
+                    Global.mainForm.Invoke(new Action(() => { Global.mainForm.navigatePanel.Update(); }));
+                }
+                else
+                {
+                    Global.mainForm.navigatePanel.Update();
+                }
             }
 
             public static void Invalidate()
