@@ -63,6 +63,7 @@ namespace codeEditor.Data
 
             public void Add(string key,Item item)
             {
+                if (itemDict.ContainsKey(key)) return;
                 itemList.Add(item);
                 itemDict.Add(key, item);
             }
@@ -171,10 +172,13 @@ namespace codeEditor.Data
 
         protected void findItems(List<Item> result,Func<Item, bool> match, Func<Item, bool> stop)
         {
-            foreach (Item item in items.Values)
+            lock (Items)
             {
-                if (match(item)) result.Add(item);
-                if (!stop(item)) item.findItems(result, match, stop);
+                foreach (Item item in items.Values)
+                {
+                    if (match(item)) result.Add(item);
+                    if (!stop(item)) item.findItems(result, match, stop);
+                }
             }
         }
 
