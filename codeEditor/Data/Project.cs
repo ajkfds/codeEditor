@@ -183,7 +183,7 @@ namespace codeEditor.Data
             Uri u1 = new Uri(basePath);
             Uri u2 = new Uri(fullPath);
             Uri relativeUri = u1.MakeRelativeUri(u2);
-            string relativePath = relativeUri.ToString();
+            string relativePath =  Uri.UnescapeDataString(relativeUri.ToString());
 
             relativePath = relativePath.Replace('/', '\\');
             return relativePath;
@@ -198,7 +198,7 @@ namespace codeEditor.Data
             {
                 foreach(string ingore in ignoreList)
                 {
-                    writer.writeKeyValue("Ignore", ingore);
+                    blockWriter.writeKeyValue("Ignore", ingore);
                 }
             }
 
@@ -349,6 +349,7 @@ namespace codeEditor.Data
                     fileSystemEvents.Remove(fs.FullPath);
                     {
                         Controller.AppendLog(fs.Name + " changed");
+                        return;
                         string relativePath = GetRelativePath(fs.FullPath);
                         Data.File file = GetItem(relativePath) as Data.File;
                         if (file == null) return;

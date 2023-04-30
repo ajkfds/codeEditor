@@ -38,6 +38,8 @@ namespace codeEditor.Data
             base.Dispose();
         }
 
+        public virtual bool ReparseRequested { get; protected set; } = false;
+
         public bool IsCodeDocumentCashed
         {
             get { if (document == null) return false; else return true; }
@@ -108,7 +110,7 @@ namespace codeEditor.Data
             }
         }
 
-        public void Save()
+        public virtual void Save()
         {
             if (CodeDocument == null) return;
 
@@ -120,7 +122,7 @@ namespace codeEditor.Data
             loadedFileLastWriteTime = System.IO.File.GetLastWriteTime(AbsolutePath);
         }
 
-        public DateTime? LoadedFileLastWriteTime
+        public virtual DateTime? LoadedFileLastWriteTime
         {
             get
             {
@@ -237,10 +239,9 @@ namespace codeEditor.Data
 
             if (NavigatePanelNode != null)
             {
-                NavigatePanelNode.Update();
+                NavigatePanelNode.HierarchicalVisibleUpdate();
             }
-            codeEditor.Controller.NavigatePanel.Invalidate();
-
+            codeEditor.Controller.NavigatePanel.Update();
         }
 
         private void parseHierarchy(Data.Item item, List<string> parsedIds,Action<ITextFile> action)
@@ -251,31 +252,22 @@ namespace codeEditor.Data
             if (parsedIds.Contains(textFile.ID)) return;
 
             action(textFile);
+            parsedIds.Add(textFile.ID);
 
-            if (textFile.ParseValid)
+            if (textFile.ParseValid & !textFile.ReparseRequested )
             {
                 textFile.Update();
-                return;
             }
             else {
                 CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
                 if (parser != null)
                 {
-                    System.Diagnostics.Debug.Print("### parse hier " + textFile.ToString());
                     System.Diagnostics.Debug.Print("## parse hier " + textFile.ID);
                     parser.Parse();
                     if (parser.ParsedDocument == null) return;
                     textFile.AcceptParsedDocument(parser.ParsedDocument);
                     textFile.Update();
                 }
-            }
-
-            // do not parse twice for same module instance
-            parsedIds.Add(textFile.ID);
-
-            if (textFile.NavigatePanelNode != null)
-            {
-                textFile.NavigatePanelNode.Update();
             }
 
             // parse all chiled nodes
@@ -292,7 +284,19 @@ namespace codeEditor.Data
             {
                 parseHierarchy(subitem, parsedIds, action);
             }
-        }
 
+            if (textFile.ReparseRequested)
+            {
+                CodeEditor.DocumentParser parser = item.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.BackgroundParse);
+                if (parser != null)
+                {
+                    System.Diagnostics.Debug.Print("## re-parse hier " + textFile.ID);
+                    parser.Parse();
+                    if (parser.ParsedDocument == null) return;
+                    textFile.AcceptParsedDocument(parser.ParsedDocument);
+                    textFile.Update();
+                }
+            }
+        }
     }
 }
