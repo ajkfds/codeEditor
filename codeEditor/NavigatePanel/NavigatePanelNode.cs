@@ -57,7 +57,7 @@ namespace codeEditor.NavigatePanel
 
         public virtual void Dispose()
         {
-
+            
         }
 
         /// <summary>
@@ -77,10 +77,20 @@ namespace codeEditor.NavigatePanel
         //        node.HierarchicalUpdate(depth+1);
         //    }
         //}
+        public override void Expanded()
+        {
+            HierarchicalVisibleUpdate();
+        }
+
+        public override void Collapsed()
+        {
+            HierarchicalVisibleUpdate();
+        }
+
 
         public virtual void HierarchicalVisibleUpdate()
         {
-            HierarchicalVisibleUpdate(0,Exanded);
+            HierarchicalVisibleUpdate(0, IsExpanded);
         }
 
         public virtual void HierarchicalVisibleUpdate(int depth,bool expanded)
@@ -90,13 +100,8 @@ namespace codeEditor.NavigatePanel
             if (!expanded) return;
             foreach (NavigatePanelNode node in TreeNodes)
             {
-                node.HierarchicalVisibleUpdate(depth + 1,node.Exanded);
+                node.HierarchicalVisibleUpdate(depth + 1,node.IsExpanded);
             }
-        }
-
-        public virtual void Selected()
-        {
-            
         }
 
         public virtual void Clicked()

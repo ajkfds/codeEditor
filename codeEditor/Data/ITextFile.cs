@@ -40,12 +40,13 @@ namespace codeEditor.Data
         void AcceptParsedDocument(CodeEditor.ParsedDocument newParsedDocument);
 
         void LoadFormFile();
-        //bool ParseRequested { get; set; }
+        bool ReparseRequested { get; }
         //bool CloseRequested { get; set; }
         // projectItem
 
         bool Dirty { get; }
 
+        void Save();
         DateTime? LoadedFileLastWriteTime { get; }
 
         void AfterKeyPressed(System.Windows.Forms.KeyPressEventArgs e);

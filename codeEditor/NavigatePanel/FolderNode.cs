@@ -125,7 +125,7 @@ namespace codeEditor.NavigatePanel
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
-            if (Exanded)
+            if (IsExpanded)
             {
                 graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
             }

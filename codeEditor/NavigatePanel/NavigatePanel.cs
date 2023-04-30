@@ -53,11 +53,12 @@ namespace codeEditor.NavigatePanel
             NavigatePanelNode node = e as NavigatePanelNode;
             if (node == null) return;
 
-            node.Update();
-            foreach(NavigatePanelNode subNode in node.TreeNodes)
-            {
-                subNode.Update();
-            }
+            node.HierarchicalVisibleUpdate();
+            //node.Update();
+            //foreach(NavigatePanelNode subNode in node.TreeNodes)
+            //{
+            //    subNode.Update();
+            //}
 
             foreach(ToolStripItem tsi in contextMenuStrip.Items)
             {
@@ -69,6 +70,7 @@ namespace codeEditor.NavigatePanel
                 tsi.Visible = false;
             }
             node.Selected();
+            treeView.Update();
             //            if (SelectedNodeChanged != null) SelectedNodeChanged(this, e);
         }
 
