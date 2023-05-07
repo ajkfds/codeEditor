@@ -38,34 +38,52 @@ namespace codeEditor.CodeEditor
         {
             DocumentParser parser = backGroundParser.GetResult();
             if (parser == null) return;
-            if (TextFile == null) return;
-            if (TextFile != parser.TextFile) return;
             if (parser.ParsedDocument == null) return;
+            //if (TextFile == null) return;
+            //if (TextFile != parser.TextFile)
+            //{   // return not current file
+            //    return;
+            //}
+            
+            Data.TextFile textFile = parser.TextFile;
+            CodeDocument codeDocument = textFile.CodeDocument;
+
+            if (textFile == null || textFile == null)
+            {
+                parser.Dispose();
+                return;
+            }
 
             Controller.AppendLog("complete edit parse ID :" + parser.TextFile.ID );
-
-            if (CodeDocument.Version != parser.ParsedDocument.Version)
+            if (codeDocument.Version != parser.ParsedDocument.Version)
             {
-                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString()+"ver"+CodeDocument.Version +"<-"+ parser.ParsedDocument.Version );
+                Controller.AppendLog("edit parsed mismatch " + DateTime.Now.ToString()+"ver"+ codeDocument.Version +"<-"+ parser.ParsedDocument.Version );
                 parser.Dispose();
                 return;
             }
 
             //            CodeDocument.CopyFrom(parser.Document);
-            CodeDocument.CopyColorMarkFrom(parser.Document);
-            codeTextbox.Invoke(new Action(codeTextbox.Refresh));
+            codeDocument.CopyColorMarkFrom(parser.Document);
 
             if (parser.ParsedDocument != null)
             {
-                TextFile.AcceptParsedDocument(parser.ParsedDocument);
+                parser.TextFile.AcceptParsedDocument(parser.ParsedDocument);
             }
 
+            // update current view
+            codeTextbox.Invoke(new Action(codeTextbox.Refresh));
             Controller.MessageView.Update(TextFile.ParsedDocument);
             codeTextbox.ReDrawHighlight();
 
             Controller.NavigatePanel.UpdateVisibleNode();
             Controller.NavigatePanel.Refresh();
         }
+
+        private void acceptParseResult()
+        {
+
+        }
+
 
         // background parse
         private void subBgtimer_Tick(object sender, EventArgs e)
