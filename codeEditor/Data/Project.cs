@@ -189,14 +189,17 @@ namespace codeEditor.Data
             return relativePath;
         }
 
-        // save
 
+        // Seve and Load Project Setups ///////////////////////////////////////////////////////////////////
+        // save and load project setups into josn file
+
+        #region
         public void SaveSetup(ajkControls.JsonWriter writer)
         {
             writer.writeKeyValue("RootPath", RootPath);
             using (var blockWriter = writer.GetObjectWriter("IgnoreList"))
             {
-                foreach(string ingore in ignoreList)
+                foreach (string ingore in ignoreList)
                 {
                     blockWriter.writeKeyValue("Ignore", ingore);
                 }
@@ -204,7 +207,7 @@ namespace codeEditor.Data
 
             using (var blockWriter = writer.GetObjectWriter("PluginProperties"))
             {
-                foreach (KeyValuePair<string,ProjectProperty> propertyKvp in ProjectProperties)
+                foreach (KeyValuePair<string, ProjectProperty> propertyKvp in ProjectProperties)
                 {
                     using (var propertyWriter = blockWriter.GetObjectWriter(propertyKvp.Key))
                     {
@@ -256,7 +259,7 @@ namespace codeEditor.Data
                     if (key == "Ignore")
                     {
                         string value = reader.GetNextStringValue();
-                        if(!ignoreList.Contains(value)) ignoreList.Add(value);
+                        if (!ignoreList.Contains(value)) ignoreList.Add(value);
                     }
                     else
                     {
@@ -287,10 +290,15 @@ namespace codeEditor.Data
             }
         }
 
-        // file system watcher
+        #endregion
+
+
+        // file system watcher ////////////////////////////////////////////////////////////////////////////
+        // detect file change and raise events
+
+        #region FileSystemWatcher
 
         Dictionary<string, FileSystemEventArgs> fileSystemEvents = new Dictionary<string, FileSystemEventArgs>();
-
         private void addFileSystemEvent(System.IO.FileSystemEventArgs e)
         {
             lock (fileSystemEvents)
@@ -315,7 +323,7 @@ namespace codeEditor.Data
                     }
                 }
                 fileSystemEvents.Add(e.FullPath, e);
-//                fsTimer.Enabled = true;
+                //                fsTimer.Enabled = true;
             }
         }
 
@@ -362,7 +370,7 @@ namespace codeEditor.Data
                         else
                         {
                             DateTime lastWriteTime = System.IO.File.GetLastWriteTime(fs.FullPath);
-                            if(textFile.LoadedFileLastWriteTime != lastWriteTime)
+                            if (textFile.LoadedFileLastWriteTime != lastWriteTime)
                             {
                                 textFile.LoadFormFile();
                                 textFile.Update();
@@ -371,9 +379,12 @@ namespace codeEditor.Data
                     }
 
                 }
-//                fsTimer.Enabled = false;
+                //                fsTimer.Enabled = false;
             }
         }
+
+        #endregion
+
 
     }
 }
