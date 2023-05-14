@@ -143,7 +143,7 @@ namespace codeEditor.Data
                 string folderName = relativePath.Substring(0, relativePath.IndexOf(@"\"));
                 if (items.ContainsKey(folderName))
                 {
-                    return items[folderName].GetItem(relativePath.Substring(folderName.Length));
+                    return items[folderName].GetItem(relativePath.Substring(folderName.Length+1));
                 }
                 else
                 {
