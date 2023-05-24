@@ -26,7 +26,7 @@ namespace codeEditor.Data
             initProject(project);
             return project;
         }
-        public static Project Create(ajkControls.JsonReader jsonReader)
+        public static Project Create(ajkControls.Json.JsonReader jsonReader)
         {
             Project project = new Project();
             project.Name = jsonReader.Key;
@@ -194,7 +194,7 @@ namespace codeEditor.Data
         // save and load project setups into josn file
 
         #region
-        public void SaveSetup(ajkControls.JsonWriter writer)
+        public void SaveSetup(ajkControls.Json.JsonWriter writer)
         {
             writer.writeKeyValue("RootPath", RootPath);
             using (var blockWriter = writer.GetObjectWriter("IgnoreList"))
@@ -217,7 +217,7 @@ namespace codeEditor.Data
             }
         }
 
-        public void LoadSetup(ajkControls.JsonReader jsonReader)
+        public void LoadSetup(ajkControls.Json.JsonReader jsonReader)
         {
             ignoreList.Clear();
 
@@ -247,7 +247,7 @@ namespace codeEditor.Data
                 }
             }
         }
-        private void readInnoreList(ajkControls.JsonReader jsonReader)
+        private void readInnoreList(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {
@@ -270,7 +270,7 @@ namespace codeEditor.Data
             }
         }
 
-        private void readProjectProperties(ajkControls.JsonReader jsonReader)
+        private void readProjectProperties(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {

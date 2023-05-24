@@ -8,12 +8,12 @@ namespace codeEditor.Data
 {
     public class ProjectProperty
     {
-        public virtual void SaveSetup(ajkControls.JsonWriter writer)
+        public virtual void SaveSetup(ajkControls.Json.JsonWriter writer)
         {
 
         }
 
-        public virtual void LoadSetup(ajkControls.JsonReader jsonReader)
+        public virtual void LoadSetup(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {

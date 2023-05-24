@@ -30,7 +30,7 @@ namespace codeEditor.CodeEditor
         /// </summary>
         private void InitializeComponent()
         {
-            this.doubleBufferedDrawBox = new ajkControls.DoubleBufferedDrawBox();
+            this.doubleBufferedDrawBox = new ajkControls.Primitive.DoubleBufferedDrawBox();
             this.SuspendLayout();
             // 
             // doubleBufferedDrawBox
@@ -41,7 +41,7 @@ namespace codeEditor.CodeEditor
             this.doubleBufferedDrawBox.Name = "doubleBufferedDrawBox";
             this.doubleBufferedDrawBox.Size = new System.Drawing.Size(657, 225);
             this.doubleBufferedDrawBox.TabIndex = 0;
-            this.doubleBufferedDrawBox.DoubleBufferedPaint += new ajkControls.DoubleBufferedDrawBox.DoubleBufferedPaintHandler(this.doubleBufferedDrawBox_DoubleBufferedPaint);
+            this.doubleBufferedDrawBox.DoubleBufferedPaint += new ajkControls.Primitive.DoubleBufferedDrawBox.DoubleBufferedPaintHandler(this.doubleBufferedDrawBox_DoubleBufferedPaint);
             // 
             // PopupForm
             // 
@@ -62,6 +62,6 @@ namespace codeEditor.CodeEditor
 
         #endregion
 
-        private ajkControls.DoubleBufferedDrawBox doubleBufferedDrawBox;
+        private ajkControls.Primitive.DoubleBufferedDrawBox doubleBufferedDrawBox;
     }
 }

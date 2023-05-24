@@ -66,7 +66,7 @@ namespace codeEditor.CodeEditor
             }
         }
 
-        public virtual List<ajkControls.SelectionItem> GetInputCandidates()
+        public virtual List<ajkControls.SelectionForm.SelectionItem> GetInputCandidates()
         {
             return null;
         }

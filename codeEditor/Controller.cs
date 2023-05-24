@@ -231,12 +231,12 @@ namespace codeEditor
         public static class Tabs
         {
 
-            public static void AddPage(ajkControls.TabPage tabPage)
+            public static void AddPage(ajkControls.TabControl.TabPage tabPage)
             {
                 Global.mainForm.Controller_AddTabPage(tabPage);
             }
 
-            public static void RemovePage(ajkControls.TabPage tabPage)
+            public static void RemovePage(ajkControls.TabControl.TabPage tabPage)
             {
                 Global.mainForm.Controller_RemoveTabPage(tabPage);
             }

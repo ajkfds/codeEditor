@@ -13,7 +13,7 @@ namespace codeEditor.NavigatePanel
             contextMenuStrip.ImageScalingSize = new System.Drawing.Size(contextMenuStrip.Font.Height, contextMenuStrip.Font.Height);
             gitLogTsmi.Image = Global.IconImages.Git.GetImage(
                contextMenuStrip.ImageScalingSize.Height,
-               ajkControls.IconImage.ColorStyle.White);
+               ajkControls.Primitive.IconImage.ColorStyle.White);
         }
 
         public void AddProject(Data.Project project)
@@ -27,7 +27,7 @@ namespace codeEditor.NavigatePanel
         public ProjectNode GetPeojectNode(string projectName)
         {
             ProjectNode ret = null;
-            foreach(ajkControls.TreeNode node in treeView.TreeNodes)
+            foreach(ajkControls.TreeView.TreeNode node in treeView.TreeNodes)
             {
                 if(node is ProjectNode)
                 {
@@ -48,7 +48,7 @@ namespace codeEditor.NavigatePanel
             node = treeView.SelectedNode as NavigatePanelNode;
         }
 
-        private void treeView_SelectedNodeChanged(object sender, ajkControls.TreeNode e)
+        private void treeView_SelectedNodeChanged(object sender, ajkControls.TreeView.TreeNode e)
         {
             NavigatePanelNode node = e as NavigatePanelNode;
             if (node == null) return;
@@ -103,7 +103,7 @@ namespace codeEditor.NavigatePanel
         //    }
         //}
 
-        private void treeView_NodeClicked(object sender, ajkControls.TreeView.NodeClickedEventArgs e)
+        private void treeView_NodeClicked(object sender, ajkControls.TreeView.TreeView.NodeClickedEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
             System.Drawing.Point screenPosition = PointToScreen(e.Location);

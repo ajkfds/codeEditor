@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace codeEditor.MessageView
 {
-    public class MessageNode : ajkControls.TreeNode
+    public class MessageNode : ajkControls.TreeView.TreeNode
     {
         public virtual void Selected()
         {

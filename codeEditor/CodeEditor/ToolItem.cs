@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace codeEditor.CodeEditor
 {
-    public class ToolItem : ajkControls.SelectionItem
+    public class ToolItem : ajkControls.SelectionForm.SelectionItem
     {
         public ToolItem(string text) : base(text,Color.Gray)
         {

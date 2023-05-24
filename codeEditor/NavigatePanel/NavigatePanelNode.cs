@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.NavigatePanel
 {
-    public class NavigatePanelNode : ajkControls.TreeNode,IDisposable
+    public class NavigatePanelNode : ajkControls.TreeView.TreeNode,IDisposable
     {
         protected NavigatePanelNode()
         {
@@ -116,7 +116,7 @@ namespace codeEditor.NavigatePanel
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
-            if(Link) graphics.DrawImage(Global.IconImages.Link.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
+            if(Link) graphics.DrawImage(Global.IconImages.Link.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Blue), new Point(x, y));
             base.DrawNode(graphics, x, y, font, color, backgroundColor, selectedColor, lineHeight, selected);
         }
 

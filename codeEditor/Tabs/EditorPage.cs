@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.Tabs
 {
-    public class EditorPage : ajkControls.TabPage
+    public class EditorPage : ajkControls.TabControl.TabPage
     {
         public EditorPage()
         {
@@ -18,7 +18,7 @@ namespace codeEditor.Tabs
             TabIndex = 0;
             Text = "code";
             UseVisualStyleBackColor = true;
-            IconImage = new ajkControls.IconImage(Properties.Resources.text);
+            IconImage = new ajkControls.Primitive.IconImage(Properties.Resources.text);
             
             // 
             // codeEditor

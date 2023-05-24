@@ -81,11 +81,11 @@ namespace codeEditor
 
             commandShellToolStripMenuItem.Image = Global.IconImages.Terminal.GetImage(
                 menuStrip.ImageScalingSize.Height,
-                ajkControls.IconImage.ColorStyle.White
+                ajkControls.Primitive.IconImage.ColorStyle.White
                 );
             saveToolStripMenuItem.Image = Global.IconImages.SaveFile.GetImage(
                 menuStrip.ImageScalingSize.Height,
-                ajkControls.IconImage.ColorStyle.White
+                ajkControls.Primitive.IconImage.ColorStyle.White
                 );
 
             // register text filetype
@@ -181,12 +181,12 @@ namespace codeEditor
         }
 
         // tabs
-        internal void Controller_AddTabPage(ajkControls.TabPage tabPage)
+        internal void Controller_AddTabPage(ajkControls.TabControl.TabPage tabPage)
         {
             mainTab.TabPages.Add(tabPage);
         }
 
-        internal void Controller_RemoveTabPage(ajkControls.TabPage tabPage)
+        internal void Controller_RemoveTabPage(ajkControls.TabControl.TabPage tabPage)
         {
             mainTab.TabPages.Remove(tabPage);
         }

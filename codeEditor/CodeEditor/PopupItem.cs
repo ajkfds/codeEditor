@@ -17,7 +17,7 @@ namespace codeEditor.CodeEditor
             this.color = color;
         }
 
-        public PopupItem(string text, Color color, ajkControls.IconImage icon, ajkControls.IconImage.ColorStyle iconColorStyle)
+        public PopupItem(string text, Color color, ajkControls.Primitive.IconImage icon, ajkControls.Primitive.IconImage.ColorStyle iconColorStyle)
         {
             this.text = text;
             this.color = color;
@@ -26,8 +26,8 @@ namespace codeEditor.CodeEditor
         }
 
         private string text;
-        private ajkControls.IconImage icon = null;
-        private ajkControls.IconImage.ColorStyle iconColorStyle;
+        private ajkControls.Primitive.IconImage icon = null;
+        private ajkControls.Primitive.IconImage.ColorStyle iconColorStyle;
         private Color color;
 
         public virtual Size GetSize(Graphics graphics, Font font)

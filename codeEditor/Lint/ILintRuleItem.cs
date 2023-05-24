@@ -9,8 +9,8 @@ namespace codeEditor.Lint
     public interface ILintRuleItem
     {
         string Name { get; }
-        void ReadJson(ajkControls.JsonReader reader);
-        void WriteJson(ajkControls.JsonWriter writer);
+        void ReadJson(ajkControls.Json.JsonReader reader);
+        void WriteJson(ajkControls.Json.JsonWriter writer);
 
     }
 }

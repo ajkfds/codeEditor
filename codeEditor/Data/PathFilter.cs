@@ -12,7 +12,7 @@ namespace codeEditor.Data
         public List<PathFilterItem> Items = new List<PathFilterItem>();
 
 
-        public void SaveSetup(ajkControls.JsonWriter writer)
+        public void SaveSetup(ajkControls.Json.JsonWriter writer)
         {
 //            writer.writeKeyValue("RootPath", RootPath);
 
@@ -28,7 +28,7 @@ namespace codeEditor.Data
             }
         }
 
-        public void LoadSetup(ajkControls.JsonReader jsonReader)
+        public void LoadSetup(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {
@@ -69,12 +69,12 @@ namespace codeEditor.Data
 
             }
 
-            public virtual void SaveSetup(ajkControls.JsonWriter writer)
+            public virtual void SaveSetup(ajkControls.Json.JsonWriter writer)
             {
 
             }
 
-            public virtual void LoadSetup(ajkControls.JsonReader jsonReader)
+            public virtual void LoadSetup(ajkControls.Json.JsonReader jsonReader)
             {
                 using (var reader = jsonReader.GetNextObjectReader())
                 {

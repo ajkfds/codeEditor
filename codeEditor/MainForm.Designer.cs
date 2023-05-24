@@ -49,11 +49,11 @@ namespace codeEditor
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter3 = new System.Windows.Forms.Splitter();
-            this.mainTab = new ajkControls.TabControl();
-            this.subTab = new ajkControls.TabControl();
+            this.mainTab = new ajkControls.TabControl.TabControl();
+            this.subTab = new ajkControls.TabControl.TabControl();
             this.navigatorPage = new System.Windows.Forms.TabPage();
             this.navigatePanel = new codeEditor.NavigatePanel.NavigatePanel();
-            this.logView = new ajkControls.LogView();
+            this.logView = new ajkControls.LogView.LogView();
             this.messageView = new codeEditor.MessageView.MessageView();
             this.stopParseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
@@ -339,15 +339,15 @@ namespace codeEditor
 
         #endregion
 
-        internal ajkControls.LogView logView;
+        internal ajkControls.LogView.LogView logView;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Splitter splitter2;
         internal NavigatePanel.NavigatePanel navigatePanel;
-        private ajkControls.TabControl subTab;
+        private ajkControls.TabControl.TabControl subTab;
         internal System.Windows.Forms.TabPage navigatorPage;
-        internal ajkControls.TabControl mainTab;
+        internal ajkControls.TabControl.TabControl mainTab;
         internal MessageView.MessageView messageView;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;

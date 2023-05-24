@@ -29,8 +29,8 @@ namespace codeEditor.NavigatePanel
             get { return Project.Name; }
         }
 
-        private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
-        private static ajkControls.IconImage folder = new ajkControls.IconImage(Properties.Resources.folder);
+        private static ajkControls.Primitive.IconImage openFolder = new ajkControls.Primitive.IconImage(Properties.Resources.openFolder);
+        private static ajkControls.Primitive.IconImage folder = new ajkControls.Primitive.IconImage(Properties.Resources.folder);
 
         public override void Selected()
         {
@@ -41,11 +41,11 @@ namespace codeEditor.NavigatePanel
         {
             if (IsExpanded)
             {
-                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Red), new Point(x, y));
+                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Red), new Point(x, y));
             }
             else
             {
-                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Red), new Point(x, y));
+                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Red), new Point(x, y));
             }
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;

@@ -8,12 +8,12 @@ namespace codeEditorPlugin
 {
     public class PluginSetup
     {
-        public void SaveSetup (ajkControls.JsonWriter writer)
+        public void SaveSetup (ajkControls.Json.JsonWriter writer)
         {
             
         }
 
-        public void ReadJson(ajkControls.JsonReader reader)
+        public void ReadJson(ajkControls.Json.JsonReader reader)
         {
             while (true)
             {

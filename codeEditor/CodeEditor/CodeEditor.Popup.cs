@@ -14,13 +14,13 @@ namespace codeEditor.CodeEditor
     {
         // tool selection form /////////////////////////////////////////////////////////////////////////
 
-        private ajkControls.SelectionForm toolSelectionForm = null;
+        private ajkControls.SelectionForm.SelectionForm toolSelectionForm = null;
 
         private void openToolSelectionForm()
         {
             if (toolSelectionForm == null)
             {
-                toolSelectionForm = new ajkControls.SelectionForm();
+                toolSelectionForm = new ajkControls.SelectionForm.SelectionForm();
                 toolSelectionForm.InputAreaForecolor = Color.FromArgb(250, 250, 250);
                 toolSelectionForm.InputAreaBackcolor = Color.FromArgb(90, 90, 90);
                 toolSelectionForm.ForeColor = Color.FromArgb(240, 240, 240);
@@ -34,7 +34,7 @@ namespace codeEditor.CodeEditor
 
 
             List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
-            List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
+            List<ajkControls.SelectionForm.SelectionItem> items = new List<ajkControls.SelectionForm.SelectionItem>();
             foreach (ToolItem item in tools) { items.Add(item); }
 
             items.Add(new Snippets.ToLower());
@@ -63,12 +63,12 @@ namespace codeEditor.CodeEditor
 
         // custom selection form /////////////////////////////////////////////////////////////////////////
 
-        private ajkControls.SelectionForm customSelectionForm = null;
+        private ajkControls.SelectionForm.SelectionForm customSelectionForm = null;
         public void OpenCustomSelection(List<ToolItem> cantidates)
         {
             if (customSelectionForm == null)
             {
-                customSelectionForm = new ajkControls.SelectionForm();
+                customSelectionForm = new ajkControls.SelectionForm.SelectionForm();
                 customSelectionForm.InputAreaForecolor = Color.FromArgb(250, 250, 250);
                 customSelectionForm.InputAreaBackcolor = Color.FromArgb(90, 90, 90);
                 customSelectionForm.ForeColor = Color.FromArgb(240, 240, 240);
@@ -80,10 +80,10 @@ namespace codeEditor.CodeEditor
             if (customSelectionForm.Visible) customSelectionForm.Visible = false;
 
             List<ToolItem> tools = TextFile.GetToolItems(CodeDocument.CaretIndex);
-            List<ajkControls.SelectionItem> items = new List<ajkControls.SelectionItem>();
+            List<ajkControls.SelectionForm.SelectionItem> items = new List<ajkControls.SelectionForm.SelectionItem>();
             foreach ( ToolItem item in cantidates)
             {
-                items.Add(item as ajkControls.SelectionItem);
+                items.Add(item as ajkControls.SelectionForm.SelectionItem);
             }
 
             items.Add(new Snippets.ToLower());

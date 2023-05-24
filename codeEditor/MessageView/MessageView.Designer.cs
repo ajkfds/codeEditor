@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.treeView = new ajkControls.TreeView();
+            this.treeView = new ajkControls.TreeView.TreeView();
             this.SuspendLayout();
             // 
             // label1
@@ -56,8 +56,8 @@
             this.treeView.Size = new System.Drawing.Size(253, 670);
             this.treeView.TabIndex = 1;
             this.treeView.VScrollBarVisible = true;
-            this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
-            this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
+            this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeView.TreeNode>(this.treeView_SelectedNodeChanged);
+            this.treeView.NodeClicked += new ajkControls.TreeView.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
             // MessageView
             // 
@@ -76,6 +76,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private ajkControls.TreeView treeView;
+        private ajkControls.TreeView.TreeView treeView;
     }
 }

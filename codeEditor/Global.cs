@@ -21,21 +21,21 @@ namespace codeEditor
 
         public static class IconImages
         {
-            public static ajkControls.IconImage Terminal = new ajkControls.IconImage(Properties.Resources.terminal);
-            public static ajkControls.IconImage Text = new ajkControls.IconImage(Properties.Resources.text);
-            public static ajkControls.IconImage SaveFile = new ajkControls.IconImage(Properties.Resources.saveFile);
-            public static ajkControls.IconImage Wave0 = new ajkControls.IconImage(Properties.Resources.wave0);
-            public static ajkControls.IconImage Wave1 = new ajkControls.IconImage(Properties.Resources.wave1);
-            public static ajkControls.IconImage Wave2 = new ajkControls.IconImage(Properties.Resources.wave2);
-            public static ajkControls.IconImage Wave3 = new ajkControls.IconImage(Properties.Resources.wave3);
-            public static ajkControls.IconImage Wave4 = new ajkControls.IconImage(Properties.Resources.wave4);
-            public static ajkControls.IconImage Wave5 = new ajkControls.IconImage(Properties.Resources.wave5);
-            public static ajkControls.IconImage Play = new ajkControls.IconImage(Properties.Resources.play);
-            public static ajkControls.IconImage Pause = new ajkControls.IconImage(Properties.Resources.pause);
-            public static ajkControls.IconImage Git = new ajkControls.IconImage(Properties.Resources.tree);
-            public static ajkControls.IconImage NewBadge = new ajkControls.IconImage(Properties.Resources.newBadge);
-            public static ajkControls.IconImage IgnoreBadge = new ajkControls.IconImage(Properties.Resources.ignore);
-            public static ajkControls.IconImage Link = new ajkControls.IconImage(Properties.Resources.link);
+            public static ajkControls.Primitive.IconImage Terminal = new ajkControls.Primitive.IconImage(Properties.Resources.terminal);
+            public static ajkControls.Primitive.IconImage Text = new ajkControls.Primitive.IconImage(Properties.Resources.text);
+            public static ajkControls.Primitive.IconImage SaveFile = new ajkControls.Primitive.IconImage(Properties.Resources.saveFile);
+            public static ajkControls.Primitive.IconImage Wave0 = new ajkControls.Primitive.IconImage(Properties.Resources.wave0);
+            public static ajkControls.Primitive.IconImage Wave1 = new ajkControls.Primitive.IconImage(Properties.Resources.wave1);
+            public static ajkControls.Primitive.IconImage Wave2 = new ajkControls.Primitive.IconImage(Properties.Resources.wave2);
+            public static ajkControls.Primitive.IconImage Wave3 = new ajkControls.Primitive.IconImage(Properties.Resources.wave3);
+            public static ajkControls.Primitive.IconImage Wave4 = new ajkControls.Primitive.IconImage(Properties.Resources.wave4);
+            public static ajkControls.Primitive.IconImage Wave5 = new ajkControls.Primitive.IconImage(Properties.Resources.wave5);
+            public static ajkControls.Primitive.IconImage Play = new ajkControls.Primitive.IconImage(Properties.Resources.play);
+            public static ajkControls.Primitive.IconImage Pause = new ajkControls.Primitive.IconImage(Properties.Resources.pause);
+            public static ajkControls.Primitive.IconImage Git = new ajkControls.Primitive.IconImage(Properties.Resources.tree);
+            public static ajkControls.Primitive.IconImage NewBadge = new ajkControls.Primitive.IconImage(Properties.Resources.newBadge);
+            public static ajkControls.Primitive.IconImage IgnoreBadge = new ajkControls.Primitive.IconImage(Properties.Resources.ignore);
+            public static ajkControls.Primitive.IconImage Link = new ajkControls.Primitive.IconImage(Properties.Resources.link);
         }
 
         public static class ColorMap

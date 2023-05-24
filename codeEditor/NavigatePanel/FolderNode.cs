@@ -119,26 +119,26 @@ namespace codeEditor.NavigatePanel
             //}
         }
 
-        private static ajkControls.IconImage openFolder = new ajkControls.IconImage(Properties.Resources.openFolder);
-        private static ajkControls.IconImage folder = new ajkControls.IconImage(Properties.Resources.folder);
-        private static ajkControls.IconImage ignoreIcon = new ajkControls.IconImage(Properties.Resources.ignore);
+        private static ajkControls.Primitive.IconImage openFolder = new ajkControls.Primitive.IconImage(Properties.Resources.openFolder);
+        private static ajkControls.Primitive.IconImage folder = new ajkControls.Primitive.IconImage(Properties.Resources.folder);
+        private static ajkControls.Primitive.IconImage ignoreIcon = new ajkControls.Primitive.IconImage(Properties.Resources.ignore);
 
         public override void DrawNode(Graphics graphics, int x, int y, Font font, Color color, Color backgroundColor, Color selectedColor, int lineHeight, bool selected)
         {
             if (IsExpanded)
             {
-                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
+                graphics.DrawImage(openFolder.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Blue), new Point(x, y));
             }
             else
             {
-                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
+                graphics.DrawImage(folder.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Blue), new Point(x, y));
             }
 
             if (Item.Ignore)
             {
-                graphics.DrawImage(ignoreIcon.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Gray), new Point(x, y));
+                graphics.DrawImage(ignoreIcon.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Gray), new Point(x, y));
             }
-            if (Link) graphics.DrawImage(codeEditor.Global.IconImages.Link.GetImage(lineHeight, ajkControls.IconImage.ColorStyle.Blue), new Point(x, y));
+            if (Link) graphics.DrawImage(codeEditor.Global.IconImages.Link.GetImage(lineHeight, ajkControls.Primitive.IconImage.ColorStyle.Blue), new Point(x, y));
 
             Color bgColor = backgroundColor;
             if (selected) bgColor = selectedColor;

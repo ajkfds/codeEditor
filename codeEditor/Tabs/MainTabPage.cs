@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.Tabs
 {
-    public class MainTabPage : ajkControls.TabPage
+    public class MainTabPage : ajkControls.TabControl.TabPage
     {
         public MainTabPage(System.Windows.Forms.UserControl userControl,string name)
         {

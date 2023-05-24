@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
-            this.tabControl = new ajkControls.TabControl();
+            this.tabControl = new ajkControls.TabControl.TabControl();
             this.mainPage = new System.Windows.Forms.TabPage();
             this.ignoreListTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -177,7 +177,7 @@
 
         #endregion
 
-        private ajkControls.TabControl tabControl;
+        private ajkControls.TabControl.TabControl tabControl;
         private System.Windows.Forms.TabPage mainPage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cancelBtn;

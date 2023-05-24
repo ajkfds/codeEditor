@@ -39,7 +39,7 @@ namespace codeEditor.NavigatePanel
             this.propertySeparator = new System.Windows.Forms.ToolStripSeparator();
             this.propertyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.openWithExploererTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView = new ajkControls.TreeView();
+            this.treeView = new ajkControls.TreeView.TreeView();
             this.parseHierarchyTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -119,8 +119,8 @@ namespace codeEditor.NavigatePanel
             this.treeView.Size = new System.Drawing.Size(399, 618);
             this.treeView.TabIndex = 0;
             this.treeView.VScrollBarVisible = true;
-            this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeNode>(this.treeView_SelectedNodeChanged);
-            this.treeView.NodeClicked += new ajkControls.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
+            this.treeView.SelectedNodeChanged += new System.EventHandler<ajkControls.TreeView.TreeNode>(this.treeView_SelectedNodeChanged);
+            this.treeView.NodeClicked += new ajkControls.TreeView.TreeView.NodeClickedEventHandler(this.treeView_NodeClicked);
             // 
             // parseHierarchyTsmi
             // 
@@ -143,7 +143,7 @@ namespace codeEditor.NavigatePanel
 
         #endregion
 
-        private ajkControls.TreeView treeView;
+        private ajkControls.TreeView.TreeView treeView;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem deleteTsmi;
         private System.Windows.Forms.ToolStripSeparator propertySeparator;

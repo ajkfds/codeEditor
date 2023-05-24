@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace codeEditor.Tools
 {
-    public class ProjectPropertyTab : ajkControls.TabPage
+    public class ProjectPropertyTab : ajkControls.TabControl.TabPage
     {
         public virtual void PropertyAccept() { }
         public virtual void PropertyCancel() { }

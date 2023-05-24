@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ajkControls.Json;
 
 namespace codeEditor.Lint
 {
@@ -26,7 +27,7 @@ namespace codeEditor.Lint
             }
         }
 
-        public void ReadJson(ajkControls.JsonReader reader)
+        public void ReadJson(ajkControls.Json.JsonReader reader)
         {
             while (true)
             {
@@ -43,7 +44,7 @@ namespace codeEditor.Lint
                 }
             }
         }
-        public void WriteJson(ajkControls.JsonWriter writer)
+        public void WriteJson(ajkControls.Json.JsonWriter writer)
         {
             using (var blockWriter = writer.GetObjectWriter("codeEditor"))
             {

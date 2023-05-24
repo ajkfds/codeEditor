@@ -14,7 +14,7 @@ namespace codeEditor.Setups
         {
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(path))
             {
-                using (ajkControls.JsonWriter writer = new ajkControls.JsonWriter(sw))
+                using (ajkControls.Json.JsonWriter writer = new ajkControls.Json.JsonWriter(sw))
                 {
                     writeJson(writer);
                 }
@@ -25,14 +25,14 @@ namespace codeEditor.Setups
         {
             using( System.IO.StreamReader sr = new System.IO.StreamReader(path))
             {
-                using ( ajkControls.JsonReader reader = new ajkControls.JsonReader(sr))
+                using ( ajkControls.Json.JsonReader reader = new ajkControls.Json.JsonReader(sr))
                 {
                     readJson(reader);
                 }
             }
         }
 
-        private void readJson(ajkControls.JsonReader reader)
+        private void readJson(ajkControls.Json.JsonReader reader)
         {
             while (true)
             {
@@ -57,7 +57,7 @@ namespace codeEditor.Setups
             }
         }
 
-        private void readCodeEditorSetup(ajkControls.JsonReader jsonReader)
+        private void readCodeEditorSetup(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {
@@ -83,7 +83,7 @@ namespace codeEditor.Setups
             }
         }
 
-        private void readPluginSetup(ajkControls.JsonReader jsonReader)
+        private void readPluginSetup(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {
@@ -107,7 +107,7 @@ namespace codeEditor.Setups
             }
         }
 
-        private void readProjects(ajkControls.JsonReader jsonReader)
+        private void readProjects(ajkControls.Json.JsonReader jsonReader)
         {
             using (var reader = jsonReader.GetNextObjectReader())
             {
@@ -130,7 +130,7 @@ namespace codeEditor.Setups
         }
 
 
-        private void writeJson(ajkControls.JsonWriter writer)
+        private void writeJson(ajkControls.Json.JsonWriter writer)
         {
             using (var blockWriter = writer.GetObjectWriter("codeEditor"))
             {
