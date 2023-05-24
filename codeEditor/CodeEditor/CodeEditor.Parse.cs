@@ -24,6 +24,7 @@ namespace codeEditor.CodeEditor
 
         private void entryParse()
         {
+            if (Global.StopParse) return;
             if (TextFile == null) return;
             DocumentParser parser = TextFile.CreateDocumentParser(DocumentParser.ParseModeEnum.EditParse);
             if (parser != null)

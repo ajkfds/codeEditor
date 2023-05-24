@@ -268,5 +268,10 @@ namespace codeEditor
             }
         }
 
+        private void stopParseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Global.StopParse = !Global.StopParse;
+            stopParseToolStripMenuItem.Checked = Global.StopParse;
+        }
     }
 }

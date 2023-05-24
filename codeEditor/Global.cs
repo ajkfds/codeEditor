@@ -48,6 +48,6 @@ namespace codeEditor
 
         // for debug
         public static System.Runtime.Serialization.ObjectIDGenerator IdGenerator = new System.Runtime.Serialization.ObjectIDGenerator();
-
+        public static bool StopParse = false;
     }
 }
