@@ -90,6 +90,7 @@
     <Compile Include="Data\Link.cs" />
     <Compile Include="Data\PathFilter.cs" />
     <Compile Include="FileTypes\FileAttribute.cs" />
+    <Compile Include="FileTypes\FileAttributeList.cs" />
     <Compile Include="Lint\ILintRuleItem.cs" />
     <Compile Include="Lint\LintRule.cs" />
     <Compile Include="Lint\LintRuleGroup.cs" />

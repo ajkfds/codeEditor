@@ -5,26 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ajkControls.Json;
 
-namespace codeEditor.Lint
+
+namespace codeEditor.FileTypes
 {
-    public class LintRuleGroup : ILintRuleItem
+    public class FileAttributeList
     {
-        public LintRuleGroup(string name)
-        {
-            this.Name = name;
-        }
-
-        public string Name { get; protected set; }
-
-        private Dictionary<string, ILintRuleItem> items = new Dictionary<string, ILintRuleItem>();
-
-        public IReadOnlyDictionary<string,ILintRuleItem> Items
-        {
-            get
-            {
-                return items;
-            }
-        }
 
         public void ReadJson(ajkControls.Json.JsonReader reader)
         {
@@ -33,11 +18,11 @@ namespace codeEditor.Lint
                 string key = reader.GetNextKey();
                 if (key == null) break;
 
-                if (items.ContainsKey(key))
-                {
-                    items[key].ReadJson(reader);
-                }
-                else
+                //if (items.ContainsKey(key))
+                //{
+                //    items[key].ReadJson(reader);
+                //}
+                //else
                 {
                     reader.SkipValue();
                 }
@@ -74,6 +59,5 @@ namespace codeEditor.Lint
             }
 
         }
-
     }
 }
