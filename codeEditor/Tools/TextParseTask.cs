@@ -9,9 +9,9 @@ namespace codeEditor.Tools
     public class TextParseTask
     {
 
-        public void Run(List<Data.TextFile> textFiles,Action<Data.TextFile> startParse)
+        public void Run(System.Collections.Concurrent.BlockingCollection<Data.TextFile> files, Action<Data.TextFile> startParse)
         {
-            this.textFiles = textFiles;
+            this.fileQueue = files;
             this.startParse = startParse;
 
             if (thread != null) return;
@@ -22,18 +22,15 @@ namespace codeEditor.Tools
         System.Threading.Thread thread = null;
         public volatile bool Complete = false;
 
-        private List<Data.TextFile> textFiles;
+        private System.Collections.Concurrent.BlockingCollection<Data.TextFile> fileQueue;
         Action<Data.TextFile> startParse;
 
         int gc = 0;
         private void worker()
         {
-            lock (textFiles)
+            foreach (Data.TextFile file in fileQueue.GetConsumingEnumerable())
             {
-                foreach (Data.TextFile file in textFiles)
-                {
-                    parse(file);
-                }
+                parse(file);
             }
             Complete = true;
         }
@@ -43,7 +40,7 @@ namespace codeEditor.Tools
             CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.LoadParse);
             if (parser == null) return;
 
-            startParse(textFile);
+            if(textFile != null) startParse(textFile);
             parser.Parse();
 
             textFile.CodeDocument.CopyFrom(parser.Document);

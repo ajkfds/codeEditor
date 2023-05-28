@@ -60,29 +60,16 @@ namespace codeEditor.Tools
 
                 // parse items
                 int i = 0;
-                int workerThreads = 4;
-                List<List<Data.TextFile>> filesThreads = new List<List<Data.TextFile>>();
-                
-                for(int t = 0; t < workerThreads; t++)
-                {
-                    filesThreads.Add(new List<Data.TextFile>());
-                }
+                int workerThreads = 6;
 
-                int p = 0;
-                foreach (Data.Item item in items)
-                {
-                    if (!(item is Data.TextFile)) continue;
-                    filesThreads[p].Add(item as Data.TextFile);
-                    p++;
-                    if (p >= workerThreads) p =0;
-                }
+                System.Collections.Concurrent.BlockingCollection<Data.TextFile> fileQueue = new System.Collections.Concurrent.BlockingCollection<Data.TextFile>();
 
                 List<TextParseTask> tasks = new List<TextParseTask>();
                 for(int t = 0; t < workerThreads; t++)
                 {
                     tasks.Add(new TextParseTask());
                     tasks[t].Run(
-                        filesThreads[t],
+                        fileQueue,
                         (
                             (f) =>
                             {
@@ -98,15 +85,16 @@ namespace codeEditor.Tools
                     );
                 }
 
-                while (true)
+                foreach (Data.Item item in items)
                 {
-                    int completes = 0;
-                    foreach(TextParseTask task in tasks)
-                    {
-                        if (task.Complete) completes++;
-                    }
-                    if (completes == workerThreads) break;
-                    System.Diagnostics.Debug.Print("comp"+completes.ToString());
+                    if (!(item is Data.TextFile)) continue;
+                    fileQueue.Add(item as Data.TextFile);
+                }
+                fileQueue.CompleteAdding();
+
+                while (!fileQueue.IsCompleted)
+                {
+                    System.Threading.Thread.Sleep(1);
                 }
 
 
