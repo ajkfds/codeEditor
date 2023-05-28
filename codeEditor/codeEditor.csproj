@@ -176,6 +176,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\TextParseTask.cs" />
     <EmbeddedResource Include="CodeEditor\AutoCompleteForm.resx">
       <DependentUpon>AutoCompleteForm.cs</DependentUpon>
     </EmbeddedResource>

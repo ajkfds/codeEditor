@@ -9,9 +9,5 @@ namespace codeEditor.MessageView
 {
     public class MessageNode : ajkControls.TreeView.TreeNode
     {
-        public virtual void Selected()
-        {
-
-        }
     }
 }

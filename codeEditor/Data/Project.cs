@@ -51,31 +51,6 @@ namespace codeEditor.Data
             base.Dispose();
         }
 
-        protected System.IO.FileSystemWatcher fileSystemWatcher;
-        protected System.Windows.Forms.Timer fsTimer = new System.Windows.Forms.Timer();
-        protected void startFileSystemWatcher()
-        {
-            fileSystemWatcher = new System.IO.FileSystemWatcher();
-            fileSystemWatcher.Path = RootPath;
-            fileSystemWatcher.NotifyFilter =
-                (System.IO.NotifyFilters.LastAccess
-                | System.IO.NotifyFilters.LastWrite
-                | System.IO.NotifyFilters.FileName
-                | System.IO.NotifyFilters.DirectoryName);
-            fileSystemWatcher.Filter = "";
-            fileSystemWatcher.IncludeSubdirectories = true;
-
-            fileSystemWatcher.Created += FileSystemWatcher_Created;
-            fileSystemWatcher.Changed += FileSystemWatcher_Changed;
-            fileSystemWatcher.Renamed += FileSystemWatcher_Renamed;
-            fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
-
-            fileSystemWatcher.EnableRaisingEvents = true;
-
-            fsTimer.Interval = 10;
-            fsTimer.Tick += fsTimer_Tick;
-            fsTimer.Start();
-        }
 
         private void stopFileSystemWatcher()
         {
@@ -297,6 +272,32 @@ namespace codeEditor.Data
         // detect file change and raise events
 
         #region FileSystemWatcher
+
+        protected System.IO.FileSystemWatcher fileSystemWatcher;
+        protected System.Windows.Forms.Timer fsTimer = new System.Windows.Forms.Timer();
+        protected void startFileSystemWatcher()
+        {
+            fileSystemWatcher = new System.IO.FileSystemWatcher();
+            fileSystemWatcher.Path = RootPath;
+            fileSystemWatcher.NotifyFilter = (
+                System.IO.NotifyFilters.LastWrite
+                | System.IO.NotifyFilters.FileName
+                | System.IO.NotifyFilters.DirectoryName
+                );
+            fileSystemWatcher.Filter = "";
+            fileSystemWatcher.IncludeSubdirectories = true;
+
+            fileSystemWatcher.Created += FileSystemWatcher_Created;
+            fileSystemWatcher.Changed += FileSystemWatcher_Changed;
+            fileSystemWatcher.Renamed += FileSystemWatcher_Renamed;
+            fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
+
+            fileSystemWatcher.EnableRaisingEvents = true;
+
+            fsTimer.Interval = 10;
+            fsTimer.Tick += fsTimer_Tick;
+            fsTimer.Start();
+        }
 
         Dictionary<string, FileSystemEventArgs> fileSystemEvents = new Dictionary<string, FileSystemEventArgs>();
         private void addFileSystemEvent(System.IO.FileSystemEventArgs e)

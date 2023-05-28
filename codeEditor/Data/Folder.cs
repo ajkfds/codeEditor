@@ -80,7 +80,7 @@ namespace codeEditor.Data
             {
                 absoluteFilePaths = System.IO.Directory.GetFiles(absolutePath);
             }
-            catch (Exception ex)
+            catch
             {
                 System.Diagnostics.Debugger.Break();
                 return;
@@ -163,10 +163,6 @@ namespace codeEditor.Data
                 }
             }
 
-            if (removeItems.Count > 0)
-            {
-                string a = "";
-            }
             foreach (Item item in removeItems)
             {
                 items.Remove(item.Name);

@@ -17,7 +17,7 @@ namespace codeEditor.NavigatePanel
         }
         public static Action<FolderNode> FolderNodeCreated;
 
-        private System.WeakReference<Data.Folder> folderRef;
+//        private System.WeakReference<Data.Folder> folderRef;
         public virtual Data.Folder Folder
         {
             get
@@ -39,10 +39,6 @@ namespace codeEditor.NavigatePanel
 
         public override void Update()
         {
-            if(Name ==" LINKS")
-            {
-                string a = "";
-            }
             Folder.Update();
 
             List<Data.Item> addItems = new List<Data.Item>();
