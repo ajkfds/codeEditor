@@ -97,31 +97,16 @@ namespace codeEditor.Tools
                     System.Threading.Thread.Sleep(1);
                 }
 
+                while (true)
+                {
+                    int completeTasks = 0;
+                    foreach(TextParseTask task in tasks)
+                    {
+                        if (task.Complete) completeTasks++;
+                    }
+                    if (completeTasks == tasks.Count) break;
+                }
 
-                //int gc = 0;
-                //foreach (Data.Item item in items)
-                //{
-                //    Invoke(new Action(() => { progressBar.Value = i; }));
-                //    i++;
-
-                //    if (!(item is Data.TextFile)) continue;
-                //    Data.TextFile textFile = item as Data.TextFile;
-                //    Invoke(new Action(() => { label.Text = textFile.Name; }));
-                //    CodeEditor.DocumentParser parser = textFile.CreateDocumentParser(CodeEditor.DocumentParser.ParseModeEnum.LoadParse);
-                //    if (parser == null) continue;
-                //    parser.Parse();
-
-                //    textFile.CodeDocument.CopyFrom(parser.Document);
-
-                //    if (textFile.ParsedDocument != null)
-                //    {
-                //        CodeEditor.ParsedDocument oldParsedDocument = textFile.ParsedDocument;
-                //        textFile.ParsedDocument = null;
-                //        oldParsedDocument.Dispose();
-                //    }
-
-                //    textFile.AcceptParsedDocument(parser.ParsedDocument);
-                //    textFile.Close();
 
                 //    gc++;
                 //    if (gc > 100)

@@ -25,7 +25,6 @@ namespace codeEditor.Tools
         private System.Collections.Concurrent.BlockingCollection<Data.TextFile> fileQueue;
         Action<Data.TextFile> startParse;
 
-        int gc = 0;
         private void worker()
         {
             foreach (Data.TextFile file in fileQueue.GetConsumingEnumerable())
@@ -52,6 +51,7 @@ namespace codeEditor.Tools
                 textFile.ParsedDocument = null;
                 oldParsedDocument.Dispose();
             }
+            
 
             textFile.AcceptParsedDocument(parser.ParsedDocument);
             textFile.Close();
